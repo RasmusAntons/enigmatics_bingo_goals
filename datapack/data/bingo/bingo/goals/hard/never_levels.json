@@ -5,8 +5,8 @@
       "type": "bingo:int",
       "value": {
         "type": "minecraft:uniform",
-        "max_inclusive": 7,
-        "min_inclusive": 3
+        "max_inclusive": 3,
+        "min_inclusive": 1
       }
     }
   },
@@ -23,7 +23,7 @@
       "trigger": "bingo:experience_changed"
     }
   },
-  "difficulty": "bingo:medium",
+  "difficulty": "bingo:hard",
   "icon": {
     "type": "bingo:item",
     "item": {
@@ -35,7 +35,7 @@
     }
   },
   "name": {
-    "translate": "bingo.goal.never_levels",
+    "translate": "Do not reach level %s",
     "with": [
       {
         "bingo_type": "bingo:sub",

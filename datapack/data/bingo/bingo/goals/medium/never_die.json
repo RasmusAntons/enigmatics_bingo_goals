@@ -1,0 +1,25 @@
+{
+  "criteria": {
+    "die": {
+      "trigger": "bingo:death"
+    }
+  },
+  "difficulty": "bingo:medium",
+  "icon": {
+    "type": "bingo:item",
+    "item": {
+      "id": "minecraft:player_head"
+    }
+  },
+  "name": {
+    "text": "Never die"
+  },
+  "requirements": [
+    [
+      "die"
+    ]
+  ],
+  "tags": [
+    "bingo:never"
+  ]
+}

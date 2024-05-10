@@ -1,0 +1,23 @@
+{
+  "criteria": {
+    "damage": {
+      "trigger": "minecraft:entity_hurt_player"
+    }
+  },
+  "difficulty": "bingo:medium",
+  "icon": {
+    "type": "bingo:effect",
+    "effect": "minecraft:instant_damage"
+  },
+  "name": {
+    "text": "Never take damage"
+  },
+  "requirements": [
+    [
+      "damage"
+    ]
+  ],
+  "tags": [
+    "bingo:never"
+  ]
+}
