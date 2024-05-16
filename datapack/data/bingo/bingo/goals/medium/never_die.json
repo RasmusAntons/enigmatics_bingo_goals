@@ -6,9 +6,18 @@
   },
   "difficulty": "bingo:medium",
   "icon": {
-    "type": "bingo:item",
-    "item": {
-      "id": "minecraft:player_head"
+    "type": "bingo:indicator",
+    "base": {
+        "type": "bingo:item",
+        "item": {
+          "id": "minecraft:player_head"
+        }
+    },
+	"indicator": {
+	  "type": "bingo:item",
+	  "item": {
+	    "id": "minecraft:barrier"
+	  }
     }
   },
   "name": {

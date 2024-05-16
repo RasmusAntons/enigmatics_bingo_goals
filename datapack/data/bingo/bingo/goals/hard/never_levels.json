@@ -25,13 +25,22 @@
   },
   "difficulty": "bingo:hard",
   "icon": {
-    "type": "bingo:item",
-    "item": {
-      "count": {
-        "bingo_type": "bingo:sub",
-        "key": "count"
-      },
-      "id": "minecraft:experience_bottle"
+    "type": "bingo:indicator",
+    "base": {
+      "type": "bingo:item",
+      "item": {
+        "count": {
+          "bingo_type": "bingo:sub",
+          "key": "count"
+        },
+          "id": "minecraft:experience_bottle"
+        }
+    },
+	"indicator": {
+	  "type": "bingo:item",
+	  "item": {
+	    "id": "minecraft:barrier"
+	  }
     }
   },
   "name": {

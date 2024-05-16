@@ -1,15 +1,20 @@
 {
   "criteria": {
-    "damage": {
-      "trigger": "minecraft:entity_hurt_player"
+    "touch": {
+      "conditions": {
+        "block": "minecraft:water"
+      },
+      "trigger": "minecraft:enter_block"
     }
   },
-  "difficulty": "bingo:medium",
+  "difficulty": "bingo:hard",
   "icon": {
     "type": "bingo:indicator",
     "base": {
-	  "type": "bingo:effect",
-	  "effect": "minecraft:instant_damage"
+	  "type": "bingo:item",
+	  "item": {
+	    "id": "minecraft:water_bucket"
+	  }
     },
 	"indicator": {
 	  "type": "bingo:item",
@@ -19,11 +24,11 @@
     }
   },
   "name": {
-    "text": "Never take damage"
+    "text": "Never touch water"
   },
   "requirements": [
     [
-      "damage"
+      "touch"
     ]
   ],
   "tags": [

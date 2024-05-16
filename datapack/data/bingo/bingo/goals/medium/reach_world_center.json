@@ -1,0 +1,40 @@
+{
+    "criteria": {
+      "reach": {
+        "conditions": {
+          "player": {
+            "location": {
+                "position": {
+                    "x": {
+                        "min": 0,
+                        "max": 1
+                    },
+                    "z": {
+                        "min": 0,
+                        "max": 1
+                    }
+                }
+            }
+          }
+        },
+        "trigger": "minecraft:location"
+      }
+    },
+    "difficulty": "bingo:medium",
+    "icon": {
+      "type": "bingo:item",
+      "item": {
+        "id": "minecraft:target"
+      }
+    },
+    "name": {
+      "text": "Reach the world center"
+    },
+    "requirements": [
+      [
+        "reach"
+      ]
+    ],
+    "tags": []
+  }
+  
