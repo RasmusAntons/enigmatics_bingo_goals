@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "de.rasmusantons.enigmaticsbingogoals.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "server": [
+    "PlayerMixin",
+    "ServerPlayerMixin",
+    "RecordItemMixin",
+    "JukeboxBlockEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
