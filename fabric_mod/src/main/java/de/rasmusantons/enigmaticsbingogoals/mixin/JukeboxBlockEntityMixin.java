@@ -1,6 +1,6 @@
 package de.rasmusantons.enigmaticsbingogoals.mixin;
 
-import de.rasmusantons.enigmaticsbingogoals.extension.RecordItemExtension;
+import de.rasmusantons.enigmaticsbingogoals.extension.JukeboxBlockEntityExtension;
 import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTriggers;
 import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger;
 import net.minecraft.core.BlockPos;
@@ -18,24 +18,36 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(JukeboxBlockEntity.class)
-public abstract class JukeboxBlockEntityMixin {
+public abstract class JukeboxBlockEntityMixin implements JukeboxBlockEntityExtension {
     @Shadow public abstract ItemStack getTheItem();
+
+    @Unique
+    private ServerPlayer lastPlayed;
 
     @Unique
     private final static int MAX_DISTANCE = 60;
 
+    public ServerPlayer enigmaticsbingogoals$getLastPlayed() {
+        return lastPlayed;
+    }
+
+    public void enigmaticsbingogoals$setLastPlayed(ServerPlayer serverPlayer) {
+        lastPlayed = serverPlayer;
+    }
+
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;gameEvent(Lnet/minecraft/core/Holder;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)V"))
     private void onGameEvent(Level level, BlockPos pos, BlockState state, CallbackInfo ci) {
+        if (lastPlayed == null)
+            return;
         for (Player player : level.players()) {
             if (!(player instanceof ServerPlayer serverPlayer))
                 continue;
             if (serverPlayer.position().distanceTo(pos.getCenter()) > MAX_DISTANCE)
                 continue;
-            ServerPlayer recordPlayer = ((RecordItemExtension) this.getTheItem().getItem()).enigmaticsbingogoals$getLastPlayer();
-            if (recordPlayer.getTeam() == serverPlayer.getTeam())
+            if (lastPlayed.getTeam() == serverPlayer.getTeam())
                 continue;
             PlayMusicToOtherTeamTrigger trigger = (PlayMusicToOtherTeamTrigger) EnigmaticsBingoGoalsTriggers.registeredTriggers.get(PlayMusicToOtherTeamTrigger.KEY);
-            trigger.trigger(recordPlayer);
+            trigger.trigger(lastPlayed);
         }
     }
 }
