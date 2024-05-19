@@ -8,14 +8,14 @@
   "icon": {
     "type": "bingo:indicator",
     "base": {
-	  "type": "bingo:effect",
-	  "effect": "minecraft:instant_damage"
+      "type": "bingo:effect",
+      "effect": "minecraft:instant_damage"
     },
-	"indicator": {
-	  "type": "bingo:item",
-	  "item": {
-	    "id": "minecraft:barrier"
-	  }
+    "indicator": {
+      "type": "bingo:item",
+      "item": {
+        "id": "minecraft:barrier"
+      }
     }
   },
   "name": {

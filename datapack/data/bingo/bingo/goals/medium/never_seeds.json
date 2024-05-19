@@ -15,16 +15,16 @@
   "icon": {
     "type": "bingo:indicator",
     "base": {
-        "type": "bingo:item",
-        "item": {
-          "id": "minecraft:wheat_seeds"
-        }
+      "type": "bingo:item",
+      "item": {
+        "id": "minecraft:wheat_seeds"
+      }
     },
-	"indicator": {
-	  "type": "bingo:item",
-	  "item": {
-	    "id": "minecraft:barrier"
-	  }
+    "indicator": {
+      "type": "bingo:item",
+      "item": {
+        "id": "minecraft:barrier"
+      }
     }
   },
   "name": {

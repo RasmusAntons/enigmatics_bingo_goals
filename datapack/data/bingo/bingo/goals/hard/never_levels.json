@@ -33,14 +33,14 @@
           "bingo_type": "bingo:sub",
           "key": "count"
         },
-          "id": "minecraft:experience_bottle"
-        }
+        "id": "minecraft:experience_bottle"
+      }
     },
-	"indicator": {
-	  "type": "bingo:item",
-	  "item": {
-	    "id": "minecraft:barrier"
-	  }
+    "indicator": {
+      "type": "bingo:item",
+      "item": {
+        "id": "minecraft:barrier"
+      }
     }
   },
   "name": {

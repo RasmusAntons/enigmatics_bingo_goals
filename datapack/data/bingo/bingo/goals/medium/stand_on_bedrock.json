@@ -1,33 +1,34 @@
 {
-    "criteria": {
-      "touch": {
-        "conditions": {
-          "player": {
-            "stepping_on": {
-                "block": {
-                    "blocks": ["minecraft:bedrock"]
-                }
+  "criteria": {
+    "touch": {
+      "conditions": {
+        "player": {
+          "stepping_on": {
+            "block": {
+              "blocks": [
+                "minecraft:bedrock"
+              ]
             }
           }
-        },
-        "trigger": "minecraft:tick"
-      }
-    },
-    "difficulty": "bingo:medium",
-    "icon": {
-      "type": "bingo:item",
-      "item": {
-        "id": "minecraft:bedrock"
-      }
-    },
-    "name": {
-      "text": "Stand on bedrock"
-    },
-    "requirements": [
-      [
-        "touch"
-      ]
-    ],
-    "tags": []
-  }
-  
+        }
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "difficulty": "bingo:medium",
+  "icon": {
+    "type": "bingo:item",
+    "item": {
+      "id": "minecraft:bedrock"
+    }
+  },
+  "name": {
+    "text": "Stand on bedrock"
+  },
+  "requirements": [
+    [
+      "touch"
+    ]
+  ],
+  "tags": []
+}

@@ -1,35 +1,34 @@
 {
-    "criteria": {
-      "reach": {
-        "conditions": {
-          "player": {
-            "location": {
-                "position": {
-                    "y": {
-                        "min": 320
-                    }
-                }
+  "criteria": {
+    "reach": {
+      "conditions": {
+        "player": {
+          "location": {
+            "position": {
+              "y": {
+                "min": 320
+              }
             }
           }
-        },
-        "trigger": "minecraft:location"
-      }
-    },
-    "difficulty": "bingo:medium",
-    "icon": {
-      "type": "bingo:item",
-      "item": {
-        "id": "minecraft:ladder"
-      }
-    },
-    "name": {
-      "text": "Reach the build limit"
-    },
-    "requirements": [
-      [
-        "reach"
-      ]
-    ],
-    "tags": []
-  }
-  
+        }
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "difficulty": "bingo:medium",
+  "icon": {
+    "type": "bingo:item",
+    "item": {
+      "id": "minecraft:ladder"
+    }
+  },
+  "name": {
+    "text": "Reach the build limit"
+  },
+  "requirements": [
+    [
+      "reach"
+    ]
+  ],
+  "tags": []
+}

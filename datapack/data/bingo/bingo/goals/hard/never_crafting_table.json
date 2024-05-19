@@ -15,16 +15,16 @@
   "icon": {
     "type": "bingo:indicator",
     "indicator": {
-        "type": "bingo:item",
-        "item": {
-          "id": "minecraft:barrier"
-        }
-      },
+      "type": "bingo:item",
+      "item": {
+        "id": "minecraft:barrier"
+      }
+    },
     "base": {
-	  "type": "bingo:item",
-	  "item": {
-	    "id": "minecraft:crafting_table"
-	  }
+      "type": "bingo:item",
+      "item": {
+        "id": "minecraft:crafting_table"
+      }
     }
   },
   "name": {

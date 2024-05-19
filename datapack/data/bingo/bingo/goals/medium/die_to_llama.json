@@ -1,54 +1,54 @@
 {
-    "criteria": {
-      "die": {
-        "conditions": {
-          "credited_entity": [
+  "criteria": {
+    "die": {
+      "conditions": {
+        "credited_entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:llama"
+            }
+          }
+        ]
+      },
+      "trigger": "bingo:entity_killed_player"
+    }
+  },
+  "difficulty": "bingo:medium",
+  "icon": {
+    "type": "bingo:indicator",
+    "base": {
+      "type": "bingo:item",
+      "item": {
+        "count": 1,
+        "id": "minecraft:player_head",
+        "components": {
+          "profile": {
+            "properties": [
               {
-                "condition": "minecraft:entity_properties",
-                "entity": "this",
-                "predicate": {
-                  "type": "minecraft:llama"
-                }
+                "name": "textures",
+                "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWY3ZDkwYjMwNWFhNjQzMTNjOGQ0NDA0ZDhkNjUyYTk2ZWJhOGE3NTRiNjdmNDM0N2RjY2NkZDVhNmE2MzM5OCJ9fX0="
               }
             ]
-        },
-        "trigger": "bingo:entity_killed_player"
-      }
-    },
-    "difficulty": "bingo:medium",
-    "icon": {
-        "type": "bingo:indicator",
-        "base": {
-            "type": "bingo:item",
-            "item": {
-              "count": 1,
-              "id": "minecraft:player_head",
-              "components": {
-                "profile": {
-                    "properties": [
-                        {
-                            "name":"textures","value":"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWY3ZDkwYjMwNWFhNjQzMTNjOGQ0NDA0ZDhkNjUyYTk2ZWJhOGE3NTRiNjdmNDM0N2RjY2NkZDVhNmE2MzM5OCJ9fX0="
-                        }
-                    ]
-                }
-              }
-            }
-        },
-        "indicator": {
-          "type": "bingo:item",
-          "item": {
-            "id": "minecraft:skeleton_skull"
           }
         }
-      },
-    "name": {
-      "text": "Die to a Llama"
+      }
     },
-    "requirements": [
-      [
-        "die"
-      ]
-    ],
-    "tags": []
-  }
-  
+    "indicator": {
+      "type": "bingo:item",
+      "item": {
+        "id": "minecraft:skeleton_skull"
+      }
+    }
+  },
+  "name": {
+    "text": "Die to a Llama"
+  },
+  "requirements": [
+    [
+      "die"
+    ]
+  ],
+  "tags": []
+}
