@@ -1,8 +1,8 @@
 # Enigmatics Bingo Goals
 
-Alternative goals for [Bingo](https://modrinth.com/mod/bingo-mod), specifically for lockout mode.
+Alternative goals for [Bingo](https://modrinth.com/mod/bingo-mod), specifically for lockout mode. Both the datapack and fabric mod are server-side only.
 
-These goals are intended to be played with a [player tracker](https://modrinth.com/mod/playertracker/) and require a [patch to allow never-type goals in lockout mode](https://github.com/Gaming32/bingo/pull/13).
+The goals are intended to be played with a [player tracker](https://modrinth.com/mod/playertracker/) and require a [patch to allow never-type goals in lockout mode](https://github.com/Gaming32/bingo/pull/13).
 
 ## Usage
 
