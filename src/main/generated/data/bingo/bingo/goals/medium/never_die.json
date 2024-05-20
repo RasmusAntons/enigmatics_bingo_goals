@@ -1,0 +1,35 @@
+{
+  "criteria": {
+    "die": {
+      "trigger": "bingo:death"
+    }
+  },
+  "difficulty": "bingo:medium",
+  "icon": {
+    "type": "bingo:indicator",
+    "base": {
+      "type": "bingo:item",
+      "item": {
+        "count": 1,
+        "id": "minecraft:player_head"
+      }
+    },
+    "indicator": {
+      "type": "bingo:item",
+      "item": {
+        "count": 1,
+        "id": "minecraft:barrier"
+      }
+    }
+  },
+  "name": "Never die",
+  "requirements": [
+    [
+      "die"
+    ]
+  ],
+  "tags": [
+    "bingo:never",
+    "bingo:never_take_damage"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "criteria": {
+    "fill": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "enigmaticsbingogoals:full_unique_inventory"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "difficulty": "bingo:medium",
+  "icon": {
+    "type": "bingo:item",
+    "item": {
+      "count": 1,
+      "id": "minecraft:chest"
+    }
+  },
+  "name": "Fill your inventory with unique items",
+  "requirements": [
+    [
+      "fill"
+    ]
+  ],
+  "tags": [
+    "bingo:overworld"
+  ]
+}

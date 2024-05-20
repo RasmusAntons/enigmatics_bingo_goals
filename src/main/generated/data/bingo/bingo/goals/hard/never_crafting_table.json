@@ -1,0 +1,41 @@
+{
+  "criteria": {
+    "obtain": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:crafting_table"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "difficulty": "bingo:hard",
+  "icon": {
+    "type": "bingo:indicator",
+    "base": {
+      "type": "bingo:item",
+      "item": {
+        "count": 1,
+        "id": "minecraft:crafting_table"
+      }
+    },
+    "indicator": {
+      "type": "bingo:item",
+      "item": {
+        "count": 1,
+        "id": "minecraft:barrier"
+      }
+    }
+  },
+  "name": "Never obtain crafting table",
+  "requirements": [
+    [
+      "obtain"
+    ]
+  ],
+  "tags": [
+    "bingo:never"
+  ]
+}

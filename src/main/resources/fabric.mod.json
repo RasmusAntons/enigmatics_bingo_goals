@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "enigmaticsbingogoals",
+  "version": "${version}",
+  "name": "EnigmaticsBingoGoals",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/owl/EnigmaticsBingoGoals"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/enigmaticsbingogoals/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "fabric-datagen": [
+      "de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoGoalsDataGenerator"
+    ],
+    "main": [
+      "de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoGoals"
+    ]
+  },
+  "mixins": [
+    "enigmaticsbingogoals.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.6",
+    "fabric": ">=0.97.7",
+    "minecraft": ">=1.20.5 <1.20.7",
+    "bingo": "1.1.7"
+  }
+}

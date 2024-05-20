@@ -1,0 +1,31 @@
+{
+  "criteria": {
+    "music": {
+      "trigger": "enigmaticsbingogoals:play_music_to_other_team"
+    }
+  },
+  "difficulty": "bingo:hard",
+  "icon": {
+    "type": "bingo:indicator",
+    "base": {
+      "type": "bingo:item",
+      "item": {
+        "count": 1,
+        "id": "minecraft:jukebox"
+      }
+    },
+    "indicator": {
+      "type": "bingo:item",
+      "item": {
+        "count": 1,
+        "id": "minecraft:player_head"
+      }
+    }
+  },
+  "name": "Make the enemy listen to a jukebox",
+  "requirements": [
+    [
+      "music"
+    ]
+  ]
+}

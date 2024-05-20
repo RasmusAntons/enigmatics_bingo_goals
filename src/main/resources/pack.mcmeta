@@ -1,0 +1,25 @@
+{
+  "pack": {
+    "description": "enigmatics additional goals for bingo",
+    "pack_format": 41
+  },
+  "filter": {
+    "block": [
+      {"namespace": "bingo", "path": "very_easy/never_fish"},
+      {"namespace": "bingo", "path": "very_easy/neve_pickup_crafting_tables"},
+      {"namespace": "bingo", "path": "easy/carnivore"},
+      {"namespace": "bingo", "path": "easy/never_use_shields"},
+      {"namespace": "bingo", "path": "easy/never_sleep"},
+      {"namespace": "bingo", "path": "easy/never_use_boat"},
+      {"namespace": "bingo", "path": "easy/never_walk_backwards"},
+      {"namespace": "bingo", "path": "easy/never_wear_chestplates"},
+      {"namespace": "bingo", "path": "medium/never_craft_sticks"},
+      {"namespace": "bingo", "path": "medium/never_place_torches"},
+      {"namespace": "bingo", "path": "medium/never_wear_armor"},
+      {"namespace": "bingo", "path": "medium/vegetarian"},
+      {"namespace": "bingo", "path": "hard/never_wear_armor_or_use_shields"},
+      {"namespace": "bingo", "path": "hard/pacifist"},
+      {"namespace": "bingo", "path": "hard/never_use_buckets"}
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "antisynergy": "levels",
+  "bingo_subs": {
+    "count": {
+      "type": "bingo:int",
+      "value": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 3,
+        "min_inclusive": 1
+      }
+    }
+  },
+  "criteria": {
+    "obtain": {
+      "conditions": {
+        "levels": {
+          "min": {
+            "bingo_type": "bingo:sub",
+            "key": "count"
+          }
+        }
+      },
+      "trigger": "bingo:experience_changed"
+    }
+  },
+  "difficulty": "bingo:hard",
+  "icon": {
+    "type": "bingo:indicator",
+    "base": {
+      "type": "bingo:item",
+      "item": {
+        "count": {
+          "bingo_type": "bingo:sub",
+          "key": "count"
+        },
+        "id": "minecraft:experience_bottle"
+      }
+    },
+    "indicator": {
+      "type": "bingo:item",
+      "item": {
+        "count": 1,
+        "id": "minecraft:barrier"
+      }
+    }
+  },
+  "name": {
+    "translate": "Do not reach level %s",
+    "with": [
+      {
+        "bingo_type": "bingo:sub",
+        "key": "count"
+      }
+    ]
+  },
+  "requirements": [
+    [
+      "obtain"
+    ]
+  ],
+  "tags": [
+    "bingo:never",
+    "bingo:stat"
+  ]
+}

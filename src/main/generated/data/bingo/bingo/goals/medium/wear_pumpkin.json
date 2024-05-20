@@ -1,0 +1,26 @@
+{
+  "criteria": {
+    "wear": {
+      "conditions": {
+        "seconds": {
+          "min": 300
+        }
+      },
+      "trigger": "enigmaticsbingogoals:wear_pumpkin"
+    }
+  },
+  "difficulty": "bingo:medium",
+  "icon": {
+    "type": "bingo:item",
+    "item": {
+      "count": 1,
+      "id": "minecraft:carved_pumpkin"
+    }
+  },
+  "name": "Wear a carved pumpkin continuously for 5 minutes",
+  "requirements": [
+    [
+      "wear"
+    ]
+  ]
+}

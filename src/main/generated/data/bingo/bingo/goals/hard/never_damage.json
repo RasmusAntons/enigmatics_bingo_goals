@@ -1,0 +1,31 @@
+{
+  "criteria": {
+    "damage": {
+      "trigger": "minecraft:entity_hurt_player"
+    }
+  },
+  "difficulty": "bingo:hard",
+  "icon": {
+    "type": "bingo:indicator",
+    "base": {
+      "type": "bingo:effect",
+      "effect": "minecraft:instant_damage"
+    },
+    "indicator": {
+      "type": "bingo:item",
+      "item": {
+        "count": 1,
+        "id": "minecraft:barrier"
+      }
+    }
+  },
+  "name": "Never take damage",
+  "requirements": [
+    [
+      "damage"
+    ]
+  ],
+  "tags": [
+    "bingo:never"
+  ]
+}

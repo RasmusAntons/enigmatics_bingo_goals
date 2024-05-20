@@ -1,0 +1,41 @@
+{
+  "criteria": {
+    "reach": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "position": {
+                  "x": 0,
+                  "z": 0
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "difficulty": "bingo:medium",
+  "icon": {
+    "type": "bingo:item",
+    "item": {
+      "count": 1,
+      "id": "minecraft:ladder"
+    }
+  },
+  "name": "Reach the world center",
+  "requirements": [
+    [
+      "reach"
+    ]
+  ],
+  "tags": [
+    "bingo:overworld",
+    "bingo:cover_distance"
+  ]
+}
