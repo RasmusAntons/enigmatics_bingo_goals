@@ -46,8 +46,7 @@ public abstract class JukeboxBlockEntityMixin implements JukeboxBlockEntityExten
                 continue;
             if (lastPlayed.getTeam() == serverPlayer.getTeam())
                 continue;
-            PlayMusicToOtherTeamTrigger trigger = (PlayMusicToOtherTeamTrigger) EnigmaticsBingoGoalsTriggers.registeredTriggers.get(PlayMusicToOtherTeamTrigger.KEY);
-            trigger.trigger(lastPlayed);
+            EnigmaticsBingoGoalsTriggers.PLAY_MUSIC_TO_OTHER_TEAM.get().trigger(lastPlayed);
         }
     }
 }

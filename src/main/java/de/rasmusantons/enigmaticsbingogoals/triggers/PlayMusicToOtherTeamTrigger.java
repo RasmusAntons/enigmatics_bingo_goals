@@ -13,8 +13,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 
 public class PlayMusicToOtherTeamTrigger extends SimpleCriterionTrigger<PlayMusicToOtherTeamTrigger.TriggerInstance> {
-    public final static String KEY = "play_music_to_other_team";
-
     @NotNull
     @Override
     public Codec<TriggerInstance> codec() {
@@ -33,7 +31,7 @@ public class PlayMusicToOtherTeamTrigger extends SimpleCriterionTrigger<PlayMusi
         );
 
         public static Criterion<TriggerInstance> playMusic() {
-            return ((CriterionTrigger<TriggerInstance>) EnigmaticsBingoGoalsTriggers.registeredTriggers.get(KEY)).createCriterion(
+            return EnigmaticsBingoGoalsTriggers.PLAY_MUSIC_TO_OTHER_TEAM.get().createCriterion(
                     new PlayMusicToOtherTeamTrigger.TriggerInstance(Optional.empty())
             );
         }

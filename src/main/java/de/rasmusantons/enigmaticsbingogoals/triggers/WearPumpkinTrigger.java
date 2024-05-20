@@ -15,8 +15,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 
 public class WearPumpkinTrigger extends SimpleProgressibleCriterionTrigger<WearPumpkinTrigger.TriggerInstance> {
-    public final static String KEY = "wear_pumpkin";
-
     @NotNull
     @Override
     public Codec<TriggerInstance> codec() {
@@ -37,7 +35,7 @@ public class WearPumpkinTrigger extends SimpleProgressibleCriterionTrigger<WearP
         );
 
         public static Criterion<TriggerInstance> wearPumpkin(MinMaxBounds.Ints seconds) {
-            return ((CriterionTrigger<TriggerInstance>) EnigmaticsBingoGoalsTriggers.registeredTriggers.get(KEY)).createCriterion(
+            return EnigmaticsBingoGoalsTriggers.WEAR_PUMPKIN.get().createCriterion(
                     new TriggerInstance(Optional.empty(), seconds)
             );
         }

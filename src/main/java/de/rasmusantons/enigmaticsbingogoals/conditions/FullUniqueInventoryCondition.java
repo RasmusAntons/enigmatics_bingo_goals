@@ -19,13 +19,12 @@ import java.util.Set;
 public enum FullUniqueInventoryCondition implements LootItemCondition {
     INSTANCE;
 
-    public static final String KEY = "full_unique_inventory";
     public static final MapCodec<FullUniqueInventoryCondition> CODEC = MapCodec.unit(INSTANCE);
 
     @NotNull
     @Override
     public LootItemConditionType getType() {
-        return EnigmaticsBingoGoalsConditions.registeredConditions.get(KEY).value();
+        return EnigmaticsBingoGoalsConditions.FULL_UNIQUE_INVENTORY.get();
     }
 
     @Override

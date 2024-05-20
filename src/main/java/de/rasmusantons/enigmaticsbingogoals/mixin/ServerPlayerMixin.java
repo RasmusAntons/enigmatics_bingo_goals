@@ -22,15 +22,11 @@ public abstract class ServerPlayerMixin extends PlayerMixin {
     private void doTick(CallbackInfo ci) {
         ItemStack itemStack = getItemBySlot(EquipmentSlot.HEAD);
         if (!itemStack.isEmpty() && itemStack.getItem() == Items.CARVED_PUMPKIN) {
-            if (++carvedPumpkinTimer % 20 == 0) {
-                WearPumpkinTrigger trigger = (WearPumpkinTrigger) EnigmaticsBingoGoalsTriggers.registeredTriggers.get(WearPumpkinTrigger.KEY);
-                trigger.trigger((ServerPlayer)(Object)this, carvedPumpkinTimer / 20);
-            }
+            if (++carvedPumpkinTimer % 20 == 0)
+                EnigmaticsBingoGoalsTriggers.WEAR_PUMPKIN.get().trigger((ServerPlayer)(Object) this, carvedPumpkinTimer / 20);
         } else {
-            if (carvedPumpkinTimer > 0) {
-                WearPumpkinTrigger trigger = (WearPumpkinTrigger) EnigmaticsBingoGoalsTriggers.registeredTriggers.get(WearPumpkinTrigger.KEY);
-                trigger.trigger((ServerPlayer)(Object)this, 0);
-            }
+            if (carvedPumpkinTimer > 0)
+                EnigmaticsBingoGoalsTriggers.WEAR_PUMPKIN.get().trigger((ServerPlayer)(Object) this, 0);
             carvedPumpkinTimer = 0;
         }
     }

@@ -1,16 +1,25 @@
 package de.rasmusantons.enigmaticsbingogoals.conditions;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.core.Holder;
+import io.github.gaming32.bingo.Bingo;
+import io.github.gaming32.bingo.platform.BingoPlatform;
+import io.github.gaming32.bingo.platform.registry.DeferredRegister;
+import io.github.gaming32.bingo.platform.registry.RegistryValue;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class EnigmaticsBingoGoalsConditions {
-    final public static Map<String, MapCodec<? extends LootItemCondition>> conditions = Map.ofEntries(
-            Map.entry(FullUniqueInventoryCondition.KEY, FullUniqueInventoryCondition.CODEC)
-    );
-    final public static Map<String, Holder.Reference<LootItemConditionType>> registeredConditions = new HashMap<>();
+    public static final DeferredRegister<LootItemConditionType> REGISTER =
+            BingoPlatform.platform.createDeferredRegister(BuiltInRegistries.LOOT_CONDITION_TYPE);
+
+    public static final RegistryValue<LootItemConditionType> FULL_UNIQUE_INVENTORY = register("full_unique_inventory", FullUniqueInventoryCondition.CODEC);
+
+    public static void load() {
+    }
+
+    private static RegistryValue<LootItemConditionType> register(String registryName, MapCodec<? extends LootItemCondition> codec) {
+        return REGISTER.register(new ResourceLocation(Bingo.MOD_ID, registryName), () -> new LootItemConditionType(codec));
+    }
 }
