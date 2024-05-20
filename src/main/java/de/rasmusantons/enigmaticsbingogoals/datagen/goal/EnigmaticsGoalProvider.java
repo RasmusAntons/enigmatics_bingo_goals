@@ -2,11 +2,12 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.FullUniqueInventoryCondition;
-import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTriggers;
+import de.rasmusantons.enigmaticsbingogoals.conditions.KillEnemyPlayerCondition;
+import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
-import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
+import io.github.gaming32.bingo.data.icons.EffectIcon;
 import io.github.gaming32.bingo.data.icons.IndicatorIcon;
 import io.github.gaming32.bingo.data.icons.ItemIcon;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
@@ -15,17 +16,20 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class MediumGoalProvider extends EnigmaticsDifficultyGoalProvider {
-    public MediumGoalProvider(Consumer<BingoGoal.Holder> goalAdder) {
-        super(BingoDifficulties.MEDIUM, goalAdder);
+public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
+    public EnigmaticsGoalProvider(Consumer<BingoGoal.Holder> goalAdder) {
+        super(EnigmaticsDifficultyGoalProvider.ENIGMATICS, goalAdder);
     }
 
     @Override
@@ -56,7 +60,7 @@ public class MediumGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .criterion("die", BingoTriggers.DEATH.get().createCriterion(
                         DeathTrigger.TriggerInstance.death(null)
                 ))
-                .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
+                .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE, EnigmaticsBingoTags.PLAYER_KILL)
                 .name(Component.literal("Never die"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.PLAYER_HEAD), ItemIcon.ofItem(Items.BARRIER)))
         );
@@ -101,6 +105,55 @@ public class MediumGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.literal("Wear a carved pumpkin continuously for 5 minutes"))
                 .icon(ItemIcon.ofItem(Items.CARVED_PUMPKIN))
                 .progress("wear")
+        );
+        addGoal(neverDamageGoal(id("never_50_damage"), 50));
+        addGoal(neverDamageGoal(id("never_100_damage"), 100));
+        addGoal(BingoGoal.builder(id("never_crafting_table"))
+                .criterion("obtain", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CRAFTING_TABLE))
+                .tags(BingoTags.NEVER)
+                .name(Component.literal("Never obtain crafting table"))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CRAFTING_TABLE), ItemIcon.ofItem(Items.BARRIER)))
+        );
+        addGoal(BingoGoal.builder(id("never_damage"))
+                .criterion("damage", EntityHurtPlayerTrigger.TriggerInstance.entityHurtPlayer())
+                .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
+                .name(Component.literal("Never take damage"))
+                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
+        );
+        addGoal(BingoGoal.builder(id("never_fall_damage"))
+                .criterion("damage", EntityHurtPlayerTrigger.TriggerInstance.entityHurtPlayer(
+                        DamagePredicate.Builder.damageInstance().type(
+                                DamageSourcePredicate.Builder.damageType().tag(TagPredicate.is(DamageTypeTags.IS_FALL))
+                        )
+                ))
+                .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
+                .name(Component.literal("Never take fall damage"))
+                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
+        );
+        addGoal(neverLevelsGoal(id("never_levels"), 1, 3));
+        addGoal(BingoGoal.builder(id("never_touch_water"))
+                .criterion("touch", EnterBlockTrigger.TriggerInstance.entersBlock(Blocks.WATER))
+                .tags(BingoTags.NEVER)
+                .name(Component.literal("Never touch water"))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WATER_BUCKET), ItemIcon.ofItem(Items.BARRIER)))
+        );
+        addGoal(BingoGoal.builder(id("play_music_to_other_team"))
+                .criterion("music", PlayMusicToOtherTeamTrigger.TriggerInstance.playMusic())
+                .tags(EnigmaticsBingoTags.MUSIC_DISC)
+                .name(Component.literal("Make the enemy listen to a jukebox"))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), ItemIcon.ofItem(Items.PLAYER_HEAD)))
+        );
+        addGoal(BingoGoal.builder(id("kill_enemy_player"))
+                .criterion("kill", CriteriaTriggers.PLAYER_KILLED_ENTITY.createCriterion(
+                        new KilledTrigger.TriggerInstance(
+                                Optional.empty(),
+                                Optional.of(ContextAwarePredicate.create(KillEnemyPlayerCondition.INSTANCE)),
+                                Optional.empty()
+                        )
+                ))
+                .tags(EnigmaticsBingoTags.PLAYER_KILL)
+                .name(Component.literal("Kill an enemy player"))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.PLAYER_HEAD), ItemIcon.ofItem(Items.DIAMOND_SWORD)))
         );
     }
 }

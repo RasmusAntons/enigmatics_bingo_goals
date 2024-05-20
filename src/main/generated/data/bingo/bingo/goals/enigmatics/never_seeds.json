@@ -4,21 +4,21 @@
       "conditions": {
         "items": [
           {
-            "items": "minecraft:crafting_table"
+            "items": "minecraft:wheat_seeds"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     }
   },
-  "difficulty": "bingo:hard",
+  "difficulty": "bingo:enigmatics",
   "icon": {
     "type": "bingo:indicator",
     "base": {
       "type": "bingo:item",
       "item": {
         "count": 1,
-        "id": "minecraft:crafting_table"
+        "id": "minecraft:wheat_seeds"
       }
     },
     "indicator": {
@@ -29,7 +29,7 @@
       }
     }
   },
-  "name": "Never obtain crafting table",
+  "name": "Never obtain wheat seeds",
   "requirements": [
     [
       "obtain"

@@ -15,6 +15,7 @@ public class EnigmaticsBingoGoalsConditions {
             BingoPlatform.platform.createDeferredRegister(BuiltInRegistries.LOOT_CONDITION_TYPE);
 
     public static final RegistryValue<LootItemConditionType> FULL_UNIQUE_INVENTORY = register("full_unique_inventory", FullUniqueInventoryCondition.CODEC);
+    public static final RegistryValue<LootItemConditionType> KILL_ENEMY_PLAYER = register("kill_enemy_player", KillEnemyPlayerCondition.CODEC);
 
     public static void load() {
     }

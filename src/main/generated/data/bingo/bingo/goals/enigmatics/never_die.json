@@ -1,24 +1,17 @@
 {
   "criteria": {
-    "obtain": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:wheat_seeds"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
+    "die": {
+      "trigger": "bingo:death"
     }
   },
-  "difficulty": "bingo:medium",
+  "difficulty": "bingo:enigmatics",
   "icon": {
     "type": "bingo:indicator",
     "base": {
       "type": "bingo:item",
       "item": {
         "count": 1,
-        "id": "minecraft:wheat_seeds"
+        "id": "minecraft:player_head"
       }
     },
     "indicator": {
@@ -29,13 +22,15 @@
       }
     }
   },
-  "name": "Never obtain wheat seeds",
+  "name": "Never die",
   "requirements": [
     [
-      "obtain"
+      "die"
     ]
   ],
   "tags": [
-    "bingo:never"
+    "bingo:never",
+    "bingo:never_take_damage",
+    "bingo:player_kill"
   ]
 }

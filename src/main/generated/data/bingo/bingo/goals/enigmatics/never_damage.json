@@ -4,7 +4,7 @@
       "trigger": "minecraft:entity_hurt_player"
     }
   },
-  "difficulty": "bingo:hard",
+  "difficulty": "bingo:enigmatics",
   "icon": {
     "type": "bingo:indicator",
     "base": {
@@ -26,6 +26,7 @@
     ]
   ],
   "tags": [
-    "bingo:never"
+    "bingo:never",
+    "bingo:never_take_damage"
   ]
 }

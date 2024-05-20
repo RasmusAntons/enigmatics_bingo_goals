@@ -1,0 +1,48 @@
+{
+  "criteria": {
+    "damage": {
+      "conditions": {
+        "stats": [
+          {
+            "type": "minecraft:custom",
+            "stat": "minecraft:damage_taken",
+            "value": {
+              "min": 1000
+            }
+          }
+        ]
+      },
+      "trigger": "bingo:relative_stats"
+    }
+  },
+  "difficulty": "bingo:enigmatics",
+  "icon": {
+    "type": "bingo:indicator",
+    "base": {
+      "type": "bingo:effect",
+      "effect": "minecraft:instant_damage"
+    },
+    "indicator": {
+      "type": "bingo:item",
+      "item": {
+        "count": 1,
+        "id": "minecraft:barrier"
+      }
+    }
+  },
+  "name": "Never take 100 damage",
+  "progress": {
+    "type": "bingo:criterion",
+    "criterion": "damage",
+    "scale": 0.1
+  },
+  "requirements": [
+    [
+      "damage"
+    ]
+  ],
+  "tags": [
+    "bingo:never",
+    "bingo:never_take_damage"
+  ]
+}

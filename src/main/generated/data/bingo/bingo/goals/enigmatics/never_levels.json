@@ -23,7 +23,7 @@
       "trigger": "bingo:experience_changed"
     }
   },
-  "difficulty": "bingo:hard",
+  "difficulty": "bingo:enigmatics",
   "icon": {
     "type": "bingo:indicator",
     "base": {

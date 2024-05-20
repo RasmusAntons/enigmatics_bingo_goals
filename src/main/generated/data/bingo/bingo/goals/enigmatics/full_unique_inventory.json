@@ -11,7 +11,7 @@
       "trigger": "minecraft:inventory_changed"
     }
   },
-  "difficulty": "bingo:medium",
+  "difficulty": "bingo:enigmatics",
   "icon": {
     "type": "bingo:item",
     "item": {

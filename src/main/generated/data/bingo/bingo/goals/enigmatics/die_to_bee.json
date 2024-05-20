@@ -15,7 +15,7 @@
       "trigger": "bingo:entity_killed_player"
     }
   },
-  "difficulty": "bingo:medium",
+  "difficulty": "bingo:enigmatics",
   "icon": {
     "type": "bingo:item",
     "item": {

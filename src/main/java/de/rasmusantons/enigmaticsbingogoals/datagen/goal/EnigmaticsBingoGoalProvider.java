@@ -63,7 +63,6 @@ public class EnigmaticsBingoGoalProvider implements DataProvider {
     }
 
     private void addGoals(Consumer<BingoGoal.Holder> goalAdder, HolderLookup.Provider registries) {
-        new MediumGoalProvider(goalAdder).addGoals(registries);
-        new HardGoalProvider(goalAdder).addGoals(registries);
+        new EnigmaticsGoalProvider(goalAdder).addGoals(registries);
     }
 }

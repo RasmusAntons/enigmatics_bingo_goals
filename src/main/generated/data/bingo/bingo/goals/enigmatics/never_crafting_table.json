@@ -1,20 +1,24 @@
 {
   "criteria": {
-    "touch": {
+    "obtain": {
       "conditions": {
-        "block": "minecraft:water"
+        "items": [
+          {
+            "items": "minecraft:crafting_table"
+          }
+        ]
       },
-      "trigger": "minecraft:enter_block"
+      "trigger": "minecraft:inventory_changed"
     }
   },
-  "difficulty": "bingo:hard",
+  "difficulty": "bingo:enigmatics",
   "icon": {
     "type": "bingo:indicator",
     "base": {
       "type": "bingo:item",
       "item": {
         "count": 1,
-        "id": "minecraft:water_bucket"
+        "id": "minecraft:crafting_table"
       }
     },
     "indicator": {
@@ -25,10 +29,10 @@
       }
     }
   },
-  "name": "Never touch water",
+  "name": "Never obtain crafting table",
   "requirements": [
     [
-      "touch"
+      "obtain"
     ]
   ],
   "tags": [

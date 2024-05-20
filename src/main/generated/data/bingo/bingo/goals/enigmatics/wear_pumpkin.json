@@ -9,7 +9,7 @@
       "trigger": "enigmaticsbingogoals:wear_pumpkin"
     }
   },
-  "difficulty": "bingo:medium",
+  "difficulty": "bingo:enigmatics",
   "icon": {
     "type": "bingo:item",
     "item": {

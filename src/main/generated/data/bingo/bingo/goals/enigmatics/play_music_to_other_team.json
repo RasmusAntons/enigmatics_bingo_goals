@@ -1,35 +1,34 @@
 {
   "criteria": {
-    "die": {
-      "trigger": "bingo:death"
+    "music": {
+      "trigger": "enigmaticsbingogoals:play_music_to_other_team"
     }
   },
-  "difficulty": "bingo:medium",
+  "difficulty": "bingo:enigmatics",
   "icon": {
     "type": "bingo:indicator",
     "base": {
       "type": "bingo:item",
       "item": {
         "count": 1,
-        "id": "minecraft:player_head"
+        "id": "minecraft:jukebox"
       }
     },
     "indicator": {
       "type": "bingo:item",
       "item": {
         "count": 1,
-        "id": "minecraft:barrier"
+        "id": "minecraft:player_head"
       }
     }
   },
-  "name": "Never die",
+  "name": "Make the enemy listen to a jukebox",
   "requirements": [
     [
-      "die"
+      "music"
     ]
   ],
   "tags": [
-    "bingo:never",
-    "bingo:never_take_damage"
+    "bingo:music_disc"
   ]
 }

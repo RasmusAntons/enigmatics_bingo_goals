@@ -10,5 +10,6 @@ public class EnigmaticsBingoGoalsDataGenerator implements DataGeneratorEntrypoin
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
         pack.addProvider(EnigmaticsBingoGoalProvider::new);
         pack.addProvider(BingoTagProvider::new);
+        pack.addProvider(BingoDifficultyProvider::new);
     }
 }

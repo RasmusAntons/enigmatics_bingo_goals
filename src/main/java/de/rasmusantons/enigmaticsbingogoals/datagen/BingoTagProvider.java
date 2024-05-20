@@ -55,35 +55,37 @@ public class BingoTagProvider implements DataProvider {
     }
 
     private void addTags(Consumer<BingoTag.Holder> tagAdder) {
-        tagAdder.accept(BingoTag.builder(BingoTags.ACTION).difficultyMax(20, 20, 20, 20, 20).build());
-        tagAdder.accept(BingoTag.builder(BingoTags.BUILD).difficultyMax(20, 20, 20, 20, 20).build());
-        tagAdder.accept(BingoTag.builder(BingoTags.COLOR).difficultyMax(2, 2, 2, 2, 2).build());
-        tagAdder.accept(BingoTag.builder(BingoTags.COMBAT).difficultyMax(5, 10, 20, 20, 20).build());
-        tagAdder.accept(BingoTag.builder(BingoTags.END).difficultyMax(0, 0, 0, 1, 5).build());
+        tagAdder.accept(BingoTag.builder(BingoTags.ACTION).difficultyMax(20, 20, 20, 20, 20, 20).build());
+        tagAdder.accept(BingoTag.builder(BingoTags.BUILD).difficultyMax(20, 20, 20, 20, 20, 20).build());
+        tagAdder.accept(BingoTag.builder(BingoTags.COLOR).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(BingoTags.COMBAT).difficultyMax(5, 10, 20, 20, 20, 20).build());
+        tagAdder.accept(BingoTag.builder(BingoTags.END).difficultyMax(0, 0, 0, 1, 5, 3).build());
         tagAdder.accept(BingoTag.builder(BingoTags.FINISH)
-                .difficultyMax(1, 1, 1, 1, 1)
+                .difficultyMax(1, 1, 1, 1, 1, 1)
                 .disallowOnSameLine()
                 .specialType(BingoTag.SpecialType.FINISH)
                 .build()
         );
-        tagAdder.accept(BingoTag.builder(BingoTags.ITEM).difficultyMax(25, 25, 20, 20, 20).build());
-        tagAdder.accept(BingoTag.builder(BingoTags.NETHER).difficultyMax(0, 2, 5, 10, 15).build());
+        tagAdder.accept(BingoTag.builder(BingoTags.ITEM).difficultyMax(25, 25, 20, 20, 20, 20).build());
+        tagAdder.accept(BingoTag.builder(BingoTags.NETHER).difficultyMax(0, 2, 5, 10, 15, 10).build());
         tagAdder.accept(BingoTag.builder(BingoTags.NEVER)
-                .difficultyMax(3, 3, 3, 3, 3)
+                .difficultyMax(3, 3, 3, 2, 1, 3)
                 .disallowOnSameLine()
                 .specialType(BingoTag.SpecialType.NEVER)
                 .build()
         );
-        tagAdder.accept(BingoTag.builder(BingoTags.OCEAN).difficultyMax(5, 5, 5, 5, 5).build());
-        tagAdder.accept(BingoTag.builder(BingoTags.OVERWORLD).difficultyMax(25, 25, 24, 21, 18).build());
-        tagAdder.accept(BingoTag.builder(BingoTags.RARE_BIOME).difficultyMax(0, 1, 2, 4, 6).build());
-        tagAdder.accept(BingoTag.builder(BingoTags.STAT).difficultyMax(5, 5, 5, 5, 5).build());
-        tagAdder.accept(BingoTag.builder(BingoTags.VILLAGE).difficultyMax(0, 1, 2, 3, 4).build());
+        tagAdder.accept(BingoTag.builder(BingoTags.OCEAN).difficultyMax(5, 5, 5, 5, 5, 5).build());
+        tagAdder.accept(BingoTag.builder(BingoTags.OVERWORLD).difficultyMax(25, 25, 24, 21, 18, 21).build());
+        tagAdder.accept(BingoTag.builder(BingoTags.RARE_BIOME).difficultyMax(0, 1, 2, 4, 6, 4).build());
+        tagAdder.accept(BingoTag.builder(BingoTags.STAT).difficultyMax(5, 5, 5, 5, 5, 5).build());
+        tagAdder.accept(BingoTag.builder(BingoTags.VILLAGE).difficultyMax(0, 1, 2, 3, 4, 3).build());
 
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.DIE_TO).difficultyMax(2, 2, 2, 2, 2).build());
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BEEHIVE).difficultyMax(1, 1, 1, 1, 1).build());
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.NEVER_TAKE_DAMAGE).difficultyMax(1, 1, 1, 1, 1).build());
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.COVER_DISTANCE).difficultyMax(1, 1, 1, 1, 1).build());
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.REACH_WORLD_LIMIT).difficultyMax(1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.DIE_TO).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BEEHIVE).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.NEVER_TAKE_DAMAGE).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.COVER_DISTANCE).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.REACH_WORLD_LIMIT).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.PLAYER_KILL).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.MUSIC_DISC).difficultyMax(1, 1, 1, 1, 1, 1).build());
     }
 }

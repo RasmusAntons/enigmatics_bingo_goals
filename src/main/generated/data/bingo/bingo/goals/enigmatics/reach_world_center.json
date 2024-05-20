@@ -9,9 +9,8 @@
             "predicate": {
               "location": {
                 "position": {
-                  "y": {
-                    "min": 320
-                  }
+                  "x": 0,
+                  "z": 0
                 }
               }
             }
@@ -21,7 +20,7 @@
       "trigger": "minecraft:location"
     }
   },
-  "difficulty": "bingo:medium",
+  "difficulty": "bingo:enigmatics",
   "icon": {
     "type": "bingo:item",
     "item": {
@@ -29,7 +28,7 @@
       "id": "minecraft:ladder"
     }
   },
-  "name": "Reach the build limit",
+  "name": "Reach the world center",
   "requirements": [
     [
       "reach"
@@ -37,6 +36,6 @@
   ],
   "tags": [
     "bingo:overworld",
-    "bingo:reach_world_limit"
+    "bingo:cover_distance"
   ]
 }

@@ -1,0 +1,37 @@
+{
+  "criteria": {
+    "touch": {
+      "conditions": {
+        "block": "minecraft:water"
+      },
+      "trigger": "minecraft:enter_block"
+    }
+  },
+  "difficulty": "bingo:enigmatics",
+  "icon": {
+    "type": "bingo:indicator",
+    "base": {
+      "type": "bingo:item",
+      "item": {
+        "count": 1,
+        "id": "minecraft:water_bucket"
+      }
+    },
+    "indicator": {
+      "type": "bingo:item",
+      "item": {
+        "count": 1,
+        "id": "minecraft:barrier"
+      }
+    }
+  },
+  "name": "Never touch water",
+  "requirements": [
+    [
+      "touch"
+    ]
+  ],
+  "tags": [
+    "bingo:never"
+  ]
+}
