@@ -18,6 +18,10 @@
     }
   },
   "name": "Wear a carved pumpkin continuously for 5 minutes",
+  "progress": {
+    "type": "bingo:criterion",
+    "criterion": "wear"
+  },
   "requirements": [
     [
       "wear"

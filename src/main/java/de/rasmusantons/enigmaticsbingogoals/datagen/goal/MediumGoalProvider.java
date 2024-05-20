@@ -2,6 +2,7 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.FullUniqueInventoryCondition;
+import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTriggers;
 import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
 import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
@@ -99,6 +100,7 @@ public class MediumGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .criterion("wear", WearPumpkinTrigger.TriggerInstance.wearPumpkin(MinMaxBounds.Ints.atLeast(300)))
                 .name(Component.literal("Wear a carved pumpkin continuously for 5 minutes"))
                 .icon(ItemIcon.ofItem(Items.CARVED_PUMPKIN))
+                .progress("wear")
         );
     }
 }
