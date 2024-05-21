@@ -7,6 +7,7 @@ import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger
 import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
+import io.github.gaming32.bingo.data.icons.BlockIcon;
 import io.github.gaming32.bingo.data.icons.EffectIcon;
 import io.github.gaming32.bingo.data.icons.IndicatorIcon;
 import io.github.gaming32.bingo.data.icons.ItemIcon;
@@ -70,6 +71,16 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.literal("Never take fall damage"))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
         );
+        addGoal(BingoGoal.builder(id("never_fire_damage"))
+                .criterion("damage", EntityHurtPlayerTrigger.TriggerInstance.entityHurtPlayer(
+                        DamagePredicate.Builder.damageInstance().type(
+                                DamageSourcePredicate.Builder.damageType().tag(TagPredicate.is(DamageTypeTags.IS_FIRE))
+                        )
+                ))
+                .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
+                .name(Component.literal("Never take fire damage"))
+                .icon(new IndicatorIcon(BlockIcon.ofBlock(Blocks.FIRE), ItemIcon.ofItem(Items.BARRIER)))
+        );
         addGoal(neverLevelsGoal(id("never_levels"), 1, 3));
         addGoal(BingoGoal.builder(id("never_die"))
                 .criterion("die", BingoTriggers.DEATH.get().createCriterion(
@@ -79,7 +90,6 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.literal("Never die"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.PLAYER_HEAD), ItemIcon.ofItem(Items.BARRIER)))
         );
-        // TODO: Never catch on fire
         // TODO: Never open your inventory
         addGoal(BingoGoal.builder(id("kill_enemy_player"))
                 .criterion("kill", CriteriaTriggers.PLAYER_KILLED_ENTITY.createCriterion(
