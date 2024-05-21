@@ -9,6 +9,7 @@ a4614e911f1603973191ab7a4841a7e5d43d08ea data/bingo/bingo/goals/enigmatics/never
 ce2f523922f768cd7514d0b64518fe77f44c0042 data/bingo/bingo/goals/enigmatics/never_damage.json
 c0fe3b13c9b0b86d6a4efa74dcadd9a789eafecf data/bingo/bingo/goals/enigmatics/never_die.json
 7feeeb9b4732da9802aa4c2d1c3cf30da154e837 data/bingo/bingo/goals/enigmatics/never_fall_damage.json
+c75ec577e95e9ba0bdaa9d3249f5b4ab49bc36f2 data/bingo/bingo/goals/enigmatics/never_fire_damage.json
 2bb68deb03f02ae0f37e5296b7edec035163e8d5 data/bingo/bingo/goals/enigmatics/never_levels.json
 4bd6e5e6da5fe4d3b0fb7d714155145d17cbb342 data/bingo/bingo/goals/enigmatics/never_seeds.json
 987d0031cfc11d2e6004d06f29dc9dd43431adad data/bingo/bingo/goals/enigmatics/never_touch_water.json
