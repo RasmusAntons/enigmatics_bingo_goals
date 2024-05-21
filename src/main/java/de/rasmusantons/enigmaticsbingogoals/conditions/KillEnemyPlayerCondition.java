@@ -29,8 +29,6 @@ public enum KillEnemyPlayerCondition implements LootItemCondition {
             return false;
         if (!(killedPlayer.getKillCredit() instanceof ServerPlayer killerPlayer))
             return false;
-        if (killedPlayer.getTeam() == killerPlayer.getTeam())
-            return false;
         return killedPlayer.getTeam() != killerPlayer.getTeam();
     }
 
