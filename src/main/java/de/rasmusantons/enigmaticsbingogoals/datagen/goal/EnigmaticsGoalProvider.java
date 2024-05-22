@@ -168,7 +168,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.literal("Reach the world center"))
                 .icon(ItemIcon.ofItem(Items.COMPASS))
         );
-        // TODO: Cure a zombie villager
+        addGoal(BingoGoal.builder(id("cure_zombie_villager"))
+                .criterion("transform", CuredZombieVillagerTrigger.TriggerInstance.curedZombieVillager())
+                .name(Component.literal("Cure a Zombie Villager"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.IGLOO)
+                .icon(IndicatorIcon.infer(EntityType.ZOMBIE_VILLAGER, ItemIcon.ofItem(Items.GOLDEN_APPLE)))
+        );
         // TODO: Get 3 status effects concurrently
         // TODO: Get 6 status effects concurrently
         // TODO: Get 10 status effects concurrently
