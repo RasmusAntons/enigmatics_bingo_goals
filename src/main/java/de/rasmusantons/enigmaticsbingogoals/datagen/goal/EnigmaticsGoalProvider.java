@@ -37,13 +37,23 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
     public void addGoals(HolderLookup.Provider provider) {
         addGoal(BingoGoal.builder(id("never_crafting_table"))
                 .criterion("obtain", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CRAFTING_TABLE))
-                .tags(BingoTags.NEVER, BingoTags.VILLAGE)
+                .tags(
+                        BingoTags.NEVER,
+                        BingoTags.VILLAGE,
+                        EnigmaticsBingoTags.OUTPOST,
+                        EnigmaticsBingoTags.IGLOO,
+                        EnigmaticsBingoTags.WITCH_HUT,
+                        EnigmaticsBingoTags.TRAIL_RUINS
+                )
                 .name(Component.literal("Never obtain crafting table"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CRAFTING_TABLE), ItemIcon.ofItem(Items.BARRIER)))
         );
         addGoal(BingoGoal.builder(id("never_seeds"))
                 .criterion("obtain", InventoryChangeTrigger.TriggerInstance.hasItems(Items.WHEAT_SEEDS))
-                .tags(BingoTags.NEVER)
+                .tags(
+                        BingoTags.NEVER,
+                        EnigmaticsBingoTags.SEEDS
+                )
                 .name(Component.literal("Never obtain wheat seeds"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WHEAT_SEEDS), ItemIcon.ofItem(Items.BARRIER)))
         );
@@ -99,7 +109,10 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                                 Optional.empty()
                         )
                 ))
-                .tags(EnigmaticsBingoTags.PLAYER_KILL)
+                .tags(
+                        EnigmaticsBingoTags.PVP,
+                        EnigmaticsBingoTags.PLAYER_KILL
+                )
                 .name(Component.literal("Kill an enemy player"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.PLAYER_HEAD), ItemIcon.ofItem(Items.DIAMOND_SWORD)))
         );
@@ -109,7 +122,13 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Obtain Potion of Water Breathing
         addGoal(BingoGoal.builder(id("play_music_to_other_team"))
                 .criterion("music", PlayMusicToOtherTeamTrigger.TriggerInstance.playMusic())
-                .tags(EnigmaticsBingoTags.MUSIC_DISC)
+                .tags(
+                        EnigmaticsBingoTags.PVP,
+                        EnigmaticsBingoTags.MUSIC_DISC,
+                        EnigmaticsBingoTags.ANCIENT_CITY,
+                        EnigmaticsBingoTags.WOODLAND_MANSION,
+                        EnigmaticsBingoTags.TRAIL_RUINS
+                )
                 .name(Component.literal("Make the enemy listen to a jukebox"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), ItemIcon.ofItem(Items.PLAYER_HEAD)))
         );
@@ -128,7 +147,10 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                                 .setX(MinMaxBounds.Doubles.exactly(0))
                                 .setZ(MinMaxBounds.Doubles.exactly(0))
                 ))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.COVER_DISTANCE)
+                .tags(
+                        BingoTags.OVERWORLD,
+                        EnigmaticsBingoTags.COVER_DISTANCE
+                )
                 .name(Component.literal("Reach the world center"))
                 .icon(ItemIcon.ofItem(Items.COMPASS))
         );
@@ -158,7 +180,10 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                                 Collections.emptyList()
                         )
                 ))
-                .tags(BingoTags.OVERWORLD)
+                .tags(
+                        BingoTags.OVERWORLD,
+                        EnigmaticsBingoTags.OVERWORLD_ENTRY
+                )
                 .name(Component.literal("Fill your inventory with unique items"))
                 .icon(ItemIcon.ofItem(Items.CHEST))
         );
@@ -173,7 +198,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                                 ))
                         ))
                 )
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.REACH_WORLD_LIMIT)
+                .tags(
+                        BingoTags.OVERWORLD,
+                        EnigmaticsBingoTags.OVERWORLD_ENTRY,
+                        EnigmaticsBingoTags.REACH_WORLD_LIMIT
+                )
                 .name(Component.literal("Stand on bedrock"))
                 .icon(ItemIcon.ofItem(Items.BEDROCK))
         );
@@ -183,18 +212,29 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .criterion("reach", PlayerTrigger.TriggerInstance.located(
                         LocationPredicate.Builder.atYLocation(MinMaxBounds.Doubles.atLeast(320))
                 ))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.REACH_WORLD_LIMIT)
+                .tags(
+                        BingoTags.OVERWORLD,
+                        EnigmaticsBingoTags.OVERWORLD_ENTRY,
+                        EnigmaticsBingoTags.REACH_WORLD_LIMIT
+                )
                 .name(Component.literal("Reach the build limit"))
                 .icon(ItemIcon.ofItem(Items.LADDER))
         );
         addGoal(dieToEntityGoal(id("die_to_llama"), EntityType.LLAMA)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
+                .tags(
+                        BingoTags.OVERWORLD,
+                        EnigmaticsBingoTags.DIE_TO
+                )
                 .name(Component.literal("Die to a llama"))
                 .icon(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.LLAMA))
         );
         // TODO: Die to an Iron Golem
         addGoal(dieToEntityGoal(id("die_to_bee"), EntityType.BEE)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO, EnigmaticsBingoTags.BEEHIVE)
+                .tags(
+                        BingoTags.OVERWORLD,
+                        EnigmaticsBingoTags.DIE_TO,
+                        EnigmaticsBingoTags.BEEHIVE
+                )
                 .name(Component.literal("Die to a bee"))
                 .icon(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.BEE))
         );
@@ -311,6 +351,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Win a raid
         // TODO: Use a Totem of Undying
         addGoal(BingoGoal.builder(id("wear_pumpkin"))
+                .tags(
+                        BingoTags.OVERWORLD,
+                        EnigmaticsBingoTags.OUTPOST,
+                        EnigmaticsBingoTags.WOODLAND_MANSION
+                )
                 .criterion("wear", WearPumpkinTrigger.TriggerInstance.wearPumpkin(MinMaxBounds.Ints.atLeast(300)))
                 .name(Component.literal("Wear a carved pumpkin continuously for 5 minutes"))
                 .icon(ItemIcon.ofItem(Items.CARVED_PUMPKIN))
