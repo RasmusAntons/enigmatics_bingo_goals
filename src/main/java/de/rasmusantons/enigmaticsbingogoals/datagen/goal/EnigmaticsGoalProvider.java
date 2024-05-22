@@ -301,16 +301,46 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Die to falling off vines
         // TODO: Mine Diamond Ore
         // TODO: Obtain all Raw Ore Blocks
-        // TODO: Craft a Repeater
-        // TODO: Craft a Dispenser
-        // TODO: Craft a Powered Rail
-        // TODO: Craft a Detector Rail
-        // TODO: Craft an Activator Rail
-        // TODO: Craft an Observer
-        // TODO: Craft a Piston
-        // TODO: Craft a Sticky Piston
-        // TODO: Craft a Redstone Lamp
-        // TODO: Craft a Comparator
+        addGoal(obtainItemGoal(id("obtain_repeater"), Items.REPEATER)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING,
+                        EnigmaticsBingoTags.REDSTONE, EnigmaticsBingoTags.WOODLAND_MANSION)
+        );
+        addGoal(obtainItemGoal(id("obtain_dispenser"), Items.DISPENSER)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING,
+                        EnigmaticsBingoTags.REDSTONE)
+        );
+        addGoal(obtainItemGoal(id("obtain_powered_rail"), Items.POWERED_RAIL)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING,
+                        EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.WOODLAND_MANSION)
+        );
+        addGoal(obtainItemGoal(id("obtain_detector_rail"), Items.DETECTOR_RAIL)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
+                        EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.WOODLAND_MANSION)
+        );
+        addGoal(obtainItemGoal(id("obtain_activator_rail"), Items.ACTIVATOR_RAIL)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
+                        EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.WOODLAND_MANSION)
+        );
+        addGoal(obtainItemGoal(id("obtain_observer"), Items.OBSERVER)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
+                        EnigmaticsBingoTags.NETHER_ENTRY)
+        );
+        addGoal(obtainItemGoal(id("obtain_piston"), Items.PISTON)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
+                        EnigmaticsBingoTags.WOODLAND_MANSION)
+        );
+        addGoal(obtainItemGoal(id("obtain_sticky_piston"), Items.STICKY_PISTON)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
+                        EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.ANCIENT_CITY)
+        );
+        addGoal(obtainItemGoal(id("obtain_redstone_lamp"), Items.REDSTONE_LAMP)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
+                        EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.ANCIENT_CITY)
+        );
+        addGoal(obtainItemGoal(id("obtain_comparator"), Items.COMPARATOR)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
+                        EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.ANCIENT_CITY)
+        );
         // TODO: Mine Emerald Ore
         // TODO: Kill a Silverfish
         // TODO: Obtain a Bucket of Powdered Snow
@@ -441,8 +471,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
                 .name(Component.literal("Get a full set of Diamond Tools"))
         );
-        // TODO: Get a full set of Gold tools
-        // TODO: Get a full set of Diamond tools
+        // TODO: Obtain a Potion of Water Breathing
         // TODO: Obtain Cobweb
         // TODO: Rename a sheep to "jeb_"
         // TODO: Break a Mob Spawner
