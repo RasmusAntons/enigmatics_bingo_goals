@@ -37,7 +37,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
     public void addGoals(HolderLookup.Provider provider) {
         addGoal(BingoGoal.builder(id("never_crafting_table"))
                 .criterion("obtain", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CRAFTING_TABLE))
-                .tags(BingoTags.NEVER)
+                .tags(BingoTags.NEVER, BingoTags.VILLAGE)
                 .name(Component.literal("Never obtain crafting table"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CRAFTING_TABLE), ItemIcon.ofItem(Items.BARRIER)))
         );
