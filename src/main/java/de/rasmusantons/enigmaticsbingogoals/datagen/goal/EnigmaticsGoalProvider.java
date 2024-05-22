@@ -14,9 +14,7 @@ import io.github.gaming32.bingo.data.icons.EffectIcon;
 import io.github.gaming32.bingo.data.icons.IndicatorIcon;
 import io.github.gaming32.bingo.data.icons.ItemIcon;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
-import io.github.gaming32.bingo.triggers.BreakBlockTrigger;
 import io.github.gaming32.bingo.triggers.DeathTrigger;
-import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
@@ -51,7 +49,8 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.WITCH_HUT,
                         EnigmaticsBingoTags.TRAIL_RUINS
                 )
-                .name(Component.literal("Never obtain crafting table"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.never_crafting_table",
+                        Items.CRAFTING_TABLE.getDescription()))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CRAFTING_TABLE), ItemIcon.ofItem(Items.BARRIER)))
         );
         addGoal(BingoGoal.builder(id("never_seeds"))
@@ -60,19 +59,21 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         BingoTags.NEVER,
                         EnigmaticsBingoTags.SEEDS
                 )
-                .name(Component.literal("Never obtain wheat seeds"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.never_wheat_seeds",
+                        Items.WHEAT_SEEDS.getDescription()))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WHEAT_SEEDS), ItemIcon.ofItem(Items.BARRIER)))
         );
         addGoal(BingoGoal.builder(id("never_touch_water"))
                 .criterion("touch", EnterBlockTrigger.TriggerInstance.entersBlock(Blocks.WATER))
                 .tags(BingoTags.NEVER)
-                .name(Component.literal("Never touch water"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.never_touch_water",
+                        Component.translatable(Blocks.WATER.getDescriptionId())))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WATER_BUCKET), ItemIcon.ofItem(Items.BARRIER)))
         );
         addGoal(BingoGoal.builder(id("never_damage"))
                 .criterion("damage", EntityHurtPlayerTrigger.TriggerInstance.entityHurtPlayer())
                 .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
-                .name(Component.literal("Never take damage"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.never_damage"))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
         );
         addGoal(neverDamageGoal(id("never_50_damage"), 50));
@@ -84,7 +85,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         )
                 ))
                 .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
-                .name(Component.literal("Never take fall damage"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.never_fall_damage"))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
         );
         addGoal(BingoGoal.builder(id("never_fire_damage"))
@@ -94,7 +95,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         )
                 ))
                 .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
-                .name(Component.literal("Never take fire damage"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.never_fire_damage"))
                 .icon(new IndicatorIcon(BlockIcon.ofBlock(Blocks.FIRE), ItemIcon.ofItem(Items.BARRIER)))
         );
         addGoal(neverLevelsGoal(id("never_levels"), 1, 3));
@@ -103,7 +104,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         DeathTrigger.TriggerInstance.death(null)
                 ))
                 .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE, EnigmaticsBingoTags.PLAYER_KILL)
-                .name(Component.literal("Never die"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.never_die"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.PLAYER_HEAD), ItemIcon.ofItem(Items.BARRIER)))
         );
         // TODO: Never open your inventory
@@ -119,7 +120,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.PVP,
                         EnigmaticsBingoTags.PLAYER_KILL
                 )
-                .name(Component.literal("Kill an enemy player"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_enemy_player"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.PLAYER_HEAD), ItemIcon.ofItem(Items.NETHERITE_SWORD)))
         );
         addGoal(advancementsGoal(id("get_advancements"), 15, 35));
@@ -143,7 +144,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.WOODLAND_MANSION,
                         EnigmaticsBingoTags.TRAIL_RUINS
                 )
-                .name(Component.literal("Make the enemy listen to a jukebox"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.play_music_to_other_team"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), ItemIcon.ofItem(Items.PLAYER_HEAD)))
         );
         // TODO: Hit an enemy player with a snowball
@@ -165,12 +166,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         BingoTags.OVERWORLD,
                         EnigmaticsBingoTags.COVER_DISTANCE
                 )
-                .name(Component.literal("Reach the world center"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.reach_world_center"))
                 .icon(ItemIcon.ofItem(Items.COMPASS))
         );
         addGoal(BingoGoal.builder(id("cure_zombie_villager"))
                 .criterion("transform", CuredZombieVillagerTrigger.TriggerInstance.curedZombieVillager())
-                .name(Component.literal("Cure a Zombie Villager"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.cure_zombie_villager"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.IGLOO)
                 .icon(IndicatorIcon.infer(EntityType.ZOMBIE_VILLAGER, ItemIcon.ofItem(Items.GOLDEN_APPLE)))
         );
@@ -219,7 +220,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         )
                 ))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MILK)
-                .name(Component.literal("Remove a status effect with a Milk Bucket"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.clear_effect_with_milk"))
                 .icon(ItemIcon.ofItem(Items.MILK_BUCKET))
         );
         addGoal(obtainItemGoal(id("obtain_cake"), Items.CAKE)
@@ -240,17 +241,17 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         BingoTags.OVERWORLD,
                         EnigmaticsBingoTags.OVERWORLD_ENTRY
                 )
-                .name(Component.literal("Fill your inventory with unique items"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.full_unique_inventory"))
                 .icon(ItemIcon.ofItem(Items.CHEST))
         );
         // TODO: Deal 500 hearts of damage
         addGoal(obtainAllItemsFromTag(id("obtain_all_wooden_tools"), EnigmaticsBingoItemTags.WOODEN_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET,  EnigmaticsBingoTags.OVERWORLD_ENTRY)
-                .name(Component.literal("Get a full set of Wooden Tools"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_wooden_tools"))
         );
         addGoal(obtainAllItemsFromTag(id("obtain_all_stone_tools"), EnigmaticsBingoItemTags.STONE_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET, EnigmaticsBingoTags.OVERWORLD_ENTRY)
-                .name(Component.literal("Get a full set of Stone Tools"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_stone_tools"))
         );
         addGoal(BingoGoal.builder(id("stand_on_bedrock"))
                 .criterion("stand_on", PlayerTrigger.TriggerInstance.located(
@@ -260,12 +261,8 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                                 ))
                         ))
                 )
-                .tags(
-                        BingoTags.OVERWORLD,
-                        EnigmaticsBingoTags.OVERWORLD_ENTRY,
-                        EnigmaticsBingoTags.REACH_WORLD_LIMIT
-                )
-                .name(Component.literal("Stand on bedrock"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.REACH_WORLD_LIMIT)
+                .name(Component.translatable("enigmaticsbingogoals.goal.stand_on_bedrock"))
                 .icon(ItemIcon.ofItem(Items.BEDROCK))
         );
         // TODO: Hatch a Chicken from an Egg
@@ -279,28 +276,33 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.OVERWORLD_ENTRY,
                         EnigmaticsBingoTags.REACH_WORLD_LIMIT
                 )
-                .name(Component.literal("Reach the build limit"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.reach_build_limit"))
                 .icon(ItemIcon.ofItem(Items.LADDER))
         );
         addGoal(dieToEntityGoal(id("die_to_llama"), EntityType.LLAMA)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
-                .name(Component.literal("Die to a llama"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
+                        EntityType.LLAMA.getDescription()))
         );
         addGoal(dieToEntityGoal(id("die_to_iron_golem"), EntityType.IRON_GOLEM)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.DIE_TO)
-                .name(Component.literal("Die to an Iron Golem"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
+                        EntityType.IRON_GOLEM.getDescription()))
         );
         addGoal(dieToEntityGoal(id("die_to_bee"), EntityType.BEE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO, EnigmaticsBingoTags.BEEHIVE)
-                .name(Component.literal("Die to a bee"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
+                        EntityType.BEE.getDescription()))
         );
         addGoal(dieToEntityGoal(id("die_to_dolphin"), EntityType.DOLPHIN)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
-                .name(Component.literal("Die to a dolphin"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
+                        EntityType.DOLPHIN.getDescription()))
         );
         addGoal(dieToEntityGoal(id("die_to_goat"), EntityType.GOAT)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO, EnigmaticsBingoTags.MOUNTAIN)
-                .name(Component.literal("Die to a goat"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
+                        EntityType.GOAT.getDescription()))
         );
         // TODO: Die to an Anvil
         // TODO: Die to a Stalactite
@@ -308,17 +310,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Die to a Firework
         // TODO: Die to Magic
         // TODO: Die to falling off vines
-        addGoal(BingoGoal.builder(id("break_diamond_ore"))
-                .criterion("break_stone", BreakBlockTrigger.builder().block(Blocks.DIAMOND_ORE).build())
-                .criterion("break_deepslate", BreakBlockTrigger.builder().block(Blocks.DEEPSLATE_DIAMOND_ORE).build())
-                .requirements(AdvancementRequirements.Strategy.OR)
-                .name(Component.literal("Break Diamond Ore"))
+        addGoal(breakBlockGoal(id("break_diamond_ore"), Blocks.DIAMOND_ORE, Blocks.DEEPSLATE_DIAMOND_ORE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.DIAMOND_ORE), ItemIcon.ofItem(Items.NETHERITE_PICKAXE)))
         );
         addGoal(obtainAllItemsFromTag(id("obtain_all_raw_ore_blocks"), EnigmaticsBingoItemTags.RAW_ORE_BLOCKS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING)
-                .name(Component.literal("Obtain all Raw Ore Blocks"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_all_raw_ore_blocks"))
         );
         addGoal(obtainItemGoal(id("obtain_repeater"), Items.REPEATER)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING,
@@ -360,13 +357,8 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
                         EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.ANCIENT_CITY)
         );
-        addGoal(BingoGoal.builder(id("break_emerald_ore"))
-                .criterion("break_stone", BreakBlockTrigger.builder().block(Blocks.EMERALD_ORE).build())
-                .criterion("break_deepslate", BreakBlockTrigger.builder().block(Blocks.DEEPSLATE_EMERALD_ORE).build())
-                .requirements(AdvancementRequirements.Strategy.OR)
-                .name(Component.literal("Break Emerald Ore"))
+        addGoal(breakBlockGoal(id("break_emerald_ore"), Blocks.EMERALD_ORE, Blocks.DEEPSLATE_EMERALD_ORE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.EMERALD_ORE), ItemIcon.ofItem(Items.NETHERITE_PICKAXE)))
         );
         // TODO: Kill a Silverfish
         // TODO: Obtain a Bucket of Powdered Snow
@@ -466,7 +458,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.WOODLAND_MANSION
                 )
                 .criterion("wear", WearPumpkinTrigger.TriggerInstance.wearPumpkin(MinMaxBounds.Ints.atLeast(300)))
-                .name(Component.literal("Wear a carved pumpkin continuously for 5 minutes"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.wear_pumpkin_for_some_minutes", 5))
                 .icon(ItemIcon.ofItem(Items.CARVED_PUMPKIN))
                 .progress("wear")
         );
@@ -478,7 +470,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainAllItemsFromTag(id("obtain_all_horse_armors"), EnigmaticsBingoItemTags.HORSE_ARMORS)
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.END, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH,
                         EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.MINESHAFT, BingoTags.VILLAGE)
-                .name(Component.literal("Obtain all Horse Armors"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_all_horse_armors"))
         );
         // TODO: Make a pot out of 4 Pottery Sherds
         // TODO: Obtain a Mud Brick Wall
@@ -487,15 +479,15 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Eat Suspicious Stew
         addGoal(obtainAllItemsFromTag(id("obtain_all_iron_tools"), EnigmaticsBingoItemTags.IRON_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
-                .name(Component.literal("Get a full set of Iron Tools"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_iron_tools"))
         );
         addGoal(obtainAllItemsFromTag(id("obtain_all_golden_tools"), EnigmaticsBingoItemTags.GOLDEN_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
-                .name(Component.literal("Get a full set of Golden Tools"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_golden_tools"))
         );
         addGoal(obtainAllItemsFromTag(id("obtain_all_diamond_tools"), EnigmaticsBingoItemTags.DIAMOND_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
-                .name(Component.literal("Get a full set of Diamond Tools"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_diamond_tools"))
         );
         // TODO: Obtain a Potion of Water Breathing
         // TODO: Obtain Cobweb
@@ -522,95 +514,118 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Die to Anvil
         addGoal(obtainItemGoal(id("obtain_stack_of_red_concrete"), Items.RED_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
-                .name(Component.literal("Obtain a stack of Red Concrete"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.RED_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_yellow_concrete"), Items.YELLOW_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
-                .name(Component.literal("Obtain a stack of Yellow Concrete"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.YELLOW_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_orange_concrete"), Items.ORANGE_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
-                .name(Component.literal("Obtain a stack of Orange Concrete"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.ORANGE_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_black_concrete"), Items.BLACK_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
-                .name(Component.literal("Obtain a stack of Black Concrete"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.BLACK_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_white_concrete"), Items.WHITE_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
-                .name(Component.literal("Obtain a stack of White Concrete"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.WHITE_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_gray_concrete"), Items.GRAY_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
-                .name(Component.literal("Obtain a stack of Gray Concrete"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.GRAY_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_light_gray_concrete"), Items.LIGHT_GRAY_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
-                .name(Component.literal("Obtain a stack of Light Gray Concrete"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.LIGHT_GRAY_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_pink_concrete"), Items.PINK_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
-                .name(Component.literal("Obtain a stack of Pink Concrete"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.PINK_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_magenta_concrete"), Items.MAGENTA_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
-                .name(Component.literal("Obtain a stack of Magenta Concrete"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.MAGENTA_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_blue_concrete"), Items.BLUE_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
-                .name(Component.literal("Obtain a stack of Blue Concrete"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.BLUE_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_purple_concrete"), Items.PURPLE_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
-                .name(Component.literal("Obtain a stack of Purple Concrete"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.PURPLE_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_green_wool"), Items.GREEN_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL, EnigmaticsBingoTags.IGLOO)
-                .name(Component.literal("Obtain a stack of Green Wool"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.GREEN_WOOL.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_red_wool"), Items.RED_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
-                .name(Component.literal("Obtain a stack of Red Wool"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.RED_WOOL.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_yellow_wool"), Items.YELLOW_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
-                .name(Component.literal("Obtain a stack of Yellow Wool"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.YELLOW_WOOL.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_orange_wool"), Items.ORANGE_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
-                .name(Component.literal("Obtain a stack of Orange Wool"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.ORANGE_WOOL.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_black_wool"), Items.BLACK_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
-                .name(Component.literal("Obtain a stack of Black Wool"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.BLACK_WOOL.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_white_wool"), Items.WHITE_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
-                .name(Component.literal("Obtain a stack of White Wool"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.WHITE_WOOL.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_gray_wool"), Items.GRAY_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL, EnigmaticsBingoTags.ANCIENT_CITY)
-                .name(Component.literal("Obtain a stack of Gray Wool"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.GRAY_WOOL.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_light_gray_wool"), Items.LIGHT_GRAY_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
-                .name(Component.literal("Obtain a stack of Light Gray Wool"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.LIGHT_GRAY_WOOL.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_pink_wool"), Items.PINK_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
-                .name(Component.literal("Obtain a stack of Pink Wool"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.PINK_WOOL.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_magenta_wool"), Items.MAGENTA_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
-                .name(Component.literal("Obtain a stack of Magenta Wool"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.MAGENTA_WOOL.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_blue_wool"), Items.BLUE_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
-                .name(Component.literal("Obtain a stack of Blue Wool"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.BLUE_WOOL.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_purple_wool"), Items.PURPLE_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
-                .name(Component.literal("Obtain a stack of Purple Wool"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.PURPLE_WOOL.getDescription()))
         );
         // TODO: Reach the Nether
         // TODO: Anger a Zombified Piglin

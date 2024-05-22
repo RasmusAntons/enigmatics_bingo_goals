@@ -9,11 +9,9 @@ import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
 import io.github.gaming32.bingo.data.subs.BingoSub;
 import io.github.gaming32.bingo.fabric.datagen.goal.DifficultyGoalProvider;
-import io.github.gaming32.bingo.triggers.EntityKilledPlayerTrigger;
-import io.github.gaming32.bingo.triggers.ExperienceChangeTrigger;
-import io.github.gaming32.bingo.triggers.HasSomeItemsFromTagTrigger;
-import io.github.gaming32.bingo.triggers.RelativeStatsTrigger;
+import io.github.gaming32.bingo.triggers.*;
 import io.github.gaming32.bingo.util.BingoUtil;
+import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
@@ -30,9 +28,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 
 public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalProvider {
@@ -46,7 +47,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
         return obtainItemGoal(id, item, ItemPredicate.Builder.item().of(item))
                 .antisynergy(BuiltInRegistries.ITEM.getKey(item.asItem()).getPath())
                 .tags(BingoTags.ITEM)
-                .name(Component.translatable("Obtain %s", item.asItem().getDescription()));
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_item", item.asItem().getDescription()));
     }
 
     protected BingoGoal.Builder obtainAllItemsFromTag(ResourceLocation id, TagKey<Item> tag) {
@@ -74,7 +75,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         .toArray(ItemPredicate.Builder[]::new)
         )
                 .tags(EnigmaticsBingoTags.POTIONS)
-                .name(Component.translatable("Obtain %s", Items.POTION.getName(potionItem)));
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_item", Items.POTION.getName(potionItem)));
     }
 
     protected static BingoGoal.Builder effectGoal(ResourceLocation id, Holder<MobEffect> effect) {
@@ -83,7 +84,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                                 MobEffectsPredicate.Builder.effects().and(effect)
                         )
                 )
-                .name(Component.translatable("Get %s", effect.value().getDisplayName()))
+                .name(Component.translatable("enigmaticsbingogoals.goal.get_effect", effect.value().getDisplayName()))
                 .icon(EffectIcon.of(effect));
     }
 
@@ -101,7 +102,8 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .criterion("obtain", ExperienceChangeTrigger.builder().levels(MinMaxBounds.Ints.atLeast(0)).build(),
                         subber -> subber.sub("conditions.levels.min", "count"))
                 .tags(BingoTags.NEVER, BingoTags.STAT)
-                .name(Component.translatable("Do not reach level %s", 0), subber -> subber.sub("with.0", "count"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.never_levels", 0),
+                        subber -> subber.sub("with.0", "count"))
                 .icon(
                         new IndicatorIcon(ItemIcon.ofItem(Items.EXPERIENCE_BOTTLE), ItemIcon.ofItem(Items.BARRIER)),
                         subber -> subber.sub("base.item.count", "count"))
@@ -114,7 +116,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         .stat(Stats.DAMAGE_TAKEN, MinMaxBounds.Ints.atLeast(damage * 20)).build()
                 )
                 .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
-                .name(Component.literal(String.format("Never take %d hearts of damage", damage)))
+                .name(Component.translatable("enigmaticsbingogoals.goal.never_some_hearts_damage", damage))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
                 .progress(new CriterionProgressTracker("damage", 0.05f));
     }
@@ -125,9 +127,30 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .criterion("achieve", AdvancementsTrigger.TriggerInstance.advancements(MinMaxBounds.Ints.atLeast(0)),
                         subber -> subber.sub("conditions.number.min", "number"))
                 .tags(BingoTags.STAT, EnigmaticsBingoTags.ADVANCEMENTS)
-                .name(Component.translatable("Get %s advancements", 0), subber -> subber.sub("with.0", "number"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.get_some_advancements",0),
+                        subber -> subber.sub("with.0", "number"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ELYTRA), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)),
                         subber -> subber.sub("base.item.count", "number"))
                 .progress("achieve");
+    }
+
+    protected static BingoGoal.Builder breakBlockGoal(ResourceLocation id, Block... oneOfThese) {
+        BingoGoal.Builder builder =  BingoGoal.builder(id);
+        if (oneOfThese.length == 1) {
+            builder
+                    .criterion("break", BreakBlockTrigger.builder().block(oneOfThese[0]).build())
+                    .icon(IndicatorIcon.infer(oneOfThese[0], Items.NETHERITE_PICKAXE));
+        } else {
+            List<GoalIcon> icons = new ArrayList<>();
+            for (int i = 0; i < oneOfThese.length; i++) {
+                builder.criterion("break_" + i, BreakBlockTrigger.builder().block(oneOfThese[i]).build());
+                icons.add(IndicatorIcon.infer(oneOfThese[i], Items.NETHERITE_PICKAXE));
+            }
+            builder.icon(new CycleIcon(icons));
+        }
+        return builder
+                .requirements(AdvancementRequirements.Strategy.OR)
+                .name(Component.translatable("enigmaticsbingogoals.goal.break_block",
+                        Component.translatable(oneOfThese[0].getDescriptionId())));
     }
 }
