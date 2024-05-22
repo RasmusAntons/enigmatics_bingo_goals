@@ -2,7 +2,6 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.AdvancementsTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
 import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
@@ -16,16 +15,24 @@ import io.github.gaming32.bingo.fabric.datagen.goal.DifficultyGoalProvider;
 import io.github.gaming32.bingo.triggers.EntityKilledPlayerTrigger;
 import io.github.gaming32.bingo.triggers.ExperienceChangeTrigger;
 import io.github.gaming32.bingo.triggers.RelativeStatsTrigger;
-import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.MinMaxBounds;
+import io.github.gaming32.bingo.util.BingoUtil;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 
+import java.util.Arrays;
 import java.util.function.Consumer;
 
 public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalProvider {
@@ -33,6 +40,41 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
 
     public EnigmaticsDifficultyGoalProvider(ResourceLocation difficulty, Consumer<BingoGoal.Holder> goalAdder) {
         super(difficulty, goalAdder);
+    }
+
+    protected static BingoGoal.Builder obtainItemGoal(ResourceLocation id, ItemLike item) {
+        return obtainItemGoal(id, item, ItemPredicate.Builder.item().of(item))
+                .antisynergy(BuiltInRegistries.ITEM.getKey(item.asItem()).getPath())
+                .name(Component.translatable("Obtain %s", item.asItem().getDescription()));
+    }
+
+    @SafeVarargs
+    protected static BingoGoal.Builder potionGoal(ResourceLocation id, Holder<Potion>... potions) {
+        ItemStack potionItem = BingoUtil.setPotion(new ItemStack(Items.POTION), potions[0]);
+        return obtainItemGoal(
+                id,
+                potionItem,
+                Arrays.stream(potions)
+                        .map(potion -> ItemPredicate.Builder.item()
+                                .of(Items.POTION)
+                                .withSubPredicate(
+                                        ItemSubPredicates.POTIONS,
+                                        new ItemPotionsPredicate(HolderSet.direct(potion))
+                                )
+                        )
+                        .toArray(ItemPredicate.Builder[]::new)
+        )
+                .name(Component.translatable("Obtain %s", Items.POTION.getName(potionItem)));
+    }
+
+    protected static BingoGoal.Builder effectGoal(ResourceLocation id, Holder<MobEffect> effect) {
+        return BingoGoal.builder(id)
+                .criterion("effect", EffectsChangedTrigger.TriggerInstance.hasEffects(
+                                MobEffectsPredicate.Builder.effects().and(effect)
+                        )
+                )
+                .name(Component.literal(String.format("Get %s", effect.getRegisteredName())))
+                .icon(EffectIcon.of(effect));
     }
 
     protected static BingoGoal.Builder dieToEntityGoal(ResourceLocation id, EntityType<?> entityType) {
