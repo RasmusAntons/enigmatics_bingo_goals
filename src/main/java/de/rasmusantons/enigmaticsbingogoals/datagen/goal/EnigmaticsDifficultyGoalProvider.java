@@ -91,8 +91,8 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
         return BingoGoal.builder(id)
                 .criterion("die", EntityKilledPlayerTrigger.builder()
                         .creditedEntity(EntityPredicate.Builder.entity().of(entityType).build())
-                        .build()
-                );
+                        .build())
+                .icon(IndicatorIcon.infer(EffectIcon.of(MobEffects.WITHER), entityType));
     }
 
     protected static BingoGoal.Builder neverLevelsGoal(ResourceLocation id, int minLevels, int maxLevels) {

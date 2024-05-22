@@ -271,37 +271,25 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .icon(ItemIcon.ofItem(Items.LADDER))
         );
         addGoal(dieToEntityGoal(id("die_to_llama"), EntityType.LLAMA)
-                .tags(
-                        BingoTags.OVERWORLD,
-                        EnigmaticsBingoTags.DIE_TO
-                )
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
                 .name(Component.literal("Die to a llama"))
-                .icon(
-                        IndicatorIcon.infer(
-                                EffectIcon.of(MobEffects.WITHER),
-                                EntityType.LLAMA
-                                // BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.LLAMA),
-                        )
-                )
         );
-        // TODO: Die to an Iron Golem
+        addGoal(dieToEntityGoal(id("die_to_iron_golem"), EntityType.IRON_GOLEM)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.DIE_TO)
+                .name(Component.literal("Die to an Iron Golem"))
+        );
         addGoal(dieToEntityGoal(id("die_to_bee"), EntityType.BEE)
-                .tags(
-                        BingoTags.OVERWORLD,
-                        EnigmaticsBingoTags.DIE_TO,
-                        EnigmaticsBingoTags.BEEHIVE
-                )
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO, EnigmaticsBingoTags.BEEHIVE)
                 .name(Component.literal("Die to a bee"))
-                .icon(
-                        IndicatorIcon.infer(
-                                EffectIcon.of(MobEffects.WITHER),
-                                EntityType.BEE
-                                // BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.BEE)
-                        )
-                )
         );
-        // TODO: Die to a Dolphin
-        // TODO: Die to a Goat
+        addGoal(dieToEntityGoal(id("die_to_dolphin"), EntityType.DOLPHIN)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
+                .name(Component.literal("Die to a dolphin"))
+        );
+        addGoal(dieToEntityGoal(id("die_to_goat"), EntityType.GOAT)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO, EnigmaticsBingoTags.MOUNTAIN)
+                .name(Component.literal("Die to a goat"))
+        );
         // TODO: Die to an Anvil
         // TODO: Die to a Stalactite
         // TODO: Die to a TNT Minecart
