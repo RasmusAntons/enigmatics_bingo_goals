@@ -23,7 +23,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 
@@ -60,12 +59,12 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
     protected static BingoGoal.Builder neverDamageGoal(ResourceLocation id, int damage) {
         return BingoGoal.builder(id)
                 .criterion("damage", RelativeStatsTrigger.builder()
-                        .stat(Stats.DAMAGE_TAKEN, MinMaxBounds.Ints.atLeast(damage * 10)).build()
+                        .stat(Stats.DAMAGE_TAKEN, MinMaxBounds.Ints.atLeast(damage * 20)).build()
                 )
                 .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
-                .name(Component.literal(String.format("Never take %d damage", damage)))
+                .name(Component.literal(String.format("Never take %d hearts of damage", damage)))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
-                .progress(new CriterionProgressTracker("damage", 0.1f));
+                .progress(new CriterionProgressTracker("damage", 0.05f));
     }
 
     protected static BingoGoal.Builder advancementsGoal(ResourceLocation id, int minNumber, int maxNumber) {

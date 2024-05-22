@@ -162,7 +162,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.literal("Fill your inventory with unique items"))
                 .icon(ItemIcon.ofItem(Items.CHEST))
         );
-        // TODO: Deal 500 damage
+        // TODO: Deal 500 hearts of damage
         // TODO: Get a full set of Wooden tools
         // TODO: Get a full set of Stone tools
         addGoal(BingoGoal.builder(id("stand_on_bedrock"))
