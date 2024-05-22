@@ -31,5 +31,12 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.IRON_HOE,
                 Items.IRON_SWORD
         );
+
+        getOrCreateTagBuilder(EnigmaticsBingoItemTags.HORSE_ARMORS).add(
+                Items.LEATHER_HORSE_ARMOR,
+                Items.IRON_HORSE_ARMOR,
+                Items.GOLDEN_HORSE_ARMOR,
+                Items.DIAMOND_HORSE_ARMOR
+        );
     }
 }

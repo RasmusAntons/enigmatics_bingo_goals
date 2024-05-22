@@ -416,7 +416,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Obtain 1 Armor Trim
         // TODO: Obtain 2 Armor Trim
         // TODO: Obtain 3 Armor Trim
-        // TODO: Obtain all Horse Armors
+        addGoal(obtainAllItemsFromTag(id("all_horse_armors"), EnigmaticsBingoItemTags.HORSE_ARMORS)
+                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.END, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH,
+                        EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.MINESHAFT, BingoTags.VILLAGE)
+                .name(Component.literal("Obtain all Horse Armors"))
+        );
         // TODO: Make a pot out of 4 Pottery Sherds
         // TODO: Obtain a Mud Brick Wall
         // TODO: Obtain a Mossy Stone Brick Wall

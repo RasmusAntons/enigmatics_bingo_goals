@@ -11,6 +11,7 @@ public final class EnigmaticsBingoItemTags {
 
     public static final TagKey<Item> WOODEN_TOOLS = create("wooden_tools");
     public static final TagKey<Item> IRON_TOOLS = create("iron_tools");
+    public static final TagKey<Item> HORSE_ARMORS = create("horse_armors");
 
     private static TagKey<Item> create(String name) {
         return TagKey.create(Registries.ITEM, new ResourceLocation(Bingo.MOD_ID, name));
