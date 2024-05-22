@@ -1,7 +1,6 @@
 package de.rasmusantons.enigmaticsbingogoals.mixin;
 
 import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTriggers;
-import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;

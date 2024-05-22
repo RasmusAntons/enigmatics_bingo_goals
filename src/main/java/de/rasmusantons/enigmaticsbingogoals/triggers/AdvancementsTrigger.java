@@ -12,35 +12,35 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-public class WearPumpkinTrigger extends SimpleProgressibleCriterionTrigger<WearPumpkinTrigger.TriggerInstance> {
+public class AdvancementsTrigger extends SimpleProgressibleCriterionTrigger<AdvancementsTrigger.TriggerInstance> {
     @NotNull
     @Override
     public Codec<TriggerInstance> codec() {
         return TriggerInstance.CODEC;
     }
 
-    public void trigger(ServerPlayer player, int seconds) {
+    public void trigger(ServerPlayer player, int number) {
         final ProgressListener<TriggerInstance> progressListener = getProgressListener(player);
-        trigger(player, triggerInstance -> triggerInstance.matches(seconds, progressListener));
+        trigger(player, triggerInstance -> triggerInstance.matches(number, progressListener));
     }
 
-    public record TriggerInstance(Optional<ContextAwarePredicate> player, MinMaxBounds.Ints targetSeconds) implements SimpleInstance {
+    public record TriggerInstance(Optional<ContextAwarePredicate> player, MinMaxBounds.Ints targetNumber) implements SimpleInstance {
         public static final Codec<TriggerInstance> CODEC = RecordCodecBuilder.create(
                 instance -> instance.group(
                         EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(TriggerInstance::player),
-                        MinMaxBounds.Ints.CODEC.optionalFieldOf("seconds", MinMaxBounds.Ints.ANY).forGetter(TriggerInstance::targetSeconds)
+                        MinMaxBounds.Ints.CODEC.optionalFieldOf("number", MinMaxBounds.Ints.ANY).forGetter(TriggerInstance::targetNumber)
                 ).apply(instance, TriggerInstance::new)
         );
 
-        public static Criterion<TriggerInstance> wearPumpkin(MinMaxBounds.Ints seconds) {
-            return EnigmaticsBingoGoalsTriggers.WEAR_PUMPKIN.get().createCriterion(
-                    new TriggerInstance(Optional.empty(), seconds)
+        public static Criterion<TriggerInstance> advancements(MinMaxBounds.Ints number) {
+            return EnigmaticsBingoGoalsTriggers.ADVANCEMENTS.get().createCriterion(
+                    new TriggerInstance(Optional.empty(), number)
             );
         }
 
-        public boolean matches(int seconds, ProgressListener<TriggerInstance> progressListener) {
-            progressListener.update(this, seconds, targetSeconds.min().orElse(0));
-            return targetSeconds.matches(seconds);
+        public boolean matches(int number, ProgressListener<TriggerInstance> progressListener) {
+            progressListener.update(this, number, targetNumber.min().orElse(0));
+            return targetNumber.matches(number);
         }
     }
 }

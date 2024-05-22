@@ -6,7 +6,8 @@
     "PlayerMixin",
     "ServerPlayerMixin",
     "RecordItemMixin",
-    "JukeboxBlockEntityMixin"
+    "JukeboxBlockEntityMixin",
+    "PlayerAdvancementsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

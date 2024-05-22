@@ -1,8 +1,6 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen;
 
 import de.rasmusantons.enigmaticsbingogoals.datagen.goal.EnigmaticsDifficultyGoalProvider;
-import io.github.gaming32.bingo.Bingo;
-import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoDifficulty;
 import io.github.gaming32.bingo.util.BingoUtil;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;

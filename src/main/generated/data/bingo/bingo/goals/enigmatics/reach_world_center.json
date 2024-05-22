@@ -25,7 +25,7 @@
     "type": "bingo:item",
     "item": {
       "count": 1,
-      "id": "minecraft:ladder"
+      "id": "minecraft:compass"
     }
   },
   "name": "Reach the world center",

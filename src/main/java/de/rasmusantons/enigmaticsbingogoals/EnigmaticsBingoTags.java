@@ -10,7 +10,7 @@ public final class EnigmaticsBingoTags {
     // BingoTags.NEVER 3
     public static final ResourceLocation NEVER_TAKE_DAMAGE = create("never_take_damage");
     public static final ResourceLocation PLAYER_KILL = create("player_kill");
-    // TODO: advancements 1
+    public static final ResourceLocation ADVANCEMENTS = create("advancements");
     // TODO: buried_treasure 1
     // TODO: pvp 1
     // TODO: overtakable 1

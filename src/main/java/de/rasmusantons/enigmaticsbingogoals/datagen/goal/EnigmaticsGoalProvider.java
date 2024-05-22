@@ -103,9 +103,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.literal("Kill an enemy player"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.PLAYER_HEAD), ItemIcon.ofItem(Items.DIAMOND_SWORD)))
         );
-        // TODO: Get 15 advancements
-        // TODO: Get 25 advancements
-        // TODO: Get 35 advancements
+        addGoal(advancementsGoal(id("get_advancements"), 15, 35));
         // TODO: Obtain Heart of the Sea
         // TODO: Get Dark Prismarine
         // TODO: Obtain Potion of Water Breathing
@@ -132,7 +130,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 ))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.COVER_DISTANCE)
                 .name(Component.literal("Reach the world center"))
-                .icon(ItemIcon.ofItem(Items.LADDER))
+                .icon(ItemIcon.ofItem(Items.COMPASS))
         );
         // TODO: Cure a zombie villager
         // TODO: Get 3 status effects concurrently

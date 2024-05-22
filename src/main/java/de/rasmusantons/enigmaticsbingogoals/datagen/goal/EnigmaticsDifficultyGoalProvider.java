@@ -1,9 +1,12 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
+import de.rasmusantons.enigmaticsbingogoals.triggers.AdvancementsTrigger;
+import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
 import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
+import io.github.gaming32.bingo.data.icons.BlockIcon;
 import io.github.gaming32.bingo.data.icons.EffectIcon;
 import io.github.gaming32.bingo.data.icons.IndicatorIcon;
 import io.github.gaming32.bingo.data.icons.ItemIcon;
@@ -13,7 +16,6 @@ import io.github.gaming32.bingo.fabric.datagen.goal.DifficultyGoalProvider;
 import io.github.gaming32.bingo.triggers.EntityKilledPlayerTrigger;
 import io.github.gaming32.bingo.triggers.ExperienceChangeTrigger;
 import io.github.gaming32.bingo.triggers.RelativeStatsTrigger;
-import net.minecraft.advancements.critereon.EntityHurtPlayerTrigger;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.network.chat.Component;
@@ -21,7 +23,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.function.Consumer;
 
@@ -62,5 +66,17 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .name(Component.literal(String.format("Never take %d damage", damage)))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
                 .progress(new CriterionProgressTracker("damage", 0.1f));
+    }
+
+    protected static BingoGoal.Builder advancementsGoal(ResourceLocation id, int minNumber, int maxNumber) {
+        return BingoGoal.builder(id)
+                .sub("number", BingoSub.random(minNumber, maxNumber))
+                .criterion("achieve", AdvancementsTrigger.TriggerInstance.advancements(MinMaxBounds.Ints.atLeast(0)),
+                        subber -> subber.sub("conditions.number.min", "number"))
+                .tags(BingoTags.STAT, EnigmaticsBingoTags.ADVANCEMENTS)
+                .name(Component.translatable("Get %s advancements", 0), subber -> subber.sub("with.0", "number"))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ELYTRA), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)),
+                        subber -> subber.sub("base.item.count", "number"))
+                .progress("achieve");
     }
 }

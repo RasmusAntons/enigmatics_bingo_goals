@@ -10,7 +10,7 @@
   },
   "license": "All-Rights-Reserved",
   "icon": "assets/enigmaticsbingogoals/icon.png",
-  "environment": "server",
+  "environment": "*",
   "entrypoints": {
     "fabric-datagen": [
       "de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoGoalsDataGenerator"

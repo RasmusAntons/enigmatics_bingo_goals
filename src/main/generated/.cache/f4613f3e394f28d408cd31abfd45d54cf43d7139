@@ -2,6 +2,7 @@
 22c2b87974d50dd42c05db98f7976843998b442a data/bingo/bingo/goals/enigmatics/die_to_bee.json
 ca8962672d1b53d5d2cd39640a7e3d1114ec0601 data/bingo/bingo/goals/enigmatics/die_to_llama.json
 f0d89a869a7d63245f4276395466f139dd6b92bc data/bingo/bingo/goals/enigmatics/full_unique_inventory.json
+c34cd19a7007651023a78b9f0819f0e06f49b350 data/bingo/bingo/goals/enigmatics/get_advancements.json
 688a22622f4eae14013db0039f84baa632d9283d data/bingo/bingo/goals/enigmatics/kill_enemy_player.json
 dc5591be75cf72480453c4b5a96fdc5995f741aa data/bingo/bingo/goals/enigmatics/never_100_damage.json
 f2acef8f28a5ee40fc222b8534aacc6913ded2fe data/bingo/bingo/goals/enigmatics/never_50_damage.json
@@ -15,6 +16,6 @@ c75ec577e95e9ba0bdaa9d3249f5b4ab49bc36f2 data/bingo/bingo/goals/enigmatics/never
 987d0031cfc11d2e6004d06f29dc9dd43431adad data/bingo/bingo/goals/enigmatics/never_touch_water.json
 9b781febeae332aac7a9b5ca33edfcf77c7d66a3 data/bingo/bingo/goals/enigmatics/play_music_to_other_team.json
 1ace7d7ddae60447b4ba4637551c3a9ec03fe58e data/bingo/bingo/goals/enigmatics/reach_build_limit.json
-51b282bbe0488c78cc153570364ffaff19bacba6 data/bingo/bingo/goals/enigmatics/reach_world_center.json
+8e91ef3bef6b8cf7da1da1a7e51341e08b3de8a3 data/bingo/bingo/goals/enigmatics/reach_world_center.json
 dbefbd03a8cb1860cd39c1f9d2b0e46f89aeff78 data/bingo/bingo/goals/enigmatics/stand_on_bedrock.json
 cd3fd4fb23e13fd8336e951931985b366513d7c5 data/bingo/bingo/goals/enigmatics/wear_pumpkin.json
