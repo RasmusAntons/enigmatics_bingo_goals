@@ -126,11 +126,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainItemGoal(id("obtain_heart_of_the_sea"), Items.HEART_OF_THE_SEA)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BURIED_TREASURE, EnigmaticsBingoTags.SHIPWRECK)
         );
-        addGoal(obtainItemGoal(id("get_dark_prismarine"), Items.DARK_PRISMARINE)
+        addGoal(obtainItemGoal(id("obtain_dark_prismarine"), Items.DARK_PRISMARINE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BURIED_TREASURE,
                         EnigmaticsBingoTags.OCEAN_MONUMENT, EnigmaticsBingoTags.SHIPWRECK)
         );
-        addGoal(potionGoal(id("get_potion_of_water_breathing"),
+        addGoal(potionGoal(id("obtain_potion_of_water_breathing"),
                 Potions.WATER_BREATHING, Potions.LONG_WATER_BREATHING)
                 .tags(EnigmaticsBingoTags.BURIED_TREASURE, EnigmaticsBingoTags.SHIPWRECK)
         );
@@ -237,11 +237,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .icon(ItemIcon.ofItem(Items.CHEST))
         );
         // TODO: Deal 500 hearts of damage
-        addGoal(obtainAllItemsFromTag(id("get_all_wooden_tools"), EnigmaticsBingoItemTags.WOODEN_TOOLS)
+        addGoal(obtainAllItemsFromTag(id("obtain_all_wooden_tools"), EnigmaticsBingoItemTags.WOODEN_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET,  EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .name(Component.literal("Get a full set of Wooden Tools"))
         );
-        addGoal(obtainAllItemsFromTag(id("get_all_stone_tools"), EnigmaticsBingoItemTags.STONE_TOOLS)
+        addGoal(obtainAllItemsFromTag(id("obtain_all_stone_tools"), EnigmaticsBingoItemTags.STONE_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET, EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .name(Component.literal("Get a full set of Stone Tools"))
         );
@@ -461,15 +461,15 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Obtain a Mossy Stone Brick Wall
         // TODO: Obtain a Mossy Cobblestone Brick Wall
         // TODO: Eat Suspicious Stew
-        addGoal(obtainAllItemsFromTag(id("get_all_iron_tools"), EnigmaticsBingoItemTags.IRON_TOOLS)
+        addGoal(obtainAllItemsFromTag(id("obtain_all_iron_tools"), EnigmaticsBingoItemTags.IRON_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
                 .name(Component.literal("Get a full set of Iron Tools"))
         );
-        addGoal(obtainAllItemsFromTag(id("get_all_golden_tools"), EnigmaticsBingoItemTags.GOLDEN_TOOLS)
+        addGoal(obtainAllItemsFromTag(id("obtain_all_golden_tools"), EnigmaticsBingoItemTags.GOLDEN_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
                 .name(Component.literal("Get a full set of Golden Tools"))
         );
-        addGoal(obtainAllItemsFromTag(id("get_all_diamond_tools"), EnigmaticsBingoItemTags.DIAMOND_TOOLS)
+        addGoal(obtainAllItemsFromTag(id("obtain_all_diamond_tools"), EnigmaticsBingoItemTags.DIAMOND_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
                 .name(Component.literal("Get a full set of Diamond Tools"))
         );
@@ -496,95 +496,95 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Use an Anvil
         // TODO: Enchant an item
         // TODO: Die to Anvil
-        addGoal(obtainItemGoal(id("get_stack_of_red_concrete"), Items.RED_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_red_concrete"), Items.RED_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.literal("Obtain a stack of Red Concrete"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_yellow_concrete"), Items.YELLOW_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_yellow_concrete"), Items.YELLOW_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.literal("Obtain a stack of Yellow Concrete"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_orange_concrete"), Items.ORANGE_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_orange_concrete"), Items.ORANGE_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.literal("Obtain a stack of Orange Concrete"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_black_concrete"), Items.BLACK_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_black_concrete"), Items.BLACK_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.literal("Obtain a stack of Black Concrete"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_white_concrete"), Items.WHITE_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_white_concrete"), Items.WHITE_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.literal("Obtain a stack of White Concrete"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_gray_concrete"), Items.GRAY_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_gray_concrete"), Items.GRAY_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.literal("Obtain a stack of Gray Concrete"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_light_gray_concrete"), Items.LIGHT_GRAY_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_light_gray_concrete"), Items.LIGHT_GRAY_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.literal("Obtain a stack of Light Gray Concrete"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_pink_concrete"), Items.PINK_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_pink_concrete"), Items.PINK_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.literal("Obtain a stack of Pink Concrete"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_magenta_concrete"), Items.MAGENTA_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_magenta_concrete"), Items.MAGENTA_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.literal("Obtain a stack of Magenta Concrete"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_blue_concrete"), Items.BLUE_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_blue_concrete"), Items.BLUE_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.literal("Obtain a stack of Blue Concrete"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_purple_concrete"), Items.PURPLE_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_purple_concrete"), Items.PURPLE_CONCRETE, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.literal("Obtain a stack of Purple Concrete"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_green_wool"), Items.GREEN_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_green_wool"), Items.GREEN_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL, EnigmaticsBingoTags.IGLOO)
                 .name(Component.literal("Obtain a stack of Green Wool"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_red_wool"), Items.RED_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_red_wool"), Items.RED_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.literal("Obtain a stack of Red Wool"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_yellow_wool"), Items.YELLOW_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_yellow_wool"), Items.YELLOW_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.literal("Obtain a stack of Yellow Wool"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_orange_wool"), Items.ORANGE_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_orange_wool"), Items.ORANGE_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.literal("Obtain a stack of Orange Wool"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_black_wool"), Items.BLACK_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_black_wool"), Items.BLACK_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.literal("Obtain a stack of Black Wool"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_white_wool"), Items.WHITE_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_white_wool"), Items.WHITE_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.literal("Obtain a stack of White Wool"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_gray_wool"), Items.GRAY_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_gray_wool"), Items.GRAY_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL, EnigmaticsBingoTags.ANCIENT_CITY)
                 .name(Component.literal("Obtain a stack of Gray Wool"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_light_gray_wool"), Items.LIGHT_GRAY_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_light_gray_wool"), Items.LIGHT_GRAY_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.literal("Obtain a stack of Light Gray Wool"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_pink_wool"), Items.PINK_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_pink_wool"), Items.PINK_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.literal("Obtain a stack of Pink Wool"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_magenta_wool"), Items.MAGENTA_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_magenta_wool"), Items.MAGENTA_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.literal("Obtain a stack of Magenta Wool"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_blue_wool"), Items.BLUE_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_blue_wool"), Items.BLUE_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.literal("Obtain a stack of Blue Wool"))
         );
-        addGoal(obtainItemGoal(id("get_stack_of_purple_wool"), Items.PURPLE_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_purple_wool"), Items.PURPLE_WOOL, 64, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.literal("Obtain a stack of Purple Wool"))
         );
@@ -605,45 +605,45 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Obtain an End Crystal
         // TODO: Obtain an Eye of Ender
         // TODO: Obtain an Ender Chest
-        addGoal(potionGoal(id("get_potion_of_strength"),
+        addGoal(potionGoal(id("obtain_potion_of_strength"),
                 Potions.STRENGTH, Potions.LONG_STRENGTH, Potions.STRONG_STRENGTH)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
         );
-        addGoal(potionGoal(id("get_potion_of_regeneration"),
+        addGoal(potionGoal(id("obtain_potion_of_regeneration"),
                 Potions.REGENERATION, Potions.LONG_REGENERATION, Potions.STRONG_REGENERATION)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER)
         );
-        addGoal(potionGoal(id("get_potion_of_healing"), Potions.HEALING, Potions.STRONG_HEALING)
+        addGoal(potionGoal(id("obtain_potion_of_healing"), Potions.HEALING, Potions.STRONG_HEALING)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
         );
-        addGoal(potionGoal(id("get_potion_of_slowness"),
+        addGoal(potionGoal(id("obtain_potion_of_slowness"),
                 Potions.SLOWNESS, Potions.STRONG_SLOWNESS, Potions.LONG_SLOWNESS)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
         );
-        addGoal(potionGoal(id("get_potion_of_harming"),
+        addGoal(potionGoal(id("obtain_potion_of_harming"),
                 Potions.HARMING, Potions.LONG_STRENGTH, Potions.STRONG_STRENGTH)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER,
                         EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.INSTANT_DAMAGE)
         );
-        addGoal(potionGoal(id("get_potion_of_poison"), Potions.POISON, Potions.LONG_POISON, Potions.STRONG_POISON)
+        addGoal(potionGoal(id("obtain_potion_of_poison"), Potions.POISON, Potions.LONG_POISON, Potions.STRONG_POISON)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
         );
-        addGoal(potionGoal(id("get_potion_of_night_vision"), Potions.NIGHT_VISION, Potions.LONG_NIGHT_VISION)
+        addGoal(potionGoal(id("obtain_potion_of_night_vision"), Potions.NIGHT_VISION, Potions.LONG_NIGHT_VISION)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
         );
-        addGoal(potionGoal(id("get_potion_of_leaping"),
+        addGoal(potionGoal(id("obtain_potion_of_leaping"),
                 Potions.LEAPING, Potions.LONG_LEAPING, Potions.STRONG_LEAPING)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
         );
-        addGoal(potionGoal(id("get_potion_of_swiftness"),
+        addGoal(potionGoal(id("obtain_potion_of_swiftness"),
                 Potions.SWIFTNESS, Potions.LONG_SWIFTNESS, Potions.STRONG_SWIFTNESS)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
         );
-        addGoal(potionGoal(id("get_potion_of_slow_falling"),
+        addGoal(potionGoal(id("obtain_potion_of_slow_falling"),
                 Potions.SLOW_FALLING, Potions.LONG_SLOW_FALLING)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
         );
-        addGoal(potionGoal(id("get_potion_of_the_turtle_master"),
+        addGoal(potionGoal(id("obtain_potion_of_the_turtle_master"),
                 Potions.TURTLE_MASTER, Potions.LONG_TURTLE_MASTER, Potions.STRONG_TURTLE_MASTER)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
         );
