@@ -19,6 +19,7 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation PUFFER_FISH = create("puffer_fish");
     public static final ResourceLocation GET_EFFECT_BATCH = create("get_effect_batch");
     public static final ResourceLocation GET_EFFECT = create("get_effect");
+    public static final ResourceLocation SUSPICIOUS_STEW = create("suspicious_stew");
     public static final ResourceLocation MILK = create("milk");
     public static final ResourceLocation LEVEL = create("level");
     public static final ResourceLocation REACH_LEVEL = create("reach_level");

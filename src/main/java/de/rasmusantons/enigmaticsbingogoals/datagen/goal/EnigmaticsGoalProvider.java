@@ -155,15 +155,87 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Get 3 status effects concurrently
         // TODO: Get 6 status effects concurrently
         // TODO: Get 10 status effects concurrently
-        // TODO: Get Absorption
-        // TODO: Get Nausea
-        // TODO: Get Poison
-        // TODO: Get Weakness
-        // TODO: Get Slowness
-        // TODO: Get Leaping
-        // TODO: Get Blindness
-        // TODO: Get Saturation
-        // TODO: Get Mining Fatigue
+        addGoal(BingoGoal.builder(id("get_absorption"))
+                .criterion("effect", EffectsChangedTrigger.TriggerInstance.hasEffects(
+                                MobEffectsPredicate.Builder.effects().and(MobEffects.ABSORPTION)
+                        )
+                )
+                .tags(EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.WOODLAND_MANSION)
+                .name(Component.literal("Get Absorption"))
+                .icon(EffectIcon.of(MobEffects.ABSORPTION))
+        );
+        addGoal(BingoGoal.builder(id("get_nausea"))
+                .criterion("effect", EffectsChangedTrigger.TriggerInstance.hasEffects(
+                                MobEffectsPredicate.Builder.effects().and(MobEffects.CONFUSION)
+                        )
+                )
+                .tags(EnigmaticsBingoTags.PUFFER_FISH, EnigmaticsBingoTags.GET_EFFECT)
+                .name(Component.literal("Get Nausea"))
+                .icon(EffectIcon.of(MobEffects.CONFUSION))
+        );
+        addGoal(BingoGoal.builder(id("get_poison"))
+                .criterion("effect", EffectsChangedTrigger.TriggerInstance.hasEffects(
+                                MobEffectsPredicate.Builder.effects().and(MobEffects.POISON)
+                        )
+                )
+                .tags(EnigmaticsBingoTags.PUFFER_FISH, EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.POISON, EnigmaticsBingoTags.SUSPICIOUS_STEW, EnigmaticsBingoTags.BEEHIVE, EnigmaticsBingoTags.MINESHAFT)
+                .name(Component.literal("Get Poison"))
+                .icon(EffectIcon.of(MobEffects.POISON))
+        );
+        addGoal(BingoGoal.builder(id("get_weakness"))
+                .criterion("effect", EffectsChangedTrigger.TriggerInstance.hasEffects(
+                                MobEffectsPredicate.Builder.effects().and(MobEffects.WEAKNESS)
+                        )
+                )
+                .tags(EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.WEAKNESS, EnigmaticsBingoTags.SUSPICIOUS_STEW, EnigmaticsBingoTags.IGLOO)
+                .name(Component.literal("Get Weakness"))
+                .icon(EffectIcon.of(MobEffects.WEAKNESS))
+        );
+        addGoal(BingoGoal.builder(id("get_slowness"))
+                .criterion("effect", EffectsChangedTrigger.TriggerInstance.hasEffects(
+                                MobEffectsPredicate.Builder.effects().and(MobEffects.MOVEMENT_SLOWDOWN)
+                        )
+                )
+                .tags(EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.SLOWNESS)
+                .name(Component.literal("Get Slowness"))
+                .icon(EffectIcon.of(MobEffects.MOVEMENT_SLOWDOWN))
+        );
+        addGoal(BingoGoal.builder(id("get_leaping"))
+                .criterion("effect", EffectsChangedTrigger.TriggerInstance.hasEffects(
+                                MobEffectsPredicate.Builder.effects().and(MobEffects.JUMP)
+                        )
+                )
+                .tags(EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.LEAPING, EnigmaticsBingoTags.SUSPICIOUS_STEW)
+                .name(Component.literal("Get Leaping"))
+                .icon(EffectIcon.of(MobEffects.JUMP))
+        );
+        addGoal(BingoGoal.builder(id("get_blindness"))
+                .criterion("effect", EffectsChangedTrigger.TriggerInstance.hasEffects(
+                                MobEffectsPredicate.Builder.effects().and(MobEffects.BLINDNESS)
+                        )
+                )
+                .tags(EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.SUSPICIOUS_STEW)
+                .name(Component.literal("Get Blindness"))
+                .icon(EffectIcon.of(MobEffects.BLINDNESS))
+        );
+        addGoal(BingoGoal.builder(id("get_saturation"))
+                .criterion("effect", EffectsChangedTrigger.TriggerInstance.hasEffects(
+                                MobEffectsPredicate.Builder.effects().and(MobEffects.SATURATION)
+                        )
+                )
+                .tags(EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.SATURATION, EnigmaticsBingoTags.SUSPICIOUS_STEW)
+                .name(Component.literal("Get Saturation"))
+                .icon(EffectIcon.of(MobEffects.SATURATION))
+        );
+        addGoal(BingoGoal.builder(id("get_mining_fatigue"))
+                .criterion("effect", EffectsChangedTrigger.TriggerInstance.hasEffects(
+                                MobEffectsPredicate.Builder.effects().and(MobEffects.DIG_SLOWDOWN)
+                        )
+                )
+                .tags(EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.SATURATION, EnigmaticsBingoTags.OCEAN_MONUMENT)
+                .name(Component.literal("Get Mining Fatigue"))
+                .icon(EffectIcon.of(MobEffects.DIG_SLOWDOWN))
+        );
         // TODO: Remove a status effect with a Milk Bucket
         // TODO: Craft a Cake
         // TODO: Reach level 15-40
