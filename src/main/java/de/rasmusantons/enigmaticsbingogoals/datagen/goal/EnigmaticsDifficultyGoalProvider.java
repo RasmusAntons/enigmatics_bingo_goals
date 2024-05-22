@@ -5,15 +5,13 @@ import de.rasmusantons.enigmaticsbingogoals.triggers.AdvancementsTrigger;
 import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
-import io.github.gaming32.bingo.data.icons.BlockIcon;
-import io.github.gaming32.bingo.data.icons.EffectIcon;
-import io.github.gaming32.bingo.data.icons.IndicatorIcon;
-import io.github.gaming32.bingo.data.icons.ItemIcon;
+import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
 import io.github.gaming32.bingo.data.subs.BingoSub;
 import io.github.gaming32.bingo.fabric.datagen.goal.DifficultyGoalProvider;
 import io.github.gaming32.bingo.triggers.EntityKilledPlayerTrigger;
 import io.github.gaming32.bingo.triggers.ExperienceChangeTrigger;
+import io.github.gaming32.bingo.triggers.HasSomeItemsFromTagTrigger;
 import io.github.gaming32.bingo.triggers.RelativeStatsTrigger;
 import io.github.gaming32.bingo.util.BingoUtil;
 import net.minecraft.advancements.critereon.*;
@@ -23,9 +21,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -45,7 +45,16 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
     protected static BingoGoal.Builder obtainItemGoal(ResourceLocation id, ItemLike item) {
         return obtainItemGoal(id, item, ItemPredicate.Builder.item().of(item))
                 .antisynergy(BuiltInRegistries.ITEM.getKey(item.asItem()).getPath())
+                .tags(BingoTags.ITEM)
                 .name(Component.translatable("Obtain %s", item.asItem().getDescription()));
+    }
+
+    protected BingoGoal.Builder obtainAllItemsFromTag(ResourceLocation id, TagKey<Item> tag) {
+        return BingoGoal.builder(id)
+                .criterion("obtain", HasSomeItemsFromTagTrigger.builder().tag(tag).requiresAll().build())
+                .progress("obtain")
+                .tags(BingoTags.ITEM)
+                .icon(new ItemTagCycleIcon(tag));
     }
 
     @SafeVarargs
@@ -64,6 +73,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         )
                         .toArray(ItemPredicate.Builder[]::new)
         )
+                .tags(EnigmaticsBingoTags.POTIONS)
                 .name(Component.translatable("Obtain %s", Items.POTION.getName(potionItem)));
     }
 

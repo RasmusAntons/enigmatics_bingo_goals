@@ -1,5 +1,6 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
+import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.FullUniqueInventoryCondition;
 import de.rasmusantons.enigmaticsbingogoals.conditions.KillEnemyPlayerCondition;
@@ -123,7 +124,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.OCEAN_MONUMENT, EnigmaticsBingoTags.SHIPWRECK)
         );
         addGoal(potionGoal(id("obtain_potion_of_water_breathing"), Potions.WATER_BREATHING, Potions.LONG_WATER_BREATHING)
-                .tags(EnigmaticsBingoTags.POTIONS, EnigmaticsBingoTags.BURIED_TREASURE, EnigmaticsBingoTags.SHIPWRECK)
+                .tags(EnigmaticsBingoTags.BURIED_TREASURE, EnigmaticsBingoTags.SHIPWRECK)
         );
         addGoal(BingoGoal.builder(id("play_music_to_other_team"))
                 .criterion("music", PlayMusicToOtherTeamTrigger.TriggerInstance.playMusic())
@@ -218,7 +219,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .icon(ItemIcon.ofItem(Items.CHEST))
         );
         // TODO: Deal 500 hearts of damage
-        // TODO: Get a full set of Wooden tools
+        addGoal(obtainAllItemsFromTag(id("get_all_wooden_tools"), EnigmaticsBingoItemTags.WOODEN_TOOLS)
+                .tags(BingoTags.OVERWORLD)
+                .name(Component.literal("Obtain all Wooden Tools"))
+        );
+        // TODO: Get a full set of Wooden tools`
         // TODO: Get a full set of Stone tools
         addGoal(BingoGoal.builder(id("stand_on_bedrock"))
                 .criterion("stand_on", PlayerTrigger.TriggerInstance.located(
