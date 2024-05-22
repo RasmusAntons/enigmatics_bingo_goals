@@ -222,7 +222,9 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.literal("Remove a status effect with a Milk Bucket"))
                 .icon(ItemIcon.ofItem(Items.MILK_BUCKET))
         );
-        // TODO: Craft a Cake
+        addGoal(obtainItemGoal(id("obtain_cake"), Items.CAKE)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MILK, EnigmaticsBingoTags.CHICKEN)
+        );
         // TODO: Reach level 15-40
         // TODO: Reach level
         // TODO: Fill up a Composter
@@ -314,7 +316,10 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.DIAMOND_ORE), ItemIcon.ofItem(Items.NETHERITE_PICKAXE)))
         );
-        // TODO: Obtain all Raw Ore Blocks
+        addGoal(obtainAllItemsFromTag(id("obtain_all_raw_ore_blocks"), EnigmaticsBingoItemTags.RAW_ORE_BLOCKS)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING)
+                .name(Component.literal("Obtain all Raw Ore Blocks"))
+        );
         addGoal(obtainItemGoal(id("obtain_repeater"), Items.REPEATER)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING,
                         EnigmaticsBingoTags.REDSTONE, EnigmaticsBingoTags.WOODLAND_MANSION)
@@ -470,7 +475,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Obtain 1 Armor Trim
         // TODO: Obtain 2 Armor Trim
         // TODO: Obtain 3 Armor Trim
-        addGoal(obtainAllItemsFromTag(id("all_horse_armors"), EnigmaticsBingoItemTags.HORSE_ARMORS)
+        addGoal(obtainAllItemsFromTag(id("obtain_all_horse_armors"), EnigmaticsBingoItemTags.HORSE_ARMORS)
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.END, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH,
                         EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.MINESHAFT, BingoTags.VILLAGE)
                 .name(Component.literal("Obtain all Horse Armors"))

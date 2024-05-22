@@ -62,5 +62,11 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.GOLDEN_HORSE_ARMOR,
                 Items.DIAMOND_HORSE_ARMOR
         );
+
+        getOrCreateTagBuilder(EnigmaticsBingoItemTags.RAW_ORE_BLOCKS).add(
+                Items.RAW_COPPER_BLOCK,
+                Items.RAW_GOLD_BLOCK,
+                Items.RAW_IRON_BLOCK
+        );
     }
 }
