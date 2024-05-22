@@ -124,11 +124,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainItemGoal(id("obtain_heart_of_the_sea"), Items.HEART_OF_THE_SEA)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BURIED_TREASURE, EnigmaticsBingoTags.SHIPWRECK)
         );
-        addGoal(obtainItemGoal(id("obtain_dark_prismarine"), Items.DARK_PRISMARINE)
+        addGoal(obtainItemGoal(id("get_dark_prismarine"), Items.DARK_PRISMARINE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BURIED_TREASURE,
                         EnigmaticsBingoTags.OCEAN_MONUMENT, EnigmaticsBingoTags.SHIPWRECK)
         );
-        addGoal(potionGoal(id("obtain_potion_of_water_breathing"), Potions.WATER_BREATHING, Potions.LONG_WATER_BREATHING)
+        addGoal(potionGoal(id("get_potion_of_water_breathing"),
+                Potions.WATER_BREATHING, Potions.LONG_WATER_BREATHING)
                 .tags(EnigmaticsBingoTags.BURIED_TREASURE, EnigmaticsBingoTags.SHIPWRECK)
         );
         addGoal(BingoGoal.builder(id("play_music_to_other_team"))
@@ -442,7 +443,6 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         );
         // TODO: Get a full set of Gold tools
         // TODO: Get a full set of Diamond tools
-        // TODO: Obtain a Potion of Water Breathing
         // TODO: Obtain Cobweb
         // TODO: Rename a sheep to "jeb_"
         // TODO: Break a Mob Spawner
@@ -505,16 +505,48 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Obtain an End Crystal
         // TODO: Obtain an Eye of Ender
         // TODO: Obtain an Ender Chest
-        // TODO: Obtain a Potion of Strength
-        // TODO: Obtain a Potion of Instant Health
-        // TODO: Obtain a Potion of Slowness
-        // TODO: Obtain a Potion of Instant Damage
-        // TODO: Obtain a Potion of Poison
-        // TODO: Obtain a Potion of Night Vision
-        // TODO: Obtain a Potion of Leaping
-        // TODO: Obtain a Potion of Swiftness
-        // TODO: Obtain a Potion of Slow Falling
-        // TODO: Obtain a Potion of the Turtle Master
+        addGoal(potionGoal(id("get_potion_of_strength"),
+                Potions.STRENGTH, Potions.LONG_STRENGTH, Potions.STRONG_STRENGTH)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
+        );
+        addGoal(potionGoal(id("get_potion_of_regeneration"),
+                Potions.REGENERATION, Potions.LONG_REGENERATION, Potions.STRONG_REGENERATION)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER)
+        );
+        addGoal(potionGoal(id("get_potion_of_healing"), Potions.HEALING, Potions.STRONG_HEALING)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
+        );
+        addGoal(potionGoal(id("get_potion_of_slowness"),
+                Potions.SLOWNESS, Potions.STRONG_SLOWNESS, Potions.LONG_SLOWNESS)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
+        );
+        addGoal(potionGoal(id("get_potion_of_harming"),
+                Potions.HARMING, Potions.LONG_STRENGTH, Potions.STRONG_STRENGTH)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER,
+                        EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.INSTANT_DAMAGE)
+        );
+        addGoal(potionGoal(id("get_potion_of_poison"), Potions.POISON, Potions.LONG_POISON, Potions.STRONG_POISON)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
+        );
+        addGoal(potionGoal(id("get_potion_of_night_vision"), Potions.NIGHT_VISION, Potions.LONG_NIGHT_VISION)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
+        );
+        addGoal(potionGoal(id("get_potion_of_leaping"),
+                Potions.LEAPING, Potions.LONG_LEAPING, Potions.STRONG_LEAPING)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
+        );
+        addGoal(potionGoal(id("get_potion_of_swiftness"),
+                Potions.SWIFTNESS, Potions.LONG_SWIFTNESS, Potions.STRONG_SWIFTNESS)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
+        );
+        addGoal(potionGoal(id("get_potion_of_slow_falling"),
+                Potions.SLOW_FALLING, Potions.LONG_SLOW_FALLING)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
+        );
+        addGoal(potionGoal(id("get_potion_of_the_turtle_master"),
+                Potions.TURTLE_MASTER, Potions.LONG_TURTLE_MASTER, Potions.STRONG_TURTLE_MASTER)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
+        );
         // TODO: Obtain a Wither Skeleton Skull
         // TODO: Spawn a Wither
         // TODO: Obtain a Wither Star
