@@ -83,7 +83,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                                 MobEffectsPredicate.Builder.effects().and(effect)
                         )
                 )
-                .name(Component.literal(String.format("Get %s", effect.getRegisteredName())))
+                .name(Component.translatable("Get %s", effect.value().getDisplayName()))
                 .icon(EffectIcon.of(effect));
     }
 
