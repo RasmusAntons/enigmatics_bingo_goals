@@ -7,10 +7,7 @@ import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger
 import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
-import io.github.gaming32.bingo.data.icons.BlockIcon;
-import io.github.gaming32.bingo.data.icons.EffectIcon;
-import io.github.gaming32.bingo.data.icons.IndicatorIcon;
-import io.github.gaming32.bingo.data.icons.ItemIcon;
+import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
 import io.github.gaming32.bingo.triggers.DeathTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -114,7 +111,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.PLAYER_KILL
                 )
                 .name(Component.literal("Kill an enemy player"))
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.PLAYER_HEAD), ItemIcon.ofItem(Items.DIAMOND_SWORD)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.PLAYER_HEAD), ItemIcon.ofItem(Items.NETHERITE_SWORD)))
         );
         addGoal(advancementsGoal(id("get_advancements"), 15, 35));
         // TODO: Obtain Heart of the Sea
@@ -226,7 +223,13 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.DIE_TO
                 )
                 .name(Component.literal("Die to a llama"))
-                .icon(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.LLAMA))
+                .icon(
+                        IndicatorIcon.infer(
+                                EffectIcon.of(MobEffects.WITHER),
+                                EntityType.LLAMA
+                                // BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.LLAMA),
+                        )
+                )
         );
         // TODO: Die to an Iron Golem
         addGoal(dieToEntityGoal(id("die_to_bee"), EntityType.BEE)
@@ -236,7 +239,13 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.BEEHIVE
                 )
                 .name(Component.literal("Die to a bee"))
-                .icon(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.BEE))
+                .icon(
+                        IndicatorIcon.infer(
+                                EffectIcon.of(MobEffects.WITHER),
+                                EntityType.BEE
+                                // BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.BEE)
+                        )
+                )
         );
         // TODO: Die to a Dolphin
         // TODO: Die to a Goat
