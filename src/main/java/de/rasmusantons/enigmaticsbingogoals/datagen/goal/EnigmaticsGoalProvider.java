@@ -14,18 +14,18 @@ import io.github.gaming32.bingo.data.icons.EffectIcon;
 import io.github.gaming32.bingo.data.icons.IndicatorIcon;
 import io.github.gaming32.bingo.data.icons.ItemIcon;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
+import io.github.gaming32.bingo.triggers.BreakBlockTrigger;
 import io.github.gaming32.bingo.triggers.DeathTrigger;
+import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -301,7 +301,14 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Die to a Firework
         // TODO: Die to Magic
         // TODO: Die to falling off vines
-        // TODO: Mine Diamond Ore
+        addGoal(BingoGoal.builder(id("break_diamond_ore"))
+                .criterion("break_stone", BreakBlockTrigger.builder().block(Blocks.DIAMOND_ORE).build())
+                .criterion("break_deepslate", BreakBlockTrigger.builder().block(Blocks.DEEPSLATE_DIAMOND_ORE).build())
+                .requirements(AdvancementRequirements.Strategy.OR)
+                .name(Component.literal("Break Diamond Ore"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.DIAMOND_ORE), ItemIcon.ofItem(Items.NETHERITE_PICKAXE)))
+        );
         // TODO: Obtain all Raw Ore Blocks
         addGoal(obtainItemGoal(id("obtain_repeater"), Items.REPEATER)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING,
@@ -343,7 +350,14 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
                         EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.ANCIENT_CITY)
         );
-        // TODO: Mine Emerald Ore
+        addGoal(BingoGoal.builder(id("break_emerald_ore"))
+                .criterion("break_stone", BreakBlockTrigger.builder().block(Blocks.EMERALD_ORE).build())
+                .criterion("break_deepslate", BreakBlockTrigger.builder().block(Blocks.DEEPSLATE_EMERALD_ORE).build())
+                .requirements(AdvancementRequirements.Strategy.OR)
+                .name(Component.literal("Break Emerald Ore"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.EMERALD_ORE), ItemIcon.ofItem(Items.NETHERITE_PICKAXE)))
+        );
         // TODO: Kill a Silverfish
         // TODO: Obtain a Bucket of Powdered Snow
         // TODO: Tame a Cat
