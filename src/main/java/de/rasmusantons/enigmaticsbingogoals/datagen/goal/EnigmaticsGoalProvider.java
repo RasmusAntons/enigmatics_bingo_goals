@@ -235,11 +235,13 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         );
         // TODO: Deal 500 hearts of damage
         addGoal(obtainAllItemsFromTag(id("get_all_wooden_tools"), EnigmaticsBingoItemTags.WOODEN_TOOLS)
-                .tags(BingoTags.OVERWORLD)
-                .name(Component.literal("Obtain all Wooden Tools"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET,  EnigmaticsBingoTags.OVERWORLD_ENTRY)
+                .name(Component.literal("Get a full set of Wooden Tools"))
         );
-        // TODO: Get a full set of Wooden tools`
-        // TODO: Get a full set of Stone tools
+        addGoal(obtainAllItemsFromTag(id("get_all_stone_tools"), EnigmaticsBingoItemTags.STONE_TOOLS)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET, EnigmaticsBingoTags.OVERWORLD_ENTRY)
+                .name(Component.literal("Get a full set of Stone Tools"))
+        );
         addGoal(BingoGoal.builder(id("stand_on_bedrock"))
                 .criterion("stand_on", PlayerTrigger.TriggerInstance.located(
                         EntityPredicate.Builder.entity().steppingOn(
@@ -426,7 +428,18 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Obtain a Mossy Stone Brick Wall
         // TODO: Obtain a Mossy Cobblestone Brick Wall
         // TODO: Eat Suspicious Stew
-        // TODO: Get a full set of Iron tools
+        addGoal(obtainAllItemsFromTag(id("get_all_iron_tools"), EnigmaticsBingoItemTags.IRON_TOOLS)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
+                .name(Component.literal("Get a full set of Iron Tools"))
+        );
+        addGoal(obtainAllItemsFromTag(id("get_all_golden_tools"), EnigmaticsBingoItemTags.GOLDEN_TOOLS)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
+                .name(Component.literal("Get a full set of Golden Tools"))
+        );
+        addGoal(obtainAllItemsFromTag(id("get_all_diamond_tools"), EnigmaticsBingoItemTags.DIAMOND_TOOLS)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
+                .name(Component.literal("Get a full set of Diamond Tools"))
+        );
         // TODO: Get a full set of Gold tools
         // TODO: Get a full set of Diamond tools
         // TODO: Obtain a Potion of Water Breathing

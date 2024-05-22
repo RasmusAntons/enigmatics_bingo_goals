@@ -24,12 +24,36 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.WOODEN_SWORD
         );
 
+        getOrCreateTagBuilder(EnigmaticsBingoItemTags.STONE_TOOLS).add(
+                Items.STONE_AXE,
+                Items.STONE_SHOVEL,
+                Items.STONE_PICKAXE,
+                Items.STONE_HOE,
+                Items.STONE_SWORD
+        );
+
         getOrCreateTagBuilder(EnigmaticsBingoItemTags.IRON_TOOLS).add(
                 Items.IRON_AXE,
                 Items.IRON_SHOVEL,
                 Items.IRON_PICKAXE,
                 Items.IRON_HOE,
                 Items.IRON_SWORD
+        );
+
+        getOrCreateTagBuilder(EnigmaticsBingoItemTags.GOLDEN_TOOLS).add(
+                Items.GOLDEN_AXE,
+                Items.GOLDEN_SHOVEL,
+                Items.GOLDEN_PICKAXE,
+                Items.GOLDEN_HOE,
+                Items.GOLDEN_SWORD
+        );
+
+        getOrCreateTagBuilder(EnigmaticsBingoItemTags.DIAMOND_TOOLS).add(
+                Items.DIAMOND_AXE,
+                Items.DIAMOND_SHOVEL,
+                Items.DIAMOND_PICKAXE,
+                Items.DIAMOND_HOE,
+                Items.DIAMOND_SWORD
         );
 
         getOrCreateTagBuilder(EnigmaticsBingoItemTags.HORSE_ARMORS).add(
