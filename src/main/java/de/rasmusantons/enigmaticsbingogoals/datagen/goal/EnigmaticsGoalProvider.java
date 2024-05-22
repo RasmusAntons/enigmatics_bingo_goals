@@ -6,9 +6,13 @@ import de.rasmusantons.enigmaticsbingogoals.conditions.FullUniqueInventoryCondit
 import de.rasmusantons.enigmaticsbingogoals.conditions.KillEnemyPlayerCondition;
 import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
+import io.github.gaming32.bingo.conditions.HasAnyEffectCondition;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
-import io.github.gaming32.bingo.data.icons.*;
+import io.github.gaming32.bingo.data.icons.BlockIcon;
+import io.github.gaming32.bingo.data.icons.EffectIcon;
+import io.github.gaming32.bingo.data.icons.IndicatorIcon;
+import io.github.gaming32.bingo.data.icons.ItemIcon;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
 import io.github.gaming32.bingo.triggers.DeathTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -22,6 +26,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.loot.LootContext;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -198,11 +203,21 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.SATURATION,
                         EnigmaticsBingoTags.OCEAN_MONUMENT)
         );
-        // TODO: Remove a status effect with a Milk Bucket
+        addGoal(BingoGoal.builder(id("clear_effect_with_milk"))
+                .criterion("clear_effect", CriteriaTriggers.CONSUME_ITEM.createCriterion(
+                        new ConsumeItemTrigger.TriggerInstance(
+                                Optional.of(ContextAwarePredicate.create(new HasAnyEffectCondition(LootContext.EntityTarget.THIS))),
+                                Optional.of(ItemPredicate.Builder.item().of(Items.MILK_BUCKET).build())
+                        )
+                ))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MILK)
+                .name(Component.literal("Remove a status effect with a Milk Bucket"))
+                .icon(ItemIcon.ofItem(Items.MILK_BUCKET))
+        );
         // TODO: Craft a Cake
         // TODO: Reach level 15-40
         // TODO: Reach level
-        // TODO: Use a Composter
+        // TODO: Fill up a Composter
         addGoal(BingoGoal.builder(id("full_unique_inventory"))
                 .criterion("fill", CriteriaTriggers.INVENTORY_CHANGED.createCriterion(
                         new InventoryChangeTrigger.TriggerInstance(
