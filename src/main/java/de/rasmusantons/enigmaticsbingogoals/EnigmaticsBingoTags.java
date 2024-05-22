@@ -11,92 +11,92 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation NEVER_TAKE_DAMAGE = create("never_take_damage");
     public static final ResourceLocation PLAYER_KILL = create("player_kill");
     public static final ResourceLocation ADVANCEMENTS = create("advancements");
-    // TODO: buried_treasure 1
-    // TODO: pvp 1
+    public static final ResourceLocation BURIED_TREASURE = create("buried_treasure");
+    public static final ResourceLocation PVP = create("pvp");
     // TODO: overtakable 1
     public static final ResourceLocation COVER_DISTANCE = create("cover_distance");
-    // TODO: golden_apple 1
-    // TODO: puffer_fish 1
-    // TODO: get_effect_batch 1
-    // TODO: get_effect 2
-    // TODO: milk 1
-    // TODO: level 2
-    // TODO: reach_level 1
-    // TODO: overworld_entry 2
-    // TODO: chicken 1
+    public static final ResourceLocation GOLDEN_APPLE = create("golden_apple");
+    public static final ResourceLocation PUFFER_FISH = create("puffer_fish");
+    public static final ResourceLocation GET_EFFECT_BATCH = create("get_effect_batch");
+    public static final ResourceLocation GET_EFFECT = create("get_effect");
+    public static final ResourceLocation MILK = create("milk");
+    public static final ResourceLocation LEVEL = create("level");
+    public static final ResourceLocation REACH_LEVEL = create("reach_level");
+    public static final ResourceLocation OVERWORLD_ENTRY = create("overworld_entry");
+    public static final ResourceLocation CHICKEN = create("chicken");
     public static final ResourceLocation REACH_WORLD_LIMIT = create("reach_world_limit");
     public static final ResourceLocation DIE_TO = create("die_to");
-    // TODO: caving 2
-    // TODO: mountain 2
-    // TODO: tame_animal 1
-    // TODO: breed_mob 2
-    // TODO: unique_mobs 1
-    // TODO: unique_neutral_mobs 1
-    // TODO: unique_hostile_mobs 1
-    // TODO: kill_mob 3
-    // TODO: kill_mob_batch 1
+    public static final ResourceLocation CAVING = create("caving");
+    public static final ResourceLocation MOUNTAIN = create("mountain");
+    public static final ResourceLocation TAME_ANIMAL = create("tame_animal");
+    public static final ResourceLocation BREED_MOB = create("breed_mob");
+    public static final ResourceLocation UNIQUE_MOBS = create("unique_mobs");
+    public static final ResourceLocation UNIQUE_NEUTRAL_MOBS = create("unique_neutral_mobs");
+    public static final ResourceLocation UNIQUE_HOSTILE_MOBS = create("unique_hostile_mobs");
+    public static final ResourceLocation KILL_MOB = create("kill_mob");
+    public static final ResourceLocation KILL_MOB_BATCH = create("kill_mob_batch");
     // BingoTags.VILLAGE 3
-    // TODO: bucket_with_mob 1
+    public static final ResourceLocation BUCKET_WITH_MOB = create("bucket_with_mob");
     public static final ResourceLocation MUSIC_DISC = create("music_disc");
-    // TODO: armor 1
-    // TODO: plant_batch 1
-    // TODO: seeds 1
-    // TODO: lush_cave 1
-    // TODO: use_workstation 1
-    // TODO: loom 1
-    // TODO: unique_food 1
-    // TODO: silk_touch 1
-    // TODO: bow 1
-    // TODO: saddle 1
-    // TODO: amethyst 1
-    // TODO: book 1
-    // TODO: outpost 2
-    // TODO: redstone 1
-    // TODO: ocean_monument 1
-    // TODO: raid 1
-    // TODO: rare_collectible_batch 1
-    // TODO: wall 1
-    // TODO: stew 1
-    // TODO: full_tool_set 1
-    // TODO: shipwreck 1
-    // TODO: mineshaft 1
-    // TODO: terracotta 1
-    // TODO: slime 1
+    public static final ResourceLocation ARMOR = create("armor");
+    public static final ResourceLocation PLANT_BATCH = create("plant_batch");
+    public static final ResourceLocation SEEDS = create("seeds");
+    public static final ResourceLocation LUSH_CAVE = create("lush_cave");
+    public static final ResourceLocation USE_WORKSTATION = create("use_workstation");
+    public static final ResourceLocation LOOM = create("loom");
+    public static final ResourceLocation UNIQUE_FOOD = create("unique_food");
+    public static final ResourceLocation SILK_TOUCH = create("silk_touch");
+    public static final ResourceLocation BOW = create("bow");
+    public static final ResourceLocation SADDLE = create("saddle");
+    public static final ResourceLocation AMETHYST = create("amethyst");
+    public static final ResourceLocation BOOK = create("book");
+    public static final ResourceLocation OUTPOST = create("outpost");
+    public static final ResourceLocation REDSTONE = create("redstone");
+    public static final ResourceLocation OCEAN_MONUMENT = create("ocean_monument");
+    public static final ResourceLocation RAID = create("raid");
+    public static final ResourceLocation RARE_COLLECTIBLE_BATCH = create("rare_collectible_batch");
+    public static final ResourceLocation WALL = create("wall");
+    public static final ResourceLocation STEW = create("stew");
+    public static final ResourceLocation FULL_TOOL_SET = create("full_tool_set");
+    public static final ResourceLocation SHIPWRECK = create("shipwreck");
+    public static final ResourceLocation MINESHAFT = create("mineshaft");
+    public static final ResourceLocation TERRACOTTA = create("terracotta");
+    public static final ResourceLocation SLIME = create("slime");
     public static final ResourceLocation BEEHIVE = create("beehive");
-    // TODO: jungle 1
-    // TODO: anvil 1
-    // TODO: concrete 1
-    // TODO: wool 1
-    // TODO: nether_entry 3
-    // TODO: nether_explore 2
-    // TODO: ghast 1
-    // TODO: strider 1
-    // TODO: eye_of_ender 1
-    // TODO: blaze_powder 2
-    // TODO: potions 1
-    // TODO: instant_damage 1
-    // TODO: saturation 1
-    // TODO: weakness 1
-    // TODO: night_vision 1
-    // TODO: slowness 1
-    // TODO: leaping 1
-    // TODO: poison 1
-    // TODO: wither_skull 1
-    // TODO: fortress 2
-    // TODO: crimson_forest 2
-    // TODO: warped_forest 2
-    // TODO: soul_sand 1
-    // TODO: bartering 1
-    // TODO: nether_late 2
-    // TODO: netherite 1
-    // TODO: end_entry 1
-    // TODO: end_progress 2
-    // TODO: end_ship 1
-    // TODO: igloo 8
-    // TODO: ancient_city 4
-    // TODO: witch_hut 2
-    // TODO: woodland_mansion 9
-    // TODO: trail_ruins 3
+    public static final ResourceLocation JUNGLE = create("jungle");
+    public static final ResourceLocation ANVIL = create("anvil");
+    public static final ResourceLocation CONCRETE = create("concrete");
+    public static final ResourceLocation WOOL = create("wool");
+    public static final ResourceLocation NETHER_ENTRY = create("nether_entry");
+    public static final ResourceLocation NETHER_EXPLORE = create("nether_explore");
+    public static final ResourceLocation GHAST = create("ghast");
+    public static final ResourceLocation STRIDER = create("strider");
+    public static final ResourceLocation EYE_OF_ENDER = create("eye_of_ender");
+    public static final ResourceLocation BLAZE_POWDER = create("blaze_powder");
+    public static final ResourceLocation POTIONS = create("potions");
+    public static final ResourceLocation INSTANT_DAMAGE = create("instant_damage");
+    public static final ResourceLocation SATURATION = create("saturation");
+    public static final ResourceLocation WEAKNESS = create("weakness");
+    public static final ResourceLocation NIGHT_VISION = create("night_vision");
+    public static final ResourceLocation SLOWNESS = create("slowness");
+    public static final ResourceLocation LEAPING = create("leaping");
+    public static final ResourceLocation POISON = create("poison");
+    public static final ResourceLocation WITHER_SKULL = create("wither_skull");
+    public static final ResourceLocation FORTRESS = create("fortress");
+    public static final ResourceLocation CRIMSON_FOREST = create("crimson_forest");
+    public static final ResourceLocation WARPED_FOREST = create("warped_forest");
+    public static final ResourceLocation SOUL_SAND = create("soul_sand");
+    public static final ResourceLocation BARTERING = create("bartering");
+    public static final ResourceLocation NETHER_LATE = create("nether_late");
+    public static final ResourceLocation NETHERITE = create("netherite");
+    public static final ResourceLocation END_ENTRY = create("end_entry");
+    public static final ResourceLocation END_PROGRESS = create("end_progress");
+    public static final ResourceLocation END_SHIP = create("end_ship");
+    public static final ResourceLocation IGLOO = create("igloo");
+    public static final ResourceLocation ANCIENT_CITY = create("ancient_city");
+    public static final ResourceLocation WITCH_HUT = create("witch_hut");
+    public static final ResourceLocation WOODLAND_MANSION = create("woodland_mansion");
+    public static final ResourceLocation TRAIL_RUINS = create("trail_ruins");
 
     
 

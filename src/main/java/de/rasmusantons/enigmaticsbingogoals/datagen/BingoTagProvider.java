@@ -76,7 +76,6 @@ public class BingoTagProvider implements DataProvider {
         tagAdder.accept(BingoTag.builder(BingoTags.OCEAN).difficultyMax(5, 5, 5, 5, 5, 5).build());
         tagAdder.accept(BingoTag.builder(BingoTags.RARE_BIOME).difficultyMax(0, 1, 2, 4, 6, 4).build());
 
-
         tagAdder.accept(BingoTag.builder(BingoTags.NEVER)
                 .difficultyMax(3, 3, 3, 3, 3, 3)
                 .disallowOnSameLine()
@@ -86,91 +85,93 @@ public class BingoTagProvider implements DataProvider {
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.NEVER_TAKE_DAMAGE).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.PLAYER_KILL).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.ADVANCEMENTS).difficultyMax(1, 1, 1, 1, 1, 1).build());
-        // TODO: buried_treasure 1
-        // TODO: pvp 1
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BURIED_TREASURE).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.PVP).difficultyMax(1, 1, 1, 1, 1, 1).build());
         // TODO: overtakable 1
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.COVER_DISTANCE).difficultyMax(1, 1, 1, 1, 1, 1).build());
-        // TODO: golden_apple 1
-        // TODO: puffer_fish 1
-        // TODO: get_effect_batch 1
-        // TODO: get_effect 2
-        // TODO: milk 1
-        // TODO: level 2
-        // TODO: reach_level 1
-        // TODO: overworld_entry 2
-        // TODO: chicken 1
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.GOLDEN_APPLE).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.PUFFER_FISH).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.GET_EFFECT_BATCH).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.GET_EFFECT).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.MILK).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.LEVEL).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.REACH_LEVEL).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.OVERWORLD_ENTRY).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.CHICKEN).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.REACH_WORLD_LIMIT).difficultyMax(2, 2, 2, 2, 2, 2).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.DIE_TO).difficultyMax(2, 2, 2, 2, 2, 2).build());
-        // TODO: caving 2
-        // TODO: mountain 2
-        // TODO: tame_animal 1
-        // TODO: breed_mob 2
-        // TODO: unique_mobs 1
-        // TODO: unique_neutral_mobs 1
-        // TODO: unique_hostile_mobs 1
-        // TODO: kill_mob 3
-        // TODO: kill_mob_batch 1
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.CAVING).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.MOUNTAIN).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.TAME_ANIMAL).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BREED_MOB).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.UNIQUE_MOBS).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.UNIQUE_NEUTRAL_MOBS).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.KILL_MOB).difficultyMax(3, 3, 3, 3, 3, 3).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.KILL_MOB_BATCH).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(BingoTags.VILLAGE).difficultyMax(3, 3, 3, 3, 3, 3).build());
-        // TODO: bucket_with_mob 1
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BUCKET_WITH_MOB).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.MUSIC_DISC).difficultyMax(1, 1, 1, 1, 1, 1).build());
-        // TODO: armor 1
-        // TODO: plant_batch 1
-        // TODO: seeds 1
-        // TODO: lush_cave 1
-        // TODO: use_workstation 1
-        // TODO: loom 1
-        // TODO: unique_food 1
-        // TODO: silk_touch 1
-        // TODO: bow 1
-        // TODO: saddle 1
-        // TODO: amethyst 1
-        // TODO: book 1
-        // TODO: outpost 2
-        // TODO: redstone 1
-        // TODO: ocean_monument 1
-        // TODO: raid 1
-        // TODO: rare_collectible_batch 1
-        // TODO: wall 1
-        // TODO: stew 1
-        // TODO: full_tool_set 1
-        // TODO: shipwreck 1
-        // TODO: mineshaft 1
-        // TODO: terracotta 1
-        // TODO: slime 1
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.ARMOR).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.PLANT_BATCH).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.SEEDS).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.LUSH_CAVE).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.USE_WORKSTATION).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.LOOM).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.UNIQUE_FOOD).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.SILK_TOUCH).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BOW).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.SADDLE).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.AMETHYST).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BOOK).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.OUTPOST).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.REDSTONE).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.OCEAN_MONUMENT).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.RAID).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.WALL).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.STEW).difficultyMax(1, 1, 1, 1, 1,
+
+                1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.FULL_TOOL_SET).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.SHIPWRECK).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.MINESHAFT).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.TERRACOTTA).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.SLIME).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BEEHIVE).difficultyMax(1, 1, 1, 1, 1, 1).build());
-        // TODO: jungle 1
-        // TODO: anvil 1
-        // TODO: concrete 1
-        // TODO: wool 1
-        // TODO: nether_entry 3
-        // TODO: nether_explore 2
-        // TODO: ghast 1
-        // TODO: strider 1
-        // TODO: eye_of_ender 1
-        // TODO: blaze_powder 2
-        // TODO: potions 1
-        // TODO: instant_damage 1
-        // TODO: saturation 1
-        // TODO: weakness 1
-        // TODO: night_vision 1
-        // TODO: slowness 1
-        // TODO: leaping 1
-        // TODO: poison 1
-        // TODO: wither_skull 1
-        // TODO: fortress 2
-        // TODO: crimson_forest 2
-        // TODO: warped_forest 2
-        // TODO: soul_sand 1
-        // TODO: bartering 1
-        // TODO: nether_late 2
-        // TODO: netherite 1
-        // TODO: end_entry 1
-        // TODO: end_progress 2
-        // TODO: end_ship 1
-        // TODO: igloo 8
-        // TODO: ancient_city 4
-        // TODO: witch_hut 2
-        // TODO: woodland_mansion 9
-        // TODO: trail_ruins 3
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.JUNGLE).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.ANVIL).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.CONCRETE).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.WOOL).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.NETHER_ENTRY).difficultyMax(3, 3, 3, 3, 3, 3).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.NETHER_EXPLORE).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.GHAST).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.STRIDER).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.EYE_OF_ENDER).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BLAZE_POWDER).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.POTIONS).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.INSTANT_DAMAGE).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.SATURATION).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.WEAKNESS).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.NIGHT_VISION).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.SLOWNESS).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.LEAPING).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.POISON).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.WITHER_SKULL).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.FORTRESS).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.CRIMSON_FOREST).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.WARPED_FOREST).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.SOUL_SAND).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BARTERING).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.NETHER_LATE).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.NETHERITE).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.END_ENTRY).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.END_PROGRESS).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.END_SHIP).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.IGLOO).difficultyMax(8, 8, 8, 8, 8, 8).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.ANCIENT_CITY).difficultyMax(4, 4, 4, 4, 4, 4).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.WITCH_HUT).difficultyMax(2, 2, 2, 2, 2, 2).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.WOODLAND_MANSION).difficultyMax(9, 9, 9, 9, 9, 9).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.TRAIL_RUINS).difficultyMax(3, 3, 3, 3, 3, 3).build());
     }
 }
