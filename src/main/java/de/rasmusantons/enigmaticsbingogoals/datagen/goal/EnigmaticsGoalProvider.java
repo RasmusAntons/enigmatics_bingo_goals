@@ -141,8 +141,8 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(BingoGoal.builder(id("reach_world_center"))
                 .criterion("reach", PlayerTrigger.TriggerInstance.located(
                         LocationPredicate.Builder.location()
-                                .setX(MinMaxBounds.Doubles.exactly(0))
-                                .setZ(MinMaxBounds.Doubles.exactly(0))
+                                .setX(MinMaxBounds.Doubles.between(0.0, 1.0))
+                                .setZ(MinMaxBounds.Doubles.between(0.0, 1.0))
                 ))
                 .tags(
                         BingoTags.OVERWORLD,
