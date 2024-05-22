@@ -19,11 +19,13 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -494,29 +496,98 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Use an Anvil
         // TODO: Enchant an item
         // TODO: Die to Anvil
-        // TODO: Obtain 64 Red Concrete
-        // TODO: Obtain 64 Yellow Concrete
-        // TODO: Obtain 64 Orange Concrete
-        // TODO: Obtain 64 Black Concrete
-        // TODO: Obtain 64 White Concrete
-        // TODO: Obtain 64 Gray Concrete
-        // TODO: Obtain 64 Light Gray Concrete
-        // TODO: Obtain 64 Pink Concrete
-        // TODO: Obtain 64 Magenta Concrete
-        // TODO: Obtain 64 Blue Concrete
-        // TODO: Obtain 64 Purple Concrete
-        // TODO: Obtain 64 Green Wool
-        // TODO: Obtain 64 Red Wool
-        // TODO: Obtain 64 Yellow Wool
-        // TODO: Obtain 64 Orange Wool
-        // TODO: Obtain 64 Black Wool
-        // TODO: Obtain 64 White Wool
-        // TODO: Obtain 64 Gray Wool
-        // TODO: Obtain 64 Light Gray Wool
-        // TODO: Obtain 64 Pink Wool
-        // TODO: Obtain 64 Magenta Wool
-        // TODO: Obtain 64 Blue Wool
-        // TODO: Obtain 64 Purple Wool
+        addGoal(obtainItemGoal(id("get_stack_of_red_concrete"), Items.RED_CONCRETE, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .name(Component.literal("Obtain a stack of Red Concrete"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_yellow_concrete"), Items.YELLOW_CONCRETE, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .name(Component.literal("Obtain a stack of Yellow Concrete"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_orange_concrete"), Items.ORANGE_CONCRETE, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .name(Component.literal("Obtain a stack of Orange Concrete"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_black_concrete"), Items.BLACK_CONCRETE, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .name(Component.literal("Obtain a stack of Black Concrete"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_white_concrete"), Items.WHITE_CONCRETE, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .name(Component.literal("Obtain a stack of White Concrete"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_gray_concrete"), Items.GRAY_CONCRETE, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .name(Component.literal("Obtain a stack of Gray Concrete"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_light_gray_concrete"), Items.LIGHT_GRAY_CONCRETE, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .name(Component.literal("Obtain a stack of Light Gray Concrete"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_pink_concrete"), Items.PINK_CONCRETE, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .name(Component.literal("Obtain a stack of Pink Concrete"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_magenta_concrete"), Items.MAGENTA_CONCRETE, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .name(Component.literal("Obtain a stack of Magenta Concrete"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_blue_concrete"), Items.BLUE_CONCRETE, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .name(Component.literal("Obtain a stack of Blue Concrete"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_purple_concrete"), Items.PURPLE_CONCRETE, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .name(Component.literal("Obtain a stack of Purple Concrete"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_green_wool"), Items.GREEN_WOOL, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL, EnigmaticsBingoTags.IGLOO)
+                .name(Component.literal("Obtain a stack of Green Wool"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_red_wool"), Items.RED_WOOL, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
+                .name(Component.literal("Obtain a stack of Red Wool"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_yellow_wool"), Items.YELLOW_WOOL, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
+                .name(Component.literal("Obtain a stack of Yellow Wool"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_orange_wool"), Items.ORANGE_WOOL, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
+                .name(Component.literal("Obtain a stack of Orange Wool"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_black_wool"), Items.BLACK_WOOL, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
+                .name(Component.literal("Obtain a stack of Black Wool"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_white_wool"), Items.WHITE_WOOL, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
+                .name(Component.literal("Obtain a stack of White Wool"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_gray_wool"), Items.GRAY_WOOL, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL, EnigmaticsBingoTags.ANCIENT_CITY)
+                .name(Component.literal("Obtain a stack of Gray Wool"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_light_gray_wool"), Items.LIGHT_GRAY_WOOL, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
+                .name(Component.literal("Obtain a stack of Light Gray Wool"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_pink_wool"), Items.PINK_WOOL, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
+                .name(Component.literal("Obtain a stack of Pink Wool"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_magenta_wool"), Items.MAGENTA_WOOL, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
+                .name(Component.literal("Obtain a stack of Magenta Wool"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_blue_wool"), Items.BLUE_WOOL, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
+                .name(Component.literal("Obtain a stack of Blue Wool"))
+        );
+        addGoal(obtainItemGoal(id("get_stack_of_purple_wool"), Items.PURPLE_WOOL, 64, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
+                .name(Component.literal("Obtain a stack of Purple Wool"))
+        );
         // TODO: Reach the Nether
         // TODO: Anger a Zombified Piglin
         // TODO: Get Glowing
