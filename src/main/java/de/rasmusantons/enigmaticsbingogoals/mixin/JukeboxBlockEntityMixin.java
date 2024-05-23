@@ -2,7 +2,6 @@ package de.rasmusantons.enigmaticsbingogoals.mixin;
 
 import de.rasmusantons.enigmaticsbingogoals.extension.JukeboxBlockEntityExtension;
 import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTriggers;
-import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -19,7 +18,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(JukeboxBlockEntity.class)
 public abstract class JukeboxBlockEntityMixin implements JukeboxBlockEntityExtension {
-    @Shadow public abstract ItemStack getTheItem();
+    @Shadow
+    public abstract ItemStack getTheItem();
 
     @Unique
     private ServerPlayer lastPlayed;

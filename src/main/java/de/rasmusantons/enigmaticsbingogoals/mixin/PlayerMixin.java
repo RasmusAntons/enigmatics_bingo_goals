@@ -8,5 +8,6 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin {
-    @Shadow public abstract ItemStack getItemBySlot(EquipmentSlot slot);
+    @Shadow
+    public abstract ItemStack getItemBySlot(EquipmentSlot slot);
 }

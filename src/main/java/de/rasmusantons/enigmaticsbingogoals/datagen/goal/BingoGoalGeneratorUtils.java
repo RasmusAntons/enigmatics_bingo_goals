@@ -32,5 +32,7 @@ public class BingoGoalGeneratorUtils {
         ResolvableProfile profile = new ResolvableProfile(Optional.empty(), Optional.empty(), properties);
         stack.set(DataComponents.PROFILE, profile);
         return stack;
-    };
+    }
+
+    ;
 }

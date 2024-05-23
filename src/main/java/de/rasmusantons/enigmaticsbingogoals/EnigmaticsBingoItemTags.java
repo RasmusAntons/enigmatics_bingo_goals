@@ -1,4 +1,5 @@
 package de.rasmusantons.enigmaticsbingogoals;
+
 import io.github.gaming32.bingo.Bingo;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;

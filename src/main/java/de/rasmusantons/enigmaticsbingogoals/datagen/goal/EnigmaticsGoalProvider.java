@@ -253,7 +253,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         );
         // TODO: Deal 500 hearts of damage
         addGoal(obtainAllItemsFromTag(id("obtain_all_wooden_tools"), EnigmaticsBingoItemTags.WOODEN_TOOLS)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET,  EnigmaticsBingoTags.OVERWORLD_ENTRY)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET, EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_wooden_tools"))
         );
         addGoal(obtainAllItemsFromTag(id("obtain_all_stone_tools"), EnigmaticsBingoItemTags.STONE_TOOLS)
@@ -496,7 +496,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .progress("wear")
         );
         addGoal(obtainItemGoal(id("obtain_experience_bottle"), Items.EXPERIENCE_BOTTLE)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.ANCIENT_CITY, 
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.ANCIENT_CITY,
                         BingoTags.VILLAGE)
         );
         addGoal(obtainItemGoal(id("obtain_sponge"), Items.SPONGE)

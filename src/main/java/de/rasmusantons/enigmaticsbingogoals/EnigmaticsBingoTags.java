@@ -99,7 +99,6 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation WOODLAND_MANSION = create("woodland_mansion");
     public static final ResourceLocation TRAIL_RUINS = create("trail_ruins");
 
-    
 
     private static ResourceLocation create(String name) {
         return new ResourceLocation(Bingo.MOD_ID, name);
