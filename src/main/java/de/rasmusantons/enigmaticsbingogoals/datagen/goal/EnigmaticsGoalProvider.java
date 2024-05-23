@@ -4,6 +4,7 @@ import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.FullUniqueInventoryCondition;
 import de.rasmusantons.enigmaticsbingogoals.conditions.KillEnemyPlayerCondition;
+import de.rasmusantons.enigmaticsbingogoals.triggers.EmptyHungerTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
 import io.github.gaming32.bingo.conditions.HasAnyEffectCondition;
@@ -153,7 +154,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Kill more unique mobs than the enemy
         // TODO: Kill more unique hostile mobs than the enemy
         // TODO: Kill more unique neutral mobs than the enemy
-        // TODO: Take hunger damage
+        addGoal(BingoGoal.builder(id("empty_hunger"))
+                .criterion("empty_hunger", EmptyHungerTrigger.TriggerInstance.emptyHunger())
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.COVER_DISTANCE)
+                .name(Component.literal("Empty hunger bar"))
+                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HUNGER), ItemIcon.ofItem(Items.CLOCK)))
+        );
         // TODO: Sprint for 1k meters
         // TODO: Crouch for 500 meters
         addGoal(BingoGoal.builder(id("reach_world_center"))

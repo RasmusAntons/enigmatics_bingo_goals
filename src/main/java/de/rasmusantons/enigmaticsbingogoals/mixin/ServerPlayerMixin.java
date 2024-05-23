@@ -16,7 +16,6 @@ public abstract class ServerPlayerMixin extends PlayerMixin {
     @Unique
     private int carvedPumpkinTimer = 0;
 
-
     @Inject(method = "tick", at = @At("TAIL"))
     private void doTick(CallbackInfo ci) {
         ItemStack itemStack = getItemBySlot(EquipmentSlot.HEAD);

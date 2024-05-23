@@ -14,6 +14,7 @@ public class EnigmaticsBingoGoalsTriggers {
     public static final DeferredRegister<CriterionTrigger<?>> REGISTER =
             BingoPlatform.platform.createDeferredRegister(BuiltInRegistries.TRIGGER_TYPES);
 
+    public static final RegistryValue<EmptyHungerTrigger> EMPTY_HUNGER = register("empty_hunger", EmptyHungerTrigger::new);
     public static final RegistryValue<WearPumpkinTrigger> WEAR_PUMPKIN = register("wear_pumpkin", WearPumpkinTrigger::new);
     public static final RegistryValue<PlayMusicToOtherTeamTrigger> PLAY_MUSIC_TO_OTHER_TEAM = register("play_music_to_other_team", PlayMusicToOtherTeamTrigger::new);
     public static final RegistryValue<AdvancementsTrigger> ADVANCEMENTS = register("advancements", AdvancementsTrigger::new);
