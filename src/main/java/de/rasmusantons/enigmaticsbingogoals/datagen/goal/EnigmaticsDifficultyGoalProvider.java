@@ -58,6 +58,13 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(new ItemTagCycleIcon(tag));
     }
 
+    protected BingoGoal.Builder eatItemGoal(ResourceLocation id, Item item) {
+        return BingoGoal.builder(id)
+                .criterion("eat", ConsumeItemTrigger.TriggerInstance.usedItem(item))
+                .name(Component.translatable("enigmaticsbingogoals.goal.eat_something", item.getDescription()))
+                .icon(ItemIcon.ofItem(item));
+    }
+
     @SafeVarargs
     protected static BingoGoal.Builder potionGoal(ResourceLocation id, Holder<Potion>... potions) {
         ItemStack potionItem = BingoUtil.setPotion(new ItemStack(Items.POTION), potions[0]);

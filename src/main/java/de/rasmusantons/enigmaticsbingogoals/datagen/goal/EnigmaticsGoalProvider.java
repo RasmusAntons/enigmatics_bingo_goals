@@ -415,25 +415,15 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Trade with a Villager
         // TODO: Obtain Chain armor
         // TODO: Obtain 4 different types of seeds
-        addGoal(BingoGoal.builder(id("eat_beetroot_soup"))
-                .criterion("eat", ConsumeItemTrigger.TriggerInstance.usedItem(Items.BEETROOT_SOUP))
+        addGoal(eatItemGoal(id("eat_beetroot_soup"), Items.BEETROOT_SOUP)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.STEW)
-                .name(Component.translatable("enigmaticsbingogoals.goal.eat_something", Items.BEETROOT_SOUP.getDescription()))
-                .icon(ItemIcon.ofItem(Items.BEETROOT_SOUP))
         );
-
-        addGoal(BingoGoal.builder(id("eat_rabbit_stew"))
-                .criterion("eat", ConsumeItemTrigger.TriggerInstance.usedItem(Items.RABBIT_STEW))
+        addGoal(eatItemGoal(id("eat_rabbit_stew"), Items.RABBIT_STEW)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.STEW)
-                .name(Component.translatable("enigmaticsbingogoals.goal.eat_something", Items.RABBIT_STEW.getDescription()))
-                .icon(ItemIcon.ofItem(Items.RABBIT_STEW))
         );
         // TODO: Obtain a Bell
-        addGoal(BingoGoal.builder(id("eat_poisonous_potato"))
-                .criterion("eat", ConsumeItemTrigger.TriggerInstance.usedItem(Items.POISONOUS_POTATO))
+        addGoal(eatItemGoal(id("eat_poisonous_potato"), Items.POISONOUS_POTATO)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.POISON, EnigmaticsBingoTags.SHIPWRECK)
-                .name(Component.translatable("enigmaticsbingogoals.goal.eat_something", Items.POISONOUS_POTATO.getDescription()))
-                .icon(ItemIcon.ofItem(Items.POISONOUS_POTATO))
         );
         // TODO: Obtain a Tropical Fish in a Bucket
         // TODO: Obtain a Tadpole in a Bucket
@@ -448,7 +438,9 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Obtain (5-8) unique flowers
         // TODO: Obtain (5-10) bonemeal-able blocks
         // TODO: Obtain a Flowering Azalea
-        // TODO: Eat Glow Berries
+        addGoal(eatItemGoal(id("eat_glow_berries"), Items.GLOW_BERRIES)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.LUSH_CAVE, EnigmaticsBingoTags.ANCIENT_CITY)
+        );
         // TODO: Use a Loom
         // TODO: Use a Cartography Table
         // TODO: Use a Flower Banner Pattern
@@ -498,7 +490,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Obtain a Mud Brick Wall
         // TODO: Obtain a Mossy Stone Brick Wall
         // TODO: Obtain a Mossy Cobblestone Brick Wall
-        // TODO: Eat Suspicious Stew
+        addGoal(eatItemGoal(id("eat_suspicious_stew"), Items.SUSPICIOUS_STEW)
+                .tags(BingoTags.END, EnigmaticsBingoTags.SUSPICIOUS_STEW, EnigmaticsBingoTags.SATURATION,
+                        EnigmaticsBingoTags.WEAKNESS, EnigmaticsBingoTags.NIGHT_VISION, EnigmaticsBingoTags.LEAPING,
+                        EnigmaticsBingoTags.POISON)
+        );
         addGoal(obtainAllItemsFromTag(id("obtain_all_iron_tools"), EnigmaticsBingoItemTags.IRON_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_iron_tools"))
@@ -725,7 +721,9 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Get the "Great View From Up Here" advancement
         // TODO: Obtain an Elytra
         // TODO: Obtain a Dragon Head
-        // TODO: Eat a Chrous Fruit
+        addGoal(eatItemGoal(id("eat_chorus_fruit"), Items.CHORUS_FRUIT)
+                .tags(BingoTags.END, EnigmaticsBingoTags.END_PROGRESS)
+        );
         // TODO: Craft a Purpur Block
     }
 }
