@@ -2,6 +2,7 @@ package de.rasmusantons.enigmaticsbingogoals.mixin;
 
 import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTriggers;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -26,6 +27,16 @@ public abstract class ServerPlayerMixin extends PlayerMixin {
             if (carvedPumpkinTimer > 0)
                 EnigmaticsBingoGoalsTriggers.WEAR_PUMPKIN.get().trigger((ServerPlayer) (Object) this, 0);
             carvedPumpkinTimer = 0;
+        }
+    }
+
+    @Inject(method="die",  at = @At("HEAD"))
+    public void onDie(DamageSource damageSource, CallbackInfo ci) {
+
+        if (damageSource.getEntity() != null) {
+            EnigmaticsBingoGoalsTriggers.ENTITY_DIRECTLY_KILLED_PLAYER.get().trigger(
+                    (ServerPlayer) (Object) this, damageSource.getEntity().getType()
+            );
         }
     }
 }

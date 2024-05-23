@@ -287,29 +287,34 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .icon(ItemIcon.ofItem(Items.LADDER))
         );
         addGoal(dieToEntityGoal(id("die_to_llama"), EntityType.LLAMA)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
+                .tags(BingoTags.OVERWORLD)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
                         EntityType.LLAMA.getDescription()))
         );
         addGoal(dieToEntityGoal(id("die_to_iron_golem"), EntityType.IRON_GOLEM)
-                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.DIE_TO)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
                         EntityType.IRON_GOLEM.getDescription()))
         );
         addGoal(dieToEntityGoal(id("die_to_bee"), EntityType.BEE)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO, EnigmaticsBingoTags.BEEHIVE)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
                         EntityType.BEE.getDescription()))
         );
         addGoal(dieToEntityGoal(id("die_to_dolphin"), EntityType.DOLPHIN)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
+                .tags(BingoTags.OVERWORLD)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
                         EntityType.DOLPHIN.getDescription()))
         );
         addGoal(dieToEntityGoal(id("die_to_goat"), EntityType.GOAT)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO, EnigmaticsBingoTags.MOUNTAIN)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
                         EntityType.GOAT.getDescription()))
+        );
+        addGoal(dieToEntityGoal(id("die_to_stray"), EntityType.STRAY)
+                .tags(BingoTags.OVERWORLD)
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
+                        EntityType.STRAY.getDescription()))
         );
         // TODO: Die to an Anvil
         // TODO: Die to a Stalactite

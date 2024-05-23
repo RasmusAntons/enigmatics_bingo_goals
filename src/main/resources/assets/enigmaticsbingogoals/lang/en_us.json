@@ -1,4 +1,5 @@
 {
+  "enigmaticsbingogoals.goal.directly_killed.tooltip": "The %s needs to get the last hit.",
   "enigmaticsbingogoals.goal.empty_hunger": "Empty hunger bar",
   "enigmaticsbingogoals.goal.eat_something": "Eat %s",
   "enigmaticsbingogoals.goal.clear_effect_with_milk": "Remove a status effect with a Milk Bucket",
