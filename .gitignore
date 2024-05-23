@@ -1,5 +1,7 @@
 /.idea/
+/.vscode/
 /.gradle/
 /build/
 /run/
 /src/main/generated/
+/bin/
