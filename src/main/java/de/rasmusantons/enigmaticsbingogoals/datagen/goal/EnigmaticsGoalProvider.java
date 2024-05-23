@@ -157,7 +157,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(BingoGoal.builder(id("empty_hunger"))
                 .criterion("empty_hunger", EmptyHungerTrigger.TriggerInstance.emptyHunger())
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.COVER_DISTANCE)
-                .name(Component.literal("Empty hunger bar"))
+                .name(Component.translatable("empty_hunger"))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HUNGER), ItemIcon.ofItem(Items.CLOCK)))
         );
         // TODO: Sprint for 1k meters
@@ -415,9 +415,26 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Trade with a Villager
         // TODO: Obtain Chain armor
         // TODO: Obtain 4 different types of seeds
-        // TODO: Eat Beetroot Stew
-        // TODO: Eat Rabbit Stew
+        addGoal(BingoGoal.builder(id("eat_beetroot_soup"))
+                .criterion("eat", ConsumeItemTrigger.TriggerInstance.usedItem(Items.BEETROOT_SOUP))
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.STEW)
+                .name(Component.translatable("enigmaticsbingogoals.goal.eat_something", Items.BEETROOT_SOUP.getDescription()))
+                .icon(ItemIcon.ofItem(Items.BEETROOT_SOUP))
+        );
+
+        addGoal(BingoGoal.builder(id("eat_rabbit_stew"))
+                .criterion("eat", ConsumeItemTrigger.TriggerInstance.usedItem(Items.RABBIT_STEW))
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.STEW)
+                .name(Component.translatable("enigmaticsbingogoals.goal.eat_something", Items.RABBIT_STEW.getDescription()))
+                .icon(ItemIcon.ofItem(Items.RABBIT_STEW))
+        );
         // TODO: Obtain a Bell
+        addGoal(BingoGoal.builder(id("eat_poisonous_potato"))
+                .criterion("eat", ConsumeItemTrigger.TriggerInstance.usedItem(Items.POISONOUS_POTATO))
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.POISON, EnigmaticsBingoTags.SHIPWRECK)
+                .name(Component.translatable("enigmaticsbingogoals.goal.eat_something", Items.POISONOUS_POTATO.getDescription()))
+                .icon(ItemIcon.ofItem(Items.POISONOUS_POTATO))
+        );
         // TODO: Eat a Poisonous Potato
         // TODO: Obtain a Tropical Fish in a Bucket
         // TODO: Obtain a Tadpole in a Bucket
