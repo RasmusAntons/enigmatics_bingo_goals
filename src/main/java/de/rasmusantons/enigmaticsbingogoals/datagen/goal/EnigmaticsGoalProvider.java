@@ -435,7 +435,6 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.translatable("enigmaticsbingogoals.goal.eat_something", Items.POISONOUS_POTATO.getDescription()))
                 .icon(ItemIcon.ofItem(Items.POISONOUS_POTATO))
         );
-        // TODO: Eat a Poisonous Potato
         // TODO: Obtain a Tropical Fish in a Bucket
         // TODO: Obtain a Tadpole in a Bucket
         // TODO: Obtain 4 unique Music Discs
