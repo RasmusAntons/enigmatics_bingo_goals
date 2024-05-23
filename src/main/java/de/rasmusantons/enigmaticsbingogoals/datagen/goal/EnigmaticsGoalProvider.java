@@ -367,7 +367,9 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
         );
         // TODO: Kill a Silverfish
-        // TODO: Obtain a Bucket of Powdered Snow
+        addGoal(obtainItemGoal(id("obtain_powder_snow_bucket"), Items.POWDER_SNOW_BUCKET)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
+        );
         // TODO: Tame a Cat
         // TODO: Tame a Wolf
         // TODO: Tame a Parrot
@@ -405,10 +407,20 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Wash something in a Cauldron
         // TODO: Wear 4 different armor materials
         // TODO: Wear a full set of Diamond Armor
-        // TODO: Obtain a Grass Block
-        // TODO: Obtain a Mushroom Stem
-        // TODO: Obtain a Crimson Nylium
-        // TODO: Obtain a Warped Nylium
+        addGoal(obtainItemGoal(id("obtain_grass_block"), Items.GRASS_BLOCK)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH)
+        );
+        addGoal(obtainItemGoal(id("obtain_mushroom_stem"), Items.MUSHROOM_STEM)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH)
+        );
+        addGoal(obtainItemGoal(id("obtain_crimson_nylium"), Items.CRIMSON_NYLIUM)
+                .tags(BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
+                        EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.NETHER_LATE)
+        );
+        addGoal(obtainItemGoal(id("obtain_warped_nylium"), Items.WARPED_NYLIUM)
+                .tags(BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
+                        EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.NETHER_ENTRY)
+        );
         // TODO: Grow huge crimson fungi in overworld
         // TODO: Grow huge warped fungi in overworld
         // TODO: Fill a Chiseled Bookshelf with books
@@ -421,12 +433,18 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(eatItemGoal(id("eat_rabbit_stew"), Items.RABBIT_STEW)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.STEW)
         );
-        // TODO: Obtain a Bell
+        addGoal(obtainItemGoal(id("obtain_bell"), Items.BELL)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
+        );
         addGoal(eatItemGoal(id("eat_poisonous_potato"), Items.POISONOUS_POTATO)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.POISON, EnigmaticsBingoTags.SHIPWRECK)
         );
-        // TODO: Obtain a Tropical Fish in a Bucket
-        // TODO: Obtain a Tadpole in a Bucket
+        addGoal(obtainItemGoal(id("obtain_tropical_fish_bucket"), Items.TROPICAL_FISH_BUCKET)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB)
+        );
+        addGoal(obtainItemGoal(id("obtain_tadpole_bucket"), Items.TADPOLE_BUCKET)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB)
+        );
         // TODO: Obtain 4 unique Music Discs
         // TODO: Listen to a Jukebox
         // TODO: Equip Wolf Armor
@@ -437,9 +455,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Obtain 5 unique saplings
         // TODO: Obtain (5-8) unique flowers
         // TODO: Obtain (5-10) bonemeal-able blocks
-        // TODO: Obtain a Flowering Azalea
         addGoal(eatItemGoal(id("eat_glow_berries"), Items.GLOW_BERRIES)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.LUSH_CAVE, EnigmaticsBingoTags.ANCIENT_CITY)
+        );
+        addGoal(obtainItemGoal(id("obtain_flowering_azalea"), Items.FLOWERING_AZALEA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.LUSH_CAVE)
         );
         // TODO: Use a Loom
         // TODO: Use a Cartography Table
@@ -462,7 +482,9 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Look at the Ender Dragon through a spy glass
         // TODO: Get any Spyglass advancement
         // TODO: Sign a Book and Quill
-        // TODO: Obtain a Bookshelf
+        addGoal(obtainItemGoal(id("obtain_bookshelf"), Items.BOOKSHELF)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BOOK, EnigmaticsBingoTags.WOODLAND_MANSION)
+        );
         // TODO: Win a raid
         // TODO: Use a Totem of Undying
         addGoal(BingoGoal.builder(id("wear_pumpkin"))
@@ -476,8 +498,13 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .icon(ItemIcon.ofItem(Items.CARVED_PUMPKIN))
                 .progress("wear")
         );
-        // TODO: Obtain a Bottle O' Enchanting
-        // TODO: Obtain Sponge
+        addGoal(obtainItemGoal(id("obtain_experience_bottle"), Items.EXPERIENCE_BOTTLE)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.ANCIENT_CITY, 
+                        BingoTags.VILLAGE)
+        );
+        addGoal(obtainItemGoal(id("obtain_sponge"), Items.SPONGE)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OCEAN_MONUMENT)
+        );
         // TODO: Obtain 1 Armor Trim
         // TODO: Obtain 2 Armor Trim
         // TODO: Obtain 3 Armor Trim
@@ -487,13 +514,19 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_all_horse_armors"))
         );
         // TODO: Make a pot out of 4 Pottery Sherds
-        // TODO: Obtain a Mud Brick Wall
-        // TODO: Obtain a Mossy Stone Brick Wall
-        // TODO: Obtain a Mossy Cobblestone Brick Wall
+        addGoal(obtainItemGoal(id("obtain_mud_brick_wall"), Items.MUD_BRICK_WALL)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.TRAIL_RUINS)
+        );
+        addGoal(obtainItemGoal(id("obtain_mossy_stone_brick_wall"), Items.MOSSY_STONE_BRICK_WALL)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.IGLOO)
+        );
         addGoal(eatItemGoal(id("eat_suspicious_stew"), Items.SUSPICIOUS_STEW)
                 .tags(BingoTags.END, EnigmaticsBingoTags.SUSPICIOUS_STEW, EnigmaticsBingoTags.SATURATION,
                         EnigmaticsBingoTags.WEAKNESS, EnigmaticsBingoTags.NIGHT_VISION, EnigmaticsBingoTags.LEAPING,
                         EnigmaticsBingoTags.POISON)
+        );
+        addGoal(obtainItemGoal(id("obtain_mossy_stone_brick_wall"), Items.MOSSY_STONE_BRICK_WALL)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL)
         );
         addGoal(obtainAllItemsFromTag(id("obtain_all_iron_tools"), EnigmaticsBingoItemTags.IRON_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
@@ -508,24 +541,54 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_diamond_tools"))
         );
         // TODO: Obtain a Potion of Water Breathing
-        // TODO: Obtain Cobweb
+        addGoal(obtainItemGoal(id("obtain_cobweb"), Items.COBWEB)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.IGLOO,
+                        EnigmaticsBingoTags.WOODLAND_MANSION)
+        );
         // TODO: Rename a sheep to "jeb_"
         // TODO: Break a Mob Spawner
-        // TODO: Obtain Orange Glazed Terracotta
-        // TODO: Obtain Green Glazed Terracotta
-        // TODO: Obtain Blue Glazed Terracotta
-        // TODO: Obtain Black Glazed Terracotta
-        // TODO: Obtain Gray Glazed Terracotta
-        // TODO: Obtain White Glazed Terracotta
-        // TODO: Obtain Lime Glazed Terracotta
-        // TODO: Obtain Cyan Glazed Terracotta
+        addGoal(obtainItemGoal(id("obtain_orange_glazed_terracotta"), Items.ORANGE_GLAZED_TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
+        );
+        addGoal(obtainItemGoal(id("obtain_green_glazed_terracotta"), Items.GREEN_GLAZED_TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.TERRACOTTA)
+        );
+        addGoal(obtainItemGoal(id("obtain_blue_glazed_terracotta"), Items.BLUE_GLAZED_TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
+        );
+        addGoal(obtainItemGoal(id("obtain_black_glazed_terracotta"), Items.BLACK_GLAZED_TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
+        );
+        addGoal(obtainItemGoal(id("obtain_gray_glazed_terracotta"), Items.GRAY_GLAZED_TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
+        );
+        addGoal(obtainItemGoal(id("obtain_white_glazed_terracotta"), Items.WHITE_GLAZED_TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
+        );
+        addGoal(obtainItemGoal(id("obtain_lime_glazed_terracotta"), Items.LIME_GLAZED_TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TERRACOTTA)
+        );
+        addGoal(obtainItemGoal(id("obtain_cyan_glazed_terracotta"), Items.CYAN_GLAZED_TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
+        );
         // TODO: Obtain 9 different colors of Terracotta
-        // TODO: Obtain a Slime Block
-        // TODO: Obtain a Sticky Piston
-        // TODO: Obtain a Honey Block
-        // TODO: Obtain Honey Bottle
+        addGoal(obtainItemGoal(id("obtain_slime_block"), Items.SLIME_BLOCK)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SLIME)
+        );
+        addGoal(obtainItemGoal(id("obtain_sticky_piston"), Items.STICKY_PISTON)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
+                        EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.ANCIENT_CITY)
+        );
+        addGoal(obtainItemGoal(id("obtain_honey_block"), Items.HONEY_BLOCK)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE)
+        );
+        addGoal(obtainItemGoal(id("obtain_honey_bottle"), Items.HONEY_BOTTLE)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE)
+        );
         // TODO: Obtain a colored candle
-        // TODO: Obtain a Scaffolding
+        addGoal(obtainItemGoal(id("obtain_scaffolding"), Items.SCAFFOLDING)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE)
+        );
         // TODO: Eat a Cookie
         // TODO: Use an Anvil
         // TODO: Enchant an item
@@ -659,9 +722,18 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Get the "Hot Tourist Destinations" advancement
         // TODO: Get the "Return to Sender" advancement
         // TODO: Get the "This Boat Has Legs" advancement
-        // TODO: Obtain an End Crystal
-        // TODO: Obtain an Eye of Ender
-        // TODO: Obtain an Ender Chest
+        addGoal(obtainItemGoal(id("obtain_end_crystal"), Items.END_CRYSTAL)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.EYE_OF_ENDER, EnigmaticsBingoTags.BLAZE_POWDER,
+                        EnigmaticsBingoTags.FORTRESS)
+        );
+        addGoal(obtainItemGoal(id("obtain_ender_eye"), Items.ENDER_EYE)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.EYE_OF_ENDER, EnigmaticsBingoTags.BLAZE_POWDER,
+                        EnigmaticsBingoTags.FORTRESS)
+        );
+        addGoal(obtainItemGoal(id("obtain_ender_chest"), Items.ENDER_CHEST)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.EYE_OF_ENDER, EnigmaticsBingoTags.BLAZE_POWDER,
+                        EnigmaticsBingoTags.FORTRESS)
+        );
         addGoal(potionGoal(id("obtain_potion_of_strength"),
                 Potions.STRENGTH, Potions.LONG_STRENGTH, Potions.STRONG_STRENGTH)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
@@ -704,25 +776,43 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 Potions.TURTLE_MASTER, Potions.LONG_TURTLE_MASTER, Potions.STRONG_TURTLE_MASTER)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
         );
-        // TODO: Obtain a Wither Skeleton Skull
+        addGoal(obtainItemGoal(id("obtain_wither_skeleton_skull"), Items.WITHER_SKELETON_SKULL)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS)
+        );
         // TODO: Spawn a Wither
-        // TODO: Obtain a Wither Star
+        addGoal(obtainItemGoal(id("obtain_nether_star"), Items.NETHER_STAR)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS)
+        );
         // TODO: Obtain (6-10) Fire Charges
-        // TODO: Obtain a Soul Lantern
-        // TODO: Obtain a Lodestone
-        // TODO: Obtain Netherite Scrap
-        // TODO: Obtain a Netherite Ingot
+        addGoal(obtainItemGoal(id("obtain_soul_lantern"), Items.SOUL_LANTERN)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.SOUL_SAND, EnigmaticsBingoTags.ANCIENT_CITY)
+        );
+        addGoal(obtainItemGoal(id("obtain_lodestone"), Items.LODESTONE)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHERITE)
+        );
+        addGoal(obtainItemGoal(id("obtain_netherite_scrap"), Items.NETHERITE_SCRAP)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHERITE)
+        );
+        addGoal(obtainItemGoal(id("obtain_netherite_ingot"), Items.NETHERITE_INGOT)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHERITE)
+        );
         // TODO: Reach the end
         // TODO: Kill the Dragon
-        // TODO: Obtain a Dragon Egg
+        addGoal(obtainItemGoal(id("obtain_dragon_egg"), Items.DRAGON_EGG)
+                .tags(BingoTags.END, EnigmaticsBingoTags.END_ENTRY)
+        );
         // TODO: Fall in the void
         // TODO: Obtain a Lingering Potion
         // TODO: Reach an End City
         // TODO: Get the "Great View From Up Here" advancement
-        // TODO: Obtain an Elytra
-        // TODO: Obtain a Dragon Head
         addGoal(eatItemGoal(id("eat_chorus_fruit"), Items.CHORUS_FRUIT)
                 .tags(BingoTags.END, EnigmaticsBingoTags.END_PROGRESS)
+        );
+        addGoal(obtainItemGoal(id("obtain_elytra"), Items.ELYTRA)
+                .tags(BingoTags.END, EnigmaticsBingoTags.END_PROGRESS, EnigmaticsBingoTags.END_SHIP)
+        );
+        addGoal(obtainItemGoal(id("obtain_dragon_head"), Items.DRAGON_HEAD)
+                .tags(BingoTags.END, EnigmaticsBingoTags.END_PROGRESS, EnigmaticsBingoTags.END_SHIP)
         );
         // TODO: Craft a Purpur Block
     }
