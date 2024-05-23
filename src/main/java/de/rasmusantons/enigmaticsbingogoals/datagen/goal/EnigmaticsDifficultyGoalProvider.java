@@ -31,9 +31,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Consumer;
 
 public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalProvider {
@@ -134,7 +132,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .criterion("achieve", AdvancementsTrigger.TriggerInstance.advancements(MinMaxBounds.Ints.atLeast(0)),
                         subber -> subber.sub("conditions.number.min", "number"))
                 .tags(BingoTags.STAT, EnigmaticsBingoTags.ADVANCEMENTS)
-                .name(Component.translatable("enigmaticsbingogoals.goal.get_some_advancements",0),
+                .name(Component.translatable("enigmaticsbingogoals.goal.get_some_advancements", 0),
                         subber -> subber.sub("with.0", "number"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ELYTRA), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)),
                         subber -> subber.sub("base.item.count", "number"))
@@ -142,18 +140,20 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
     }
 
     protected static BingoGoal.Builder breakBlockGoal(ResourceLocation id, Block... oneOfThese) {
-        BingoGoal.Builder builder =  BingoGoal.builder(id);
+        BingoGoal.Builder builder = BingoGoal.builder(id);
         if (oneOfThese.length == 1) {
             builder
                     .criterion("break", BreakBlockTrigger.builder().block(oneOfThese[0]).build())
                     .icon(IndicatorIcon.infer(oneOfThese[0], Items.NETHERITE_PICKAXE));
         } else {
-            List<GoalIcon> icons = new ArrayList<>();
-            for (int i = 0; i < oneOfThese.length; i++) {
+            for (int i = 0; i < oneOfThese.length; i++)
                 builder.criterion("break_" + i, BreakBlockTrigger.builder().block(oneOfThese[i]).build());
-                icons.add(IndicatorIcon.infer(oneOfThese[i], Items.NETHERITE_PICKAXE));
-            }
-            builder.icon(new CycleIcon(icons));
+            builder.icon(
+                    IndicatorIcon.infer(
+                            CycleIcon.infer(Arrays.stream(oneOfThese).map(BlockIcon::ofBlock)),
+                            Items.NETHERITE_PICKAXE
+                    )
+            );
         }
         return builder
                 .requirements(AdvancementRequirements.Strategy.OR)

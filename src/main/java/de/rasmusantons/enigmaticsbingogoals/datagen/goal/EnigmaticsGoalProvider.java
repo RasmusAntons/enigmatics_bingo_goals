@@ -10,15 +10,13 @@ import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
 import io.github.gaming32.bingo.conditions.HasAnyEffectCondition;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
-import io.github.gaming32.bingo.data.icons.BlockIcon;
-import io.github.gaming32.bingo.data.icons.EffectIcon;
-import io.github.gaming32.bingo.data.icons.IndicatorIcon;
-import io.github.gaming32.bingo.data.icons.ItemIcon;
+import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
 import io.github.gaming32.bingo.triggers.DeathTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffects;
@@ -227,7 +225,10 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 ))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MILK)
                 .name(Component.translatable("enigmaticsbingogoals.goal.clear_effect_with_milk"))
-                .icon(ItemIcon.ofItem(Items.MILK_BUCKET))
+                .icon(IndicatorIcon.infer(
+                        CycleIcon.infer(BuiltInRegistries.MOB_EFFECT.holders().map(EffectIcon::of)),
+                        Items.MILK_BUCKET
+                ))
         );
         addGoal(obtainItemGoal(id("obtain_cake"), Items.CAKE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MILK, EnigmaticsBingoTags.CHICKEN)
