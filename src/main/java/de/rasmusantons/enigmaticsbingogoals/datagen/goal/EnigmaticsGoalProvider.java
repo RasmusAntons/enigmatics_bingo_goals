@@ -178,12 +178,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                     .name(Component.translatable("bingo.goal.crouch_distance", 500))
                     .tags(BingoTags.STAT, EnigmaticsBingoTags.COVER_DISTANCE)
                     .icon(Items.LEATHER_BOOTS));
-        addGoal(crouchDistanceGoal(id("crouch_500_blocks"), 500, 500));
         addGoal(BingoGoal.builder(id("reach_world_center"))
                 .criterion("reach", PlayerTrigger.TriggerInstance.located(
                         LocationPredicate.Builder.location()
-                                .setX(MinMaxBounds.Doubles.between(0.0, 1.0))
-                                .setZ(MinMaxBounds.Doubles.between(0.0, 1.0))
+                                .setX(MinMaxBounds.Doubles.between(-1.0, 1.0))
+                                .setZ(MinMaxBounds.Doubles.between(-1.0, 1.0))
                 ))
                 .tags(
                         BingoTags.OVERWORLD,

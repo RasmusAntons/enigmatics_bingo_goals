@@ -130,7 +130,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 ))
                 .tags(EnigmaticsBingoTags.DIE_TO)
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.directly_killed.tooltip", entityType.getDescription()))
-                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD), entityType));
+                .icon(IndicatorIcon.infer(entityType, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)));
     }
 
     protected static BingoGoal.Builder neverLevelsGoal(ResourceLocation id, int minLevels, int maxLevels) {
@@ -199,6 +199,6 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                     EntityPredicate.Builder.entity().of(entityType)))
             .tags(EnigmaticsBingoTags.BREED_MOB)
             .name(Component.translatable("enigmaticsbingogoals.goal.breed_animal", entityType.getDescription()))
-            .icon(IndicatorIcon.infer(entityType, entityType));
+            .icon(IndicatorIcon.infer(entityType, EffectIcon.of(MobEffects.HEALTH_BOOST)));
     }
 }
