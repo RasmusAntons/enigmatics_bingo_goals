@@ -2,7 +2,6 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.AdvancementsTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.EntityDirectlyKilledPlayerTrigger;
 import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
@@ -99,7 +98,12 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
 
     protected static BingoGoal.Builder dieToEntityGoal(ResourceLocation id, EntityType<?> entityType) {
         return BingoGoal.builder(id)
-                .criterion("die", EntityDirectlyKilledPlayerTrigger.TriggerInstance.entityType(entityType))
+                .criterion("die", BingoTriggers.DEATH.get().createCriterion(DeathTrigger.TriggerInstance.death(
+                        DamageSourcePredicate.Builder.damageType()
+                                .source(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityType)))
+                                .build()
+                        )
+                ))
                 .tags(EnigmaticsBingoTags.DIE_TO)
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.directly_killed.tooltip", entityType.getDescription()))
                 .icon(IndicatorIcon.infer(EffectIcon.of(MobEffects.WITHER), entityType));

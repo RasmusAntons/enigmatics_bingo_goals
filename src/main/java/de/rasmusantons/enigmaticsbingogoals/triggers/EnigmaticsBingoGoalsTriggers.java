@@ -18,7 +18,6 @@ public class EnigmaticsBingoGoalsTriggers {
     public static final RegistryValue<PlayMusicToOtherTeamTrigger> PLAY_MUSIC_TO_OTHER_TEAM = register("play_music_to_other_team", PlayMusicToOtherTeamTrigger::new);
     public static final RegistryValue<AdvancementsTrigger> ADVANCEMENTS = register("advancements", AdvancementsTrigger::new);
     public static final RegistryValue<EmptyHungerTrigger> EMPTY_HUNGER = register("empty_hunger", EmptyHungerTrigger::new);
-    public static final RegistryValue<EntityDirectlyKilledPlayerTrigger> ENTITY_DIRECTLY_KILLED_PLAYER = register("entity_directly_killed_player", EntityDirectlyKilledPlayerTrigger::new);
 
 
     public static void load() {
