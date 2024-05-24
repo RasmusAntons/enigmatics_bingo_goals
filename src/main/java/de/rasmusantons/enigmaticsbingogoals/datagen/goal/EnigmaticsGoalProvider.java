@@ -458,7 +458,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_bat_while_dead",
                         EntityType.BAT.getDescription()))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.kill_bat_while_dead.tooltip"))
-                .icon(IndicatorIcon.infer(EntityType.VILLAGER, Items.WOODEN_SWORD))
+                .icon(IndicatorIcon.infer(EntityType.BAT, Items.WOODEN_SWORD))
         );
         // TODO: Kill 50 mobs
         // TODO: Kill 100 mobs
