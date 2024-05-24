@@ -44,21 +44,6 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
 
     @Override
     public void addGoals() {
-        addGoal(BingoGoal.builder(id("kill_villager_while_dead"))
-                .criterion("kill", CriteriaTriggers.PLAYER_KILLED_ENTITY.createCriterion(
-                        new KilledTrigger.TriggerInstance(
-                                Optional.of(ContextAwarePredicate.create(new InvertedLootItemCondition(PlayerAliveCondition.INSTANCE))),
-                                Optional.of(ContextAwarePredicate.create(
-                                        LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
-                                                EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.VILLAGER))
-                                        ).build()
-                                )),
-                                Optional.empty()
-                        )
-                ))
-                .name(Component.literal("Kill a Villager while dead"))
-                .icon(EntityType.VILLAGER)
-        );
         addGoal(BingoGoal.builder(id("never_crafting_table"))
                 .criterion("obtain", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CRAFTING_TABLE))
                 .tags(
@@ -457,6 +442,24 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Kill a Zoglin
         // TODO: Kill a Snow Golem
         // TODO: Kill an Elder Guardian
+        addGoal(BingoGoal.builder(id("kill_bat_while_dead"))
+                .criterion("kill", CriteriaTriggers.PLAYER_KILLED_ENTITY.createCriterion(
+                        new KilledTrigger.TriggerInstance(
+                                Optional.of(ContextAwarePredicate.create(new InvertedLootItemCondition(PlayerAliveCondition.INSTANCE))),
+                                Optional.of(ContextAwarePredicate.create(
+                                        LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
+                                                EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.BAT))
+                                        ).build()
+                                )),
+                                Optional.empty()
+                        )
+                ))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.KILL_MOB)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_bat_while_dead",
+                        EntityType.BAT.getDescription()))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.kill_bat_while_dead.tooltip"))
+                .icon(IndicatorIcon.infer(EntityType.VILLAGER, Items.WOODEN_SWORD))
+        );
         // TODO: Kill 50 mobs
         // TODO: Kill 100 mobs
         // TODO: Kill 30 Arthropods
