@@ -293,27 +293,27 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         );
         addGoal(dieToEntityGoal(id("die_to_iron_golem"), EntityType.IRON_GOLEM)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
-                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_iron_golem",
                         EntityType.IRON_GOLEM.getDescription()))
         );
         addGoal(dieToEntityGoal(id("die_to_bee"), EntityType.BEE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE)
-                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_bee",
                         EntityType.BEE.getDescription()))
         );
         addGoal(dieToEntityGoal(id("die_to_dolphin"), EntityType.DOLPHIN)
                 .tags(BingoTags.OVERWORLD)
-                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_dolphin",
                         EntityType.DOLPHIN.getDescription()))
         );
         addGoal(dieToEntityGoal(id("die_to_goat"), EntityType.GOAT)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
-                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_goat",
                         EntityType.GOAT.getDescription()))
         );
         addGoal(dieToEntityGoal(id("die_to_stray"), EntityType.STRAY)
                 .tags(BingoTags.OVERWORLD)
-                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_stray",
                         EntityType.STRAY.getDescription()))
         );
         // TODO: Die to an Anvil
