@@ -365,7 +365,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.WOODLAND_MANSION)
         );
         addGoal(obtainItemGoal(id("obtain_observer"), Items.OBSERVER)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
                         EnigmaticsBingoTags.NETHER_ENTRY)
         );
         addGoal(obtainItemGoal(id("obtain_piston"), Items.PISTON)
@@ -377,8 +377,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.ANCIENT_CITY)
         );
         addGoal(obtainItemGoal(id("obtain_comparator"), Items.COMPARATOR)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
                         EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.ANCIENT_CITY)
+        );
+        addGoal(obtainItemGoal(id("obtain_daylight_detector"), Items.DAYLIGHT_DETECTOR)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.REDSTONE, EnigmaticsBingoTags.NETHER_ENTRY)
         );
         addGoal(breakBlockGoal(id("break_emerald_ore"), Blocks.EMERALD_ORE, Blocks.DEEPSLATE_EMERALD_ORE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
