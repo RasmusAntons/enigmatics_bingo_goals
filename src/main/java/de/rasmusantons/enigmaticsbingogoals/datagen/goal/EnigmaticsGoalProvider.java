@@ -47,16 +47,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(BingoGoal.builder(id("kill_villager_while_dead"))
                 .criterion("kill", CriteriaTriggers.PLAYER_KILLED_ENTITY.createCriterion(
                         new KilledTrigger.TriggerInstance(
-                                Optional.of(ContextAwarePredicate.create(PlayerAliveCondition.INSTANCE)),
-                                Optional.of(
-                                        ContextAwarePredicate.create(
-                                                InvertedLootItemCondition.invert(
-                                                        LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
-                                                                EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.VILLAGER))
-                                                        )
-                                                ).build()
-                                        )
-                                ),
+                                Optional.of(ContextAwarePredicate.create(new InvertedLootItemCondition(PlayerAliveCondition.INSTANCE))),
+                                Optional.of(ContextAwarePredicate.create(
+                                        LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
+                                                EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.VILLAGER))
+                                        ).build()
+                                )),
                                 Optional.empty()
                         )
                 ))
