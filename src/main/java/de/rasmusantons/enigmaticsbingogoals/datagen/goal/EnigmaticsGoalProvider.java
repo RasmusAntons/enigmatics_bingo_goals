@@ -12,9 +12,6 @@ import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
-import io.github.gaming32.bingo.data.subs.BingoSub;
-import io.github.gaming32.bingo.data.subs.CompoundBingoSub;
-import io.github.gaming32.bingo.data.subs.SubBingoSub;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
 import io.github.gaming32.bingo.triggers.DeathTrigger;
 import io.github.gaming32.bingo.triggers.RelativeStatsTrigger;
@@ -23,7 +20,6 @@ import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffects;
@@ -165,7 +161,6 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.translatable("enigmaticsbingogoals.goal.empty_hunger"))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HUNGER), ItemIcon.ofItem(Items.CLOCK)))
         );
-        // TODO: Sprint for 1k meters
         addGoal(BingoGoal.builder(id("sprint_1k_meters"))
                 .criterion("sprint", RelativeStatsTrigger.builder()
                         .stat(Stats.SPRINT_ONE_CM, MinMaxBounds.Ints.atLeast(100000)).build())
@@ -200,9 +195,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.IGLOO)
                 .icon(IndicatorIcon.infer(EntityType.ZOMBIE_VILLAGER, ItemIcon.ofItem(Items.GOLDEN_APPLE)))
         );
-        // TODO: Get 3 status effects concurrently
-        // TODO: Get 6 status effects concurrently
-        // TODO: Get 10 status effects concurrently
+        addGoal(numberOfEffectsGoal(id("get_some_effects"), 3, 10));
         addGoal(effectGoal(id("get_absorption"), MobEffects.ABSORPTION)
                 .tags(EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.WOODLAND_MANSION)
         );

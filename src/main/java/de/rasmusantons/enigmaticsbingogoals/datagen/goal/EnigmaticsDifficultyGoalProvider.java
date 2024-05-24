@@ -1,6 +1,7 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
+import de.rasmusantons.enigmaticsbingogoals.conditions.NumberOfEffectsCondition;
 import de.rasmusantons.enigmaticsbingogoals.triggers.AdvancementsTrigger;
 import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.data.BingoGoal;
@@ -12,10 +13,12 @@ import io.github.gaming32.bingo.fabric.datagen.goal.DifficultyGoalProvider;
 import io.github.gaming32.bingo.triggers.*;
 import io.github.gaming32.bingo.util.BingoUtil;
 import net.minecraft.advancements.AdvancementRequirements;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -33,6 +36,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalProvider {
@@ -95,6 +99,24 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .tags(EnigmaticsBingoTags.GET_EFFECT)
                 .name(Component.translatable("enigmaticsbingogoals.goal.get_effect", effect.value().getDisplayName()))
                 .icon(EffectIcon.of(effect));
+    }
+
+    protected static BingoGoal.Builder numberOfEffectsGoal(ResourceLocation id, int minEffects, int maxEffects) {
+        ItemStack icon = new ItemStack(Items.GLASS_BOTTLE);
+        icon.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
+        return BingoGoal.builder(id)
+                .sub("count", BingoSub.random(minEffects, maxEffects))
+                .criterion("effects", CriteriaTriggers.EFFECTS_CHANGED.createCriterion(new EffectsChangedTrigger.TriggerInstance(
+                        Optional.of(ContextAwarePredicate.create(new NumberOfEffectsCondition(MinMaxBounds.Ints.atLeast(0)))),
+                        Optional.empty(),
+                        Optional.empty()
+                )), subber -> subber.sub("conditions.player.0.effects.min", "count"))
+                .icon(IndicatorIcon.infer(
+                        new ItemIcon(icon),
+                        CycleIcon.infer(BuiltInRegistries.MOB_EFFECT.holders().map(EffectIcon::of))
+                ), subber -> subber.sub("base.item.count", "count"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.get_some_effects", 0),
+                        subber -> subber.sub("with.0", "count"));
     }
 
     protected static BingoGoal.Builder dieToEntityGoal(ResourceLocation id, EntityType<?> entityType) {

@@ -14,6 +14,7 @@
   "enigmaticsbingogoals.goal.full_unique_inventory": "Fill your inventory with unique items",
   "enigmaticsbingogoals.goal.get_effect": "Get %s",
   "enigmaticsbingogoals.goal.get_some_advancements": "Get %d advancements",
+  "enigmaticsbingogoals.goal.get_some_effects": "Get %d status effects concurrently",
   "enigmaticsbingogoals.goal.kill_enemy_player": "Kill an enemy player",
   "enigmaticsbingogoals.goal.never_crafting_table": "Never obtain a %s",
   "enigmaticsbingogoals.goal.never_damage": "Never take damage",
