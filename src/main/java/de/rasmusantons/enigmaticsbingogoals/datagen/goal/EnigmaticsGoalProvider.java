@@ -391,6 +391,9 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Tame a Wolf
         // TODO: Tame a Parrot
         // TODO: Gain an Ocelot's trust
+        // TODO: Hatch a White Frog
+        // TODO: Hatch an Orange Frog
+        // TODO: Hatch a Green Frog
         addGoal(breedAnimalGoal(id("breed_pig"), EntityType.PIG)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
         );
