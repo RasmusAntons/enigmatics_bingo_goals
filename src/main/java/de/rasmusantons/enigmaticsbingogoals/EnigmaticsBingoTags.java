@@ -97,6 +97,7 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation IGLOO = create("igloo");
     public static final ResourceLocation ANCIENT_CITY = create("ancient_city");
     public static final ResourceLocation WITCH_HUT = create("witch_hut");
+    public static final ResourceLocation STRONGHOLD = create("stronghold");
     public static final ResourceLocation WOODLAND_MANSION = create("woodland_mansion");
     public static final ResourceLocation TRAIL_RUINS = create("trail_ruins");
 
