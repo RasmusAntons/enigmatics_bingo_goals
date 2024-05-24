@@ -584,7 +584,9 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainItemGoal(id("obtain_scaffolding"), Items.SCAFFOLDING)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE)
         );
-        // TODO: Eat a Cookie
+        addGoal(eatItemGoal(id("eat_cookie"), Items.COOKIE)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE)
+        );
         // TODO: Use an Anvil
         // TODO: Enchant an item
         // TODO: Die to Anvil
