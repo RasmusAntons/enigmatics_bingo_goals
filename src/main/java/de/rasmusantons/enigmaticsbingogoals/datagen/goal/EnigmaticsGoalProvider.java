@@ -155,7 +155,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(BingoGoal.builder(id("empty_hunger"))
                 .criterion("empty_hunger", EmptyHungerTrigger.TriggerInstance.emptyHunger())
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.COVER_DISTANCE)
-                .name(Component.translatable("empty_hunger"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.empty_hunger"))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HUNGER), ItemIcon.ofItem(Items.CLOCK)))
         );
         // TODO: Sprint for 1k meters
