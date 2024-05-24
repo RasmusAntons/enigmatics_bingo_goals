@@ -92,6 +92,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                                 MobEffectsPredicate.Builder.effects().and(effect)
                         )
                 )
+                .tags(EnigmaticsBingoTags.GET_EFFECT)
                 .name(Component.translatable("enigmaticsbingogoals.goal.get_effect", effect.value().getDisplayName()))
                 .icon(EffectIcon.of(effect));
     }

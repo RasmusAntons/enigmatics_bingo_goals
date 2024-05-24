@@ -183,38 +183,32 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Get 6 status effects concurrently
         // TODO: Get 10 status effects concurrently
         addGoal(effectGoal(id("get_absorption"), MobEffects.ABSORPTION)
-                .tags(EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.GET_EFFECT,
-                        EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.WOODLAND_MANSION)
+                .tags(EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.WOODLAND_MANSION)
         );
         addGoal(effectGoal(id("get_nausea"), MobEffects.CONFUSION)
-                .tags(EnigmaticsBingoTags.PUFFER_FISH, EnigmaticsBingoTags.GET_EFFECT)
+                .tags(EnigmaticsBingoTags.PUFFER_FISH)
         );
         addGoal(effectGoal(id("get_poison"), MobEffects.POISON)
-                .tags(EnigmaticsBingoTags.PUFFER_FISH, EnigmaticsBingoTags.GET_EFFECT,
-                        EnigmaticsBingoTags.POISON, EnigmaticsBingoTags.SUSPICIOUS_STEW,
+                .tags(EnigmaticsBingoTags.PUFFER_FISH, EnigmaticsBingoTags.POISON, EnigmaticsBingoTags.SUSPICIOUS_STEW,
                         EnigmaticsBingoTags.BEEHIVE, EnigmaticsBingoTags.MINESHAFT)
         );
         addGoal(effectGoal(id("get_weakness"), MobEffects.WEAKNESS)
-                .tags(EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.WEAKNESS,
-                        EnigmaticsBingoTags.SUSPICIOUS_STEW, EnigmaticsBingoTags.IGLOO)
+                .tags(EnigmaticsBingoTags.WEAKNESS, EnigmaticsBingoTags.SUSPICIOUS_STEW, EnigmaticsBingoTags.IGLOO)
         );
         addGoal(effectGoal(id("get_slowness"), MobEffects.MOVEMENT_SLOWDOWN)
-                .tags(EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.SLOWNESS)
+                .tags(EnigmaticsBingoTags.SLOWNESS)
         );
         addGoal(effectGoal(id("get_leaping"), MobEffects.JUMP)
-                .tags(EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.LEAPING,
-                        EnigmaticsBingoTags.SUSPICIOUS_STEW)
+                .tags(EnigmaticsBingoTags.LEAPING, EnigmaticsBingoTags.SUSPICIOUS_STEW)
         );
         addGoal(effectGoal(id("get_blindness"), MobEffects.BLINDNESS)
-                .tags(EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.SUSPICIOUS_STEW)
+                .tags(EnigmaticsBingoTags.SUSPICIOUS_STEW)
         );
         addGoal(effectGoal(id("get_saturation"), MobEffects.SATURATION)
-                .tags(EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.SATURATION,
-                        EnigmaticsBingoTags.SUSPICIOUS_STEW)
+                .tags(EnigmaticsBingoTags.SATURATION, EnigmaticsBingoTags.SUSPICIOUS_STEW)
         );
         addGoal(effectGoal(id("get_mining_fatigue"), MobEffects.DIG_SLOWDOWN)
-                .tags(EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.SATURATION,
-                        EnigmaticsBingoTags.OCEAN_MONUMENT)
+                .tags(EnigmaticsBingoTags.SATURATION, EnigmaticsBingoTags.OCEAN_MONUMENT)
         );
         addGoal(BingoGoal.builder(id("clear_effect_with_milk"))
                 .criterion("clear_effect", CriteriaTriggers.CONSUME_ITEM.createCriterion(
@@ -542,7 +536,6 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_diamond_tools"))
         );
-        // TODO: Obtain a Potion of Water Breathing
         addGoal(obtainItemGoal(id("obtain_cobweb"), Items.COBWEB)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.IGLOO,
                         EnigmaticsBingoTags.WOODLAND_MANSION)
@@ -712,7 +705,9 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         );
         // TODO: Reach the Nether
         // TODO: Anger a Zombified Piglin
-        // TODO: Get Glowing
+        addGoal(effectGoal(id("get_glowing"), MobEffects.GLOWING)
+                .tags(EnigmaticsBingoTags.NETHER_ENTRY)
+        );
         // TODO: Get the "Oooh, shiny!" advancement
         // TODO: Die to Intentional Game Design
         // TODO: Apply Glow Ink to a Crimson Sign
