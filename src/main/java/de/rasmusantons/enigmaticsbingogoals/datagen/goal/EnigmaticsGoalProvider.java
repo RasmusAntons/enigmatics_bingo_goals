@@ -32,12 +32,12 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
-    public EnigmaticsGoalProvider(Consumer<BingoGoal.Holder> goalAdder) {
-        super(EnigmaticsDifficultyGoalProvider.ENIGMATICS, goalAdder);
+    public EnigmaticsGoalProvider(Consumer<BingoGoal.Holder> goalAdder, HolderLookup.Provider registries) {
+        super(EnigmaticsDifficultyGoalProvider.ENIGMATICS, goalAdder, registries);
     }
 
     @Override
-    public void addGoals(HolderLookup.Provider provider) {
+    public void addGoals() {
         addGoal(BingoGoal.builder(id("never_crafting_table"))
                 .criterion("obtain", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CRAFTING_TABLE))
                 .tags(

@@ -15,6 +15,7 @@ import io.github.gaming32.bingo.util.BingoUtil;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -38,8 +39,10 @@ import java.util.function.Consumer;
 public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalProvider {
     public static final ResourceLocation ENIGMATICS = new ResourceLocation(Bingo.MOD_ID, "enigmatics");
 
-    public EnigmaticsDifficultyGoalProvider(ResourceLocation difficulty, Consumer<BingoGoal.Holder> goalAdder) {
-        super(difficulty, goalAdder);
+    public EnigmaticsDifficultyGoalProvider(ResourceLocation difficulty,
+                                            Consumer<BingoGoal.Holder> goalAdder,
+                                            HolderLookup.Provider registries) {
+        super(difficulty, goalAdder, registries);
     }
 
     protected static BingoGoal.Builder obtainItemGoal(ResourceLocation id, ItemLike item) {
