@@ -130,7 +130,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 ))
                 .tags(EnigmaticsBingoTags.DIE_TO)
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.directly_killed.tooltip", entityType.getDescription()))
-                .icon(IndicatorIcon.infer(EffectIcon.of(MobEffects.WITHER), entityType));
+                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD), entityType));
     }
 
     protected static BingoGoal.Builder neverLevelsGoal(ResourceLocation id, int minLevels, int maxLevels) {
