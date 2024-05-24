@@ -11,13 +11,20 @@ import io.github.gaming32.bingo.conditions.HasAnyEffectCondition;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
+import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
+import io.github.gaming32.bingo.data.subs.BingoSub;
+import io.github.gaming32.bingo.data.subs.CompoundBingoSub;
+import io.github.gaming32.bingo.data.subs.SubBingoSub;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
 import io.github.gaming32.bingo.triggers.DeathTrigger;
+import io.github.gaming32.bingo.triggers.RelativeStatsTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.stats.Stats;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -159,7 +166,21 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HUNGER), ItemIcon.ofItem(Items.CLOCK)))
         );
         // TODO: Sprint for 1k meters
-        // TODO: Crouch for 500 meters
+        addGoal(BingoGoal.builder(id("sprint_1k_meters"))
+                .criterion("sprint", RelativeStatsTrigger.builder()
+                        .stat(Stats.SPRINT_ONE_CM, MinMaxBounds.Ints.atLeast(100000)).build())
+                .progress(new CriterionProgressTracker("sprint", 0.01f))
+                .name(Component.translatable("enigmaticsbingogoals.goal.sprint_distance", 1000))
+                .tags(BingoTags.STAT, EnigmaticsBingoTags.COVER_DISTANCE)
+                .icon(Items.GOLDEN_BOOTS));
+        addGoal(BingoGoal.builder(id("crouch_500_meters"))
+                    .criterion("crouch", RelativeStatsTrigger.builder()
+                                .stat(Stats.CROUCH_ONE_CM, MinMaxBounds.Ints.atLeast(50000)).build())
+                    .progress(new CriterionProgressTracker("crouch", 0.01f))
+                    .name(Component.translatable("bingo.goal.crouch_distance", 500))
+                    .tags(BingoTags.STAT, EnigmaticsBingoTags.COVER_DISTANCE)
+                    .icon(Items.LEATHER_BOOTS));
+        addGoal(crouchDistanceGoal(id("crouch_500_blocks"), 500, 500));
         addGoal(BingoGoal.builder(id("reach_world_center"))
                 .criterion("reach", PlayerTrigger.TriggerInstance.located(
                         LocationPredicate.Builder.location()
