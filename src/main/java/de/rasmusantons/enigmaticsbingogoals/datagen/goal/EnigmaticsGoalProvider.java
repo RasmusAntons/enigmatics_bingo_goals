@@ -4,6 +4,7 @@ import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.FullUniqueInventoryCondition;
 import de.rasmusantons.enigmaticsbingogoals.conditions.KillEnemyPlayerCondition;
+import de.rasmusantons.enigmaticsbingogoals.conditions.PlayerAliveCondition;
 import de.rasmusantons.enigmaticsbingogoals.triggers.EmptyHungerTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
@@ -29,6 +30,8 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -41,6 +44,25 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
 
     @Override
     public void addGoals() {
+        addGoal(BingoGoal.builder(id("kill_villager_while_dead"))
+                .criterion("kill", CriteriaTriggers.PLAYER_KILLED_ENTITY.createCriterion(
+                        new KilledTrigger.TriggerInstance(
+                                Optional.of(ContextAwarePredicate.create(PlayerAliveCondition.INSTANCE)),
+                                Optional.of(
+                                        ContextAwarePredicate.create(
+                                                InvertedLootItemCondition.invert(
+                                                        LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
+                                                                EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.VILLAGER))
+                                                        )
+                                                ).build()
+                                        )
+                                ),
+                                Optional.empty()
+                        )
+                ))
+                .name(Component.literal("Kill a Villager while dead"))
+                .icon(EntityType.VILLAGER)
+        );
         addGoal(BingoGoal.builder(id("never_crafting_table"))
                 .criterion("obtain", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CRAFTING_TABLE))
                 .tags(
