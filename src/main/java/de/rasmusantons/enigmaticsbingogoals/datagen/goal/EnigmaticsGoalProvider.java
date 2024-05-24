@@ -24,6 +24,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
@@ -195,7 +196,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.IGLOO)
                 .icon(IndicatorIcon.infer(EntityType.ZOMBIE_VILLAGER, ItemIcon.ofItem(Items.GOLDEN_APPLE)))
         );
-        addGoal(numberOfEffectsGoal(id("get_some_effects"), 3, 10));
+        addGoal(numberOfEffectsGoal(id("get_some_effects_few"), 3, 5)
+                .tags(EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.PUFFER_FISH, EnigmaticsBingoTags.IGLOO,
+                        EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.ANCIENT_CITY)
+        );
+        addGoal(numberOfEffectsGoal(id("get_some_effects_many"), 6, 10));
         addGoal(effectGoal(id("get_absorption"), MobEffects.ABSORPTION)
                 .tags(EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.WOODLAND_MANSION)
         );
@@ -281,7 +286,9 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .icon(ItemIcon.ofItem(Items.BEDROCK))
         );
         // TODO: Hatch a Chicken from an Egg
-        // TODO: Breed a Chicken
+        addGoal(breedAnimalGoal(id("breed_chicken"), EntityType.CHICKEN)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.CHICKEN)
+        );
         addGoal(BingoGoal.builder(id("reach_build_limit"))
                 .criterion("reach", PlayerTrigger.TriggerInstance.located(
                         LocationPredicate.Builder.atYLocation(MinMaxBounds.Doubles.atLeast(320))
@@ -384,17 +391,36 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Tame a Wolf
         // TODO: Tame a Parrot
         // TODO: Gain an Ocelot's trust
-        // TODO: Breed a Frog
-        // TODO: Breed a Pig
-        // TODO: Breed a Mule
-        // TODO: Breed a Fox
-        // TODO: Breed a Armadillo
-        // TODO: Breed a Horse
-        // TODO: Breed an Axolotl
-        // TODO: Breed a Rabbit
-        // TODO: Breed a Strider
-        // TODO: Breed a Hoglin
-        // TODO: Break a Turtle Egg
+        addGoal(breedAnimalGoal(id("breed_pig"), EntityType.PIG)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
+        );
+        addGoal(breedAnimalGoal(id("breed_mule"), EntityType.MULE)
+                .tags(BingoTags.OVERWORLD)
+        );
+        addGoal(breedAnimalGoal(id("breed_fox"), EntityType.FOX)
+                .tags(BingoTags.OVERWORLD)
+        );
+        addGoal(breedAnimalGoal(id("breed_armadillo"), EntityType.ARMADILLO)
+                .tags(BingoTags.OVERWORLD)
+        );
+        addGoal(breedAnimalGoal(id("breed_horse"), EntityType.HORSE)
+                .tags(BingoTags.OVERWORLD)
+        );
+        addGoal(breedAnimalGoal(id("breed_axolotl"), EntityType.AXOLOTL)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.LUSH_CAVE)
+        );
+        addGoal(breedAnimalGoal(id("breed_rabbit"), EntityType.RABBIT)
+                .tags(BingoTags.OVERWORLD)
+        );
+        addGoal(breedAnimalGoal(id("breed_strider"), EntityType.STRIDER)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.STRIDER)
+        );
+        addGoal(breedAnimalGoal(id("breed_hoglin"), EntityType.HOGLIN)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST)
+        );
+        addGoal(breakBlockGoal(id("break_turtle_egg"), Blocks.TURTLE_EGG)
+                .tags(BingoTags.OVERWORLD)
+        );
         // TODO: Breed (6-15) unique mobs
         // TODO: Kill (10-25) unique Mobs
         // TODO: Kill (5-7) unique Neutral Mobs
@@ -453,7 +479,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB)
         );
         addGoal(obtainItemGoal(id("obtain_tadpole_bucket"), Items.TADPOLE_BUCKET)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB, EnigmaticsBingoTags.FROG)
         );
         // TODO: Obtain 4 unique Music Discs
         // TODO: Listen to a Jukebox
@@ -827,6 +853,8 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainItemGoal(id("obtain_dragon_head"), Items.DRAGON_HEAD)
                 .tags(BingoTags.END, EnigmaticsBingoTags.END_PROGRESS, EnigmaticsBingoTags.END_SHIP)
         );
-        // TODO: Craft a Purpur Block
+        addGoal(obtainItemGoal(id("obtain_purpur_block"), Items.PURPUR_BLOCK)
+                .tags(BingoTags.END, EnigmaticsBingoTags.END_PROGRESS)
+        );
     }
 }

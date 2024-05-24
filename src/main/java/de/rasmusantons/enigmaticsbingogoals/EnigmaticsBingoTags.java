@@ -37,6 +37,7 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation KILL_MOB = create("kill_mob");
     public static final ResourceLocation KILL_MOB_BATCH = create("kill_mob_batch");
     // BingoTags.VILLAGE 3
+    public static final ResourceLocation FROG = create("frog");
     public static final ResourceLocation BUCKET_WITH_MOB = create("bucket_with_mob");
     public static final ResourceLocation MUSIC_DISC = create("music_disc");
     public static final ResourceLocation ARMOR = create("armor");

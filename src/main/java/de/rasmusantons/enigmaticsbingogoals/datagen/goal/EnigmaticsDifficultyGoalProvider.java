@@ -111,6 +111,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         Optional.empty(),
                         Optional.empty()
                 )), subber -> subber.sub("conditions.player.0.effects.min", "count"))
+                .tags(EnigmaticsBingoTags.GET_EFFECT_BATCH)
                 .icon(IndicatorIcon.infer(
                         new ItemIcon(icon),
                         CycleIcon.infer(BuiltInRegistries.MOB_EFFECT.holders().map(EffectIcon::of))
@@ -190,5 +191,14 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .requirements(AdvancementRequirements.Strategy.OR)
                 .name(Component.translatable("enigmaticsbingogoals.goal.break_block",
                         Component.translatable(oneOfThese[0].getDescriptionId())));
+    }
+
+    protected static BingoGoal.Builder breedAnimalGoal(ResourceLocation id, EntityType<?> entityType) {
+        return BingoGoal.builder(id)
+            .criterion("breed", BredAnimalsTrigger.TriggerInstance.bredAnimals(
+                    EntityPredicate.Builder.entity().of(entityType)))
+            .tags(EnigmaticsBingoTags.BREED_MOB)
+            .name(Component.translatable("enigmaticsbingogoals.goal.breed_animal", entityType.getDescription()))
+            .icon(IndicatorIcon.infer(entityType, entityType));
     }
 }
