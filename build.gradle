@@ -19,6 +19,10 @@ repositories {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
     }
+    maven {
+        name = "3po"
+        url = "https://mvn.3po.ch/maven"
+    }
 }
 
 dependencies {
@@ -33,7 +37,7 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "maven.modrinth:bingo-mod:1.1.8+fabric"
+    modImplementation "io.github.gaming32:bingo:1.1.8+enigmatics+fabric"
 }
 
 processResources {

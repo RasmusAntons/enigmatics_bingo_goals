@@ -57,6 +57,9 @@ public class BingoDifficultyProvider implements DataProvider {
     }
 
     private void addDifficulties(Consumer<BingoDifficulty.Holder> difficultyAdder) {
-        difficultyAdder.accept(BingoDifficulty.builder(EnigmaticsDifficultyGoalProvider.ENIGMATICS).number(5).build());
+        difficultyAdder.accept(BingoDifficulty.builder(EnigmaticsDifficultyGoalProvider.ENIGMATICS)
+                .number(5)
+                .distribution(0, 0, 0, 0, 0, 25)
+                .build());
     }
 }
