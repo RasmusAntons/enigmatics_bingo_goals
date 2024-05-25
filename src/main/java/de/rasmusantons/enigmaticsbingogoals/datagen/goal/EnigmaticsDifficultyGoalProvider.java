@@ -133,6 +133,14 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(IndicatorIcon.infer(entityType, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)));
     }
 
+    protected static BingoGoal.Builder killEntityGoal(ResourceLocation id, EntityType<?> entityType) {
+        return BingoGoal.builder(id)
+                .criterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(
+                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityType))))
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .icon(IndicatorIcon.infer(entityType, Items.NETHERITE_SWORD));
+    }
+
     protected static BingoGoal.Builder neverLevelsGoal(ResourceLocation id, int minLevels, int maxLevels) {
         return BingoGoal.builder(id)
                 .sub("count", BingoSub.random(minLevels, maxLevels))

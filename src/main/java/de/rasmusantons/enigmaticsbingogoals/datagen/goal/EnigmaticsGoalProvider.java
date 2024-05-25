@@ -387,7 +387,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(breakBlockGoal(id("break_emerald_ore"), Blocks.EMERALD_ORE, Blocks.DEEPSLATE_EMERALD_ORE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
         );
-        // TODO: Kill a Silverfish
+        addGoal(killEntityGoal(id("kill_silverfish"), EntityType.SILVERFISH)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_silverfish", EntityType.SILVERFISH.getDescription()))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.STRONGHOLD, EnigmaticsBingoTags.MOUNTAIN,
+                        EnigmaticsBingoTags.WOODLAND_MANSION)
+        );
         addGoal(obtainItemGoal(id("obtain_powder_snow_bucket"), Items.POWDER_SNOW_BUCKET)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
         );
@@ -434,13 +438,35 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Kill (7-10) unique Neutral Mobs
         // TODO: Kill (7-10) unique Hostile Mobs
         // TODO: Kill (11-15) unique Hostile Mobs
-        // TODO: Kill a Witch
-        // TODO: Kill a Vindicator
-        // TODO: Kill a Zombie Villager
-        // TODO: Kill an Endermite
-        // TODO: Kill a Zoglin
-        // TODO: Kill a Snow Golem
-        // TODO: Kill an Elder Guardian
+        addGoal(killEntityGoal(id("kill_witch"), EntityType.WITCH)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_witch", EntityType.WITCH.getDescription()))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.RAID, EnigmaticsBingoTags.WITCH_HUT)
+        );
+        addGoal(killEntityGoal(id("kill_vindicator"), EntityType.VINDICATOR)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_vindicator", EntityType.VINDICATOR.getDescription()))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.RAID, EnigmaticsBingoTags.WOODLAND_MANSION)
+        );
+        addGoal(killEntityGoal(id("kill_zombie_villager"), EntityType.ZOMBIE_VILLAGER)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_zombie_villager", EntityType.ZOMBIE_VILLAGER.getDescription()))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.GOLDEN_APPLE)
+        );
+        addGoal(killEntityGoal(id("kill_endermite"), EntityType.ENDERMITE)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_endermite", EntityType.ENDERMITE.getDescription()))
+                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.END, BingoTags.VILLAGE,
+                        EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.NETHER_LATE)
+        );
+        addGoal(killEntityGoal(id("kill_zoglin"), EntityType.ZOGLIN)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_zoglin", EntityType.ZOGLIN.getDescription()))
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST)
+        );
+        addGoal(killEntityGoal(id("kill_snow_golem"), EntityType.SNOW_GOLEM)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_snow_golem", EntityType.SNOW_GOLEM.getDescription()))
+                .tags(BingoTags.OVERWORLD)
+        );
+        addGoal(killEntityGoal(id("kill_elder_guardian"), EntityType.ELDER_GUARDIAN)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_elder_guardian", EntityType.ELDER_GUARDIAN.getDescription()))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OCEAN_MONUMENT)
+        );
         addGoal(BingoGoal.builder(id("kill_mob_while_dead"))
                 .criterion("kill", CriteriaTriggers.PLAYER_KILLED_ENTITY.createCriterion(
                         new KilledTrigger.TriggerInstance(
@@ -783,7 +809,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Die to Intentional Game Design
         // TODO: Apply Glow Ink to a Crimson Sign
         // TODO: Apply Glow Ink to a Warped Sign
-        // TODO: Kill a Ghast
+        addGoal(killEntityGoal(id("kill_ghast"), EntityType.GHAST)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_ghast", EntityType.GHAST.getDescription()))
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.GHAST)
+                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.GHAST), Items.NETHERITE_SWORD))
+        );
         // TODO: Find a Fortress
         // TODO: Find a Bastion
         // TODO: Fully charge a Respawn Anchor
@@ -865,7 +895,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHERITE)
         );
         // TODO: Reach the end
-        // TODO: Kill the Dragon
+        addGoal(killEntityGoal(id("kill_ender_dragon"), EntityType.ENDER_DRAGON)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_ender_dragon", EntityType.ENDER_DRAGON.getDescription()))
+                .tags(BingoTags.END, EnigmaticsBingoTags.END_ENTRY)
+                .icon(IndicatorIcon.infer(Items.DRAGON_HEAD, Items.NETHERITE_SWORD))
+        );
         addGoal(obtainItemGoal(id("obtain_dragon_egg"), Items.DRAGON_EGG)
                 .tags(BingoTags.END, EnigmaticsBingoTags.END_ENTRY)
         );
