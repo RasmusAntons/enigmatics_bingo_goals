@@ -441,23 +441,24 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Kill a Zoglin
         // TODO: Kill a Snow Golem
         // TODO: Kill an Elder Guardian
-        addGoal(BingoGoal.builder(id("kill_bat_while_dead"))
+        addGoal(BingoGoal.builder(id("kill_mob_while_dead"))
                 .criterion("kill", CriteriaTriggers.PLAYER_KILLED_ENTITY.createCriterion(
                         new KilledTrigger.TriggerInstance(
                                 Optional.of(ContextAwarePredicate.create(new InvertedLootItemCondition(PlayerAliveCondition.INSTANCE))),
                                 Optional.of(ContextAwarePredicate.create(
-                                        LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
-                                                EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.BAT))
+                                        InvertedLootItemCondition.invert(
+                                            LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
+                                                    EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.PLAYER))
+                                            )
                                         ).build()
                                 )),
                                 Optional.empty()
                         )
                 ))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.KILL_MOB)
-                .name(Component.translatable("enigmaticsbingogoals.goal.kill_bat_while_dead",
-                        EntityType.BAT.getDescription()))
-                .tooltip(Component.translatable("enigmaticsbingogoals.goal.kill_bat_while_dead.tooltip"))
-                .icon(IndicatorIcon.infer(EntityType.BAT, Items.WOODEN_SWORD))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_mob_while_dead"))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.kill_mob_while_dead.tooltip"))
+                .icon(IndicatorIcon.infer(Items.WOODEN_SWORD, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
         );
         // TODO: Kill 50 mobs
         // TODO: Kill 100 mobs
