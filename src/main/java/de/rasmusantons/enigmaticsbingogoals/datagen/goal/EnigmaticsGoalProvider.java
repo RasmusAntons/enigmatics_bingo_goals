@@ -455,7 +455,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                                 Optional.empty()
                         )
                 ))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.KILL_MOB)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_mob_while_dead"))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.kill_mob_while_dead.tooltip"))
                 .icon(IndicatorIcon.infer(Items.WOODEN_SWORD, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
