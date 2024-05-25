@@ -152,6 +152,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.translatable("enigmaticsbingogoals.goal.play_music_to_other_team"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), ItemIcon.ofItem(Items.PLAYER_HEAD)))
         );
+        // TODO: Give enemy player an effect
         // TODO: Hit an enemy player with a snowball
         // TODO: Have a higher level than the enemy
         // TODO: Eat more unique foods than the enemy
