@@ -5,10 +5,7 @@ import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.FullUniqueInventoryCondition;
 import de.rasmusantons.enigmaticsbingogoals.conditions.KillEnemyPlayerCondition;
 import de.rasmusantons.enigmaticsbingogoals.conditions.PlayerAliveCondition;
-import de.rasmusantons.enigmaticsbingogoals.triggers.EmptyHungerTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.HitOtherTeamWithProjectileTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
+import de.rasmusantons.enigmaticsbingogoals.triggers.*;
 import io.github.gaming32.bingo.conditions.HasAnyEffectCondition;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
@@ -151,14 +148,21 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.TRAIL_RUINS
                 )
                 .name(Component.translatable("enigmaticsbingogoals.goal.play_music_to_other_team"))
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), ItemIcon.ofItem(Items.PLAYER_HEAD)))
+                .icon(IndicatorIcon.infer(Items.JUKEBOX, Items.PLAYER_HEAD))
         );
-        // TODO: Give enemy player an effect
-        addGoal(BingoGoal.builder(id("hit_player_with_snowball"))
+        addGoal(BingoGoal.builder(id("give_effect_to_other_team"))
+                .criterion("give", GiveEffectToOtherTeamTrigger.TriggerInstance.anyEffect())
+                .tags(EnigmaticsBingoTags.PVP, EnigmaticsBingoTags.GET_EFFECT)
+                .icon(IndicatorIcon.infer(
+                        CycleIcon.infer(BuiltInRegistries.MOB_EFFECT.holders().map(EffectIcon::of)),
+                        Items.PLAYER_HEAD))
+                .name(Component.translatable("enigmaticsbingogoals.goal.give_effect_to_other_team"))
+        );
+        addGoal(BingoGoal.builder(id("hit_other_team_with_snowball"))
                 .criterion("hit", HitOtherTeamWithProjectileTrigger.TriggerInstance.ofType(EntityType.SNOWBALL))
                 .tags(EnigmaticsBingoTags.PVP)
                 .name(Component.translatable("enigmaticsbingogoals.goal.hit_player_with_snowball", EntityType.SNOWBALL.getDescription()))
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SNOWBALL), ItemIcon.ofItem(Items.PLAYER_HEAD)))
+                .icon(IndicatorIcon.infer(Items.SNOWBALL, Items.PLAYER_HEAD))
         );
         // TODO: Have a higher level than the enemy
         // TODO: Eat more unique foods than the enemy

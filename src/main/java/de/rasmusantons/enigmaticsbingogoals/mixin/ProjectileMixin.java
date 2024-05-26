@@ -25,8 +25,7 @@ public abstract class ProjectileMixin {
         }
         if (!(result.getEntity() instanceof ServerPlayer hitPlayer))
             return;
-        Entity projectileOwner = this.getOwner();
-        if (!(projectileOwner instanceof ServerPlayer serverPlayer))
+        if (!(this.getOwner() instanceof ServerPlayer serverPlayer))
             return;
         if (hitPlayer.getTeam() == serverPlayer.getTeam())
             return;

@@ -9,7 +9,11 @@
     "JukeboxBlockEntityMixin",
     "PlayerAdvancementsMixin",
     "FoodDataMixin",
-    "ProjectileMixin"
+    "ProjectileMixin",
+    "ArrowMixin",
+    "SpectralArrowMixin",
+    "ThrownPotionMixin",
+    "AreaEffectCloudMixin"
   ],
   "injectors": {
     "defaultRequire": 1
