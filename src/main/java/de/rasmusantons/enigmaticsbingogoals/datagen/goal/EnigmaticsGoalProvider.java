@@ -686,117 +686,117 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Use an Anvil
         // TODO: Enchant an item
         // TODO: Die to Anvil
-        addGoal(obtainItemGoal(id("obtain_stack_of_red_concrete"), Items.RED_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_red_concrete"), Items.RED_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.RED_CONCRETE.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_yellow_concrete"), Items.YELLOW_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_yellow_concrete"), Items.YELLOW_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.YELLOW_CONCRETE.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_orange_concrete"), Items.ORANGE_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_orange_concrete"), Items.ORANGE_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.ORANGE_CONCRETE.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_black_concrete"), Items.BLACK_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_black_concrete"), Items.BLACK_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.BLACK_CONCRETE.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_white_concrete"), Items.WHITE_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_white_concrete"), Items.WHITE_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.WHITE_CONCRETE.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_gray_concrete"), Items.GRAY_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_gray_concrete"), Items.GRAY_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.GRAY_CONCRETE.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_light_gray_concrete"), Items.LIGHT_GRAY_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_light_gray_concrete"), Items.LIGHT_GRAY_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.LIGHT_GRAY_CONCRETE.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_pink_concrete"), Items.PINK_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_pink_concrete"), Items.PINK_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.PINK_CONCRETE.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_magenta_concrete"), Items.MAGENTA_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_magenta_concrete"), Items.MAGENTA_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.MAGENTA_CONCRETE.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_blue_concrete"), Items.BLUE_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_blue_concrete"), Items.BLUE_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.BLUE_CONCRETE.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_purple_concrete"), Items.PURPLE_CONCRETE, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_purple_concrete"), Items.PURPLE_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.PURPLE_CONCRETE.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_green_wool"), Items.GREEN_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_green_wool"), Items.GREEN_WOOL, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL, EnigmaticsBingoTags.IGLOO)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.GREEN_WOOL.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_red_wool"), Items.RED_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_red_wool"), Items.RED_WOOL, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.RED_WOOL.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_yellow_wool"), Items.YELLOW_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_yellow_wool"), Items.YELLOW_WOOL, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.YELLOW_WOOL.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_orange_wool"), Items.ORANGE_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_orange_wool"), Items.ORANGE_WOOL, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.ORANGE_WOOL.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_black_wool"), Items.BLACK_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_black_wool"), Items.BLACK_WOOL, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.BLACK_WOOL.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_white_wool"), Items.WHITE_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_white_wool"), Items.WHITE_WOOL, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.WHITE_WOOL.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_gray_wool"), Items.GRAY_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_gray_wool"), Items.GRAY_WOOL, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL, EnigmaticsBingoTags.ANCIENT_CITY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.GRAY_WOOL.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_light_gray_wool"), Items.LIGHT_GRAY_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_light_gray_wool"), Items.LIGHT_GRAY_WOOL, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.LIGHT_GRAY_WOOL.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_pink_wool"), Items.PINK_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_pink_wool"), Items.PINK_WOOL, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.PINK_WOOL.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_magenta_wool"), Items.MAGENTA_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_magenta_wool"), Items.MAGENTA_WOOL, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.MAGENTA_WOOL.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_blue_wool"), Items.BLUE_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_blue_wool"), Items.BLUE_WOOL, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.BLUE_WOOL.getDescription()))
         );
-        addGoal(obtainItemGoal(id("obtain_stack_of_purple_wool"), Items.PURPLE_WOOL, 64, 64)
+        addGoal(obtainItemGoal(id("obtain_stack_of_purple_wool"), Items.PURPLE_WOOL, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.PURPLE_WOOL.getDescription()))

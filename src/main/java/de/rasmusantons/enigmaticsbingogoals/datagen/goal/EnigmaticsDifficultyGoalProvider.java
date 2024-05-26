@@ -49,10 +49,26 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
     }
 
     protected static BingoGoal.Builder obtainItemGoal(ResourceLocation id, ItemLike item) {
-        return obtainItemGoal(id, item, ItemPredicate.Builder.item().of(item))
-                .antisynergy(BuiltInRegistries.ITEM.getKey(item.asItem()).getPath())
-                .tags(BingoTags.ITEM)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_item", item.asItem().getDescription()));
+        return obtainItemGoal(id, item, 1);
+    }
+
+    protected static BingoGoal.Builder obtainItemGoal(ResourceLocation id, ItemLike item, int count) {
+        Component itemName = item.asItem().getDescription();
+        BingoGoal.Builder builder = BingoGoal.builder(id)
+                .criterion("obtain", TotalCountInventoryChangeTrigger.builder().items(
+                        ItemPredicate.Builder.item().of(item).withCount(MinMaxBounds.Ints.atLeast(count)).build()
+                ).build())
+                .tags(BingoTags.ITEM);
+        if (count == 1)
+            builder
+                    .icon(ItemIcon.ofItem(item))
+                    .name(Component.translatable("enigmaticsbingogoals.goal.obtain_item", itemName));
+        else
+            builder
+                    .progress("obtain")
+                    .icon(new ItemIcon(new ItemStack(item, count)))
+                    .name(Component.translatable("enigmaticsbingogoals.goal.obtain_item_count", count, itemName));
+        return builder;
     }
 
     protected BingoGoal.Builder obtainAllItemsFromTag(ResourceLocation id, TagKey<Item> tag) {
