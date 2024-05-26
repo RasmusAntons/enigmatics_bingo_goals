@@ -21,19 +21,49 @@ repositories {
     }
 }
 
+// Clone Enigmatics bingo fork
+// Fork of https://github.com/Gaming32/bingo
+task cloneRepository() {
+    def dir = 'libs/bingo'
+    def branch = 'enigmatics'
+    def commitId = 'd1f5854100b2c51b3b7dbc26248b4d46d99f93b2'
+    def repo = 'git@github.com:RasmusAntons/bingo.git'
+
+    doLast {
+        exec {
+            commandLine 'git', 'clone', '-b', branch, '--single-branch', repo, dir
+        }
+
+        exec {
+
+            workingDir = file('libs/bingo')
+            println "Checkout $commitId."
+            commandLine 'git', 'checkout', commitId
+        }
+    }
+}
+
+// Build the project from the cloned repository
+project.tasks.register('buildFromGitHubTask', Exec) {
+    group = 'build setup'
+    dependsOn cloneRepository
+    workingDir = file('libs/bingo')
+    commandLine './gradlew.bat', 'build'
+}
+
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.layered() {
-	officialMojangMappings()
-	parchment("org.parchmentmc.data:parchment-${project.parchment_version}@zip")
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${project.parchment_version}@zip")
     }
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "maven.modrinth:bingo-mod:1.1.8+fabric"
+    modImplementation files("libs/bingo/fabric/build/libs/bingo-1.1.8+enigmatics+fabric.jar")
 }
 
 processResources {
@@ -50,9 +80,9 @@ processResources {
 }
 
 fabricApi {
-	configureDataGeneration {
-		modId = "enigmaticsbingogoals"
-	}
+    configureDataGeneration {
+        modId = "enigmaticsbingogoals"
+    }
 }
 
 def targetJavaVersion = 21
