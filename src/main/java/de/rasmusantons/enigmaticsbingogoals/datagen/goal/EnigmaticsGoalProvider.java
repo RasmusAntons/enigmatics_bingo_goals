@@ -6,6 +6,7 @@ import de.rasmusantons.enigmaticsbingogoals.conditions.FullUniqueInventoryCondit
 import de.rasmusantons.enigmaticsbingogoals.conditions.KillEnemyPlayerCondition;
 import de.rasmusantons.enigmaticsbingogoals.conditions.PlayerAliveCondition;
 import de.rasmusantons.enigmaticsbingogoals.triggers.EmptyHungerTrigger;
+import de.rasmusantons.enigmaticsbingogoals.triggers.HitOtherTeamWithProjectileTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
 import io.github.gaming32.bingo.conditions.HasAnyEffectCondition;
@@ -153,7 +154,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), ItemIcon.ofItem(Items.PLAYER_HEAD)))
         );
         // TODO: Give enemy player an effect
-        // TODO: Hit an enemy player with a snowball
+        addGoal(BingoGoal.builder(id("hit_player_with_snowball"))
+                .criterion("hit", HitOtherTeamWithProjectileTrigger.TriggerInstance.ofType(EntityType.SNOWBALL))
+                .tags(EnigmaticsBingoTags.PVP)
+                .name(Component.translatable("enigmaticsbingogoals.goal.hit_player_with_snowball", EntityType.SNOWBALL.getDescription()))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SNOWBALL), ItemIcon.ofItem(Items.PLAYER_HEAD)))
+        );
         // TODO: Have a higher level than the enemy
         // TODO: Eat more unique foods than the enemy
         // TODO: Kill more unique mobs than the enemy
