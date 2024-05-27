@@ -19,6 +19,8 @@ import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffects;
@@ -821,6 +823,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         Items.PURPLE_WOOL.getDescription()))
         );
         // TODO: Reach the Nether
+
         // TODO: Anger a Zombified Piglin
         addGoal(effectGoal(id("get_glowing"), MobEffects.GLOWING)
                 .tags(EnigmaticsBingoTags.NETHER_ENTRY)
@@ -931,9 +934,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.END, EnigmaticsBingoTags.END_ENTRY)
         );
         // TODO: Fall in the void
-        // TODO: Obtain a Lingering Potion
+        addGoal(obtainItemGoal(id("obtain_lingering_potion"), Items.LINGERING_POTION)
+                .tags(BingoTags.END, EnigmaticsBingoTags.END_ENTRY)
+        );
         // TODO: Reach an End City
         // TODO: Get the "Great View From Up Here" advancement
+        addGoal(advancementGoal(id("get_great_view_from_up_here"), new ResourceLocation("end:levitate")));
         addGoal(eatItemGoal(id("eat_chorus_fruit"), Items.CHORUS_FRUIT)
                 .tags(BingoTags.END, EnigmaticsBingoTags.END_PROGRESS)
         );

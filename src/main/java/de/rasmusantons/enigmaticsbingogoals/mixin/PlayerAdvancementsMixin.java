@@ -31,7 +31,7 @@ public class PlayerAdvancementsMixin {
                     entry -> entry.getKey().value().display().isPresent()
                             && entry.getValue().isDone()
             ).count();
-            EnigmaticsBingoGoalsTriggers.ADVANCEMENTS.get().trigger(player, number);
+            EnigmaticsBingoGoalsTriggers.ADVANCEMENTS.get().trigger(player, advancement.id(), number);
         }
     }
 }
