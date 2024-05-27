@@ -162,12 +162,26 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .sub("count", BingoSub.random(minLevels, maxLevels))
                 .criterion("obtain", ExperienceChangeTrigger.builder().levels(MinMaxBounds.Ints.atLeast(0)).build(),
                         subber -> subber.sub("conditions.levels.min", "count"))
-                .tags(BingoTags.NEVER, BingoTags.STAT)
+                .tags(BingoTags.NEVER, BingoTags.STAT, EnigmaticsBingoTags.REACH_LEVEL, EnigmaticsBingoTags.LEVEL)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_levels", 0),
                         subber -> subber.sub("with.0", "count"))
                 .icon(
                         new IndicatorIcon(ItemIcon.ofItem(Items.EXPERIENCE_BOTTLE), ItemIcon.ofItem(Items.BARRIER)),
                         subber -> subber.sub("base.item.count", "count"))
+                .antisynergy("levels");
+    }
+
+    protected static BingoGoal.Builder reachLevelsGoal(ResourceLocation id, int minLevels, int maxLevels) {
+        return BingoGoal.builder(id)
+                .sub("count", BingoSub.random(minLevels, maxLevels))
+                .criterion("obtain", ExperienceChangeTrigger.builder().levels(MinMaxBounds.Ints.atLeast(0)).build(),
+                        subber -> subber.sub("conditions.levels.min", "count"))
+                .tags(BingoTags.STAT, EnigmaticsBingoTags.REACH_LEVEL, EnigmaticsBingoTags.LEVEL)
+                .name(Component.translatable("enigmaticsbingogoals.goal.reach_levels", 0),
+                        subber -> subber.sub("with.0", "count"))
+                .icon(
+                        ItemIcon.ofItem(Items.EXPERIENCE_BOTTLE),
+                        subber -> subber.sub("item.count", "count"))
                 .antisynergy("levels");
     }
 

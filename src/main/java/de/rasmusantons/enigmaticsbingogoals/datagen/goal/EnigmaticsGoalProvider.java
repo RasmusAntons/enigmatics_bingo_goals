@@ -258,7 +258,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainItemGoal(id("obtain_cake"), Items.CAKE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MILK, EnigmaticsBingoTags.CHICKEN)
         );
-        // TODO: Reach level 15-40
+        addGoal(reachLevelsGoal(id("reach_levels"), 10, 35));
         // TODO: Reach level
         // TODO: Fill up a Composter
         addGoal(BingoGoal.builder(id("full_unique_inventory"))

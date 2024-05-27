@@ -52,6 +52,7 @@
   "enigmaticsbingogoals.goal.obtain_stack_of": "Obtain a stack of %s",
   "enigmaticsbingogoals.goal.play_music_to_other_team": "Make the enemy listen to a jukebox",
   "enigmaticsbingogoals.goal.reach_build_limit": "Reach the build limit",
+  "enigmaticsbingogoals.goal.reach_levels": "Reach level %d",
   "enigmaticsbingogoals.goal.reach_world_center": "Reach the world center",
   "enigmaticsbingogoals.goal.sprint_distance": "Sprint a distance of %d blocks",
   "enigmaticsbingogoals.goal.stand_on_bedrock": "Stand on bedrock",
