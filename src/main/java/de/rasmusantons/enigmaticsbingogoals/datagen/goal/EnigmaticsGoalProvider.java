@@ -531,7 +531,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.WOODLAND_MANSION)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_chainmail"))
         );
-        // TODO: Obtain 4 different types of seeds
+        addGoal(obtainItemFromTag(id("obtain_4_different_seeds"), EnigmaticsBingoItemTags.SEEDS, 4)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.SEEDS,
+                        EnigmaticsBingoTags.WOODLAND_MANSION)
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_4_different_seeds"))
+        );
         addGoal(eatItemGoal(id("eat_beetroot_soup"), Items.BEETROOT_SOUP)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.STEW)
         );

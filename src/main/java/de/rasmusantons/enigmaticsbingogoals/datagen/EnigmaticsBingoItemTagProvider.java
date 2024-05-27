@@ -75,5 +75,14 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.CHAINMAIL_LEGGINGS,
                 Items.CHAINMAIL_BOOTS
         );
+
+        getOrCreateTagBuilder(EnigmaticsBingoItemTags.SEEDS).add(
+                Items.WHEAT_SEEDS,
+                Items.MELON_SEEDS,
+                Items.PUMPKIN_SEEDS,
+                Items.BEETROOT_SEEDS,
+                Items.TORCHFLOWER_SEEDS,
+                Items.PITCHER_POD
+        );
     }
 }
