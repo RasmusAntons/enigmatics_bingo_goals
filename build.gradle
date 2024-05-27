@@ -29,8 +29,7 @@ project.tasks.register('checkoutBingoMod') {
     def url = 'https://github.com/' + bingo_repo + '/archive/' + bingo_commit + '.zip'
 
     doLast {
-        if (!file(dir).exists()) { delete(dir) }
-        mkdir dir
+        if (!file(dir).exists()) { mkdir(dir) }
         def f = dir.file('bingo-' + bingo_commit + '.zip').asFile
         new URI(url).toURL().withInputStream { i -> f.withOutputStream { it << i } }
         copy { from zipTree(f) into dir }
