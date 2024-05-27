@@ -526,7 +526,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Grow huge warped fungi in overworld
         // TODO: Fill a Chiseled Bookshelf with books
         // TODO: Trade with a Villager
-        // TODO: Obtain Chain armor
+        addGoal(obtainItemFromTag(id("obtain_chainmail_armor"), EnigmaticsBingoItemTags.CHAINMAIL, 1)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.RAID,
+                        EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.WOODLAND_MANSION)
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_chainmail"))
+        );
         // TODO: Obtain 4 different types of seeds
         addGoal(eatItemGoal(id("eat_beetroot_soup"), Items.BEETROOT_SOUP)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.STEW)

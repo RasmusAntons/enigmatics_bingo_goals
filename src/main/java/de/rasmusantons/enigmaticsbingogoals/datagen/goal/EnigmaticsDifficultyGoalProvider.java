@@ -79,6 +79,14 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(new ItemTagCycleIcon(tag));
     }
 
+    protected BingoGoal.Builder obtainItemFromTag(ResourceLocation id, TagKey<Item> tag, int count) {
+        return BingoGoal.builder(id)
+                .criterion("obtain", HasSomeItemsFromTagTrigger.builder().tag(tag).requiredCount(count).build())
+                .progress("obtain")
+                .tags(BingoTags.ITEM)
+                .icon(new ItemTagCycleIcon(tag, count));
+    }
+
     protected BingoGoal.Builder eatItemGoal(ResourceLocation id, Item item) {
         return BingoGoal.builder(id)
                 .criterion("eat", ConsumeItemTrigger.TriggerInstance.usedItem(item))
