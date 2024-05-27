@@ -53,7 +53,7 @@ project.tasks.register('buildBingoMod') {
         copy {
             from getLayout().getBuildDirectory().dir('bingo/bingo-' + bingo_commit + '/fabric/build/libs').get()
             into getLayout().getProjectDirectory().dir('libs')
-            include("*fabric.jar", "*fabric-sources.jar")
+            include("*fabric.jar")
         }
     }
 }
