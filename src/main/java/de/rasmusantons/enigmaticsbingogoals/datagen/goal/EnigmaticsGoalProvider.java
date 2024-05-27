@@ -260,7 +260,6 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MILK, EnigmaticsBingoTags.CHICKEN)
         );
         addGoal(reachLevelsGoal(id("reach_levels"), 10, 35));
-        // TODO: Reach level
         // TODO: Fill up a Composter
         addGoal(BingoGoal.builder(id("full_unique_inventory"))
                 .criterion("fill", CriteriaTriggers.INVENTORY_CHANGED.createCriterion(
