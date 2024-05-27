@@ -32,7 +32,7 @@ project.tasks.register('checkoutBingoMod') {
         if (!file(dir).exists()) { delete(dir) }
         mkdir dir
         def f = dir.file('bingo-' + bingo_commit + '.zip').asFile
-b           new URI(url).toURL().withInputStream { i -> f.withOutputStream { it << i } }
+        new URI(url).toURL().withInputStream { i -> f.withOutputStream { it << i } }
         copy { from zipTree(f) into dir }
         f.delete()
     }
