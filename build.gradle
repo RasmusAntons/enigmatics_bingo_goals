@@ -24,7 +24,7 @@ repositories {
 }
 
 project.tasks.register('checkoutBingoMod') {
-    group = 'build setup'
+    group = 'help'
     def dir = getLayout().getBuildDirectory().dir('bingo').get()
     def repo = 'git@github.com:RasmusAntons/bingo.git'
     def branch = 'enigmatics'
@@ -36,6 +36,7 @@ project.tasks.register('checkoutBingoMod') {
         }
         mkdir dir
         exec {
+            workingDir = getLayout().getBuildDirectory()
             commandLine 'git', 'clone', '-b', branch, '--single-branch', repo, dir
         }
         exec {
@@ -45,20 +46,23 @@ project.tasks.register('checkoutBingoMod') {
     }
 }
 
-project.tasks.register('buildBingoMod', Exec) {
-    group = 'build setup'
-    workingDir = getLayout().getBuildDirectory().dir('bingo').get()
+project.tasks.register('buildBingoMod') {
+    group = 'build'
     dependsOn checkoutBingoMod
 
-    if (Os.isFamily(Os.FAMILY_WINDOWS))
-        commandLine './gradlew.bat', 'fabric:build'
-    else
-        commandLine './gradlew', 'fabric:build'
-    def targetDir = getWorkingDir().toPath().resolve('fabric/build/libs')
-    copy {
-        from targetDir
-        into getLayout().getProjectDirectory().dir('libs')
-        include("*fabric.jar", "*fabric-sources.jar")
+    doLast {
+        exec {
+            workingDir = getLayout().getBuildDirectory().dir('bingo').get()
+            if (Os.isFamily(Os.FAMILY_WINDOWS))
+                commandLine './gradlew.bat', 'fabric:build'
+            else
+                commandLine './gradlew', 'fabric:build'
+        }
+        copy {
+            from getLayout().getBuildDirectory().dir('bingo/fabric/build/libs')
+            into getLayout().getProjectDirectory().dir('libs')
+            include("*fabric.jar", "*fabric-sources.jar")
+        }
     }
 }
 
@@ -74,7 +78,7 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation fileTree(dir: 'libs', include: '*.jar')
+    modImplementation fileTree(dir: 'libs', include: 'bingo-' + bingo_version + '.jar')
 
 }
 
