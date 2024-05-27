@@ -58,6 +58,10 @@ project.tasks.register('buildBingoMod') {
     }
 }
 
+configurations.configureEach {
+    resolutionStrategy.cacheChangingModulesFor(0, 'seconds')
+}
+
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
