@@ -1,3 +1,5 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
 plugins {
     id 'fabric-loom' version '1.6-SNAPSHOT'
     id 'maven-publish'
@@ -19,9 +21,40 @@ repositories {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
     }
-    maven {
-        name = "3po"
-        url = "https://mvn.3po.ch/maven"
+}
+
+project.tasks.register('checkoutBingoMod') {
+    group = 'help'
+    def dir = getLayout().getBuildDirectory().dir('bingo').get()
+    def url = 'https://github.com/' + bingo_repo + '/archive/' + bingo_commit + '.zip'
+
+    doLast {
+        if (!file(dir).exists()) { delete(dir) }
+        mkdir dir
+        def f = dir.file('bingo-' + bingo_commit + '.zip').asFile
+        new URI(url).toURL().withInputStream { i -> f.withOutputStream { it << i } }
+        copy { from zipTree(f) into dir }
+        f.delete()
+    }
+}
+
+project.tasks.register('buildBingoMod') {
+    group = 'build'
+    dependsOn checkoutBingoMod
+
+    doLast {
+        exec {
+            workingDir = getLayout().getBuildDirectory().dir('bingo/bingo-' + bingo_commit).get()
+            if (Os.isFamily(Os.FAMILY_WINDOWS))
+                commandLine './gradlew.bat', 'fabric:build'
+            else
+                commandLine './gradlew', 'fabric:build'
+        }
+        copy {
+            from getLayout().getBuildDirectory().dir('bingo/' + bingo_commit + '/fabric/build/libs')
+            into getLayout().getProjectDirectory().dir('libs')
+            include("*fabric.jar", "*fabric-sources.jar")
+        }
     }
 }
 
@@ -29,8 +62,8 @@ dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.layered() {
-	officialMojangMappings()
-	parchment("org.parchmentmc.data:parchment-${project.parchment_version}@zip")
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${project.parchment_version}@zip")
     }
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
@@ -38,6 +71,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     modImplementation "io.github.gaming32:bingo:1.1.8+enigmatics+fabric"
+    
+    modImplementation fileTree(dir: 'libs', include: 'bingo-' + bingo_version + '.jar')
 }
 
 processResources {
@@ -54,9 +89,9 @@ processResources {
 }
 
 fabricApi {
-	configureDataGeneration {
-		modId = "enigmaticsbingogoals"
-	}
+    configureDataGeneration {
+        modId = "enigmaticsbingogoals"
+    }
 }
 
 def targetJavaVersion = 21
