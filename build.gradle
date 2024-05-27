@@ -51,7 +51,7 @@ project.tasks.register('buildBingoMod') {
                 commandLine './gradlew', 'fabric:build'
         }
         copy {
-            from getLayout().getBuildDirectory().dir('bingo/' + bingo_commit + '/fabric/build/libs')
+            from getLayout().getBuildDirectory().dir('bingo/bingo-' + bingo_commit + '/fabric/build/libs').get()
             into getLayout().getProjectDirectory().dir('libs')
             include("*fabric.jar", "*fabric-sources.jar")
         }
