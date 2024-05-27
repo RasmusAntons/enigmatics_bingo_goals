@@ -152,7 +152,8 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         );
         addGoal(BingoGoal.builder(id("give_effect_to_other_team"))
                 .criterion("give", GiveEffectToOtherTeamTrigger.TriggerInstance.anyEffect())
-                .tags(EnigmaticsBingoTags.PVP, EnigmaticsBingoTags.GET_EFFECT)
+                .tags(EnigmaticsBingoTags.PVP, EnigmaticsBingoTags.GET_EFFECT, EnigmaticsBingoTags.STRAY,
+                        EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.POTIONS)
                 .icon(IndicatorIcon.infer(
                         CycleIcon.infer(BuiltInRegistries.MOB_EFFECT.holders().map(EffectIcon::of)),
                         Items.PLAYER_HEAD))

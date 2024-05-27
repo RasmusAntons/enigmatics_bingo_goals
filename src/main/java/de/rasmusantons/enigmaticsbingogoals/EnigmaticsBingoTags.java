@@ -83,6 +83,7 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation SLOWNESS = create("slowness");
     public static final ResourceLocation LEAPING = create("leaping");
     public static final ResourceLocation POISON = create("poison");
+    public static final ResourceLocation STRAY = create("stray");
     public static final ResourceLocation WITHER_SKULL = create("wither_skull");
     public static final ResourceLocation FORTRESS = create("fortress");
     public static final ResourceLocation CRIMSON_FOREST = create("crimson_forest");
