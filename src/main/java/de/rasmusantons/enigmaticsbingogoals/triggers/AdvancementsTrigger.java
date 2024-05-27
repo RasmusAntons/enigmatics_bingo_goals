@@ -50,9 +50,9 @@ public class AdvancementsTrigger extends SimpleProgressibleCriterionTrigger<Adva
 
         public boolean matches(ResourceLocation advancement, int number, ProgressListener<TriggerInstance> progressListener) {
             progressListener.update(this, number, targetNumber.min().orElse(1));
-            if(!targetNumber.matches(number))
+            if (!targetNumber.matches(number))
                 return false;
-            return this.advancement.isEmpty() || this.advancement.equals(advancement);
+            return this.advancement.isEmpty() || this.advancement.get().equals(advancement);
         }
     }
 }

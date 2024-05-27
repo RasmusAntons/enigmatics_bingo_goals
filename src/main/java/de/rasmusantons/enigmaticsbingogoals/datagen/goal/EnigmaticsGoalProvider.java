@@ -938,8 +938,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.END, EnigmaticsBingoTags.END_ENTRY)
         );
         // TODO: Reach an End City
-        // TODO: Get the "Great View From Up Here" advancement
-        addGoal(advancementGoal(id("get_great_view_from_up_here"), new ResourceLocation("end:levitate")));
+        addGoal(advancementGoal(id("get_great_view_from_up_here"),
+                new ResourceLocation("minecraft", "end/levitate"),
+                        Component.translatable("advancements.end.levitate.title"))
+                .tags(BingoTags.END, EnigmaticsBingoTags.END_PROGRESS)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SHULKER_SHELL), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+        );
         addGoal(eatItemGoal(id("eat_chorus_fruit"), Items.CHORUS_FRUIT)
                 .tags(BingoTags.END, EnigmaticsBingoTags.END_PROGRESS)
         );

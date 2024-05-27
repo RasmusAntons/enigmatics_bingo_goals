@@ -217,11 +217,11 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .progress("achieve");
     }
 
-    protected static BingoGoal.Builder advancementGoal(ResourceLocation id, ResourceLocation advancement) {
+    protected static BingoGoal.Builder advancementGoal(ResourceLocation id, ResourceLocation advancement, Component title) {
         return BingoGoal.builder(id)
                 .criterion("achieve", AdvancementsTrigger.TriggerInstance.advancement(advancement))
                 .tags(BingoTags.STAT, EnigmaticsBingoTags.ADVANCEMENTS)
-                .name(Component.translatable("enigmaticsbingogoals.goal.get_advancement", advancement.toString()));
+                .name(Component.translatable("enigmaticsbingogoals.goal.get_advancement", title));
     }
 
     protected static BingoGoal.Builder breakBlockGoal(ResourceLocation id, Block... oneOfThese) {
