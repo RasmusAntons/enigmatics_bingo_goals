@@ -26,23 +26,22 @@ repositories {
 project.tasks.register('checkoutBingoMod') {
     group = 'help'
     def dir = getLayout().getBuildDirectory().dir('bingo').get()
-    def repo = 'git@github.com:RasmusAntons/bingo.git'
-    def branch = 'enigmatics'
-    def commitId = 'd1f5854100b2c51b3b7dbc26248b4d46d99f93b2'
+    def url = 'https://github.com/' + bingo_repo + '/archive/' + bingo_commit + '.zip'
 
     doLast {
-        if (file(dir).exists()) {
+        if (!file(dir).exists()) {
             delete(dir)
         }
         mkdir dir
-        exec {
-            workingDir = getLayout().getBuildDirectory()
-            commandLine 'git', 'clone', '-b', branch, '--single-branch', repo, dir
+        def f = dir.file('bingo-' + bingo_commit + '.zip').asFile
+        new URI(url).toURL().withInputStream {
+            i -> f.withOutputStream { it << i }
         }
-        exec {
-            workingDir = dir
-            commandLine 'git', '-c', 'advice.detachedHead=false', 'checkout', commitId
+        copy {
+            from zipTree(f)
+            into dir
         }
+        f.delete()
     }
 }
 
@@ -52,14 +51,14 @@ project.tasks.register('buildBingoMod') {
 
     doLast {
         exec {
-            workingDir = getLayout().getBuildDirectory().dir('bingo').get()
+            workingDir = getLayout().getBuildDirectory().dir('bingo/bingo-' + bingo_commit).get()
             if (Os.isFamily(Os.FAMILY_WINDOWS))
                 commandLine './gradlew.bat', 'fabric:build'
             else
                 commandLine './gradlew', 'fabric:build'
         }
         copy {
-            from getLayout().getBuildDirectory().dir('bingo/fabric/build/libs')
+            from getLayout().getBuildDirectory().dir('bingo/' + bingo_commit + '/fabric/build/libs')
             into getLayout().getProjectDirectory().dir('libs')
             include("*fabric.jar", "*fabric-sources.jar")
         }
