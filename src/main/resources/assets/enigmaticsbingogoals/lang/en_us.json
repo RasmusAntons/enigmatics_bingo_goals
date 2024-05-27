@@ -13,7 +13,7 @@
   "enigmaticsbingogoals.goal.eat_something": "Eat %s",
   "enigmaticsbingogoals.goal.empty_hunger": "Empty hunger bar",
   "enigmaticsbingogoals.goal.full_unique_inventory": "Fill your inventory with unique items",
-  "enigmaticsbingogoals.goal.get_advancement": "Get %s",
+  "enigmaticsbingogoals.goal.get_advancement": "Get [%s]",
   "enigmaticsbingogoals.goal.get_effect": "Get %s",
   "enigmaticsbingogoals.goal.get_some_advancements": "Get %d advancements",
   "enigmaticsbingogoals.goal.get_some_effects": "Get %d status effects concurrently",
