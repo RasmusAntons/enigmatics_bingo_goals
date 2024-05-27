@@ -1,13 +1,5 @@
 pluginManagement {
     repositories {
-
-        maven {
-            url "https://maven.architectury.dev/"
-        }
-        maven {
-            url "https://maven.neoforged.net/releases/"
-        }
-
         maven {
             name = 'Fabric'
             url = 'https://maven.fabricmc.net/'
@@ -15,11 +7,3 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-
-include("common")
-include("fabric")
-include("neoforge")
-
-
-include("enigmatics_bingo_goals:bingo")
-include("enigmatics_bingo_goals")

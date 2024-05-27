@@ -1,3 +1,5 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
 plugins {
     id 'fabric-loom' version '1.6-SNAPSHOT'
     id 'maven-publish'
@@ -21,34 +23,43 @@ repositories {
     }
 }
 
-// Clone Enigmatics bingo fork
-// Fork of https://github.com/Gaming32/bingo
-task cloneRepository() {
-    def dir = 'libs/bingo'
+project.tasks.register('checkoutBingoMod') {
+    group = 'build setup'
+    def dir = getLayout().getBuildDirectory().dir('bingo').get()
+    def repo = 'git@github.com:RasmusAntons/bingo.git'
     def branch = 'enigmatics'
     def commitId = 'd1f5854100b2c51b3b7dbc26248b4d46d99f93b2'
-    def repo = 'git@github.com:RasmusAntons/bingo.git'
 
     doLast {
+        if (file(dir).exists()) {
+            delete(dir)
+        }
+        mkdir dir
         exec {
             commandLine 'git', 'clone', '-b', branch, '--single-branch', repo, dir
         }
-
         exec {
-
-            workingDir = file('libs/bingo')
-            println "Checkout $commitId."
-            commandLine 'git', 'checkout', commitId
+            workingDir = dir
+            commandLine 'git', '-c', 'advice.detachedHead=false', 'checkout', commitId
         }
     }
 }
 
-// Build the project from the cloned repository
-project.tasks.register('buildFromGitHubTask', Exec) {
+project.tasks.register('buildBingoMod', Exec) {
     group = 'build setup'
-    dependsOn cloneRepository
-    workingDir = file('libs/bingo')
-    commandLine './gradlew.bat', 'build'
+    workingDir = getLayout().getBuildDirectory().dir('bingo').get()
+    dependsOn checkoutBingoMod
+
+    if (Os.isFamily(Os.FAMILY_WINDOWS))
+        commandLine './gradlew.bat', 'fabric:build'
+    else
+        commandLine './gradlew', 'fabric:build'
+    def targetDir = getWorkingDir().toPath().resolve('fabric/build/libs')
+    copy {
+        from targetDir
+        into getLayout().getProjectDirectory().dir('libs')
+        include("*fabric.jar", "*fabric-sources.jar")
+    }
 }
 
 dependencies {
@@ -63,7 +74,9 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation files("libs/bingo/fabric/build/libs/bingo-1.1.8+enigmatics+fabric.jar")
+    modImplementation files("libs/bingo-${project.bingo_version}.jar") {
+        builtBy buildBingoMod
+    }
 }
 
 processResources {
