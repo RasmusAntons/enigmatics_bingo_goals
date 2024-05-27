@@ -20,7 +20,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffects;
@@ -911,9 +910,8 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainItemGoal(id("obtain_nether_star"), Items.NETHER_STAR)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
         );
-        // TODO: Obtain (6-10) Fire Charges
-        addGoal(obtainItemGoal(id("obtain_soul_lantern"), Items.SOUL_LANTERN)
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.SOUL_SAND, EnigmaticsBingoTags.ANCIENT_CITY)
+        addGoal(obtainSomeItemsGoal(id("obtain_some_fire_charges"), Items.FIRE_CHARGE, 4, 10)
+                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.BARTERING)
         );
         addGoal(obtainItemGoal(id("obtain_lodestone"), Items.LODESTONE)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHERITE)
@@ -935,7 +933,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         );
         // TODO: Fall in the void
         addGoal(obtainItemGoal(id("obtain_lingering_potion"), Items.LINGERING_POTION)
-                .tags(BingoTags.END, EnigmaticsBingoTags.END_ENTRY)
+                .tags(BingoTags.END, EnigmaticsBingoTags.POTIONS, EnigmaticsBingoTags.END_ENTRY)
         );
         // TODO: Reach an End City
         addGoal(advancementGoal(id("get_great_view_from_up_here"),

@@ -58,6 +58,7 @@
   "enigmaticsbingogoals.goal.reach_levels": "Reach level %d",
   "enigmaticsbingogoals.goal.reach_world_center": "Reach the world center",
   "enigmaticsbingogoals.goal.sprint_distance": "Sprint a distance of %d blocks",
+  "enigmaticsbingogoals.goal.get_some_items": "Obtain %d %s",
   "enigmaticsbingogoals.goal.stand_on_bedrock": "Stand on bedrock",
   "enigmaticsbingogoals.goal.summon_the_wither": "Summon the %s",
   "enigmaticsbingogoals.goal.wear_pumpkin_for_some_minutes": "Wear a carved pumpkin continuously for %d minutes"

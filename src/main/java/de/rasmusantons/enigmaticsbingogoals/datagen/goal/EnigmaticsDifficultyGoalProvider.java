@@ -48,6 +48,19 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
         super(difficulty, goalAdder, registries);
     }
 
+    protected static BingoGoal.Builder obtainSomeItemsGoal(ResourceLocation id, Item item, int min, int max) {
+        return BingoGoal.builder(id)
+                .sub("count", BingoSub.random(min, max))
+                .criterion("obtain", TotalCountInventoryChangeTrigger.builder().items(
+                        ItemPredicate.Builder.item().of(item).withCount(MinMaxBounds.Ints.atLeast(0)).build()).build(),
+                        subber -> subber.sub("conditions.items.0.count.min", "count"))
+                .tags(BingoTags.ITEM)
+                .name(Component.translatable("enigmaticsbingogoals.goal.get_some_items", 0, item.getDescription()),
+                        subber -> subber.sub("with.0", "count"))
+                .icon(ItemIcon.ofItem(item),
+                        subber -> subber.sub("item.count", "count"));
+    }
+
     protected static BingoGoal.Builder obtainItemGoal(ResourceLocation id, ItemLike item) {
         return obtainItemGoal(id, item, 1);
     }
