@@ -695,9 +695,14 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainItemGoal(id("obtain_sponge"), Items.SPONGE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OCEAN_MONUMENT)
         );
-        // TODO: Obtain 1 Armor Trim
-        // TODO: Obtain 2 Armor Trim
-        // TODO: Obtain 3 Armor Trim
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_trim_templates"), ItemTags.TRIM_TEMPLATES, 1, 3)
+                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH
+                        ,EnigmaticsBingoTags.TRAIL_RUINS)
+                .name(
+                        Component.translatable("enigmaticsbingogoals.goal.obtain_some_trim_templates", 0),
+                        subber -> subber.sub("with.0", "count")
+                )
+        );
         addGoal(obtainAllItemsFromTagGoal(id("obtain_all_horse_armors"), EnigmaticsBingoItemTags.HORSE_ARMORS)
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.END, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH,
                         EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.MINESHAFT, BingoTags.VILLAGE)
@@ -765,7 +770,10 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         );
         addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_different_colors_of_terracotta"), ItemTags.TERRACOTTA, 6, 11)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TERRACOTTA, EnigmaticsBingoTags.TRAIL_RUINS)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_colors_of_terracotta", 0))
+                .name(
+                        Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_colors_of_terracotta", 0),
+                        subber -> subber.sub("with.0", "count")
+                )
         );
         addGoal(obtainItemGoal(id("obtain_slime_block"), Items.SLIME_BLOCK)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SLIME)
