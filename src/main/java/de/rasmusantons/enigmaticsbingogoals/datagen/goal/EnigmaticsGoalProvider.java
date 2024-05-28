@@ -1,11 +1,11 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
-import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.FullUniqueInventoryCondition;
 import de.rasmusantons.enigmaticsbingogoals.conditions.KillEnemyPlayerCondition;
 import de.rasmusantons.enigmaticsbingogoals.conditions.PlayerAliveCondition;
-import de.rasmusantons.enigmaticsbingogoals.datagen.tag.EnigmaticsBingoDamageTypeTags;
+import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoDamageTypeTags;
+import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.*;
 import io.github.gaming32.bingo.conditions.HasAnyEffectCondition;
 import io.github.gaming32.bingo.data.BingoGoal;
@@ -13,6 +13,7 @@ import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
+import io.github.gaming32.bingo.triggers.ChickenHatchTrigger;
 import io.github.gaming32.bingo.triggers.DeathTrigger;
 import io.github.gaming32.bingo.triggers.RelativeStatsTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -30,7 +31,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
@@ -39,8 +39,6 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyC
 import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Consumer;
-
-import javax.tools.JavaFileManager.Location;
 
 public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
     public EnigmaticsGoalProvider(Consumer<BingoGoal.Holder> goalAdder, HolderLookup.Provider registries) {
@@ -313,7 +311,15 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.translatable("enigmaticsbingogoals.goal.stand_on_bedrock"))
                 .icon(ItemIcon.ofItem(Items.BEDROCK))
         );
-        // TODO: Hatch a Chicken from an Egg
+        addGoal(BingoGoal.builder(id("hatch_baby_chicken"))
+                .criterion("hatch", ChickenHatchTrigger.builder().build())
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.CHICKEN)
+                .name(Component.translatable("enigmaticsbingogoals.goal.hatch_baby_chicken",
+                        EntityType.CHICKEN.getDescription(),
+                        Items.EGG.getDescription()
+                ))
+                .icon(IndicatorIcon.infer(EntityType.CHICKEN, Items.EGG))
+        );
         addGoal(breedAnimalGoal(id("breed_chicken"), EntityType.CHICKEN)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.CHICKEN)
         );

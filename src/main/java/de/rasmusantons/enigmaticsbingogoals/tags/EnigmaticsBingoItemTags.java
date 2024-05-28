@@ -1,4 +1,4 @@
-package de.rasmusantons.enigmaticsbingogoals;
+package de.rasmusantons.enigmaticsbingogoals.tags;
 
 import io.github.gaming32.bingo.Bingo;
 import net.minecraft.core.registries.Registries;

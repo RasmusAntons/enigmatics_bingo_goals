@@ -1,6 +1,7 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen;
 
 import de.rasmusantons.enigmaticsbingogoals.datagen.goal.EnigmaticsBingoGoalProvider;
+import de.rasmusantons.enigmaticsbingogoals.datagen.tag.EnigmaticsBingoItemTagProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import de.rasmusantons.enigmaticsbingogoals.datagen.tag.EnigmaticsBingoDamageTypeTagProvider;

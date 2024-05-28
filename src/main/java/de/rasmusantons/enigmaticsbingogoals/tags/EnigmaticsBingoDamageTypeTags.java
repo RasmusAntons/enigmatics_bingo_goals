@@ -1,4 +1,4 @@
-package de.rasmusantons.enigmaticsbingogoals.datagen.tag;
+package de.rasmusantons.enigmaticsbingogoals.tags;
 
 import io.github.gaming32.bingo.util.ResourceLocations;
 import net.minecraft.core.registries.Registries;
