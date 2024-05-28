@@ -958,6 +958,10 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.PURPLE_WOOL.getDescription()))
         );
+        // TODO: Visit 15-25 unique Biomes
+        // TODO: Visit 10-20 unique Overworld Biomes
+        // TODO: Show an Egg to the World | Tooltip: Visit 10-20 biomes with an Egg in your off-hand
+        // TODO: Anger a Zombified Piglin
         addGoal(advancementGoal(id("get_we_need_to_go_deeper"),
                 new ResourceLocation("minecraft", "nether/enter_the_nether"),
                         Component.translatable("advancements.nether.enter_the_nether.title"))
@@ -1007,7 +1011,8 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(advancementGoal(id("get_hot_tourist_destinations"),
                 new ResourceLocation("minecraft", "nether/explore_nether"),
                         Component.translatable("advancements.nether.explore_nether.title"))
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_EXPLORE, EnigmaticsBingoTags.NETHER_LATE)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BIOMES, EnigmaticsBingoTags.NETHER_EXPLORE,
+                        EnigmaticsBingoTags.NETHER_LATE)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.NETHERITE_BOOTS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(id("get_return_to_sender"),

@@ -70,6 +70,8 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation CONCRETE = create("concrete");
     public static final ResourceLocation WOOL = create("wool");
     public static final ResourceLocation NETHER_ENTRY = create("nether_entry");
+    public static final ResourceLocation BIOMES = create("biome");
+    public static final ResourceLocation OVERWORLD_EXPLORE = create("overworld_explore");
     public static final ResourceLocation NETHER_EXPLORE = create("nether_explore");
     public static final ResourceLocation GHAST = create("ghast");
     public static final ResourceLocation STRIDER = create("strider");
