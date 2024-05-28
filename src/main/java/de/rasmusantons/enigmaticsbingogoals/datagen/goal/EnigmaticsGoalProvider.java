@@ -617,7 +617,13 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         subber -> subber.sub("with.0", "count")
                 )
         );
-        // TODO: Listen to a Jukebox
+        addGoal(advancementGoal(id("get_sound_of_music"),
+                new ResourceLocation("minecraft", "adventure/play_jukebox_in_meadows"),
+                Component.translatable("advancements.adventure.play_jukebox_in_meadows.title"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MUSIC_DISC, EnigmaticsBingoTags.ANCIENT_CITY,
+                        EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.TRAIL_RUINS)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+        );
         // TODO: Equip Wolf Armor
         // TODO: Give an armor stand 4 pieces of armor
         // TODO: Wear a full set of Leather Armor
