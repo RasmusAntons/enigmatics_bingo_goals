@@ -84,7 +84,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
         return builder;
     }
 
-    protected BingoGoal.Builder obtainAllItemsFromTag(ResourceLocation id, TagKey<Item> tag) {
+    protected BingoGoal.Builder obtainAllItemsFromTagGoal(ResourceLocation id, TagKey<Item> tag) {
         return BingoGoal.builder(id)
                 .criterion("obtain", HasSomeItemsFromTagTrigger.builder().tag(tag).requiresAll().build())
                 .progress("obtain")
@@ -92,12 +92,17 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(new ItemTagCycleIcon(tag));
     }
 
-    protected BingoGoal.Builder obtainItemFromTag(ResourceLocation id, TagKey<Item> tag, int count) {
+    protected BingoGoal.Builder obtainSomeItemsFromTagGoal(ResourceLocation id, TagKey<Item> tag, int min, int max) {
         return BingoGoal.builder(id)
-                .criterion("obtain", HasSomeItemsFromTagTrigger.builder().tag(tag).requiredCount(count).build())
+                .sub("count", BingoSub.random(min, max))
+                .criterion("obtain", HasSomeItemsFromTagTrigger.builder().tag(tag).requiredCount(1).build(),
+                        subber -> subber.sub("conditions.required_count", "count"))
                 .progress("obtain")
                 .tags(BingoTags.ITEM)
-                .icon(new ItemTagCycleIcon(tag, count));
+                .icon(
+                        new ItemTagCycleIcon(tag, 0),
+                        subber -> subber.sub("count", "count")
+                );
     }
 
     protected BingoGoal.Builder eatItemGoal(ResourceLocation id, Item item) {

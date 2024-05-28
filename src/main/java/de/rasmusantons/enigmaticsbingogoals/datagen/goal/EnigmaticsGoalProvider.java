@@ -278,11 +278,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .icon(ItemIcon.ofItem(Items.CHEST))
         );
         // TODO: Deal 500 hearts of damage
-        addGoal(obtainAllItemsFromTag(id("obtain_all_wooden_tools"), EnigmaticsBingoItemTags.WOODEN_TOOLS)
+        addGoal(obtainAllItemsFromTagGoal(id("obtain_all_wooden_tools"), EnigmaticsBingoItemTags.WOODEN_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET, EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_wooden_tools"))
         );
-        addGoal(obtainAllItemsFromTag(id("obtain_all_stone_tools"), EnigmaticsBingoItemTags.STONE_TOOLS)
+        addGoal(obtainAllItemsFromTagGoal(id("obtain_all_stone_tools"), EnigmaticsBingoItemTags.STONE_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET, EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_stone_tools"))
         );
@@ -353,7 +353,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(breakBlockGoal(id("break_diamond_ore"), Blocks.DIAMOND_ORE, Blocks.DEEPSLATE_DIAMOND_ORE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING)
         );
-        addGoal(obtainAllItemsFromTag(id("obtain_all_raw_ore_blocks"), EnigmaticsBingoItemTags.RAW_ORE_BLOCKS)
+        addGoal(obtainAllItemsFromTagGoal(id("obtain_all_raw_ore_blocks"), EnigmaticsBingoItemTags.RAW_ORE_BLOCKS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_all_raw_ore_blocks"))
         );
@@ -531,15 +531,18 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO, BingoTags.VILLAGE)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.EMERALD), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
-        addGoal(obtainItemFromTag(id("obtain_chainmail_armor"), EnigmaticsBingoItemTags.CHAINMAIL, 1)
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_chainmail_armor"), EnigmaticsBingoItemTags.CHAINMAIL, 1, 1)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.RAID,
                         EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.WOODLAND_MANSION)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_chainmail"))
         );
-        addGoal(obtainItemFromTag(id("obtain_4_different_seeds"), EnigmaticsBingoItemTags.SEEDS, 4)
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_4_different_seeds"), EnigmaticsBingoItemTags.SEEDS, 4, 4)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.SEEDS,
                         EnigmaticsBingoTags.WOODLAND_MANSION)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_4_different_seeds"))
+                .name(
+                        Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_seeds", 0),
+                        subber -> subber.sub("with.0", "count")
+                )
         );
         addGoal(eatItemGoal(id("eat_beetroot_soup"), Items.BEETROOT_SOUP)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.STEW)
@@ -566,7 +569,9 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Wear a full set of Leather Armor
         // TODO: Wear a full set of Iron Armor
         // TODO: Wear a full set of Gold Armor
+
         // TODO: Obtain 5 unique saplings
+
         // TODO: Obtain (5-8) unique flowers
         // TODO: Obtain (5-10) bonemeal-able blocks
         addGoal(eatItemGoal(id("eat_glow_berries"), Items.GLOW_BERRIES)
@@ -656,7 +661,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Obtain 1 Armor Trim
         // TODO: Obtain 2 Armor Trim
         // TODO: Obtain 3 Armor Trim
-        addGoal(obtainAllItemsFromTag(id("obtain_all_horse_armors"), EnigmaticsBingoItemTags.HORSE_ARMORS)
+        addGoal(obtainAllItemsFromTagGoal(id("obtain_all_horse_armors"), EnigmaticsBingoItemTags.HORSE_ARMORS)
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.END, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH,
                         EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.MINESHAFT, BingoTags.VILLAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_all_horse_armors"))
@@ -676,15 +681,15 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainItemGoal(id("obtain_mossy_cobblestone_wall"), Items.MOSSY_COBBLESTONE_WALL)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL)
         );
-        addGoal(obtainAllItemsFromTag(id("obtain_all_iron_tools"), EnigmaticsBingoItemTags.IRON_TOOLS)
+        addGoal(obtainAllItemsFromTagGoal(id("obtain_all_iron_tools"), EnigmaticsBingoItemTags.IRON_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_iron_tools"))
         );
-        addGoal(obtainAllItemsFromTag(id("obtain_all_golden_tools"), EnigmaticsBingoItemTags.GOLDEN_TOOLS)
+        addGoal(obtainAllItemsFromTagGoal(id("obtain_all_golden_tools"), EnigmaticsBingoItemTags.GOLDEN_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_golden_tools"))
         );
-        addGoal(obtainAllItemsFromTag(id("obtain_all_diamond_tools"), EnigmaticsBingoItemTags.DIAMOND_TOOLS)
+        addGoal(obtainAllItemsFromTagGoal(id("obtain_all_diamond_tools"), EnigmaticsBingoItemTags.DIAMOND_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_diamond_tools"))
         );
