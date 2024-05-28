@@ -27,5 +27,6 @@
     "fabric": ">=0.97.7",
     "minecraft": ">=1.20.5 <1.20.7",
     "bingo": "1.1.8"
-  }
+  },
+  "accessWidener": "enigmaticsbingogoals.accesswidener"
 }

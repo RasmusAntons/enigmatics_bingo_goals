@@ -89,6 +89,10 @@ processResources {
     }
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/enigmaticsbingogoals.accesswidener")
+}
+
 fabricApi {
     configureDataGeneration {
         modId = "enigmaticsbingogoals"
