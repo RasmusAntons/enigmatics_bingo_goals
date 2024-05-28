@@ -893,6 +893,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.PURPLE_CONCRETE.getDescription()))
         );
+        addGoal(obtainItemGoal(id("obtain_stack_of_cyan_wool"), Items.CYAN_WOOL, 64)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL, EnigmaticsBingoTags.IGLOO)
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                        Items.CYAN_WOOL.getDescription()))
+        );
         addGoal(obtainItemGoal(id("obtain_stack_of_green_wool"), Items.GREEN_WOOL, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL, EnigmaticsBingoTags.IGLOO)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
