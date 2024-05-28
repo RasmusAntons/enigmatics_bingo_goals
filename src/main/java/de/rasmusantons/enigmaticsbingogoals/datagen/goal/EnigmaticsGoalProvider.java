@@ -562,6 +562,14 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainItemGoal(id("obtain_tadpole_bucket"), Items.TADPOLE_BUCKET)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB, EnigmaticsBingoTags.FROG)
         );
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_music_discs"), EnigmaticsBingoItemTags.MUSIC_DISCS, 2, 5)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MUSIC_DISC, EnigmaticsBingoTags.ANCIENT_CITY,
+                        EnigmaticsBingoTags.TRAIL_RUINS)
+                .name(
+                        Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_music_discs", 0),
+                        subber -> subber.sub("with.0", "count")
+                )
+        );
         // TODO: Obtain 4 unique Music Discs
         // TODO: Listen to a Jukebox
         // TODO: Equip Wolf Armor
@@ -569,9 +577,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Wear a full set of Leather Armor
         // TODO: Wear a full set of Iron Armor
         // TODO: Wear a full set of Gold Armor
-
         // TODO: Obtain 5 unique saplings
-
         // TODO: Obtain (5-8) unique flowers
         // TODO: Obtain (5-10) bonemeal-able blocks
         addGoal(eatItemGoal(id("eat_glow_berries"), Items.GLOW_BERRIES)
