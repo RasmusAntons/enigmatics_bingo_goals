@@ -31,5 +31,9 @@ public class EnigmaticsBingoDamageTypeTagProvider extends FabricTagProvider<Dama
         getOrCreateTagBuilder(EnigmaticsBingoDamageTypeTags.FIREWORKS).add(
                 DamageTypes.FIREWORKS
         );
+
+        getOrCreateTagBuilder(EnigmaticsBingoDamageTypeTags.INTENTIONAL_GAME_DESIGN).add(
+                DamageTypes.BAD_RESPAWN_POINT
+        );
     }
 }
