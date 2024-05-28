@@ -30,13 +30,17 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
 import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Consumer;
+
+import javax.tools.JavaFileManager.Location;
 
 public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
     public EnigmaticsGoalProvider(Consumer<BingoGoal.Holder> goalAdder, HolderLookup.Provider registries) {
@@ -263,7 +267,16 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MILK, EnigmaticsBingoTags.CHICKEN)
         );
         addGoal(reachLevelsGoal(id("reach_levels"), 10, 35));
-        // TODO: Fill up a Composter
+        addGoal(BingoGoal.builder(id("fill_a_composter"))
+                .criterion("use", CriteriaTriggers.DEFAULT_BLOCK_USE.createCriterion(
+                    new DefaultBlockInteractionTrigger.TriggerInstance(
+                        Optional.empty(),
+                        Optional.of(ContextAwarePredicate.create(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(Blocks.COMPOSTER))).build())))
+                ))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.USE_WORKSTATION)
+                .name(Component.translatable("enigmaticsbingogoals.goal.fill_composter"))
+                .icon(ItemIcon.ofItem(Items.COMPOSTER))
+        );
         addGoal(BingoGoal.builder(id("full_unique_inventory"))
                 .criterion("fill", CriteriaTriggers.INVENTORY_CHANGED.createCriterion(
                         new InventoryChangeTrigger.TriggerInstance(
