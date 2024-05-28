@@ -667,7 +667,8 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BOW)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.TARGET), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
-        // TODO: Ride a Pig
+        // TODO: This boat does not have legs TOOLTIP: Use Carrot on a Stick to Ride a Pig into Lava
+        // TODO: Use Carrot on a Stick to Ride a Pig
         // TODO: Ride a Horse
         addGoal(advancementGoal(id("get_is_it_a_bird"),
                 new ResourceLocation("minecraft", "adventure/spyglass_at_parrot"),
