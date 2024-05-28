@@ -49,6 +49,7 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation UNIQUE_FOOD = create("unique_food");
     public static final ResourceLocation SILK_TOUCH = create("silk_touch");
     public static final ResourceLocation BOW = create("bow");
+    public static final ResourceLocation PIG = create("pig");
     public static final ResourceLocation SADDLE = create("saddle");
     public static final ResourceLocation AMETHYST = create("amethyst");
     public static final ResourceLocation BOOK = create("book");
