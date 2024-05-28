@@ -624,7 +624,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Wear a full set of Iron Armor
         // TODO: Wear a full set of Gold Armor
         addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_saplings"), EnigmaticsBingoItemTags.SAPLINGS, 5, 7)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.PLANT_BATCH)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.PLANT_BATCH)
                 .name(
                         Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_saplings", 0),
                         subber -> subber.sub("with.0", "count")
@@ -745,7 +745,8 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.TRAIL_RUINS)
         );
         addGoal(obtainItemGoal(id("obtain_mossy_stone_brick_wall"), Items.MOSSY_STONE_BRICK_WALL)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.IGLOO)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.IGLOO
+                        ,EnigmaticsBingoTags.LUSH_CAVE ,EnigmaticsBingoTags.JUNGLE)
         );
         addGoal(eatItemGoal(id("eat_suspicious_stew"), Items.SUSPICIOUS_STEW)
                 .tags(BingoTags.END, EnigmaticsBingoTags.SUSPICIOUS_STEW, EnigmaticsBingoTags.SATURATION,
@@ -753,7 +754,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.POISON)
         );
         addGoal(obtainItemGoal(id("obtain_mossy_cobblestone_wall"), Items.MOSSY_COBBLESTONE_WALL)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL,  EnigmaticsBingoTags.LUSH_CAVE, EnigmaticsBingoTags.JUNGLE)
         );
         addGoal(obtainAllItemsFromTagGoal(id("obtain_all_iron_tools"), EnigmaticsBingoItemTags.IRON_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
@@ -1095,6 +1096,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         );
         addGoal(obtainItemGoal(id("obtain_netherite_ingot"), Items.NETHERITE_INGOT)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHERITE)
+        );
+        addGoal(advancementGoal(id("get_eye_spy"),
+                new ResourceLocation("minecraft", "story/follow_ender_eye"),
+                Component.translatable("advancements.story.follow_ender_eye.title"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.END_ENTRY, EnigmaticsBingoTags.STRONGHOLD)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ENDER_EYE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(id("get_the_end"),
                 new ResourceLocation("minecraft", "end/root"),
