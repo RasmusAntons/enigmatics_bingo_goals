@@ -3,6 +3,8 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.NumberOfEffectsCondition;
 import de.rasmusantons.enigmaticsbingogoals.triggers.AdvancementsTrigger;
+import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTriggers;
+import de.rasmusantons.enigmaticsbingogoals.triggers.VehicleInventoryChangeTrigger;
 import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
@@ -28,6 +30,7 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.inventory.SlotRanges;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -35,8 +38,12 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -275,6 +282,33 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .requirements(AdvancementRequirements.Strategy.OR)
                 .name(Component.translatable("enigmaticsbingogoals.goal.break_block",
                         Component.translatable(oneOfThese[0].getDescriptionId())));
+    }
+
+    protected static BingoGoal.Builder rideAbstractHorseWithSaddleGoal(ResourceLocation id, EntityType<?> entityType) {
+        var playerPredicate = Optional.of(ContextAwarePredicate.create(
+                LootItemEntityPropertyCondition.hasProperties(
+                        LootContext.EntityTarget.THIS,
+                        EntityPredicate.Builder.entity().of(EntityType.PLAYER).vehicle(
+                                EntityPredicate.Builder.entity().of(EntityType.HORSE).slots(
+                                        new SlotsPredicate(
+                                                Map.of(
+                                                        Objects.requireNonNull(SlotRanges.nameToIds("horse.saddle")),
+                                                        ItemPredicate.Builder.item().of(Items.SADDLE).build()
+                                                )
+                                        )
+                                )
+                        )
+                ).build()
+        ));
+        return BingoGoal.builder(id)
+                .criterion("change", EnigmaticsBingoGoalsTriggers.VEHICLE_INVENTORY_CHANGE.get().createCriterion(
+                        new VehicleInventoryChangeTrigger.TriggerInstance(playerPredicate)
+                ))
+                .criterion("mount", CriteriaTriggers.START_RIDING_TRIGGER.createCriterion(
+                        new StartRidingTrigger.TriggerInstance(playerPredicate)
+                ))
+                .requirements(AdvancementRequirements.Strategy.OR)
+                .icon(IndicatorIcon.infer(entityType, Items.SADDLE));
     }
 
     protected static BingoGoal.Builder breedAnimalGoal(ResourceLocation id, EntityType<?> entityType) {

@@ -669,7 +669,10 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         );
         // TODO: This boat does not have legs TOOLTIP: Use Carrot on a Stick to Ride a Pig into Lava
         // TODO: Use Carrot on a Stick to Ride a Pig
-        // TODO: Ride a Horse
+        addGoal(rideAbstractHorseWithSaddleGoal(id("ride_horse"), EntityType.HORSE)
+                .name(Component.translatable("enigmaticsbingogoals.goal.ride_horse",
+                        EntityType.HORSE.getDescription(), Items.SADDLE.getDescription()))
+        );
         addGoal(advancementGoal(id("get_is_it_a_bird"),
                 new ResourceLocation("minecraft", "adventure/spyglass_at_parrot"),
                         Component.translatable("advancements.adventure.spyglass_at_parrot.title"))
