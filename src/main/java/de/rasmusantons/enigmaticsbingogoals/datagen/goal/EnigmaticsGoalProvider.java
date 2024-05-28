@@ -763,7 +763,10 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainItemGoal(id("obtain_cyan_glazed_terracotta"), Items.CYAN_GLAZED_TERRACOTTA)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
         );
-        // TODO: Obtain 9 different colors of Terracotta
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_different_colors_of_terracotta"), ItemTags.TERRACOTTA, 6, 11)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TERRACOTTA, EnigmaticsBingoTags.TRAIL_RUINS)
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_colors_of_terracotta", 0))
+        );
         addGoal(obtainItemGoal(id("obtain_slime_block"), Items.SLIME_BLOCK)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SLIME)
         );
@@ -777,7 +780,10 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainItemGoal(id("obtain_honey_bottle"), Items.HONEY_BOTTLE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE)
         );
-        // TODO: Obtain a colored candle
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_colored_candle"), ItemTags.CANDLES, 1, 1)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE, EnigmaticsBingoTags.ANCIENT_CITY)
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_colored_candle"))
+        );
         addGoal(obtainItemGoal(id("obtain_scaffolding"), Items.SCAFFOLDING)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE)
         );
