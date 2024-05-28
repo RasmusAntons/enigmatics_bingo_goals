@@ -285,4 +285,13 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
             .name(Component.translatable("enigmaticsbingogoals.goal.breed_animal", entityType.getDescription()))
             .icon(IndicatorIcon.infer(entityType, EffectIcon.of(MobEffects.HEALTH_BOOST)));
     }
+
+    protected static BingoGoal.Builder tameAnimalGoal(ResourceLocation id, EntityType<?> entityType) {
+        return BingoGoal.builder(id)
+            .criterion("tame", TameAnimalTrigger.TriggerInstance.tamedAnimal(
+                    EntityPredicate.Builder.entity().of(entityType)))
+            .tags(EnigmaticsBingoTags.TAME_ANIMAL)
+            .name(Component.translatable("enigmaticsbingogoals.goal.tame_animal", entityType.getDescription()))
+            .icon(IndicatorIcon.infer(entityType, ItemIcon.ofItem(Items.BONE)));
+    }
 }

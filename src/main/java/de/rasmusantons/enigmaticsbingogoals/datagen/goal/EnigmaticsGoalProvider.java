@@ -427,10 +427,18 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainItemGoal(id("obtain_powder_snow_bucket"), Items.POWDER_SNOW_BUCKET)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
         );
-        // TODO: Tame a Cat
-        // TODO: Tame a Wolf
-        // TODO: Tame a Parrot
-        // TODO: Gain an Ocelot's trust
+        addGoal(tameAnimalGoal(id("tame_cat"), EntityType.CAT)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.WITCH_HUT, BingoTags.VILLAGE)
+        );
+        addGoal(tameAnimalGoal(id("tame_wolf"), EntityType.WOLF)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL)
+        );
+        addGoal(tameAnimalGoal(id("tame_parrot"), EntityType.PARROT)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE)
+        );
+        addGoal(tameAnimalGoal(id("tame_ocelot"), EntityType.OCELOT)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE)
+        );
         // TODO: Hatch a White Frog
         // TODO: Hatch an Orange Frog
         // TODO: Hatch a Green Frog
