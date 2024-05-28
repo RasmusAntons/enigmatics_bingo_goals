@@ -5,6 +5,7 @@ import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.FullUniqueInventoryCondition;
 import de.rasmusantons.enigmaticsbingogoals.conditions.KillEnemyPlayerCondition;
 import de.rasmusantons.enigmaticsbingogoals.conditions.PlayerAliveCondition;
+import de.rasmusantons.enigmaticsbingogoals.datagen.tag.EnigmaticsBingoDamageTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.*;
 import io.github.gaming32.bingo.conditions.HasAnyEffectCondition;
 import io.github.gaming32.bingo.data.BingoGoal;
@@ -345,11 +346,29 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_stray",
                         EntityType.STRAY.getDescription()))
         );
-        // TODO: Die to an Anvil
-        // TODO: Die to a Stalactite
+        addGoal(dieToDamageTypeGoal(id("die_to_anvil"), EnigmaticsBingoDamageTypeTags.ANVIL)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_anvil"))
+                .icon(IndicatorIcon.infer(Items.ANVIL, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
+        );
+        addGoal(dieToDamageTypeGoal(id("die_to_stalactite"), EnigmaticsBingoDamageTypeTags.STALACTITE)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO, EnigmaticsBingoTags.CAVING)
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_stalactite"))
+                .icon(IndicatorIcon.infer(Items.FIREWORK_ROCKET, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
+        );
         // TODO: Die to a TNT Minecart
-        // TODO: Die to a Firework
-        // TODO: Die to Magic
+        addGoal(dieToDamageTypeGoal(id("die_to_fireworks"), EnigmaticsBingoDamageTypeTags.FIREWORKS)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_fireworks"))
+                .icon(IndicatorIcon.infer(Items.FIREWORK_ROCKET, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
+        );
+        addGoal(dieToDamageTypeGoal(id("die_to_magic"), EnigmaticsBingoDamageTypeTags.MAGIC)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO, EnigmaticsBingoTags.WITCH_HUT,
+                        EnigmaticsBingoTags.OCEAN_MONUMENT, EnigmaticsBingoTags.INSTANT_DAMAGE,
+                        EnigmaticsBingoTags.RAID, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.WOODLAND_MANSION)
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_magic"))
+                .icon(IndicatorIcon.infer(EffectIcon.of(MobEffects.HARM), BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
+        );
         // TODO: Die to falling off vines
         addGoal(breakBlockGoal(id("break_diamond_ore"), Blocks.DIAMOND_ORE, Blocks.DEEPSLATE_DIAMOND_ORE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING)
@@ -772,7 +791,6 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ENCHANTED_BOOK), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
-        // TODO: Die to Anvil
         addGoal(obtainItemGoal(id("obtain_stack_of_red_concrete"), Items.RED_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
@@ -1042,7 +1060,11 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(obtainItemGoal(id("obtain_dragon_egg"), Items.DRAGON_EGG)
                 .tags(BingoTags.END, EnigmaticsBingoTags.END_ENTRY)
         );
-        // TODO: Fall in the void
+        addGoal(dieToDamageTypeGoal(id("fall_out_of_world"), DamageTypeTags.ALWAYS_MOST_SIGNIFICANT_FALL)
+                .tags(BingoTags.END, EnigmaticsBingoTags.END_ENTRY, EnigmaticsBingoTags.DIE_TO)
+                .name(Component.translatable("enigmaticsbingogoals.goal.fall_out_of_world"))
+                .icon(IndicatorIcon.infer(Blocks.END_PORTAL, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
+        );
         addGoal(obtainItemGoal(id("obtain_lingering_potion"), Items.LINGERING_POTION)
                 .tags(BingoTags.END, EnigmaticsBingoTags.POTIONS, EnigmaticsBingoTags.END_ENTRY)
         );

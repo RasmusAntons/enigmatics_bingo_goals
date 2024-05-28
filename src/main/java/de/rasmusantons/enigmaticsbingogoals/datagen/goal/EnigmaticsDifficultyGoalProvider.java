@@ -24,6 +24,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -102,6 +103,18 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(
                         new ItemTagCycleIcon(tag, 0),
                         subber -> subber.sub("count", "count")
+                );
+    }
+
+    protected BingoGoal.Builder dieToDamageTypeGoal(ResourceLocation id, TagKey<DamageType> damageType) {
+        return BingoGoal.builder(id)
+                .criterion("damage", BingoTriggers.DEATH.get().createCriterion(
+                                DeathTrigger.TriggerInstance.death(
+                                        DamageSourcePredicate.Builder.damageType()
+                                                .tag(TagPredicate.is(damageType))
+                                                .build()
+                                )
+                        )
                 );
     }
 
