@@ -708,7 +708,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.MINESHAFT, BingoTags.VILLAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_all_horse_armors"))
         );
-        // TODO: Make a pot out of 4 Pottery Sherds
+        addGoal(advancementGoal(id("get_careful_restoration"),
+                new ResourceLocation("minecraft", "adventure/craft_decorated_pot_using_only_sherds"),
+                        Component.translatable("advancements.adventure.craft_decorated_pot_using_only_sherds.title"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.DECORATED_POT), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+        );
         addGoal(obtainItemGoal(id("obtain_mud_brick_wall"), Items.MUD_BRICK_WALL)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.TRAIL_RUINS)
         );
