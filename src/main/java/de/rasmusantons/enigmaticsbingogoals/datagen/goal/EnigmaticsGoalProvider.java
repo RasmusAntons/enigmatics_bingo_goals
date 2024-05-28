@@ -672,6 +672,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(rideAbstractHorseWithSaddleGoal(id("ride_horse"), EntityType.HORSE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.ride_horse",
                         EntityType.HORSE.getDescription(), Items.SADDLE.getDescription()))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SADDLE)
         );
         addGoal(advancementGoal(id("get_is_it_a_bird"),
                 new ResourceLocation("minecraft", "adventure/spyglass_at_parrot"),
