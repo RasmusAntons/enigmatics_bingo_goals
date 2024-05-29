@@ -69,7 +69,7 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.RAW_IRON_BLOCK
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.CHAINMAIL).add(
+        getOrCreateTagBuilder(EnigmaticsBingoItemTags.CHAINMAIL_ARMOR).add(
                 Items.CHAINMAIL_HELMET,
                 Items.CHAINMAIL_CHESTPLATE,
                 Items.CHAINMAIL_LEGGINGS,
