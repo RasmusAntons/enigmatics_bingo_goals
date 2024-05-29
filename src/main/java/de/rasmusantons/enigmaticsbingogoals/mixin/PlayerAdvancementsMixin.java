@@ -1,7 +1,6 @@
 package de.rasmusantons.enigmaticsbingogoals.mixin;
 
 import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTriggers;
-import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.server.PlayerAdvancements;
@@ -33,5 +32,23 @@ public class PlayerAdvancementsMixin {
             ).count();
             EnigmaticsBingoGoalsTriggers.ADVANCEMENTS.get().trigger(player, advancement.id(), number);
         }
+    }
+
+
+    @Inject(method = "award", at = @At(value = "TAIL"))
+    private void advancementProgress(AdvancementHolder advancement, String criterionKey, CallbackInfoReturnable<Boolean> cir) {
+
+        AdvancementProgress advancementProgress = this.progress.get(advancement);
+        int countCompletedRequirements = 0;
+
+        if (advancementProgress != null) {
+            countCompletedRequirements = advancementProgress.countCompletedRequirements();
+        }
+
+        EnigmaticsBingoGoalsTriggers.CHECK_ADVANCEMENT_PROGRESS.get().trigger(
+                player,
+                advancement.id(),
+                countCompletedRequirements
+        );
     }
 }

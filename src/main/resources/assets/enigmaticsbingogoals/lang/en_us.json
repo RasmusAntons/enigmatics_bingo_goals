@@ -1,4 +1,5 @@
 {
+  "bingo_difficulty.bingo.enigmatics": "Enigmatics",
   "enigmaticsbingogoals.goal.break_block": "Break %s",
   "enigmaticsbingogoals.goal.breed_animal": "Breed %s",
   "enigmaticsbingogoals.goal.clear_effect_with_milk": "Remove a status effect with a Milk Bucket",
@@ -15,6 +16,8 @@
   "enigmaticsbingogoals.goal.die_to_stalactite": "Die to Stalactite",
   "enigmaticsbingogoals.goal.die_to_stray": "Die to a %s",
   "enigmaticsbingogoals.goal.directly_killed.tooltip": "The %s needs to get the last hit.",
+  "enigmaticsbingogoals.goal.eat_some_unique_foods": "Eat %d unique food items",
+  "enigmaticsbingogoals.goal.eat_some_unique_foods.tooltip": "%s does not count because it is a block.",
   "enigmaticsbingogoals.goal.eat_something": "Eat %s",
   "enigmaticsbingogoals.goal.empty_hunger": "Empty hunger bar",
   "enigmaticsbingogoals.goal.fall_out_of_world": "Fall out of the World",
@@ -83,6 +86,5 @@
   "tag.item.enigmaticsbingogoals.saplings": "Saplings",
   "tag.item.enigmaticsbingogoals.seeds": "Seeds",
   "tag.item.enigmaticsbingogoals.stone_tools": "Stone Tools",
-  "tag.item.enigmaticsbingogoals.wooden_tools": "Wooden Tools",
-  "bingo_difficulty.bingo.enigmatics": "Enigmatics"
+  "tag.item.enigmaticsbingogoals.wooden_tools": "Wooden Tools"
 }

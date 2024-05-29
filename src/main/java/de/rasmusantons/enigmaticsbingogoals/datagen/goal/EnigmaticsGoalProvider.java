@@ -12,6 +12,7 @@ import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
+import io.github.gaming32.bingo.data.subs.BingoSub;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
 import io.github.gaming32.bingo.triggers.ChickenHatchTrigger;
 import io.github.gaming32.bingo.triggers.DeathTrigger;
@@ -20,6 +21,7 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
@@ -36,6 +38,7 @@ import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemConditi
 import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -290,7 +293,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.translatable("enigmaticsbingogoals.goal.full_unique_inventory"))
                 .icon(ItemIcon.ofItem(Items.CHEST))
         );
-        // TODO: Deal 500 hearts of damage
+        // TODO: Deal 500 hearts of damage | maybe make a custom stat for damage only to enemies
         addGoal(obtainAllItemsFromTagGoal(id("obtain_all_wooden_tools"), EnigmaticsBingoItemTags.WOODEN_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET, EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools",
@@ -662,12 +665,25 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Use a Masoned Banner Pattern
         // TODO: Use a Bordure Banner Pattern
         // TODO: Use a Skull Banner Pattern
-        // TODO: Eat 7 unique foods
-        // TODO: Eat 10 unique foods
-        // TODO: Eat 15 unique foods
-        // TODO: Eat 20 unique foods
-        // TODO: Eat 25 unique foods
-        addGoal(advancementGoal(id("get_advancement_sniper_duel"),
+        addGoal(BingoGoal.builder(id("eat_some_unique_foods"))
+                .sub("count", BingoSub.random(7, 25))
+                .criterion("eat", AdvancementProgressTrigger.TriggerInstance.reach(
+                                new ResourceLocation("minecraft", "husbandry/balanced_diet"),
+                                MinMaxBounds.Ints.atLeast(0)
+                        ),
+                        subber -> subber.sub("conditions.count.min", "count"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods", 0),
+                        subber -> subber.sub("with.0", "count")
+                )
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods.tooltip", Items.CAKE.getDescription()))
+                .progress("eat")
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.UNIQUE_FOOD)
+                .icon(
+                        CycleIcon.infer(Arrays.stream(VanillaHusbandryAdvancements.EDIBLE_ITEMS)),
+                        subber -> subber.sub("icons.*.item.count", "count")
+                )
+        );
+        addGoal(advancementGoal(id("get_sniper_duel"),
                 new ResourceLocation("minecraft", "adventure/sniper_duel"),
                         Component.translatable("advancements.adventure.sniper_duel.title"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BOW)
@@ -679,6 +695,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BOW)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.TARGET), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
+        // TODO: Travel 300 meters on pig | Use minecraft:pig_one_cm to see statistics
         // TODO: This boat does not have legs TOOLTIP: Use Carrot on a Stick to Ride a Pig into Lava
         // TODO: Use Carrot on a Stick to Ride a Pig
         addGoal(rideAbstractHorseWithSaddleGoal(id("ride_horse"), EntityType.HORSE)
@@ -715,7 +732,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.RAID)
                 .icon(new IndicatorIcon(new ItemIcon(BingoGoalGeneratorUtils.getOminousBanner(registries)), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
-        addGoal(advancementGoal(id("get_advancement_postmortal"),
+        addGoal(advancementGoal(id("get_postmortal"),
                 new ResourceLocation("minecraft", "adventure/totem_of_undying"),
                         Component.translatable("advancements.adventure.totem_of_undying.title"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.RAID)

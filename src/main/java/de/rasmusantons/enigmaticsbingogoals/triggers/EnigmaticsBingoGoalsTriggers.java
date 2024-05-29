@@ -21,7 +21,7 @@ public class EnigmaticsBingoGoalsTriggers {
     public static final RegistryValue<HitOtherTeamWithProjectileTrigger> HIT_OTHER_TEAM_WITH_PROJECTILE = register("hit_other_team_with_projectile", HitOtherTeamWithProjectileTrigger::new);
     public static final RegistryValue<GiveEffectToOtherTeamTrigger> GIVE_EFFECT_TO_OTHER_TEAM = register("give_effect_to_other_team", GiveEffectToOtherTeamTrigger::new);
     public static final RegistryValue<VehicleInventoryChangeTrigger> VEHICLE_INVENTORY_CHANGE = register("vehicle_inventory_change", VehicleInventoryChangeTrigger::new);
-
+    public static final RegistryValue<AdvancementProgressTrigger> CHECK_ADVANCEMENT_PROGRESS = register("advancement_progress", AdvancementProgressTrigger::new);
 
     public static void load() {
     }

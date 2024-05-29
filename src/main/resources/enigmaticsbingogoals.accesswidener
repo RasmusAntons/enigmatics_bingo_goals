@@ -1,2 +1,3 @@
 accessWidener v2 named
 accessible field net/minecraft/data/advancements/packs/VanillaHusbandryAdvancements EDIBLE_ITEMS [Lnet/minecraft/world/item/Item;
+accessible method net/minecraft/advancements/AdvancementProgress countCompletedRequirements ()I

@@ -18,8 +18,9 @@ public class FoodDataMixin {
 
     @Inject(method = "tick", at = @At("TAIL"))
     public void onTick(Player player, CallbackInfo ci) {
-        if (foodLevel <= 0.0 && player instanceof ServerPlayer serverplayer) {
-            EnigmaticsBingoGoalsTriggers.EMPTY_HUNGER.get().trigger(serverplayer);
+        if (foodLevel <= 0.0 && player instanceof ServerPlayer serverPlayer) {
+
+            EnigmaticsBingoGoalsTriggers.EMPTY_HUNGER.get().trigger(serverPlayer);
         }
     }
 }
