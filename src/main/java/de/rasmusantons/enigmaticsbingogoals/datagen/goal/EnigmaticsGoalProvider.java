@@ -293,11 +293,13 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Deal 500 hearts of damage
         addGoal(obtainAllItemsFromTagGoal(id("obtain_all_wooden_tools"), EnigmaticsBingoItemTags.WOODEN_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET, EnigmaticsBingoTags.OVERWORLD_ENTRY)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools",
+                        Component.translatable(EnigmaticsBingoItemTags.WOODEN_TOOLS.getTranslationKey())))
         );
         addGoal(obtainAllItemsFromTagGoal(id("obtain_all_stone_tools"), EnigmaticsBingoItemTags.STONE_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET, EnigmaticsBingoTags.OVERWORLD_ENTRY)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools",
+                        Component.translatable(EnigmaticsBingoItemTags.STONE_TOOLS.getTranslationKey())))
         );
         addGoal(BingoGoal.builder(id("stand_on_bedrock"))
                 .criterion("stand_on", PlayerTrigger.TriggerInstance.located(
@@ -774,15 +776,18 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         );
         addGoal(obtainAllItemsFromTagGoal(id("obtain_all_iron_tools"), EnigmaticsBingoItemTags.IRON_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools",
+                        Component.translatable(EnigmaticsBingoItemTags.IRON_TOOLS.getTranslationKey())))
         );
         addGoal(obtainAllItemsFromTagGoal(id("obtain_all_golden_tools"), EnigmaticsBingoItemTags.GOLDEN_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools",
+                        Component.translatable(EnigmaticsBingoItemTags.GOLDEN_TOOLS.getTranslationKey())))
         );
         addGoal(obtainAllItemsFromTagGoal(id("obtain_all_diamond_tools"), EnigmaticsBingoItemTags.DIAMOND_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools",
+                        Component.translatable(EnigmaticsBingoItemTags.DIAMOND_TOOLS.getTranslationKey())))
         );
         addGoal(obtainItemGoal(id("obtain_cobweb"), Items.COBWEB)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.IGLOO,
