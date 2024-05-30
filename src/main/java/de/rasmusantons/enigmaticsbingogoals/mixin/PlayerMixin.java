@@ -30,8 +30,8 @@ public abstract class PlayerMixin {
         if (Bingo.activeGame == null)
             return;
         var totalDamageMap = ((BingoGameExtension) Bingo.activeGame).enigmatics_bingo_goals$getTotalDamage();
-        int totalDamage = totalDamageMap.getOrDefault(serverPlayer, 0) + Math.round(m * 10F);
-        totalDamageMap.put(serverPlayer, totalDamage);
+        int totalDamage = totalDamageMap.getOrDefault(serverPlayer.getUUID(), 0) + Math.round(m * 10F);
+        totalDamageMap.put(serverPlayer.getUUID(), totalDamage);
         EnigmaticsBingoGoalsTriggers.DAMAGE_EXCEPT_TEAM.get().trigger(serverPlayer, totalDamage);
     }
 }

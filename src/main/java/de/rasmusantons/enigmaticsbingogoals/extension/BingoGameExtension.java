@@ -1,9 +1,8 @@
 package de.rasmusantons.enigmaticsbingogoals.extension;
 
-import net.minecraft.world.entity.player.Player;
-
 import java.util.Map;
+import java.util.UUID;
 
 public interface BingoGameExtension {
-    Map<Player, Integer> enigmatics_bingo_goals$getTotalDamage();
+    Map<UUID, Integer> enigmatics_bingo_goals$getTotalDamage();
 }
