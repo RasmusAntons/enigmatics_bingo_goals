@@ -23,6 +23,7 @@ public class EnigmaticsBingoGoalsTriggers {
     public static final RegistryValue<VehicleInventoryChangeTrigger> VEHICLE_INVENTORY_CHANGE = register("vehicle_inventory_change", VehicleInventoryChangeTrigger::new);
     public static final RegistryValue<AdvancementProgressTrigger> CHECK_ADVANCEMENT_PROGRESS = register("advancement_progress", AdvancementProgressTrigger::new);
     public static final RegistryValue<DamageExceptTeamTrigger> DAMAGE_EXCEPT_TEAM = register("damage_except_team", DamageExceptTeamTrigger::new);
+    public static final RegistryValue<KillMobsTrigger> KILL_MOBS = register("kill_mobs", KillMobsTrigger::new);
 
     public static void load() {
     }

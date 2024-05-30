@@ -2,12 +2,19 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
+import de.rasmusantons.enigmaticsbingogoals.datagen.tag.EnigmaticsBingoEntityTypeTagProvider;
+import io.github.gaming32.bingo.data.icons.CycleIcon;
+import io.github.gaming32.bingo.data.icons.EntityIcon;
+import io.github.gaming32.bingo.data.icons.GoalIcon;
+import io.github.gaming32.bingo.data.icons.ItemIcon;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.Unit;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -15,6 +22,7 @@ import net.minecraft.world.item.component.ResolvableProfile;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.block.entity.BannerPatterns;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 public class BingoGoalGeneratorUtils {
@@ -27,11 +35,35 @@ public class BingoGoalGeneratorUtils {
         return stack;
     }
 
+    public static GoalIcon getEntityIcon(EntityType<?> entityType) {
+        if (entityType == EntityType.ENDER_DRAGON)
+            return ItemIcon.ofItem(Items.DRAGON_HEAD);
+        if (entityType == EntityType.ELDER_GUARDIAN)
+            return new ItemIcon(getCustomPLayerHead(PlayerHeadTextures.ELDER_GUARDIAN));
+        if (entityType == EntityType.GHAST)
+            return new ItemIcon(getCustomPLayerHead(PlayerHeadTextures.GHAST));
+        return EntityIcon.ofSpawnEgg(entityType);
+    }
+
+    public static CycleIcon getEntityIcon(TagKey<EntityType<?>> entityTypeTag) {
+        return CycleIcon.infer(Arrays.stream(EnigmaticsBingoEntityTypeTagProvider.getEntityTagDuringDatagen(entityTypeTag))
+                .map(BingoGoalGeneratorUtils::getEntityIcon));
+    }
+
     public static ItemStack getOminousBanner(HolderLookup.Provider registries) {
         var patternRegistry = registries.lookupOrThrow(Registries.BANNER_PATTERN);
 
         ItemStack itemStack = new ItemStack(Items.WHITE_BANNER);
-        BannerPatternLayers bannerPatternLayers = new BannerPatternLayers.Builder().addIfRegistered(patternRegistry, BannerPatterns.RHOMBUS_MIDDLE, DyeColor.CYAN).addIfRegistered(patternRegistry, BannerPatterns.STRIPE_BOTTOM, DyeColor.LIGHT_GRAY).addIfRegistered(patternRegistry, BannerPatterns.STRIPE_CENTER, DyeColor.GRAY).addIfRegistered(patternRegistry, BannerPatterns.BORDER, DyeColor.LIGHT_GRAY).addIfRegistered(patternRegistry, BannerPatterns.STRIPE_MIDDLE, DyeColor.BLACK).addIfRegistered(patternRegistry, BannerPatterns.HALF_HORIZONTAL, DyeColor.LIGHT_GRAY).addIfRegistered(patternRegistry, BannerPatterns.CIRCLE_MIDDLE, DyeColor.LIGHT_GRAY).addIfRegistered(patternRegistry, BannerPatterns.BORDER, DyeColor.BLACK).build();
+        BannerPatternLayers bannerPatternLayers = new BannerPatternLayers.Builder()
+                .addIfRegistered(patternRegistry, BannerPatterns.RHOMBUS_MIDDLE, DyeColor.CYAN)
+                .addIfRegistered(patternRegistry, BannerPatterns.STRIPE_BOTTOM, DyeColor.LIGHT_GRAY)
+                .addIfRegistered(patternRegistry, BannerPatterns.STRIPE_CENTER, DyeColor.GRAY)
+                .addIfRegistered(patternRegistry, BannerPatterns.BORDER, DyeColor.LIGHT_GRAY)
+                .addIfRegistered(patternRegistry, BannerPatterns.STRIPE_MIDDLE, DyeColor.BLACK)
+                .addIfRegistered(patternRegistry, BannerPatterns.HALF_HORIZONTAL, DyeColor.LIGHT_GRAY)
+                .addIfRegistered(patternRegistry, BannerPatterns.CIRCLE_MIDDLE, DyeColor.LIGHT_GRAY)
+                .addIfRegistered(patternRegistry, BannerPatterns.BORDER, DyeColor.BLACK)
+                .build();
         itemStack.set(DataComponents.BANNER_PATTERNS, bannerPatternLayers);
         itemStack.set(DataComponents.HIDE_ADDITIONAL_TOOLTIP, Unit.INSTANCE);
         itemStack.set(DataComponents.ITEM_NAME, Component.translatable("block.minecraft.ominous_banner").withStyle(ChatFormatting.GOLD));

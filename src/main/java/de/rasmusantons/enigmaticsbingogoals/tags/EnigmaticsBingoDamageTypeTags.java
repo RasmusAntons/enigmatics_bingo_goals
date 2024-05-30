@@ -1,7 +1,8 @@
 package de.rasmusantons.enigmaticsbingogoals.tags;
 
-import io.github.gaming32.bingo.util.ResourceLocations;
+import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoGoals;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
 
@@ -16,6 +17,6 @@ public class EnigmaticsBingoDamageTypeTags {
     }
 
     private static TagKey<DamageType> create(String name) {
-        return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocations.bingo(name));
+        return TagKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(EnigmaticsBingoGoals.MOD_ID, name));
     }
 }

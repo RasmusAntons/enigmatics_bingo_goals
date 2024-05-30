@@ -2,10 +2,7 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.NumberOfEffectsCondition;
-import de.rasmusantons.enigmaticsbingogoals.triggers.AdvancementProgressTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.AdvancementsTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTriggers;
-import de.rasmusantons.enigmaticsbingogoals.triggers.VehicleInventoryChangeTrigger;
+import de.rasmusantons.enigmaticsbingogoals.triggers.*;
 import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
@@ -113,6 +110,15 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         new ItemTagCycleIcon(tag, 0),
                         subber -> subber.sub("count", "count")
                 );
+    }
+
+    protected static BingoGoal.Builder killEntitiesFromTagGoal(ResourceLocation id, TagKey<EntityType<?>> typeTag, int min, int max, boolean unique) {
+        return BingoGoal.builder(id)
+                .sub("amount", BingoSub.random(min, max))
+                .criterion("kill", KillMobsTrigger.TriggerInstance.ofTag(typeTag, 1, unique),
+                        subber -> subber.sub("conditions.amount", "amount"))
+                .progress("kill")
+                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getEntityIcon(typeTag), Items.NETHERITE_SWORD));
     }
 
     protected static BingoGoal.Builder dieToDamageTypeGoal(ResourceLocation id, TagKey<DamageType> damageType) {
