@@ -41,6 +41,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
     public EnigmaticsGoalProvider(Consumer<BingoGoal.Holder> goalAdder, HolderLookup.Provider registries) {
@@ -502,7 +503,24 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(breakBlockGoal(id("break_turtle_egg"), Blocks.TURTLE_EGG)
                 .tags(BingoTags.OVERWORLD)
         );
-        // TODO: Breed (6-15) unique mobs
+        addGoal(advancementProgressGoal(id("breed_some_unique_mobs"),
+                new ResourceLocation("minecraft", "husbandry/bred_all_animals"), 6, 15)
+                .name(Component.translatable("enigmaticsbingogoals.goal.breed_some_unique_mobs", 0),
+                        subber -> subber.sub("with.0", "count")
+                )
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BREED_MOB)
+                .icon(
+                        IndicatorIcon.infer(
+                                CycleIcon.infer(Stream.concat(
+                                                VanillaHusbandryAdvancements.BREEDABLE_ANIMALS.stream(),
+                                                VanillaHusbandryAdvancements.INDIRECTLY_BREEDABLE_ANIMALS.stream()
+                                        ).toList()
+                                ),
+                                EffectIcon.of(MobEffects.HEALTH_BOOST)
+                        ),
+                        subber -> subber.sub("base.icons.*.item.count", "count")
+                )
+        );
         // TODO: Kill (10-25) unique Mobs
         // TODO: Kill (5-7) unique Neutral Mobs
         // TODO: Kill (7-10) unique Neutral Mobs
@@ -1008,7 +1026,6 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         subber -> subber.sub("item.count", "count")
                 )
         );
-        // TODO: Visit 10-20 unique Overworld Biomes
         // TODO: Show an Egg to the World | Tooltip: Visit 10-20 biomes with an Egg in your off-hand
         // TODO: Anger a Zombified Piglin
         addGoal(advancementGoal(id("get_advancement_we_need_to_go_deeper"),
