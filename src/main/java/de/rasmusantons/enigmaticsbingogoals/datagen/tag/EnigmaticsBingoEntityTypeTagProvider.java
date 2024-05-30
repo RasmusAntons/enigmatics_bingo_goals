@@ -36,7 +36,7 @@ public class EnigmaticsBingoEntityTypeTagProvider extends FabricTagProvider.Enti
             return getHostileMobs();
         if (typeTag.equals(EnigmaticsBingoEntityTypeTags.MOBS))
             return getAllMobs();
-        throw new RuntimeException("Invalid entity type tag: " + typeTag);
+        return null;
     }
 
     @Override

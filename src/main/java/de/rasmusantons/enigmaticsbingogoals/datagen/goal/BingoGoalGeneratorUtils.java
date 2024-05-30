@@ -46,8 +46,10 @@ public class BingoGoalGeneratorUtils {
     }
 
     public static CycleIcon getEntityIcon(TagKey<EntityType<?>> entityTypeTag) {
-        return CycleIcon.infer(Arrays.stream(EnigmaticsBingoEntityTypeTagProvider.getEntityTagDuringDatagen(entityTypeTag))
-                .map(BingoGoalGeneratorUtils::getEntityIcon));
+        var resolvedTag = EnigmaticsBingoEntityTypeTagProvider.getEntityTagDuringDatagen(entityTypeTag);
+        if (resolvedTag == null)
+            return CycleIcon.infer(entityTypeTag);
+        return CycleIcon.infer(Arrays.stream(resolvedTag).map(BingoGoalGeneratorUtils::getEntityIcon));
     }
 
     public static ItemStack getOminousBanner(HolderLookup.Provider registries) {
