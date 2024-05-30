@@ -55,6 +55,8 @@
   "enigmaticsbingogoals.goal.never_wheat_seeds": "Never obtain %s",
   "enigmaticsbingogoals.goal.obtain_all_horse_armor": "Obtain all types of %s",
   "enigmaticsbingogoals.goal.obtain_all_raw_ore_blocks": "Obtain all %s",
+  "enigmaticsbingogoals.goal.deal_some_hearts_of_damage": "Deal %d hearts of damage",
+  "enigmaticsbingogoals.goal.deal_some_hearts_of_damage.tooltip": "Any living entity counts, except for your teammates.",
   "enigmaticsbingogoals.goal.obtain_chainmail_armor": "Obtain a piece of %s",
   "enigmaticsbingogoals.goal.obtain_colored_candle": "Obtain a Colored Candle",
   "enigmaticsbingogoals.goal.obtain_full_set_of_material_tools": "Get a full set of %s",

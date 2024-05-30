@@ -292,7 +292,13 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .name(Component.translatable("enigmaticsbingogoals.goal.full_unique_inventory"))
                 .icon(ItemIcon.ofItem(Items.CHEST))
         );
-        // TODO: Deal 500 hearts of damage | maybe make a custom stat for damage only to enemies
+        addGoal(BingoGoal.builder(id("deal_500_hearts_of_damage"))
+                .criterion("deal", DamageExceptTeamTrigger.TriggerInstance.dealtDamage(MinMaxBounds.Ints.atLeast(5000)))
+                .progress(new CriterionProgressTracker("deal", 0.1f))
+                .name(Component.translatable("enigmaticsbingogoals.goal.deal_some_hearts_of_damage", 500))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.deal_some_hearts_of_damage.tooltip"))
+                .icon(IndicatorIcon.infer(EntityType.COW, ItemIcon.ofItem(Items.NETHERITE_SWORD)))
+        );
         addGoal(obtainAllItemsFromTagGoal(id("obtain_all_wooden_tools"), EnigmaticsBingoItemTags.WOODEN_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET, EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools",

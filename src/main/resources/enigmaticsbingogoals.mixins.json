@@ -14,7 +14,8 @@
     "SpectralArrowMixin",
     "ThrownPotionMixin",
     "AreaEffectCloudMixin",
-    "AbstractHorseMixin"
+    "AbstractHorseMixin",
+    "BingoGameMixin"
   ],
   "injectors": {
     "defaultRequire": 1
