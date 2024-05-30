@@ -605,8 +605,18 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB, EnigmaticsBingoTags.KILL_MOB_BATCH)
         );
-        // TODO: Kill 30 Undead Mobs
-        // TODO: Kill 50 Undead Mobs
+        addGoal(killEntitiesFromTagGoal(id("kill_30_undead_mobs"), EntityTypeTags.UNDEAD, 30, 30, false)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
+                                Component.translatable(EntityTypeTags.UNDEAD.getTranslationKey())),
+                        subber -> subber.sub("with.0", "amount"))
+                .tags(EnigmaticsBingoTags.KILL_MOB, EnigmaticsBingoTags.KILL_MOB_BATCH)
+        );
+        addGoal(killEntitiesFromTagGoal(id("kill_50_undead_mobs"), EntityTypeTags.UNDEAD, 50, 50, false)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
+                                Component.translatable(EntityTypeTags.UNDEAD.getTranslationKey())),
+                        subber -> subber.sub("with.0", "amount"))
+                .tags(EnigmaticsBingoTags.KILL_MOB, EnigmaticsBingoTags.KILL_MOB_BATCH)
+        );
         // TODO: Kill 5 baby neutral/hostile mobs
         // TODO: Wash something in a Cauldron
         // TODO: Wear 4 different armor materials
