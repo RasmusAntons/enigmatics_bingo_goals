@@ -785,7 +785,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(eatItemGoal(id("eat_suspicious_stew"), Items.SUSPICIOUS_STEW)
                 .tags(BingoTags.END, EnigmaticsBingoTags.SUSPICIOUS_STEW, EnigmaticsBingoTags.SATURATION,
                         EnigmaticsBingoTags.WEAKNESS, EnigmaticsBingoTags.NIGHT_VISION, EnigmaticsBingoTags.LEAPING,
-                        EnigmaticsBingoTags.POISON)
+                        EnigmaticsBingoTags.POISON, EnigmaticsBingoTags.STEW)
         );
         addGoal(obtainItemGoal(id("obtain_mossy_cobblestone_wall"), Items.MOSSY_COBBLESTONE_WALL)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL,  EnigmaticsBingoTags.LUSH_CAVE, EnigmaticsBingoTags.JUNGLE)
@@ -996,6 +996,18 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         Items.PURPLE_WOOL.getDescription()))
         );
         // TODO: Visit 15-25 unique Biomes
+        addGoal(advancementProgressGoal(id("visit_some_unique_overworld_biomes"),
+                new ResourceLocation("minecraft", "adventure/adventuring_time"), 10, 25)
+                .name(Component.translatable("enigmaticsbingogoals.goal.visit_some_unique_overworld_biomes", 0),
+                        subber -> subber.sub("with.0", "count")
+                )
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.visit_some_unique_overworld_biomes.tooltip"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BIOMES, EnigmaticsBingoTags.OVERWORLD_EXPLORE)
+                .icon(
+                        Items.GOLDEN_BOOTS,
+                        subber -> subber.sub("item.count", "count")
+                )
+        );
         // TODO: Visit 10-20 unique Overworld Biomes
         // TODO: Show an Egg to the World | Tooltip: Visit 10-20 biomes with an Egg in your off-hand
         // TODO: Anger a Zombified Piglin

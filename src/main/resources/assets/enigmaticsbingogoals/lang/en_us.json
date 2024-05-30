@@ -78,6 +78,8 @@
   "enigmaticsbingogoals.goal.stand_on_bedrock": "Stand on Bedrock",
   "enigmaticsbingogoals.goal.summon_the_wither": "Summon the %s",
   "enigmaticsbingogoals.goal.tame_animal": "Tame a %s",
+  "enigmaticsbingogoals.goal.visit_some_unique_overworld_biomes": "Visit %d unique Overworld biomes",
+  "enigmaticsbingogoals.goal.visit_some_unique_overworld_biomes.tooltip": "Only biomes from [Adventuring Time] count.",
   "enigmaticsbingogoals.goal.wear_pumpkin_for_some_minutes": "Wear a Carved Pumpkin continuously for %d minutes",
   "tag.item.enigmaticsbingogoals.chainmail_armor": "Chainmail Armor",
   "tag.item.enigmaticsbingogoals.diamond_tools": "Diamond Tools",

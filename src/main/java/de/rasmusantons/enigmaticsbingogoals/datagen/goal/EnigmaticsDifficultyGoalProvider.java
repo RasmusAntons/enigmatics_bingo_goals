@@ -250,8 +250,10 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                                 advancement,
                                 MinMaxBounds.Ints.atLeast(0)
                         ),
-                        subber -> subber.sub("conditions.count.min", "count"))
+                        subber -> subber.sub("conditions.count.min", "count")
+                )
                 .progress("advance");
+
     }
 
     protected static BingoGoal.Builder advancementsGoal(ResourceLocation id, int minNumber, int maxNumber) {
