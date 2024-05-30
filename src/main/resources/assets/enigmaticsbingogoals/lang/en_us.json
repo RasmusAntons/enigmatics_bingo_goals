@@ -44,6 +44,7 @@
   "enigmaticsbingogoals.goal.kill_mob_while_dead.tooltip": "Be credited for the kill while dead.",
   "enigmaticsbingogoals.goal.kill_silverfish": "Kill a %s",
   "enigmaticsbingogoals.goal.kill_snow_golem": "Kill a %s",
+  "enigmaticsbingogoals.goal.kill_some_mobs": "Kill %d Mobs",
   "enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs": "Kill %d unique hostile Mobs",
   "enigmaticsbingogoals.goal.kill_some_unique_mobs": "Kill %d unique Mobs",
   "enigmaticsbingogoals.goal.kill_vindicator": "Kill a %s",
