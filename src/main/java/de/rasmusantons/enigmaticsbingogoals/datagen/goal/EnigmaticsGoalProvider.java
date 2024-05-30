@@ -525,12 +525,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Kill (10-25) unique Mobs
         // TODO: Kill (5-7) unique Neutral Mobs
         // TODO: Kill (7-10) unique Neutral Mobs
-        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs"), EnigmaticsBingoEntityTypeTags.HOSTILE, 7, 10, true)
+        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs_medium"), EnigmaticsBingoEntityTypeTags.HOSTILE, 7, 10, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.UNIQUE_MOBS, EnigmaticsBingoTags.KILL_MOB)
         );
-        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs"), EnigmaticsBingoEntityTypeTags.HOSTILE, 11, 15, true)
+        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs_hard"), EnigmaticsBingoEntityTypeTags.HOSTILE, 11, 15, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.UNIQUE_MOBS, EnigmaticsBingoTags.KILL_MOB)
