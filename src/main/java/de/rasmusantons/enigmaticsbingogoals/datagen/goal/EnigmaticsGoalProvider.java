@@ -780,9 +780,10 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 new ResourceLocation("minecraft", "adventure/spyglass_at_ghast"),
                 new ResourceLocation("minecraft", "adventure/spyglass_at_dragon"))
                 .name(Component.translatable("enigmaticsbingogoals.goal.get_any_spyglass_advancement"))
+                .tags(EnigmaticsBingoTags.AMETHYST, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.NETHER_ENTRY,
+                        EnigmaticsBingoTags.NETHER_ENTRY)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
-        // TODO: Get any Spyglass advancement
         // TODO: Sign a Book and Quill
         addGoal(obtainItemGoal(id("obtain_bookshelf"), Items.BOOKSHELF)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BOOK, EnigmaticsBingoTags.WOODLAND_MANSION)
