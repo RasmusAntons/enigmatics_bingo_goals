@@ -2,6 +2,7 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.NumberOfEffectsCondition;
+import de.rasmusantons.enigmaticsbingogoals.triggers.AdvancementProgressTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.AdvancementsTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTriggers;
 import de.rasmusantons.enigmaticsbingogoals.triggers.VehicleInventoryChangeTrigger;
@@ -240,6 +241,17 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_some_hearts_damage", damage))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
                 .progress(new CriterionProgressTracker("damage", 0.05f));
+    }
+
+    protected static BingoGoal.Builder advancementProgressGoal(ResourceLocation id, ResourceLocation advancement, int minProgress, int maxProgress) {
+        return BingoGoal.builder(id)
+                .sub("count", BingoSub.random(minProgress, maxProgress))
+                .criterion("advance", AdvancementProgressTrigger.TriggerInstance.reach(
+                                advancement,
+                                MinMaxBounds.Ints.atLeast(0)
+                        ),
+                        subber -> subber.sub("conditions.count.min", "count"))
+                .progress("advance");
     }
 
     protected static BingoGoal.Builder advancementsGoal(ResourceLocation id, int minNumber, int maxNumber) {

@@ -12,7 +12,6 @@ import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
-import io.github.gaming32.bingo.data.subs.BingoSub;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
 import io.github.gaming32.bingo.triggers.ChickenHatchTrigger;
 import io.github.gaming32.bingo.triggers.DeathTrigger;
@@ -665,18 +664,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         // TODO: Use a Masoned Banner Pattern
         // TODO: Use a Bordure Banner Pattern
         // TODO: Use a Skull Banner Pattern
-        addGoal(BingoGoal.builder(id("eat_some_unique_foods"))
-                .sub("count", BingoSub.random(7, 25))
-                .criterion("eat", AdvancementProgressTrigger.TriggerInstance.reach(
-                                new ResourceLocation("minecraft", "husbandry/balanced_diet"),
-                                MinMaxBounds.Ints.atLeast(0)
-                        ),
-                        subber -> subber.sub("conditions.count.min", "count"))
+        addGoal(advancementProgressGoal(id("eat_some_unique_foods"),
+                new ResourceLocation("minecraft", "husbandry/balanced_diet"), 7, 25)
                 .name(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods", 0),
                         subber -> subber.sub("with.0", "count")
                 )
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods.tooltip", Items.CAKE.getDescription()))
-                .progress("eat")
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.UNIQUE_FOOD)
                 .icon(
                         CycleIcon.infer(Arrays.stream(VanillaHusbandryAdvancements.EDIBLE_ITEMS)),
