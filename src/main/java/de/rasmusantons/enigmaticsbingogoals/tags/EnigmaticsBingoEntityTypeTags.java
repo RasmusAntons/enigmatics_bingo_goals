@@ -7,6 +7,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 
 public class EnigmaticsBingoEntityTypeTags {
+    public static final TagKey<EntityType<?>> MOBS = create("mobs");
     public static final TagKey<EntityType<?>> HOSTILE = create("hostile");
 
     private EnigmaticsBingoEntityTypeTags() {

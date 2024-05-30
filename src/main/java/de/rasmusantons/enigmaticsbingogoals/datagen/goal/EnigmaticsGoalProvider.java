@@ -522,18 +522,22 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         subber -> subber.sub("base.icons.*.item.count", "count")
                 )
         );
-        // TODO: Kill (10-25) unique Mobs
+        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_mobs"), EnigmaticsBingoEntityTypeTags.MOBS, 10, 25, true)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_mobs", 0),
+                        subber -> subber.sub("with.0", "amount"))
+                .tags(EnigmaticsBingoTags.UNIQUE_MOBS, EnigmaticsBingoTags.KILL_MOB)
+        );
         // TODO: Kill (5-7) unique Neutral Mobs
         // TODO: Kill (7-10) unique Neutral Mobs
         addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs_medium"), EnigmaticsBingoEntityTypeTags.HOSTILE, 7, 10, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
-                .tags(EnigmaticsBingoTags.UNIQUE_MOBS, EnigmaticsBingoTags.KILL_MOB)
+                .tags(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS, EnigmaticsBingoTags.KILL_MOB)
         );
         addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs_hard"), EnigmaticsBingoEntityTypeTags.HOSTILE, 11, 15, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
-                .tags(EnigmaticsBingoTags.UNIQUE_MOBS, EnigmaticsBingoTags.KILL_MOB)
+                .tags(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS, EnigmaticsBingoTags.KILL_MOB)
         );
         addGoal(killEntityGoal(id("kill_witch"), EntityType.WITCH)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_witch", EntityType.WITCH.getDescription()))
