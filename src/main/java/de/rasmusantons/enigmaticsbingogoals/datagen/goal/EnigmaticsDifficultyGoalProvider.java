@@ -62,7 +62,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
         return BingoGoal.builder(id)
                 .sub("count", BingoSub.random(min, max))
                 .criterion("obtain", TotalCountInventoryChangeTrigger.builder().items(
-                        ItemPredicate.Builder.item().of(item).withCount(MinMaxBounds.Ints.atLeast(0)).build()).build(),
+                                ItemPredicate.Builder.item().of(item).withCount(MinMaxBounds.Ints.atLeast(0)).build()).build(),
                         subber -> subber.sub("conditions.items.0.count.min", "count"))
                 .tags(BingoTags.ITEM)
                 .name(Component.translatable("enigmaticsbingogoals.goal.get_some_items", 0, item.getDescription()),
@@ -94,7 +94,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
         return builder;
     }
 
-    protected BingoGoal.Builder obtainAllItemsFromTagGoal(ResourceLocation id, TagKey<Item> tag) {
+    protected static BingoGoal.Builder obtainAllItemsFromTagGoal(ResourceLocation id, TagKey<Item> tag) {
         return BingoGoal.builder(id)
                 .criterion("obtain", HasSomeItemsFromTagTrigger.builder().tag(tag).requiresAll().build())
                 .progress("obtain")
@@ -102,7 +102,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(new ItemTagCycleIcon(tag));
     }
 
-    protected BingoGoal.Builder obtainSomeItemsFromTagGoal(ResourceLocation id, TagKey<Item> tag, int min, int max) {
+    protected static BingoGoal.Builder obtainSomeItemsFromTagGoal(ResourceLocation id, TagKey<Item> tag, int min, int max) {
         return BingoGoal.builder(id)
                 .sub("count", BingoSub.random(min, max))
                 .criterion("obtain", HasSomeItemsFromTagTrigger.builder().tag(tag).requiredCount(1).build(),
@@ -115,7 +115,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 );
     }
 
-    protected BingoGoal.Builder dieToDamageTypeGoal(ResourceLocation id, TagKey<DamageType> damageType) {
+    protected static BingoGoal.Builder dieToDamageTypeGoal(ResourceLocation id, TagKey<DamageType> damageType) {
         return BingoGoal.builder(id)
                 .criterion("damage", BingoTriggers.DEATH.get().createCriterion(
                                 DeathTrigger.TriggerInstance.death(
@@ -127,7 +127,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 );
     }
 
-    protected BingoGoal.Builder eatItemGoal(ResourceLocation id, Item item) {
+    protected static BingoGoal.Builder eatItemGoal(ResourceLocation id, Item item) {
         return BingoGoal.builder(id)
                 .criterion("eat", ConsumeItemTrigger.TriggerInstance.usedItem(item))
                 .name(Component.translatable("enigmaticsbingogoals.goal.eat_something", item.getDescription()))
@@ -187,9 +187,9 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
     protected static BingoGoal.Builder dieToEntityGoal(ResourceLocation id, EntityType<?> entityType) {
         return BingoGoal.builder(id)
                 .criterion("die", BingoTriggers.DEATH.get().createCriterion(DeathTrigger.TriggerInstance.death(
-                        DamageSourcePredicate.Builder.damageType()
-                                .source(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityType)))
-                                .build()
+                                DamageSourcePredicate.Builder.damageType()
+                                        .source(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityType)))
+                                        .build()
                         )
                 ))
                 .tags(EnigmaticsBingoTags.DIE_TO)
@@ -337,19 +337,19 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
 
     protected static BingoGoal.Builder breedAnimalGoal(ResourceLocation id, EntityType<?> entityType) {
         return BingoGoal.builder(id)
-            .criterion("breed", BredAnimalsTrigger.TriggerInstance.bredAnimals(
-                    EntityPredicate.Builder.entity().of(entityType)))
-            .tags(EnigmaticsBingoTags.BREED_MOB)
-            .name(Component.translatable("enigmaticsbingogoals.goal.breed_animal", entityType.getDescription()))
-            .icon(IndicatorIcon.infer(entityType, EffectIcon.of(MobEffects.HEALTH_BOOST)));
+                .criterion("breed", BredAnimalsTrigger.TriggerInstance.bredAnimals(
+                        EntityPredicate.Builder.entity().of(entityType)))
+                .tags(EnigmaticsBingoTags.BREED_MOB)
+                .name(Component.translatable("enigmaticsbingogoals.goal.breed_animal", entityType.getDescription()))
+                .icon(IndicatorIcon.infer(entityType, EffectIcon.of(MobEffects.HEALTH_BOOST)));
     }
 
     protected static BingoGoal.Builder tameAnimalGoal(ResourceLocation id, EntityType<?> entityType) {
         return BingoGoal.builder(id)
-            .criterion("tame", TameAnimalTrigger.TriggerInstance.tamedAnimal(
-                    EntityPredicate.Builder.entity().of(entityType)))
-            .tags(EnigmaticsBingoTags.TAME_ANIMAL)
-            .name(Component.translatable("enigmaticsbingogoals.goal.tame_animal", entityType.getDescription()))
-            .icon(IndicatorIcon.infer(entityType, ItemIcon.ofItem(Items.BONE)));
+                .criterion("tame", TameAnimalTrigger.TriggerInstance.tamedAnimal(
+                        EntityPredicate.Builder.entity().of(entityType)))
+                .tags(EnigmaticsBingoTags.TAME_ANIMAL)
+                .name(Component.translatable("enigmaticsbingogoals.goal.tame_animal", entityType.getDescription()))
+                .icon(IndicatorIcon.infer(entityType, ItemIcon.ofItem(Items.BONE)));
     }
 }

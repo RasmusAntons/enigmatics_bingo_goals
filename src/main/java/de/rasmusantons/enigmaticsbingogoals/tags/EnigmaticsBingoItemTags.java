@@ -7,9 +7,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
 public final class EnigmaticsBingoItemTags {
-    private EnigmaticsBingoItemTags() {
-    }
-
     public static final TagKey<Item> WOODEN_TOOLS = create("wooden_tools");
     public static final TagKey<Item> STONE_TOOLS = create("stone_tools");
     public static final TagKey<Item> IRON_TOOLS = create("iron_tools");
@@ -20,6 +17,9 @@ public final class EnigmaticsBingoItemTags {
     public static final TagKey<Item> CHAINMAIL_ARMOR = create("chainmail_armor");
     public static final TagKey<Item> SEEDS = create("seeds");
     public static final TagKey<Item> SAPLINGS = create("saplings");
+
+    private EnigmaticsBingoItemTags() {
+    }
 
     private static TagKey<Item> create(String name) {
         return TagKey.create(Registries.ITEM, new ResourceLocation(EnigmaticsBingoGoals.MOD_ID, name));

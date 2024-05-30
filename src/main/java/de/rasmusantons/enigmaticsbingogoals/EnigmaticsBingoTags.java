@@ -4,9 +4,6 @@ import io.github.gaming32.bingo.Bingo;
 import net.minecraft.resources.ResourceLocation;
 
 public final class EnigmaticsBingoTags {
-    private EnigmaticsBingoTags() {
-    }
-
     // BingoTags.NEVER 3
     public static final ResourceLocation NEVER_TAKE_DAMAGE = create("never_take_damage");
     public static final ResourceLocation PLAYER_KILL = create("player_kill");
@@ -105,6 +102,8 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation WOODLAND_MANSION = create("woodland_mansion");
     public static final ResourceLocation TRAIL_RUINS = create("trail_ruins");
 
+    private EnigmaticsBingoTags() {
+    }
 
     private static ResourceLocation create(String name) {
         return new ResourceLocation(Bingo.MOD_ID, name);

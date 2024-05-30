@@ -29,7 +29,9 @@ project.tasks.register('checkoutBingoMod') {
     def url = 'https://github.com/' + bingo_repo + '/archive/' + bingo_commit + '.zip'
 
     doLast {
-        if (!file(dir).exists()) { mkdir(dir) }
+        if (!file(dir).exists()) {
+            mkdir(dir)
+        }
         def f = dir.file('bingo-' + bingo_commit + '.zip').asFile
         new URI(url).toURL().withInputStream { i -> f.withOutputStream { it << i } }
         copy { from zipTree(f) into dir }
@@ -72,7 +74,7 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    
+
     modImplementation fileTree(dir: 'libs', include: 'bingo-' + bingo_version + '.jar')
 }
 
@@ -124,7 +126,7 @@ java {
 
 jar {
     from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}"}
+        rename { "${it}_${project.archivesBaseName}" }
     }
 }
 

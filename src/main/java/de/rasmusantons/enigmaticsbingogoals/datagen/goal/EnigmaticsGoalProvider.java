@@ -192,12 +192,12 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.STAT, EnigmaticsBingoTags.COVER_DISTANCE)
                 .icon(Items.GOLDEN_BOOTS));
         addGoal(BingoGoal.builder(id("crouch_500_meters"))
-                    .criterion("crouch", RelativeStatsTrigger.builder()
-                                .stat(Stats.CROUCH_ONE_CM, MinMaxBounds.Ints.atLeast(50000)).build())
-                    .progress(new CriterionProgressTracker("crouch", 0.01f))
-                    .name(Component.translatable("bingo.goal.crouch_distance", 500))
-                    .tags(BingoTags.STAT, EnigmaticsBingoTags.COVER_DISTANCE)
-                    .icon(Items.LEATHER_BOOTS));
+                .criterion("crouch", RelativeStatsTrigger.builder()
+                        .stat(Stats.CROUCH_ONE_CM, MinMaxBounds.Ints.atLeast(50000)).build())
+                .progress(new CriterionProgressTracker("crouch", 0.01f))
+                .name(Component.translatable("bingo.goal.crouch_distance", 500))
+                .tags(BingoTags.STAT, EnigmaticsBingoTags.COVER_DISTANCE)
+                .icon(Items.LEATHER_BOOTS));
         addGoal(BingoGoal.builder(id("reach_world_center"))
                 .criterion("reach", PlayerTrigger.TriggerInstance.located(
                         LocationPredicate.Builder.location()
@@ -270,9 +270,9 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(reachLevelsGoal(id("reach_levels"), 10, 35));
         addGoal(BingoGoal.builder(id("fill_a_composter"))
                 .criterion("use", CriteriaTriggers.DEFAULT_BLOCK_USE.createCriterion(
-                    new DefaultBlockInteractionTrigger.TriggerInstance(
-                        Optional.empty(),
-                        Optional.of(ContextAwarePredicate.create(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(Blocks.COMPOSTER))).build())))
+                        new DefaultBlockInteractionTrigger.TriggerInstance(
+                                Optional.empty(),
+                                Optional.of(ContextAwarePredicate.create(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(Blocks.COMPOSTER))).build())))
                 ))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.USE_WORKSTATION)
                 .name(Component.translatable("enigmaticsbingogoals.goal.fill_composter"))
@@ -562,9 +562,9 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                                 Optional.of(ContextAwarePredicate.create(new InvertedLootItemCondition(PlayerAliveCondition.INSTANCE))),
                                 Optional.of(ContextAwarePredicate.create(
                                         InvertedLootItemCondition.invert(
-                                            LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
-                                                    EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.PLAYER))
-                                            )
+                                                LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
+                                                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.PLAYER))
+                                                )
                                         ).build()
                                 )),
                                 Optional.empty()
@@ -604,8 +604,8 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(advancementGoal(id("get_advancement_what_a_deal"),
                         Component.translatable("advancements.adventure.trade.title"), new ResourceLocation("minecraft", "adventure/trade")
                 )
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO, BingoTags.VILLAGE)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.EMERALD), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                        .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO, BingoTags.VILLAGE)
+                        .icon(new IndicatorIcon(ItemIcon.ofItem(Items.EMERALD), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(obtainSomeItemsFromTagGoal(id("obtain_chainmail_armor"), EnigmaticsBingoItemTags.CHAINMAIL_ARMOR, 1, 1)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.RAID,
@@ -651,9 +651,9 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
         addGoal(advancementGoal(id("get_advancement_sound_of_music"),
                         Component.translatable("advancements.adventure.play_jukebox_in_meadows.title"), new ResourceLocation("minecraft", "adventure/play_jukebox_in_meadows")
                 )
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MUSIC_DISC, EnigmaticsBingoTags.ANCIENT_CITY,
-                        EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.TRAIL_RUINS)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                        .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MUSIC_DISC, EnigmaticsBingoTags.ANCIENT_CITY,
+                                EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.TRAIL_RUINS)
+                        .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         // TODO: Equip Wolf Armor
         // TODO: Give an armor stand 4 pieces of armor
@@ -781,8 +781,8 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OCEAN_MONUMENT)
         );
         addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_trim_templates"), ItemTags.TRIM_TEMPLATES, 1, 3)
-                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH
-                        ,EnigmaticsBingoTags.TRAIL_RUINS)
+                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH,
+                        EnigmaticsBingoTags.TRAIL_RUINS)
                 .name(
                         Component.translatable("enigmaticsbingogoals.goal.obtain_some_trim_templates", 0),
                         subber -> subber.sub("with.0", "count")
@@ -804,8 +804,8 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.TRAIL_RUINS)
         );
         addGoal(obtainItemGoal(id("obtain_mossy_stone_brick_wall"), Items.MOSSY_STONE_BRICK_WALL)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.IGLOO
-                        ,EnigmaticsBingoTags.LUSH_CAVE ,EnigmaticsBingoTags.JUNGLE)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.IGLOO,
+                        EnigmaticsBingoTags.LUSH_CAVE, EnigmaticsBingoTags.JUNGLE)
         );
         addGoal(eatItemGoal(id("eat_suspicious_stew"), Items.SUSPICIOUS_STEW)
                 .tags(BingoTags.END, EnigmaticsBingoTags.SUSPICIOUS_STEW, EnigmaticsBingoTags.SATURATION,
@@ -813,7 +813,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         EnigmaticsBingoTags.POISON, EnigmaticsBingoTags.STEW)
         );
         addGoal(obtainItemGoal(id("obtain_mossy_cobblestone_wall"), Items.MOSSY_COBBLESTONE_WALL)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL,  EnigmaticsBingoTags.LUSH_CAVE, EnigmaticsBingoTags.JUNGLE)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.LUSH_CAVE, EnigmaticsBingoTags.JUNGLE)
         );
         addGoal(obtainAllItemsFromTagGoal(id("obtain_all_iron_tools"), EnigmaticsBingoItemTags.IRON_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)

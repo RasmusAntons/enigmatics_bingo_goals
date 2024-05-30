@@ -2,11 +2,11 @@ package de.rasmusantons.enigmaticsbingogoals.triggers;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.github.gaming32.bingo.triggers.progress.SimpleProgressibleCriterionTrigger;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
-import io.github.gaming32.bingo.triggers.progress.SimpleProgressibleCriterionTrigger;
 import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,7 +24,8 @@ public class DamageExceptTeamTrigger extends SimpleProgressibleCriterionTrigger<
         trigger(player, triggerInstance -> triggerInstance.matches(totalDamage, progressListener));
     }
 
-    public record TriggerInstance(Optional<ContextAwarePredicate> player, MinMaxBounds.Ints targetDamage) implements SimpleInstance {
+    public record TriggerInstance(Optional<ContextAwarePredicate> player,
+                                  MinMaxBounds.Ints targetDamage) implements SimpleInstance {
         public static final Codec<TriggerInstance> CODEC = RecordCodecBuilder.create(
                 instance -> instance.group(
                         EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(TriggerInstance::player),

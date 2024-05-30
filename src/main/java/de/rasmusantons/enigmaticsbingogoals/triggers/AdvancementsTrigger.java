@@ -2,15 +2,13 @@ package de.rasmusantons.enigmaticsbingogoals.triggers;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.github.gaming32.bingo.triggers.progress.SimpleProgressibleCriterionTrigger;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.resources.ResourceLocation;
-import io.github.gaming32.bingo.triggers.progress.SimpleProgressibleCriterionTrigger;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.packs.resources.Resource;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
@@ -27,7 +25,8 @@ public class AdvancementsTrigger extends SimpleProgressibleCriterionTrigger<Adva
         trigger(player, triggerInstance -> triggerInstance.matches(advancement, number, progressListener));
     }
 
-    public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<ResourceLocation> advancement, MinMaxBounds.Ints targetNumber) implements SimpleInstance {
+    public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<ResourceLocation> advancement,
+                                  MinMaxBounds.Ints targetNumber) implements SimpleInstance {
         public static final Codec<TriggerInstance> CODEC = RecordCodecBuilder.create(
                 instance -> instance.group(
                         EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(TriggerInstance::player),

@@ -25,7 +25,8 @@ public class AdvancementProgressTrigger extends SimpleProgressibleCriterionTrigg
         trigger(player, triggerInstance -> triggerInstance.matches(advancement, count, progressListener));
     }
 
-    public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<ResourceLocation> advancement, MinMaxBounds.Ints targetNumber) implements SimpleInstance {
+    public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<ResourceLocation> advancement,
+                                  MinMaxBounds.Ints targetNumber) implements SimpleInstance {
         public static final Codec<AdvancementProgressTrigger.TriggerInstance> CODEC = RecordCodecBuilder.create(
                 instance -> instance.group(
                         EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(AdvancementProgressTrigger.TriggerInstance::player),

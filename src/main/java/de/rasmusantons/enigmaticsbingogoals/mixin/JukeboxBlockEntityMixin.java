@@ -18,14 +18,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(JukeboxBlockEntity.class)
 public abstract class JukeboxBlockEntityMixin implements JukeboxBlockEntityExtension {
-    @Shadow
-    public abstract ItemStack getTheItem();
+    @Unique
+    private final static int MAX_DISTANCE = 60;
 
     @Unique
     private ServerPlayer lastPlayed;
 
-    @Unique
-    private final static int MAX_DISTANCE = 60;
+    @Shadow
+    public abstract ItemStack getTheItem();
 
     public ServerPlayer enigmaticsbingogoals$getLastPlayed() {
         return lastPlayed;

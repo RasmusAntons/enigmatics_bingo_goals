@@ -3,7 +3,10 @@ package de.rasmusantons.enigmaticsbingogoals.mixin;
 import de.rasmusantons.enigmaticsbingogoals.extension.BingoGameExtension;
 import de.rasmusantons.enigmaticsbingogoals.triggers.AdvancementProgressTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.AdvancementsTrigger;
-import io.github.gaming32.bingo.game.*;
+import io.github.gaming32.bingo.game.ActiveGoal;
+import io.github.gaming32.bingo.game.BingoBoard;
+import io.github.gaming32.bingo.game.BingoGame;
+import io.github.gaming32.bingo.game.BingoGameMode;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
@@ -26,15 +29,14 @@ import java.util.UUID;
 
 @Mixin(BingoGame.class)
 public abstract class BingoGameMixin implements BingoGameExtension {
-    @Shadow
-    public abstract BingoBoard getBoard();
-
+    @Unique
+    private final Map<UUID, Integer> totalDamage = new HashMap<>();
     @Shadow
     @Final
     private Map<UUID, Object2IntMap<Stat<?>>> baseStats;
 
-    @Unique
-    private final Map<UUID, Integer> totalDamage = new HashMap<>();
+    @Shadow
+    public abstract BingoBoard getBoard();
 
     @Unique
     public Map<UUID, Integer> enigmatics_bingo_goals$getTotalDamage() {

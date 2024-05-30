@@ -17,11 +17,16 @@ import java.util.Set;
 
 @Mixin(PlayerAdvancements.class)
 public class PlayerAdvancementsMixin {
-    @Shadow @Final private Map<AdvancementHolder, AdvancementProgress> progress;
+    @Shadow
+    @Final
+    private Map<AdvancementHolder, AdvancementProgress> progress;
 
-    @Shadow private ServerPlayer player;
+    @Shadow
+    private ServerPlayer player;
 
-    @Shadow @Final private Set<AdvancementHolder> visible;
+    @Shadow
+    @Final
+    private Set<AdvancementHolder> visible;
 
     @Inject(method = "award", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancements/AdvancementRewards;grant(Lnet/minecraft/server/level/ServerPlayer;)V", shift = At.Shift.AFTER))
     private void award(AdvancementHolder advancement, String criterionKey, CallbackInfoReturnable<Boolean> cir) {
