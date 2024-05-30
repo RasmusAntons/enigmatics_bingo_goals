@@ -683,7 +683,7 @@ public class EnigmaticsGoalProvider extends EnigmaticsDifficultyGoalProvider {
                         subber -> subber.sub("icons.*.item.count", "count")
                 )
         );
-        addGoal(advancementGoal(id("get_sniper_duel"),
+        addGoal(advancementGoal(id("get_advancement_sniper_duel"),
                 new ResourceLocation("minecraft", "adventure/sniper_duel"),
                         Component.translatable("advancements.adventure.sniper_duel.title"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BOW)
