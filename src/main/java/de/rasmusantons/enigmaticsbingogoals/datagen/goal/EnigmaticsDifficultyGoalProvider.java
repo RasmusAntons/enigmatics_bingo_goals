@@ -41,6 +41,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -269,11 +270,20 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .progress("achieve");
     }
 
-    protected static BingoGoal.Builder advancementGoal(ResourceLocation id, ResourceLocation advancement, Component title) {
-        return BingoGoal.builder(id)
-                .criterion("achieve", AdvancementsTrigger.TriggerInstance.advancement(advancement))
-                .tags(BingoTags.STAT, EnigmaticsBingoTags.ADVANCEMENTS)
-                .name(Component.translatable("enigmaticsbingogoals.goal.get_advancement", title));
+    protected static BingoGoal.Builder advancementGoal(ResourceLocation id, @Nullable Component title, ResourceLocation... oneOfThese) {
+        var builder = BingoGoal.builder(id);
+        if (oneOfThese.length == 1) {
+            builder.criterion("achieve", AdvancementsTrigger.TriggerInstance.advancement(oneOfThese[0]));
+        } else if (oneOfThese.length > 1) {
+            for (int i = 0; i < oneOfThese.length; i++) {
+                builder.criterion("achieve_" + i, AdvancementsTrigger.TriggerInstance.advancement(oneOfThese[i]));
+            }
+            builder.requirements(AdvancementRequirements.Strategy.OR);
+        }
+        if (title != null)
+            builder.name(Component.translatable("enigmaticsbingogoals.goal.get_advancement", title));
+        return builder
+                .tags(BingoTags.STAT, EnigmaticsBingoTags.ADVANCEMENTS);
     }
 
     protected static BingoGoal.Builder breakBlockGoal(ResourceLocation id, Block... oneOfThese) {

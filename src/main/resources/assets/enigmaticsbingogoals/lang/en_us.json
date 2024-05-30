@@ -24,6 +24,7 @@
   "enigmaticsbingogoals.goal.fill_composter": "Fill a Composter",
   "enigmaticsbingogoals.goal.full_unique_inventory": "Fill your inventory with unique items",
   "enigmaticsbingogoals.goal.get_advancement": "Get the advancement [%s]",
+  "enigmaticsbingogoals.goal.get_any_spyglass_advancement": "Get any Spyglass advancement",
   "enigmaticsbingogoals.goal.get_effect": "Get %s",
   "enigmaticsbingogoals.goal.get_some_advancements": "Get %d advancements",
   "enigmaticsbingogoals.goal.get_some_effects": "Get %d status effects concurrently",
