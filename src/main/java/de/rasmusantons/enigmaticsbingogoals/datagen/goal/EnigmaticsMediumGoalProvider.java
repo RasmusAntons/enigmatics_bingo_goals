@@ -115,9 +115,9 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .name(Component.translatable("enigmaticsbingogoals.goal.hit_player_with_snowball", EntityType.SNOWBALL.getDescription()))
                 .icon(IndicatorIcon.infer(Items.SNOWBALL, Items.PLAYER_HEAD))
         );
-        // TODO: Kill more unique mobs than the enemy
-        // TODO: Kill more unique hostile mobs than the enemy
-        // TODO: Kill more unique neutral mobs than the enemy
+        // TODO (requires OVERTAKABLE): Kill more unique mobs than the enemy
+        // TODO (requires OVERTAKABLE): Kill more unique hostile mobs than the enemy
+        // TODO (requires OVERTAKABLE): Kill more unique neutral mobs than the enemy
         // TODO: Visit 15-25 unique Biomes
         addGoal(advancementProgressGoal(id("visit_some_unique_overworld_biomes"),
                 new ResourceLocation("minecraft", "adventure/adventuring_time"), 10, 25)
@@ -353,7 +353,11 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         // TODO: Equip Wolf Armor
-        // TODO: Wear a full set of Gold Armor
+        addGoal(wearArmorPiecesGoal(id("wear_full_gold"), Items.GOLDEN_HELMET, Items.GOLDEN_CHESTPLATE,
+                Items.GOLDEN_LEGGINGS, Items.GOLDEN_BOOTS)
+                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.ARMOR)
+                .name(Component.translatable("enigmaticsbingogoals.goal.wear_full_gold"))
+        );
         addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_saplings"), EnigmaticsBingoItemTags.SAPLINGS, 5, 7)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.PLANT_BATCH)
                 .name(

@@ -100,8 +100,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Potions.WATER_BREATHING, Potions.LONG_WATER_BREATHING)
                 .tags(EnigmaticsBingoTags.BURIED_TREASURE, EnigmaticsBingoTags.SHIPWRECK)
         );
-        // TODO: Have a higher level than the enemy
-        // TODO: Eat more unique foods than the enemy
+        // TODO (requires OVERTAKABLE): Have a higher level than the enemy
+        // TODO (requires OVERTAKABLE): Eat more unique foods than the enemy
         addGoal(BingoGoal.builder(id("empty_hunger"))
                 .criterion("empty_hunger", EmptyHungerTrigger.TriggerInstance.emptyHunger())
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.COVER_DISTANCE)
@@ -381,8 +381,16 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
         );
         // TODO: Give an armor stand 4 pieces of armor
-        // TODO: Wear a full set of Leather Armor
-        // TODO: Wear a full set of Iron Armor
+        addGoal(wearArmorPiecesGoal(id("wear_full_leather"), Items.LEATHER_HELMET, Items.LEATHER_CHESTPLATE,
+                Items.LEATHER_LEGGINGS, Items.LEATHER_BOOTS)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ARMOR)
+                .name(Component.translatable("enigmaticsbingogoals.goal.wear_full_leather"))
+        );
+        addGoal(wearArmorPiecesGoal(id("wear_full_iron"), Items.IRON_HELMET, Items.IRON_CHESTPLATE,
+                        Items.IRON_LEGGINGS, Items.IRON_BOOTS)
+                        .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ARMOR)
+                        .name(Component.translatable("enigmaticsbingogoals.goal.wear_full_iron"))
+        );
         addGoal(eatItemGoal(id("eat_glow_berries"), Items.GLOW_BERRIES)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.LUSH_CAVE, EnigmaticsBingoTags.ANCIENT_CITY)
         );

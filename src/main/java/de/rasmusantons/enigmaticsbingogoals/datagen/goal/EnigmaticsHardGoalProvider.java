@@ -74,7 +74,11 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_zoglin", EntityType.ZOGLIN.getDescription()))
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST)
         );
-        // TODO: Wear a full set of Diamond Armor
+        addGoal(wearArmorPiecesGoal(id("wear_full_diamond"), Items.DIAMOND_HELMET, Items.DIAMOND_CHESTPLATE,
+                Items.DIAMOND_LEGGINGS, Items.DIAMOND_BOOTS)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.ARMOR)
+                .name(Component.translatable("enigmaticsbingogoals.goal.wear_full_diamond"))
+        );
         // TODO: Grow huge crimson fungi in overworld
         // TODO: Grow huge warped fungi in overworld
         addGoal(obtainItemGoal(id("obtain_experience_bottle"), Items.EXPERIENCE_BOTTLE)

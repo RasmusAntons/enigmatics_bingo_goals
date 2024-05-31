@@ -28,10 +28,10 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.inventory.SlotRange;
 import net.minecraft.world.inventory.SlotRanges;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -40,11 +40,9 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalProvider {
     public static final ResourceLocation ENIGMATICS = new ResourceLocation(Bingo.MOD_ID, "enigmatics");
@@ -118,7 +116,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .criterion("kill", KillMobsTrigger.TriggerInstance.ofTag(typeTag, 1, unique),
                         subber -> subber.sub("conditions.amount", "amount"))
                 .progress("kill")
-                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getEntityIcon(typeTag), Items.NETHERITE_SWORD));
+                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getEntityIcon(typeTag), net.minecraft.world.item.Items.NETHERITE_SWORD));
     }
 
     protected static BingoGoal.Builder dieToDamageTypeGoal(ResourceLocation id, TagKey<DamageType> damageType) {
@@ -142,13 +140,13 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
 
     @SafeVarargs
     protected static BingoGoal.Builder potionGoal(ResourceLocation id, Holder<Potion>... potions) {
-        ItemStack potionItem = BingoUtil.setPotion(new ItemStack(Items.POTION), potions[0]);
+        ItemStack potionItem = BingoUtil.setPotion(new ItemStack(net.minecraft.world.item.Items.POTION), potions[0]);
         return obtainItemGoal(
                 id,
                 potionItem,
                 Arrays.stream(potions)
                         .map(potion -> ItemPredicate.Builder.item()
-                                .of(Items.POTION)
+                                .of(net.minecraft.world.item.Items.POTION)
                                 .withSubPredicate(
                                         ItemSubPredicates.POTIONS,
                                         new ItemPotionsPredicate(HolderSet.direct(potion))
@@ -157,7 +155,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         .toArray(ItemPredicate.Builder[]::new)
         )
                 .tags(EnigmaticsBingoTags.POTIONS)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_item", Items.POTION.getName(potionItem)));
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_item", net.minecraft.world.item.Items.POTION.getName(potionItem)));
     }
 
     protected static BingoGoal.Builder effectGoal(ResourceLocation id, Holder<MobEffect> effect) {
@@ -172,7 +170,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
     }
 
     protected static BingoGoal.Builder numberOfEffectsGoal(ResourceLocation id, int minEffects, int maxEffects) {
-        ItemStack icon = new ItemStack(Items.GLASS_BOTTLE);
+        ItemStack icon = new ItemStack(net.minecraft.world.item.Items.GLASS_BOTTLE);
         icon.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
         return BingoGoal.builder(id)
                 .sub("count", BingoSub.random(minEffects, maxEffects))
@@ -208,7 +206,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .criterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(
                         EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityType))))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
-                .icon(IndicatorIcon.infer(entityType, Items.NETHERITE_SWORD));
+                .icon(IndicatorIcon.infer(entityType, net.minecraft.world.item.Items.NETHERITE_SWORD));
     }
 
     protected static BingoGoal.Builder neverLevelsGoal(ResourceLocation id, int minLevels, int maxLevels) {
@@ -220,7 +218,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_levels", 0),
                         subber -> subber.sub("with.0", "count"))
                 .icon(
-                        new IndicatorIcon(ItemIcon.ofItem(Items.EXPERIENCE_BOTTLE), ItemIcon.ofItem(Items.BARRIER)),
+                        new IndicatorIcon(ItemIcon.ofItem(net.minecraft.world.item.Items.EXPERIENCE_BOTTLE), ItemIcon.ofItem(net.minecraft.world.item.Items.BARRIER)),
                         subber -> subber.sub("base.item.count", "count"))
                 .antisynergy("levels");
     }
@@ -234,7 +232,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .name(Component.translatable("enigmaticsbingogoals.goal.reach_levels", 0),
                         subber -> subber.sub("with.0", "count"))
                 .icon(
-                        ItemIcon.ofItem(Items.EXPERIENCE_BOTTLE),
+                        ItemIcon.ofItem(net.minecraft.world.item.Items.EXPERIENCE_BOTTLE),
                         subber -> subber.sub("item.count", "count"))
                 .antisynergy("levels");
     }
@@ -246,7 +244,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 )
                 .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_some_hearts_damage", damage))
-                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
+                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(net.minecraft.world.item.Items.BARRIER)))
                 .progress(new CriterionProgressTracker("damage", 0.05f));
     }
 
@@ -271,7 +269,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .tags(BingoTags.STAT, EnigmaticsBingoTags.ADVANCEMENTS)
                 .name(Component.translatable("enigmaticsbingogoals.goal.get_some_advancements", 0),
                         subber -> subber.sub("with.0", "number"))
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ELYTRA), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)),
+                .icon(new IndicatorIcon(ItemIcon.ofItem(net.minecraft.world.item.Items.ELYTRA), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)),
                         subber -> subber.sub("base.item.count", "number"))
                 .progress("achieve");
     }
@@ -297,14 +295,14 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
         if (oneOfThese.length == 1) {
             builder
                     .criterion("break", BreakBlockTrigger.builder().block(oneOfThese[0]).build())
-                    .icon(IndicatorIcon.infer(oneOfThese[0], Items.NETHERITE_PICKAXE));
+                    .icon(IndicatorIcon.infer(oneOfThese[0], net.minecraft.world.item.Items.NETHERITE_PICKAXE));
         } else {
             for (int i = 0; i < oneOfThese.length; i++)
                 builder.criterion("break_" + i, BreakBlockTrigger.builder().block(oneOfThese[i]).build());
             builder.icon(
                     IndicatorIcon.infer(
                             CycleIcon.infer(Arrays.stream(oneOfThese).map(BlockIcon::ofBlock)),
-                            Items.NETHERITE_PICKAXE
+                            net.minecraft.world.item.Items.NETHERITE_PICKAXE
                     )
             );
         }
@@ -313,6 +311,47 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .name(Component.translatable("enigmaticsbingogoals.goal.break_block",
                         Component.translatable(oneOfThese[0].getDescriptionId())));
     }
+
+
+    protected static BingoGoal.Builder wearArmorPiecesGoal(ResourceLocation id, Item head, Item chest, Item legs, Item boots) {
+        Map<SlotRange, ItemPredicate> armorItems = new HashMap<>();
+
+        if (head != null) {
+            armorItems.put(Objects.requireNonNull(SlotRanges.nameToIds("armor.head")),
+                    ItemPredicate.Builder.item().of(head).build());
+        }
+        if (chest != null) {
+            armorItems.put(Objects.requireNonNull(SlotRanges.nameToIds("armor.chest")),
+                    ItemPredicate.Builder.item().of(chest).build());
+        }
+        if (legs != null) {
+            armorItems.put(Objects.requireNonNull(SlotRanges.nameToIds("armor.legs")),
+                    ItemPredicate.Builder.item().of(legs).build());
+        }
+        if (boots != null) {
+            armorItems.put(Objects.requireNonNull(SlotRanges.nameToIds("armor.feet")),
+                    ItemPredicate.Builder.item().of(boots).build());
+        }
+
+        return BingoGoal.builder(id)
+                .criterion("wear",
+                        CriteriaTriggers.INVENTORY_CHANGED.createCriterion(
+                                new InventoryChangeTrigger.TriggerInstance(
+                                        Optional.of(ContextAwarePredicate.create(
+                                                LootItemEntityPropertyCondition.hasProperties(
+                                                        LootContext.EntityTarget.THIS,
+                                                        EntityPredicate.Builder.entity().of(EntityType.PLAYER)
+                                                                .slots(new SlotsPredicate(armorItems))
+                                                ).build()
+                                        )),
+                                        InventoryChangeTrigger.TriggerInstance.Slots.ANY,
+                                        Collections.emptyList()
+                                )
+                        )
+                )
+                .icon(CycleIcon.infer(Stream.of(head, chest, legs, boots).filter(Objects::nonNull)));
+    }
+
 
     protected static BingoGoal.Builder rideAbstractHorseWithSaddleGoal(ResourceLocation id, EntityType<?> entityType) {
         var playerPredicate = Optional.of(ContextAwarePredicate.create(
@@ -323,7 +362,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                                         new SlotsPredicate(
                                                 Map.of(
                                                         Objects.requireNonNull(SlotRanges.nameToIds("horse.saddle")),
-                                                        ItemPredicate.Builder.item().of(Items.SADDLE).build()
+                                                        ItemPredicate.Builder.item().of(net.minecraft.world.item.Items.SADDLE).build()
                                                 )
                                         )
                                 )
@@ -338,7 +377,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         new StartRidingTrigger.TriggerInstance(playerPredicate)
                 ))
                 .requirements(AdvancementRequirements.Strategy.OR)
-                .icon(IndicatorIcon.infer(entityType, Items.SADDLE));
+                .icon(IndicatorIcon.infer(entityType, net.minecraft.world.item.Items.SADDLE));
     }
 
     protected static BingoGoal.Builder breedAnimalGoal(ResourceLocation id, EntityType<?> entityType) {
@@ -356,6 +395,6 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         EntityPredicate.Builder.entity().of(entityType)))
                 .tags(EnigmaticsBingoTags.TAME_ANIMAL)
                 .name(Component.translatable("enigmaticsbingogoals.goal.tame_animal", entityType.getDescription()))
-                .icon(IndicatorIcon.infer(entityType, ItemIcon.ofItem(Items.BONE)));
+                .icon(IndicatorIcon.infer(entityType, ItemIcon.ofItem(net.minecraft.world.item.Items.BONE)));
     }
 }
