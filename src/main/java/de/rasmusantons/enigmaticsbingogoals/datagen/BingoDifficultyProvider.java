@@ -1,6 +1,7 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen;
 
 import de.rasmusantons.enigmaticsbingogoals.datagen.goal.EnigmaticsDifficultyGoalProvider;
+import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoDifficulty;
 import io.github.gaming32.bingo.util.BingoUtil;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -57,9 +58,10 @@ public class BingoDifficultyProvider implements DataProvider {
     }
 
     private void addDifficulties(Consumer<BingoDifficulty.Holder> difficultyAdder) {
-        difficultyAdder.accept(BingoDifficulty.builder(EnigmaticsDifficultyGoalProvider.ENIGMATICS)
-                .number(5)
-                .distribution(0, 0, 0, 0, 0, 25)
-                .build());
+        difficultyAdder.accept(BingoDifficulty.builder(BingoDifficulties.VERY_EASY).number(0).distribution(20, 5, 0, 0, 0).build());
+        difficultyAdder.accept(BingoDifficulty.builder(BingoDifficulties.EASY).number(1).distribution(10, 10, 5, 0, 0).build());
+        difficultyAdder.accept(BingoDifficulty.builder(BingoDifficulties.MEDIUM).number(2).distribution(0, 8, 15, 2, 0).build());
+        difficultyAdder.accept(BingoDifficulty.builder(BingoDifficulties.HARD).number(3).distribution(0, 5, 10, 10, 0).build());
+        difficultyAdder.accept(BingoDifficulty.builder(BingoDifficulties.VERY_HARD).number(4).distribution(0, 0, 5, 10, 10).build());
     }
 }
