@@ -39,10 +39,10 @@ import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Optional;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider {
-    public EnigmaticsEasyGoalProvider(Consumer<BingoGoal.Holder> goalAdder, HolderLookup.Provider registries) {
+    public EnigmaticsEasyGoalProvider(BiConsumer<ResourceLocation, BingoGoal> goalAdder, HolderLookup.Provider registries) {
         super(BingoDifficulties.EASY, goalAdder, registries);
     }
 

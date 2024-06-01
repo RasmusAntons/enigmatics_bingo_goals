@@ -48,7 +48,7 @@ public abstract class BingoGameMixin implements BingoGameExtension {
         totalDamage.clear();
     }
 
-    @Inject(method = "addPlayer", at = @At(value = "INVOKE", target = "Lio/github/gaming32/bingo/network/messages/s2c/RemoveBoardPacket;sendTo(Lnet/minecraft/server/level/ServerPlayer;)V"))
+    @Inject(method = "addPlayer", at = @At(value = "INVOKE", target = "Lio/github/gaming32/bingo/network/messages/s2c/RemoveBoardPayload;sendTo(Lnet/minecraft/server/level/ServerPlayer;)V"))
     private void onAddPlayer(ServerPlayer player, CallbackInfo ci) {
         if (baseStats.containsKey(player.getUUID()))
             return;

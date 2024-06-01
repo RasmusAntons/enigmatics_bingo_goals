@@ -35,10 +35,10 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyC
 
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvider {
-    public EnigmaticsMediumGoalProvider(Consumer<BingoGoal.Holder> goalAdder, HolderLookup.Provider registries) {
+    public EnigmaticsMediumGoalProvider(BiConsumer<ResourceLocation, BingoGoal> goalAdder, HolderLookup.Provider registries) {
         super(BingoDifficulties.MEDIUM, goalAdder, registries);
     }
 

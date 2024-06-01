@@ -41,6 +41,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyC
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -48,7 +49,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
     public static final ResourceLocation ENIGMATICS = new ResourceLocation(Bingo.MOD_ID, "enigmatics");
 
     public EnigmaticsDifficultyGoalProvider(ResourceLocation difficulty,
-                                            Consumer<BingoGoal.Holder> goalAdder,
+                                            BiConsumer<ResourceLocation, BingoGoal> goalAdder,
                                             HolderLookup.Provider registries) {
         super(difficulty, goalAdder, registries);
     }

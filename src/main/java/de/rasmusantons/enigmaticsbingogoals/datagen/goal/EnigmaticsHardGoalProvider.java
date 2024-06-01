@@ -22,11 +22,11 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
 public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider {
-    public EnigmaticsHardGoalProvider(Consumer<BingoGoal.Holder> goalAdder, HolderLookup.Provider registries) {
+    public EnigmaticsHardGoalProvider(BiConsumer<ResourceLocation, BingoGoal> goalAdder, HolderLookup.Provider registries) {
         super(BingoDifficulties.HARD, goalAdder, registries);
     }
 
