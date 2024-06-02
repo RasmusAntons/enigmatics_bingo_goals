@@ -7,10 +7,9 @@ import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
-import net.minecraft.advancements.critereon.CuredZombieVillagerTrigger;
-import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.EntityTypePredicate;
-import net.minecraft.advancements.critereon.SummonedEntityTrigger;
+import io.github.gaming32.bingo.data.tags.BingoFeatureTags;
+import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
+import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
@@ -19,6 +18,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.Arrays;
@@ -79,8 +79,41 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.ARMOR)
                 .name(Component.translatable("enigmaticsbingogoals.goal.wear_full_diamond"))
         );
-        // TODO: Grow huge crimson fungi in overworld
-        // TODO: Grow huge warped fungi in overworld
+
+
+
+        addGoal(BingoGoal.builder(id("huge_crimson_fungus_in_overworld"))
+                .criterion("grow", GrowFeatureTrigger.builder()
+                        .feature(BingoFeatureTags.HUGE_FUNGI)
+                        .location(
+                                LocationPredicate.Builder.inDimension(Level.OVERWORLD).build()
+                        ).build())
+                .name(Component.translatable("enigmaticsbingogoals.goal.huge_fungus_in_overworld", Items.CRIMSON_FUNGUS.getDescription()))
+                .icon(IndicatorIcon.infer(
+                        Items.CRIMSON_FUNGUS,
+                        Blocks.GRASS_BLOCK
+                ))
+                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
+                        EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE));
+        addGoal(BingoGoal.builder(id("huge_warped_fungus_in_overworld"))
+                .criterion("grow", GrowFeatureTrigger.builder()
+                        .feature(BingoFeatureTags.HUGE_FUNGI)
+                        .location(
+                                LocationPredicate.Builder.inDimension(Level.OVERWORLD).build()
+                        ).build())
+                .name(Component.translatable("enigmaticsbingogoals.goal.huge_fungus_in_overworld", Items.WARPED_FUNGUS.getDescription()))
+                .icon(IndicatorIcon.infer(
+                        Items.WARPED_FUNGUS,
+                        Blocks.GRASS_BLOCK
+                ))
+                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
+                        EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE));
+
+
+
+
+
+
         addGoal(obtainItemGoal(id("obtain_experience_bottle"), Items.EXPERIENCE_BOTTLE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.ANCIENT_CITY,
                         BingoTags.VILLAGE)

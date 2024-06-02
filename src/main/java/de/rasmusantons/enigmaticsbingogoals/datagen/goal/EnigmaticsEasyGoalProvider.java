@@ -14,7 +14,9 @@ import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
+import io.github.gaming32.bingo.data.tags.BingoFeatureTags;
 import io.github.gaming32.bingo.triggers.ChickenHatchTrigger;
+import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
 import io.github.gaming32.bingo.triggers.RelativeStatsTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
@@ -31,6 +33,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -587,6 +590,19 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.NETHER_ENTRY)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.FLINT_AND_STEEL), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
+        addGoal(BingoGoal.builder(id("grow_tree_in_nether"))
+                .criterion("grow", GrowFeatureTrigger.builder()
+                        .feature(BingoFeatureTags.TREES)
+                        .location(
+                                LocationPredicate.Builder.inDimension(Level.NETHER).build()
+                        ).build())
+                .name(Component.translatable("enigmaticsbingogoals.goal.grow_tree_in_nether"))
+                .icon(IndicatorIcon.infer(
+                        new ItemTagCycleIcon(EnigmaticsBingoItemTags.SAPLINGS),
+                        Blocks.NETHERRACK
+                ))
+                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY,
+                        EnigmaticsBingoTags.GROW_TREE));
         addGoal(effectGoal(id("get_glowing"), MobEffects.GLOWING)
                 .tags(EnigmaticsBingoTags.NETHER_ENTRY)
         );
