@@ -33,6 +33,7 @@
 
 html, body {
     height: 100%;
+	background-color: #373239;
 }
 
 table {
@@ -40,16 +41,16 @@ table {
     border-collapse: collapse;
 }
 
-tr:nth-child(even) {
+tr {
+    border-bottom: 1px dashed #6666;
+}
+
+tr.even {
     background-color: #373239;
 }
 
-tr:nth-child(odd) {
+tr.odd {
     background-color: #3c373d;
-}
-
-tr:not(:last-child) {
-    border-bottom: 1px dashed #6666;
 }
 
 th, td {
@@ -82,7 +83,7 @@ td {
     user-select: none;
 }
 
-.tag:hover {
+.tag:hover, .selected {
     border: 1px solid #fff;
     cursor: pointer;
 }
@@ -118,5 +119,55 @@ td {
 	</tr>
 	{% endfor %}
 </table>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const tags = document.querySelectorAll('.tag');
+    const rows = document.querySelectorAll('table tr:not(:first-child)');
+    const selectedTags = new Set();
+
+    tags.forEach(tag => {
+        tag.addEventListener('click', function() {
+            const tagText = this.textContent.trim();
+
+            if (selectedTags.has(tagText)) {
+                selectedTags.delete(tagText);
+            } else {
+                selectedTags.add(tagText);
+            }
+
+            tags.forEach(t => {
+                if (selectedTags.has(t.textContent.trim())) {
+                    t.classList.add('selected');
+                } else {
+                    t.classList.remove('selected');
+                }
+            });
+
+            filterRows();
+            console.log(Array.from(selectedTags));
+        });
+    });
+
+    function filterRows() {
+        let visibleRowIndex = 0;
+
+        rows.forEach(row => {
+            const rowTags = Array.from(row.querySelectorAll('.tag')).map(tag => tag.textContent.trim());
+            const isVisible = Array.from(selectedTags).every(tag => rowTags.includes(tag));
+
+            if (isVisible || selectedTags.size === 0) {
+                row.style.display = '';
+                row.classList.remove('even', 'odd');
+                row.classList.add(visibleRowIndex % 2 === 0 ? 'even' : 'odd');
+                visibleRowIndex++;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    filterRows();
+});
+</script>
 </body>
 </html>
