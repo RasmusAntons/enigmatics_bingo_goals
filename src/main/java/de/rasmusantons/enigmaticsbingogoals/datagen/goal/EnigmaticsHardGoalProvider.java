@@ -1,13 +1,13 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
+import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoFeatureTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
-import io.github.gaming32.bingo.data.tags.BingoFeatureTags;
 import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
@@ -79,12 +79,9 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.ARMOR)
                 .name(Component.translatable("enigmaticsbingogoals.goal.wear_full_diamond"))
         );
-
-
-
         addGoal(BingoGoal.builder(id("huge_crimson_fungus_in_overworld"))
                 .criterion("grow", GrowFeatureTrigger.builder()
-                        .feature(BingoFeatureTags.HUGE_FUNGI)
+                        .feature(EnigmaticsBingoFeatureTags.HUGE_CRIMSON_FUNGI)
                         .location(
                                 LocationPredicate.Builder.inDimension(Level.OVERWORLD).build()
                         ).build())
@@ -97,7 +94,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE));
         addGoal(BingoGoal.builder(id("huge_warped_fungus_in_overworld"))
                 .criterion("grow", GrowFeatureTrigger.builder()
-                        .feature(BingoFeatureTags.HUGE_FUNGI)
+                        .feature(EnigmaticsBingoFeatureTags.HUGE_WARPED_FUNGI)
                         .location(
                                 LocationPredicate.Builder.inDimension(Level.OVERWORLD).build()
                         ).build())
@@ -108,12 +105,6 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 ))
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
                         EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE));
-
-
-
-
-
-
         addGoal(obtainItemGoal(id("obtain_experience_bottle"), Items.EXPERIENCE_BOTTLE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.ANCIENT_CITY,
                         BingoTags.VILLAGE)
