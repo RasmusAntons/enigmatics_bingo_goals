@@ -1,0 +1,21 @@
+<html>
+<head>
+
+</head>
+<body>
+<table>
+	<tr><th>Goal</th><th>Difficulty</th><th>Tags</th></tr>
+	{% for goal in goals %}
+	<tr>
+		<td>{{ goal._id }}</td>
+		<td>{{ goal.difficulty }}</td>
+		<td>
+		{% for tag in goal.tags %}
+			<span>{{ tag }}</span>
+		{% endfor %}
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+</body>
+</html>

@@ -59,6 +59,35 @@ project.tasks.register('buildBingoMod') {
     }
 }
 
+project.tasks.register('setupPythonVenv') {
+    group = 'docs'
+    def venv = getLayout().getBuildDirectory().dir('venv').get()
+    def path = getLayout().getProjectDirectory().dir('docs').dir('goal_list')
+    doFirst {
+        exec {
+            commandLine 'python3', '-m', 'venv', venv
+        }
+    }
+    doLast {
+        exec {
+            commandLine venv.dir('bin').file('pip'), 'install', '-r', path.file('requirements.txt')
+        }
+    }
+}
+
+project.tasks.register('genGoalList') {
+    group = 'docs'
+    dependsOn setupPythonVenv
+    def venv = getLayout().getBuildDirectory().dir('venv').get()
+    def path = getLayout().getProjectDirectory().dir('docs').dir('goal_list')
+    doLast {
+        exec {
+            workingDir = path
+            commandLine venv.dir('bin').file('python'), 'gen_goal_list.py'
+        }
+    }
+}
+
 configurations.configureEach {
     resolutionStrategy.cacheChangingModulesFor(0, 'seconds')
 }
