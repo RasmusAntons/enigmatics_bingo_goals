@@ -65,25 +65,37 @@ project.tasks.register('setupPythonVenv') {
     def path = getLayout().getProjectDirectory().dir('docs').dir('goal_list')
     doFirst {
         exec {
-            commandLine 'python3', '-m', 'venv', venv
+            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+                commandLine 'py', '-m', 'venv', venv
+            } else {
+                commandLine 'python3', '-m', 'venv', venv
+            }
         }
     }
     doLast {
         exec {
-            commandLine venv.dir('bin').file('pip'), 'install', '-r', path.file('requirements.txt')
+            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+                commandLine venv.dir('Scripts').file('pip'), 'install', '-r', path.file('requirements.txt')
+            } else {
+                commandLine venv.dir('bin').file('pip'), 'install', '-r', path.file('requirements.txt')
+            }
         }
     }
 }
 
 project.tasks.register('genGoalList') {
     group = 'docs'
-    dependsOn setupPythonVenv
+    dependsOn setupPythonVenv, runDatagen
     def venv = getLayout().getBuildDirectory().dir('venv').get()
     def path = getLayout().getProjectDirectory().dir('docs').dir('goal_list')
     doLast {
         exec {
             workingDir = path
-            commandLine venv.dir('bin').file('python'), 'gen_goal_list.py'
+            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+                commandLine venv.dir('Scripts').file('python'), 'gen_goal_list.py'
+            } else {
+                commandLine venv.dir('bin').file('python'), 'gen_goal_list.py'
+            }
         }
     }
 }

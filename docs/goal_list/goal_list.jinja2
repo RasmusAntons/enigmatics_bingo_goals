@@ -1,17 +1,118 @@
 <html>
 <head>
+<style>
+:root {
+    --color-very-easy: #bae1ff;
+    --color-easy: #5de57b;
+    --color-medium: #ffffba;
+    --color-hard: #ffdfba;
+    --color-very-hard: #ffb3ba;
 
+    --color-tag-dimension: #0ff;
+    --color-tag-special: #f83159;
+}
+
+.very-easy { --background-color: var(--color-very-easy); }
+.easy { --background-color: var(--color-easy); }
+.medium { --background-color: var(--color-medium); }
+.hard { --background-color: var(--color-hard); }
+.very-hard { --background-color: var(--color-very-hard); }
+
+.dimension_tag { color: var(--color-tag-dimension); }
+.special_tag { color: var(--color-tag-special); }
+
+
+*, *::before, *::after {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: system-ui;
+    color: white;
+}
+
+html, body {
+    height: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+    background-color: #373239;
+}
+
+tr:nth-child(odd) {
+    background-color: #3c373d;
+}
+
+tr:not(:last-child) {
+    border-bottom: 1px dashed #6666;
+}
+
+th, td {
+    padding: 0.5rem;
+}
+
+th {
+    position: sticky;
+    top: 0px;
+
+    background-color: black;
+
+    color: white;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+td {
+    line-height: 1.5rem;
+}
+
+.tag {
+    padding-inline: 0.25rem;
+
+    background-color: #000b;
+    border: 1px solid black;
+    border-radius: 5px;
+
+    font-family: monospace;
+    user-select: none;
+}
+
+.tag:hover {
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.pill {
+    padding: 0.1rem 0.3rem;
+
+    background-color: var(--background-color);
+    border-radius: 1rem;
+
+    color: color-mix(in srgb, var(--background-color), black 70%);
+    font-weight: bold;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    user-select: none;
+}
+</style>
 </head>
 <body>
 <table>
-	<tr><th>Goal</th><th>Difficulty</th><th>Tags</th></tr>
+	<tr><th>Goal</th><th>Tags</th></tr>
 	{% for goal in goals %}
 	<tr>
-		<td>{{ goal._id }}</td>
-		<td>{{ goal.difficulty }}</td>
+		<td>
+		    <span>{{ goal._name }}</span>
+		    <span class="pill {{ goal._diff }}">{{ goal._diff_title }}</span>
+		</td>
 		<td>
 		{% for tag in goal.tags %}
-			<span>{{ tag }}</span>
+			<span class="{% if tag in dimension_tags %}dimension_tag {% elif tag in special_tags %}special_tag {% endif %}tag">{{ tag }}</span>
 		{% endfor %}
 		</td>
 	</tr>
