@@ -6,16 +6,31 @@ import os.path
 import jinja2
 
 _OWN_DIR = os.path.dirname(__file__)
-GOALS_ROOT = os.path.abspath(os.path.join(_OWN_DIR, '..', '..', 'src', 'main', 'generated', 'data', 'bingo', 'bingo', 'goals'))
-SOURCE_ROOT = os.path.abspath(os.path.join(_OWN_DIR, '..', '..', 'src', 'main', 'java', 'de', 'rasmusantons', 'enigmaticsbingogoals', 'datagen', 'goal'))
+GOALS_ROOT = os.path.abspath(os.path.join(
+    _OWN_DIR, '..', '..', 'src', 'main', 'generated', 'data', 'bingo', 'bingo', 'goals'
+))
+SOURCE_ROOT = os.path.abspath(os.path.join(
+    _OWN_DIR, '..', '..', 'src', 'main', 'java', 'de', 'rasmusantons', 'enigmaticsbingogoals', 'datagen', 'goal'
+))
+ORIGINAL_GOALS_ROOT = os.path.abspath(os.path.join(
+    _OWN_DIR, '..', '..', 'build', 'bingo', f'bingo-{os.getenv("bingo_commit")}', 'common', 'src', 'main', 'generated',
+    'data', 'bingo', 'bingo', 'goals'
+))
+ORIGINAL_SOURCE_ROOT = os.path.abspath(os.path.join(
+    _OWN_DIR, '..', '..', 'build', 'bingo', f'bingo-{os.getenv("bingo_commit")}', 'fabric', 'src', 'main', 'java', 'io',
+    'github', 'gaming32', 'bingo', 'fabric', 'datagen', 'goal'
+))
 DIFFICULTIES = ['very_easy', 'easy', 'medium', 'hard', 'very_hard']
 DIMENSION_TAGS = ['bingo:overworld', 'bingo:nether', 'bingo:end']
 SPECIAL_TAGS = ['bingo:never']
 
 
-def load_todos(difficulty):
+def load_todos(difficulty, original):
     camel_case_difficulty = difficulty.replace('_', ' ').title().replace(' ', '')
-    goal_source = os.path.join(SOURCE_ROOT, f'Enigmatics{camel_case_difficulty}GoalProvider.java')
+    if not original:
+        goal_source = os.path.join(SOURCE_ROOT, f'Enigmatics{camel_case_difficulty}GoalProvider.java')
+    else:
+        goal_source = os.path.join(ORIGINAL_SOURCE_ROOT, f'{camel_case_difficulty}GoalProvider.java')
     for line in open(goal_source):
         if m := re.match(r'\s*// ?TODO:? ?(.*)$', line):
             yield {
@@ -28,9 +43,9 @@ def load_todos(difficulty):
             }
 
 
-def load_goals():
+def load_goals(original):
     for difficulty in DIFFICULTIES:
-        difficulty_root = os.path.join(GOALS_ROOT, difficulty)
+        difficulty_root = os.path.join(GOALS_ROOT if not original else ORIGINAL_GOALS_ROOT, difficulty)
         difficulty_title = difficulty.replace('_', ' ').title()
         if not os.path.isdir(difficulty_root):
             print('no dir:', difficulty_root)
@@ -47,7 +62,7 @@ def load_goals():
                 goal['_name'] = entry.name[:-5].replace('_', ' ').title()
                 goal['tags'] = sorted(goal.get('tags', []), key=tag_weight)
                 yield goal
-            yield from load_todos(difficulty)
+            yield from load_todos(difficulty, original)
 
 
 def tag_weight(tag):
@@ -59,13 +74,17 @@ def tag_weight(tag):
         return 2
 
 
-def gen_goal_list():
+def gen_goal_list(original):
     with open(os.path.join(_OWN_DIR, 'goal_list.jinja2')) as f:
         template = jinja2.Template(f.read())
-    html = template.render(goals=load_goals(), dimension_tags=DIMENSION_TAGS, special_tags=SPECIAL_TAGS)
-    with open(os.path.join(_OWN_DIR, '..', 'goal_list.html'), 'w') as f:
+    html = template.render(goals=load_goals(original), dimension_tags=DIMENSION_TAGS, special_tags=SPECIAL_TAGS)
+    out_file = os.path.join(_OWN_DIR, '..', 'goal_list.html' if not original else 'original_goal_list.html')
+    with open(out_file, 'w') as f:
         f.write(html)
 
 
 if __name__ == '__main__':
-    gen_goal_list()
+    print(f'{ORIGINAL_GOALS_ROOT=}')
+    gen_goal_list(False)
+    if os.path.isdir(ORIGINAL_GOALS_ROOT):
+        gen_goal_list(True)

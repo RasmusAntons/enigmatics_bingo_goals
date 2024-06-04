@@ -91,6 +91,7 @@ project.tasks.register('genGoalList') {
     doLast {
         exec {
             workingDir = path
+            environment('bingo_commit', bingo_commit)
             if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                 commandLine venv.dir('Scripts').file('python'), 'gen_goal_list.py'
             } else {
