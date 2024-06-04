@@ -36,6 +36,12 @@ html, body {
 	background-color: #373239;
 }
 
+main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -121,9 +127,11 @@ td:first-of-type::before {
 
 #other-goals {
     position: sticky;
-    max-height: 5rem;
     bottom: 0px;
+    max-height: 5rem;
+    margin-top: auto;
     padding: 0.5rem;
+    flex-shrink: 0;
 
     display: flex;
     flex-wrap: wrap;
@@ -145,26 +153,28 @@ td:first-of-type::before {
 </style>
 </head>
 <body>
-<table>
-	<tr><th>Goal</th><th>Tags</th></tr>
-	{% for goal in goals %}
-	<tr>
-		<td>
-		    <span>{{ goal._name }}</span>
-		    <span class="pill {{ goal._diff }}">{{ goal._diff_title }}</span>
-		</td>
-		<td>
-		{% for tag in goal.tags %}
-			<span class="{% if tag in dimension_tags %}dimension_tag {% elif tag in special_tags %}special_tag {% elif tag == 'todo' %}todo {% endif %}tag">{{ tag }}</span>
-		{% endfor %}
-		</td>
-	</tr>
-	{% endfor %}
-</table>
-<div id="other-goals">
-	<a href="goal_list.html">enigmatics_bingo_goals</a>
-	<a href="original_goal_list.html">original bingo mod</a>
-</div>
+<main>
+    <table>
+    	<tr><th>Goal</th><th>Tags</th></tr>
+    	{% for goal in goals %}
+    	<tr>
+    		<td>
+    		    <span>{{ goal._name }}</span>
+    		    <span class="pill {{ goal._diff }}">{{ goal._diff_title }}</span>
+    		</td>
+    		<td>
+    		{% for tag in goal.tags %}
+    			<span class="{% if tag in dimension_tags %}dimension_tag {% elif tag in special_tags %}special_tag {% elif tag == 'todo' %}todo {% endif %}tag">{{ tag }}</span>
+    		{% endfor %}
+    		</td>
+    	</tr>
+    	{% endfor %}
+    </table>
+    <div id="other-goals">
+    	<a href="goal_list.html">enigmatics_bingo_goals</a>
+    	<a href="original_goal_list.html">original bingo mod</a>
+    </div>
+</main>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const tags = document.querySelectorAll('.tag');
