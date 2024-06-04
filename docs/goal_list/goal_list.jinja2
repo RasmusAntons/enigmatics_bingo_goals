@@ -41,7 +41,8 @@ table {
     border-collapse: collapse;
 }
 
-tr {
+tr:not(tr:first-of-type) {
+	counter-increment: row;
     border-bottom: 1px dashed #6666;
 }
 
@@ -70,6 +71,11 @@ th {
 
 td {
     line-height: 1.5rem;
+}
+
+td:first-of-type::before {
+	content: counter(row)".";
+	color: gray;
 }
 
 .tag {
