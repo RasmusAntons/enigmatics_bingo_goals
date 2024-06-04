@@ -4,9 +4,9 @@
 :root {
     --color-very-easy: #bae1ff;
     --color-easy: #5de57b;
-    --color-medium: #ffffba;
-    --color-hard: #ffdfba;
-    --color-very-hard: #ffb3ba;
+    --color-medium: #fefe89;
+    --color-hard: #f5bb77;
+    --color-very-hard: #f83159;
 
     --color-tag-dimension: #0ff;
     --color-tag-special: #f83159;
@@ -39,6 +39,11 @@ html, body {
 table {
     width: 100%;
     border-collapse: collapse;
+}
+
+tr:has(.todo) td:first-child span:first-of-type {
+	color: #bbb;
+	text-decoration: line-through;
 }
 
 tr:not(tr:first-of-type) {
@@ -87,6 +92,13 @@ td:first-of-type::before {
 
     font-family: monospace;
     user-select: none;
+}
+
+.todo {
+	background-color: #841027;
+	border-color: crimson;
+	text-transform: uppercase;
+	font-weight: bold;
 }
 
 .tag:hover, .selected {
