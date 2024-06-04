@@ -119,7 +119,7 @@ td:first-of-type::before {
 		</td>
 		<td>
 		{% for tag in goal.tags %}
-			<span class="{% if tag in dimension_tags %}dimension_tag {% elif tag in special_tags %}special_tag {% endif %}tag">{{ tag }}</span>
+			<span class="{% if tag in dimension_tags %}dimension_tag {% elif tag in special_tags %}special_tag {% elif tag == 'todo' %}todo {% endif %}tag">{{ tag }}</span>
 		{% endfor %}
 		</td>
 	</tr>
