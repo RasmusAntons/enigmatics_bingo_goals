@@ -118,6 +118,30 @@ td:first-of-type::before {
     text-transform: uppercase;
     user-select: none;
 }
+
+#other-goals {
+    position: sticky;
+    max-height: 5rem;
+    bottom: 0px;
+    padding: 0.5rem;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    background-color: black;
+    overflow-y: scroll;
+}
+
+#other-goals a {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#other-goals a:hover {
+    text-decoration: underline;
+}
 </style>
 </head>
 <body>
@@ -137,6 +161,10 @@ td:first-of-type::before {
 	</tr>
 	{% endfor %}
 </table>
+<div id="other-goals">
+	<a href="goal_list.html">enigmatics_bingo_goals</a>
+	<a href="original_goal_list.html">original bingo mod</a>
+</div>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const tags = document.querySelectorAll('.tag');
