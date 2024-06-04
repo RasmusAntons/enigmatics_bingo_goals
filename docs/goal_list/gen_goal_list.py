@@ -1,4 +1,5 @@
 import json
+import re
 import os
 import os.path
 
@@ -6,9 +7,26 @@ import jinja2
 
 _OWN_DIR = os.path.dirname(__file__)
 GOALS_ROOT = os.path.abspath(os.path.join(_OWN_DIR, '..', '..', 'src', 'main', 'generated', 'data', 'bingo', 'bingo', 'goals'))
+SOURCE_ROOT = os.path.abspath(os.path.join(_OWN_DIR, '..', '..', 'src', 'main', 'java', 'de', 'rasmusantons', 'enigmaticsbingogoals', 'datagen', 'goal'))
 DIFFICULTIES = ['very_easy', 'easy', 'medium', 'hard', 'very_hard']
 DIMENSION_TAGS = ['bingo:overworld', 'bingo:nether', 'bingo:end']
 SPECIAL_TAGS = ['bingo:never']
+
+
+def load_todos(difficulty):
+    camel_case_difficulty = difficulty.replace('_', ' ').title().replace(' ', '')
+    goal_source = os.path.join(SOURCE_ROOT, f'Enigmatics{camel_case_difficulty}GoalProvider.java')
+    for line in open(goal_source):
+        if m := re.match(r'\s*// ?TODO:? ?(.*)$', line):
+            yield {
+                '_id': m.group(1),
+                '_diff': difficulty,
+                'difficulty': difficulty,
+                '_diff_title': difficulty.replace('_', ' ').title(),
+                '_name': m.group(1),
+                'tags': ['todo']
+            }
+
 
 def load_goals():
     for difficulty in DIFFICULTIES:
@@ -29,6 +47,7 @@ def load_goals():
                 goal['_name'] = entry.name[:-5].replace('_', ' ').title()
                 goal['tags'] = sorted(goal.get('tags', []), key=tag_weight)
                 yield goal
+            yield from load_todos(difficulty)
 
 
 def tag_weight(tag):
