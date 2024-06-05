@@ -17,9 +17,11 @@ import java.util.function.BiConsumer;
 
 public class EnigmaticsBingoGoalProvider extends FabricCodecDataProvider<BingoGoal> {
     private static final List<GoalProviderProvider> PROVIDERS = List.of(
+            EnigmaticsVeryEasyGoalProvider::new,
             EnigmaticsEasyGoalProvider::new,
             EnigmaticsMediumGoalProvider::new,
-            EnigmaticsHardGoalProvider::new
+            EnigmaticsHardGoalProvider::new,
+            EnigmaticsVeryHardGoalProvider::new
     );
 
     public EnigmaticsBingoGoalProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registries) {
