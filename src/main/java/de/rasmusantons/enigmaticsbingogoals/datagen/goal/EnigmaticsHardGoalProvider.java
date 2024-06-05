@@ -14,6 +14,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
@@ -33,14 +34,14 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
     @Override
     public void addGoals() {
         // TODO: Never open your inventory
-        addGoal(advancementsGoal(id("get_advancements"), 29, 35));
+        addGoal(advancementsGoal(id("get_advancements"), 26, 30));
         addGoal(BingoGoal.builder(id("cure_zombie_villager"))
                 .criterion("transform", CuredZombieVillagerTrigger.TriggerInstance.curedZombieVillager())
                 .name(Component.translatable("enigmaticsbingogoals.goal.cure_zombie_villager"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.IGLOO)
                 .icon(IndicatorIcon.infer(EntityType.ZOMBIE_VILLAGER, ItemIcon.ofItem(Items.GOLDEN_APPLE)))
         );
-        addGoal(numberOfEffectsGoal(id("get_some_effects_many"), 8, 10));
+        addGoal(numberOfEffectsGoal(id("get_some_effects"), 8, 10));
         addGoal(breedAnimalGoal(id("breed_mule"), EntityType.MULE)
                 .tags(BingoTags.OVERWORLD)
         );
@@ -55,7 +56,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         ), EffectIcon.of(MobEffects.HEALTH_BOOST)),
                         subber -> subber.sub("base.icons.*.item.count", "count"))
         );
-        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs_hard"), EnigmaticsBingoEntityTypeTags.HOSTILE, 11, 15, true)
+        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs"), EnigmaticsBingoEntityTypeTags.HOSTILE, 11, 15, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS, EnigmaticsBingoTags.KILL_MOB)
@@ -227,6 +228,31 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(obtainItemGoal(id("obtain_purpur_block"), Items.PURPUR_BLOCK)
                 .tags(BingoTags.END, EnigmaticsBingoTags.END_PROGRESS)
+        );
+        addGoal(BingoGoal.builder(id("never_damage"))
+                .criterion("damage", EntityHurtPlayerTrigger.TriggerInstance.entityHurtPlayer())
+                .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
+                .name(Component.translatable("enigmaticsbingogoals.goal.never_damage"))
+                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
+        );
+        addGoal(neverLevelsGoal(id("never_levels"), 1, 1));
+        addGoal(reachLevelsGoal(id("reach_levels"), 26, 35));
+        addGoal(dieToDamageTypeGoal(id("fall_out_of_world"), DamageTypeTags.ALWAYS_MOST_SIGNIFICANT_FALL)
+                .tags(BingoTags.END, EnigmaticsBingoTags.END_ENTRY, EnigmaticsBingoTags.DIE_TO)
+                .name(Component.translatable("enigmaticsbingogoals.goal.fall_out_of_world"))
+                .icon(IndicatorIcon.infer(Blocks.END_PORTAL, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
+        );
+        addGoal(advancementGoal(id("get_advancement_eye_spy"),
+                Component.translatable("advancements.story.follow_ender_eye.title"),
+                new ResourceLocation("minecraft", "story/follow_ender_eye"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.END_ENTRY, EnigmaticsBingoTags.STRONGHOLD)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ENDER_EYE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+        );
+        addGoal(advancementGoal(id("get_advancement_this_boat_has_legs"),
+                Component.translatable("advancements.nether.ride_strider.title"),
+                new ResourceLocation("minecraft", "nether/ride_strider"))
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.STRIDER)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WARPED_FUNGUS_ON_A_STICK), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
     }
 }

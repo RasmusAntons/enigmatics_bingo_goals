@@ -22,7 +22,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -44,7 +43,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
 
     @Override
     public void addGoals() {
-        addGoal(BingoGoal.builder(id("never_crafting_table"))
+        addGoal(BingoGoal.builder(id("never_obtain_crafting_table"))
                 .criterion("obtain", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CRAFTING_TABLE))
                 .tags(
                         BingoTags.NEVER,
@@ -54,12 +53,11 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         EnigmaticsBingoTags.WITCH_HUT,
                         EnigmaticsBingoTags.TRAIL_RUINS
                 )
-                .name(Component.translatable("enigmaticsbingogoals.goal.never_crafting_table",
+                .name(Component.translatable("enigmaticsbingogoals.goal.never_obtain_crafting_table",
                         Items.CRAFTING_TABLE.getDescription()))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CRAFTING_TABLE), ItemIcon.ofItem(Items.BARRIER)))
         );
-        addGoal(neverDamageGoal(id("never_50_damage"), 50));
-        addGoal(neverDamageGoal(id("never_100_damage"), 100));
+        addGoal(neverDamageGoal(id("never_25_damage"), 25));
         addGoal(BingoGoal.builder(id("never_die"))
                 .criterion("die", BingoTriggers.DEATH.get().createCriterion(
                         DeathTrigger.TriggerInstance.death(null)
@@ -83,7 +81,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_enemy_player"))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.PLAYER_HEAD), ItemIcon.ofItem(Items.NETHERITE_SWORD)))
         );
-        addGoal(advancementsGoal(id("get_advancements"), 22, 28));
+        addGoal(advancementsGoal(id("get_advancements"), 21, 25));
         addGoal(obtainItemGoal(id("obtain_dark_prismarine"), Items.DARK_PRISMARINE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BURIED_TREASURE,
                         EnigmaticsBingoTags.OCEAN_MONUMENT, EnigmaticsBingoTags.SHIPWRECK)
@@ -149,21 +147,6 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_intentional_game_design"))
                 .icon(IndicatorIcon.infer(Items.RED_BED, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
         );
-        addGoal(dieToDamageTypeGoal(id("fall_out_of_world"), DamageTypeTags.ALWAYS_MOST_SIGNIFICANT_FALL)
-                .tags(BingoTags.END, EnigmaticsBingoTags.END_ENTRY, EnigmaticsBingoTags.DIE_TO)
-                .name(Component.translatable("enigmaticsbingogoals.goal.fall_out_of_world"))
-                .icon(IndicatorIcon.infer(Blocks.END_PORTAL, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
-        );
-        addGoal(dieToEntityGoal(id("die_to_iron_golem"), EntityType.IRON_GOLEM)
-                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
-                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_iron_golem",
-                        EntityType.IRON_GOLEM.getDescription()))
-        );
-        addGoal(dieToEntityGoal(id("die_to_dolphin"), EntityType.DOLPHIN)
-                .tags(BingoTags.OVERWORLD)
-                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_dolphin",
-                        EntityType.DOLPHIN.getDescription()))
-        );
         addGoal(dieToEntityGoal(id("die_to_goat"), EntityType.GOAT)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_goat",
@@ -180,11 +163,6 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_anvil"))
                 .icon(IndicatorIcon.infer(Items.ANVIL, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
-        );
-        addGoal(dieToDamageTypeGoal(id("die_to_stalactite"), EnigmaticsBingoDamageTypeTags.STALACTITE)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO, EnigmaticsBingoTags.CAVING)
-                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_stalactite"))
-                .icon(IndicatorIcon.infer(Items.POINTED_DRIPSTONE, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
         );
         // TODO: Die to a TNT Minecart
         addGoal(obtainAllItemsFromTagGoal(id("obtain_all_raw_ore_blocks"), EnigmaticsBingoItemTags.RAW_ORE_BLOCKS)
@@ -251,7 +229,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         // TODO: Kill (5-7) unique Neutral Mobs
         // TODO: Kill (7-10) unique Neutral Mobs
-        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs_medium"), EnigmaticsBingoEntityTypeTags.HOSTILE, 7, 10, true)
+        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs"), EnigmaticsBingoEntityTypeTags.HOSTILE, 7, 10, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS, EnigmaticsBingoTags.KILL_MOB)
@@ -282,10 +260,6 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(killEntityGoal(id("kill_vindicator"), EntityType.VINDICATOR)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_vindicator", EntityType.VINDICATOR.getDescription()))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.RAID, EnigmaticsBingoTags.WOODLAND_MANSION)
-        );
-        addGoal(killEntityGoal(id("kill_zombie_villager"), EntityType.ZOMBIE_VILLAGER)
-                .name(Component.translatable("enigmaticsbingogoals.goal.kill_zombie_villager", EntityType.ZOMBIE_VILLAGER.getDescription()))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.GOLDEN_APPLE)
         );
         addGoal(killEntityGoal(id("kill_elder_guardian"), EntityType.ELDER_GUARDIAN)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_elder_guardian", EntityType.ELDER_GUARDIAN.getDescription()))
@@ -324,9 +298,6 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(eatItemGoal(id("eat_beetroot_soup"), Items.BEETROOT_SOUP)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.STEW)
-        );
-        addGoal(eatItemGoal(id("eat_poisonous_potato"), Items.POISONOUS_POTATO)
-                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.POISON, EnigmaticsBingoTags.SHIPWRECK)
         );
         addGoal(obtainItemGoal(id("obtain_tropical_fish_bucket"), Items.TROPICAL_FISH_BUCKET)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB)
@@ -502,18 +473,6 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         EnigmaticsBingoTags.NETHER_LATE)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.NETHERITE_BOOTS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
-        addGoal(advancementGoal(id("get_advancement_return_to_sender"),
-                Component.translatable("advancements.nether.return_to_sender.title"),
-                new ResourceLocation("minecraft", "nether/return_to_sender"))
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.GHAST)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.FIRE_CHARGE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
-        );
-        addGoal(advancementGoal(id("get_advancement_this_boat_has_legs"),
-                Component.translatable("advancements.nether.ride_strider.title"),
-                new ResourceLocation("minecraft", "nether/ride_strider"))
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.STRIDER)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WARPED_FUNGUS_ON_A_STICK), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
-        );
         addGoal(obtainItemGoal(id("obtain_end_crystal"), Items.END_CRYSTAL)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.EYE_OF_ENDER, EnigmaticsBingoTags.BLAZE_POWDER,
                         EnigmaticsBingoTags.FORTRESS)
@@ -571,11 +530,55 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(obtainItemGoal(id("obtain_netherite_ingot"), Items.NETHERITE_INGOT)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHERITE)
         );
-        addGoal(advancementGoal(id("get_advancement_eye_spy"),
-                Component.translatable("advancements.story.follow_ender_eye.title"),
-                new ResourceLocation("minecraft", "story/follow_ender_eye"))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.END_ENTRY, EnigmaticsBingoTags.STRONGHOLD)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ENDER_EYE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+        addGoal(breakBlockGoal(id("break_turtle_egg"), Blocks.TURTLE_EGG)
+                .tags(BingoTags.OVERWORLD)
         );
+        addGoal(breedAnimalGoal(id("breed_hoglin"), EntityType.HOGLIN)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST)
+        );
+        addGoal(dieToEntityGoal(id("die_to_llama"), EntityType.LLAMA)
+                .tags(BingoTags.OVERWORLD)
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
+                        EntityType.LLAMA.getDescription()))
+        );
+        addGoal(dieToEntityGoal(id("die_to_stray"), EntityType.STRAY)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_stray",
+                        EntityType.STRAY.getDescription()))
+        );
+        addGoal(eatItemGoal(id("eat_cookie"), Items.COOKIE)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE)
+        );
+        addGoal(effectGoal(id("get_weakness"), MobEffects.WEAKNESS)
+                .tags(EnigmaticsBingoTags.WEAKNESS, EnigmaticsBingoTags.SUSPICIOUS_STEW, EnigmaticsBingoTags.IGLOO)
+        );
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_colored_candle"), ItemTags.CANDLES, 1, 1)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE, EnigmaticsBingoTags.ANCIENT_CITY)
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_colored_candle"))
+        );
+        addGoal(obtainItemGoal(id("obtain_green_glazed_terracotta"), Items.GREEN_GLAZED_TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.TERRACOTTA)
+        );
+        addGoal(obtainItemGoal(id("obtain_lime_glazed_terracotta"), Items.LIME_GLAZED_TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TERRACOTTA)
+        );
+        addGoal(obtainItemGoal(id("obtain_honey_bottle"), Items.HONEY_BOTTLE)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE)
+        );
+        addGoal(obtainItemGoal(id("obtain_powder_snow_bucket"), Items.POWDER_SNOW_BUCKET)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
+        );
+        addGoal(reachLevelsGoal(id("reach_levels"), 16, 25));
+        addGoal(tameAnimalGoal(id("tame_parrot"), EntityType.PARROT)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE)
+        );
+        addGoal(tameAnimalGoal(id("tame_wolf"), EntityType.WOLF)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL)
+        );
+        // TODO (requires OVERTAKABLE): Eat more unique foods than the enemy
+        // TODO: Die to falling off vines
+        // TODO: Wear 4 different armor materials
+        // TODO: Use a Bordure Banner Pattern
+        // TODO: Use an Anvil
     }
 }

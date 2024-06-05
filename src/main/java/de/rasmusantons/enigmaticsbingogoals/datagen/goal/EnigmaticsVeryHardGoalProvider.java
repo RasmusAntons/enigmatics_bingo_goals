@@ -14,5 +14,6 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
 
     @Override
     public void addGoals() {
+        addGoal(advancementsGoal(id("get_advancements"), 31, 35));
     }
 }
