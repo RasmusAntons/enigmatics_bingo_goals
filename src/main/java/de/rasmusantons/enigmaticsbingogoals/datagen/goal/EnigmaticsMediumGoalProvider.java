@@ -15,6 +15,7 @@ import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
 import io.github.gaming32.bingo.triggers.DeathTrigger;
+import io.github.gaming32.bingo.triggers.TryUseItemTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
@@ -389,7 +390,27 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .icon(IndicatorIcon.infer(EntityType.PIG, Items.LAVA_BUCKET))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.PIG, EnigmaticsBingoTags.SADDLE)
         );
-        // TODO: Use Carrot on a Stick to Ride a Pig
+        addGoal(BingoGoal.builder(id("use_carrot_on_a_stick"))
+                .criterion("use", BingoTriggers.TRY_USE_ITEM.get().createCriterion(
+                        new TryUseItemTrigger.TriggerInstance(
+                                Optional.of(ContextAwarePredicate.create(
+                                        LootItemEntityPropertyCondition.hasProperties(
+                                                LootContext.EntityTarget.THIS,
+                                                EntityPredicate.Builder.entity()
+                                                        .entityType(EntityTypePredicate.of(EntityType.PLAYER)).vehicle(
+                                                                EntityPredicate.Builder.entity().of(EntityType.PIG)
+                                                        )
+                                        ).build()
+                                )),
+                                Optional.of(ItemPredicate.Builder.item().of(Items.CARROT_ON_A_STICK).build()),
+                                Optional.empty()
+                        )
+                ))
+                .name(Component.translatable("enigmaticsbingogoals.goal.use_carrot_on_a_stick",
+                        EntityType.PIG.getDescription(), Items.CARROT_ON_A_STICK.getDescription()))
+                .icon(IndicatorIcon.infer(EntityType.PIG, Items.CARROT_ON_A_STICK))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.PIG, EnigmaticsBingoTags.SADDLE)
+        );
         addGoal(rideAbstractHorseWithSaddleGoal(id("ride_horse"), EntityType.HORSE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.ride_horse",
                         EntityType.HORSE.getDescription(), Items.SADDLE.getDescription()))

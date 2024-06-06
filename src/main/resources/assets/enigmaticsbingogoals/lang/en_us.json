@@ -84,6 +84,7 @@
   "enigmaticsbingogoals.goal.ride_horse": "Ride a %s with a %s",
   "enigmaticsbingogoals.goal.ride_pig_lava": "This boat does not have legs",
   "enigmaticsbingogoals.goal.ride_pig_lava.tooltip": "Ride a %s in %s",
+  "enigmaticsbingogoals.goal.use_carrot_on_a_stick": "Boost a %s using a %s",
   "enigmaticsbingogoals.goal.sprint_distance": "Sprint a distance of %d blocks",
   "enigmaticsbingogoals.goal.stand_on_bedrock": "Stand on Bedrock",
   "enigmaticsbingogoals.goal.summon_the_wither": "Summon the %s",
