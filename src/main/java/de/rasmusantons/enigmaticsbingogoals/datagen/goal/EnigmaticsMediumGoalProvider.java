@@ -366,7 +366,28 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.TARGET), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         // TODO: Travel 300 meters on pig | Use minecraft:pig_one_cm to see statistics
-        // TODO: This boat does not have legs TOOLTIP: Use Carrot on a Stick to Ride a Pig into Lava
+        addGoal(BingoGoal.builder(id("ride_pig_lava"))
+                .criterion("ride", CriteriaTriggers.RIDE_ENTITY_IN_LAVA_TRIGGER.createCriterion(
+                        new DistanceTrigger.TriggerInstance(
+                                Optional.of(ContextAwarePredicate.create(
+                                        LootItemEntityPropertyCondition.hasProperties(
+                                                LootContext.EntityTarget.THIS,
+                                                EntityPredicate.Builder.entity()
+                                                        .entityType(EntityTypePredicate.of(EntityType.PLAYER)).vehicle(
+                                                                EntityPredicate.Builder.entity().of(EntityType.PIG)
+                                                        )
+                                        ).build()
+                                )),
+                                Optional.empty(),
+                                Optional.empty()
+                        )
+                ))
+                .name(Component.translatable("enigmaticsbingogoals.goal.ride_pig_lava"))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.ride_pig_lava.tooltip",
+                        EntityType.PIG.getDescription(),  Component.translatable(Blocks.LAVA.getDescriptionId())))
+                .icon(IndicatorIcon.infer(EntityType.PIG, Items.LAVA_BUCKET))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.PIG, EnigmaticsBingoTags.SADDLE)
+        );
         // TODO: Use Carrot on a Stick to Ride a Pig
         addGoal(rideAbstractHorseWithSaddleGoal(id("ride_horse"), EntityType.HORSE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.ride_horse",
