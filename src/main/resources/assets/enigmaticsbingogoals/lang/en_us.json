@@ -91,6 +91,7 @@
   "enigmaticsbingogoals.goal.reach_levels": "Reach level %d",
   "enigmaticsbingogoals.goal.reach_world_center": "Reach the World Center",
   "enigmaticsbingogoals.goal.ride_horse": "Ride a %s with a %s",
+  "enigmaticsbingogoals.goal.ride_pig_distance": "Ride a %s for %d meters",
   "enigmaticsbingogoals.goal.ride_pig_lava": "This boat does not have legs",
   "enigmaticsbingogoals.goal.ride_pig_lava.tooltip": "Ride a %s in %s",
   "enigmaticsbingogoals.goal.sprint_distance": "Sprint a distance of %d blocks",

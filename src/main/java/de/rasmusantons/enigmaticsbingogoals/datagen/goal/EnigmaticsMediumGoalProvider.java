@@ -1,6 +1,5 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
-import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoGoals;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.KillEnemyPlayerCondition;
 import de.rasmusantons.enigmaticsbingogoals.conditions.PlayerAliveCondition;
@@ -10,14 +9,15 @@ import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.GiveEffectToOtherTeamTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.HitOtherTeamWithProjectileTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.TadpoleMaturesTrigger;
 import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
+import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
 import io.github.gaming32.bingo.data.tags.BingoItemTags;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
 import io.github.gaming32.bingo.triggers.DeathTrigger;
+import io.github.gaming32.bingo.triggers.RelativeStatsTrigger;
 import io.github.gaming32.bingo.triggers.TryUseItemTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
@@ -28,6 +28,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -393,7 +394,15 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BOW)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.TARGET), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
-        // TODO: Travel 300 meters on pig | Use minecraft:pig_one_cm to see statistics
+        addGoal(BingoGoal.builder(id("ride_pig_for_300_meters"))
+                .criterion("ride", RelativeStatsTrigger.builder()
+                        .stat(Stats.PIG_ONE_CM, MinMaxBounds.Ints.atLeast(30000)).build())
+                .progress(new CriterionProgressTracker("ride", 0.01f))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SADDLE, EnigmaticsBingoTags.PIG)
+                .name(Component.translatable("enigmaticsbingogoals.goal.ride_pig_distance",
+                        EntityType.PIG.getDescription(), 300))
+                .icon(IndicatorIcon.infer(EntityType.PIG, EffectIcon.of(MobEffects.MOVEMENT_SPEED)))
+        );
         addGoal(BingoGoal.builder(id("ride_pig_lava"))
                 .criterion("ride", CriteriaTriggers.RIDE_ENTITY_IN_LAVA_TRIGGER.createCriterion(
                         new DistanceTrigger.TriggerInstance(
