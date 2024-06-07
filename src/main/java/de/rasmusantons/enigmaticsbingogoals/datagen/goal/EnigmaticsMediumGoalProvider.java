@@ -20,6 +20,8 @@ import io.github.gaming32.bingo.triggers.TryUseItemTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentPredicate;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
@@ -467,7 +469,18 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.FORTRESS,
                         EnigmaticsBingoTags.STRONGHOLD, EnigmaticsBingoTags.WOODLAND_MANSION)
         );
-        // TODO: Rename a sheep to "jeb_"
+        addGoal(BingoGoal.builder(id("name_a_sheep_jeb"))
+                .criterion("equip", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(
+                        ItemPredicate.Builder.item().of(Items.NAME_TAG).hasComponents(DataComponentPredicate.builder()
+                                .expect(DataComponents.CUSTOM_NAME, Component.literal("jeb_"))
+                                .build()),
+                        Optional.of(EntityPredicate.wrap(EntityPredicate.Builder.entity().of(EntityType.SHEEP)))
+                ))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.WOODLAND_MANSION)
+                .name(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb"))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb.tooltip"))
+                .icon(IndicatorIcon.infer(EntityType.SHEEP, Items.NAME_TAG))
+        );
         addGoal(obtainItemGoal(id("obtain_cyan_glazed_terracotta"), Items.CYAN_GLAZED_TERRACOTTA)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
         );
