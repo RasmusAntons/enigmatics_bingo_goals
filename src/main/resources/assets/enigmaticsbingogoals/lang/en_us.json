@@ -1,5 +1,6 @@
 {
   "bingo_difficulty.bingo.enigmatics": "Enigmatics",
+  "enigmaticsbingogoals.goal.anger_zombified_piglin": "Anger a %s",
   "enigmaticsbingogoals.goal.break_block": "Break %s",
   "enigmaticsbingogoals.goal.breed_animal": "Breed %s",
   "enigmaticsbingogoals.goal.breed_some_unique_mobs": "Breed %d unique Mobs",

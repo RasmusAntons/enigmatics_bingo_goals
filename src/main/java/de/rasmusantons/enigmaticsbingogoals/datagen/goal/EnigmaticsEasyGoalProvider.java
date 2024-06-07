@@ -407,7 +407,17 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.PURPLE_WOOL.getDescription()))
         );
-        // TODO: Anger a Zombified Piglin
+        addGoal(BingoGoal.builder(id("anger_zombified_piglin"))
+                .criterion("anger", PlayerHurtEntityTrigger.TriggerInstance.playerHurtEntity(
+                        Optional.of(EntityPredicate.Builder.entity().of(EntityType.ZOMBIFIED_PIGLIN).build())
+                ))
+                .name(Component.translatable("enigmaticsbingogoals.goal.anger_zombified_piglin",
+                        EntityType.ZOMBIFIED_PIGLIN.getDescription()))
+                .icon(IndicatorIcon.infer(
+                        EntityType.ZOMBIFIED_PIGLIN,
+                        BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.ANGRY_BIRD))
+                )
+        );
         addGoal(advancementGoal(id("get_advancement_we_need_to_go_deeper"),
                 Component.translatable("advancements.story.enter_the_nether.title"),
                 new ResourceLocation("minecraft", "nether/enter_the_nether"))
