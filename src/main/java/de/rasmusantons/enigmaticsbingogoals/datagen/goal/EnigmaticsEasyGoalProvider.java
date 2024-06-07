@@ -411,6 +411,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .criterion("anger", PlayerHurtEntityTrigger.TriggerInstance.playerHurtEntity(
                         Optional.of(EntityPredicate.Builder.entity().of(EntityType.ZOMBIFIED_PIGLIN).build())
                 ))
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.anger_zombified_piglin",
                         EntityType.ZOMBIFIED_PIGLIN.getDescription()))
                 .icon(IndicatorIcon.infer(

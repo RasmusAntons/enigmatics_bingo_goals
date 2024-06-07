@@ -1,5 +1,6 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
+import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoGoals;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.KillEnemyPlayerCondition;
 import de.rasmusantons.enigmaticsbingogoals.conditions.PlayerAliveCondition;
@@ -311,18 +312,21 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(BingoGoal.builder(id("breed_white_frog"))
                 .criterion("hatch", TadpoleMaturesTrigger.TriggerInstance.ofVariant(FrogVariant.WARM))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.BREED_MOB)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_white_frog", EntityType.FROG.getDescription()))
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getFrogVariantIcon(FrogVariant.WARM), Items.SLIME_BALL))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.breed_frog.tooltip", EntityType.TADPOLE.getDescription()))
         );
         addGoal(BingoGoal.builder(id("breed_orange_frog"))
                 .criterion("hatch", TadpoleMaturesTrigger.TriggerInstance.ofVariant(FrogVariant.TEMPERATE))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.BREED_MOB)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_orange_frog", EntityType.FROG.getDescription()))
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getFrogVariantIcon(FrogVariant.TEMPERATE), Items.SLIME_BALL))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.breed_frog.tooltip", EntityType.TADPOLE.getDescription()))
         );
         addGoal(BingoGoal.builder(id("breed_green_frog"))
                 .criterion("hatch", TadpoleMaturesTrigger.TriggerInstance.ofVariant(FrogVariant.COLD))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.BREED_MOB)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_green_frog", EntityType.FROG.getDescription()))
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getFrogVariantIcon(FrogVariant.COLD), Items.SLIME_BALL))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.breed_frog.tooltip", EntityType.TADPOLE.getDescription()))
