@@ -13,6 +13,7 @@ import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
+import io.github.gaming32.bingo.data.tags.BingoItemTags;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
 import io.github.gaming32.bingo.triggers.DeathTrigger;
 import io.github.gaming32.bingo.triggers.TryUseItemTrigger;
@@ -339,7 +340,13 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         subber -> subber.sub("with.0", "count")
                 )
         );
-        // TODO: Obtain (5-10) bonemeal-able blocks
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_bonemealable_blocks"), BingoItemTags.BONEMEALABLE, 10, 20)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.PLANT_BATCH)
+                .name(
+                        Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_bonemealable_blocks", 0),
+                        subber -> subber.sub("with.0", "count")
+                )
+        );
         addGoal(obtainItemGoal(id("obtain_flowering_azalea"), Items.FLOWERING_AZALEA)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.LUSH_CAVE)
         );
