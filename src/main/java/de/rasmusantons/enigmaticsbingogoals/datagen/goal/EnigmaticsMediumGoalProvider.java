@@ -9,6 +9,7 @@ import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.GiveEffectToOtherTeamTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.HitOtherTeamWithProjectileTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger;
+import de.rasmusantons.enigmaticsbingogoals.triggers.TadpoleMaturesTrigger;
 import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
@@ -29,6 +30,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
@@ -307,9 +309,24 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(obtainItemGoal(id("obtain_tropical_fish_bucket"), Items.TROPICAL_FISH_BUCKET)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB)
         );
-        // TODO: Hatch a White Frog
-        // TODO: Hatch an Orange Frog
-        // TODO: Hatch a Green Frog
+        addGoal(BingoGoal.builder(id("breed_white_frog"))
+                .criterion("hatch", TadpoleMaturesTrigger.TriggerInstance.ofVariant(FrogVariant.WARM))
+                .name(Component.translatable("enigmaticsbingogoals.goal.breed_white_frog", EntityType.FROG.getDescription()))
+                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getFrogVariantIcon(FrogVariant.WARM), Items.SLIME_BALL))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.breed_frog.tooltip", EntityType.TADPOLE.getDescription()))
+        );
+        addGoal(BingoGoal.builder(id("breed_orange_frog"))
+                .criterion("hatch", TadpoleMaturesTrigger.TriggerInstance.ofVariant(FrogVariant.TEMPERATE))
+                .name(Component.translatable("enigmaticsbingogoals.goal.breed_orange_frog", EntityType.FROG.getDescription()))
+                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getFrogVariantIcon(FrogVariant.TEMPERATE), Items.SLIME_BALL))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.breed_frog.tooltip", EntityType.TADPOLE.getDescription()))
+        );
+        addGoal(BingoGoal.builder(id("breed_green_frog"))
+                .criterion("hatch", TadpoleMaturesTrigger.TriggerInstance.ofVariant(FrogVariant.COLD))
+                .name(Component.translatable("enigmaticsbingogoals.goal.breed_green_frog", EntityType.FROG.getDescription()))
+                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getFrogVariantIcon(FrogVariant.COLD), Items.SLIME_BALL))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.breed_frog.tooltip", EntityType.TADPOLE.getDescription()))
+        );
         addGoal(obtainItemGoal(id("obtain_tadpole_bucket"), Items.TADPOLE_BUCKET)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB, EnigmaticsBingoTags.FROG)
         );

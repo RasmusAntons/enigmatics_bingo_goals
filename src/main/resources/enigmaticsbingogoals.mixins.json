@@ -16,7 +16,8 @@
     "ServerPlayerMixin",
     "ServerStatsCounterMixin",
     "SpectralArrowMixin",
-    "ThrownPotionMixin"
+    "ThrownPotionMixin",
+    "TadpoleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

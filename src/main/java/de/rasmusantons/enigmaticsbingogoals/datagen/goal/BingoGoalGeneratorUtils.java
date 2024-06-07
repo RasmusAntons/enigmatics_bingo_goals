@@ -11,10 +11,13 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -50,6 +53,12 @@ public class BingoGoalGeneratorUtils {
         if (resolvedTag == null)
             return CycleIcon.infer(entityTypeTag);
         return CycleIcon.infer(Arrays.stream(resolvedTag).map(BingoGoalGeneratorUtils::getEntityIcon));
+    }
+
+    public static EntityIcon getFrogVariantIcon(ResourceKey<FrogVariant> variant) {
+        CompoundTag data = new CompoundTag();
+        data.putString("variant", variant.location().toString());
+        return new EntityIcon(EntityType.FROG, data, new ItemStack(Items.FROG_SPAWN_EGG));
     }
 
     public static ItemStack getOminousBanner(HolderLookup.Provider registries) {
