@@ -326,7 +326,15 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.TRAIL_RUINS)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
-        // TODO: Equip Wolf Armor
+        addGoal(BingoGoal.builder(id("equip_wolf_armor"))
+                .criterion("equip", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(
+                        ItemPredicate.Builder.item().of(Items.WOLF_ARMOR),
+                        Optional.of(EntityPredicate.wrap(EntityPredicate.Builder.entity().of(EntityType.WOLF)))
+                ))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ARMOR)
+                .name(Component.translatable("enigmaticsbingogoals.goal.equip_a_wolf_with_armor"))
+                .icon(IndicatorIcon.infer(EntityType.WOLF, Items.WOLF_ARMOR))
+        );
         addGoal(wearArmorPiecesGoal(id("wear_full_gold"), Items.GOLDEN_HELMET, Items.GOLDEN_CHESTPLATE,
                 Items.GOLDEN_LEGGINGS, Items.GOLDEN_BOOTS)
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.ARMOR)
