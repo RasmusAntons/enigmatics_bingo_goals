@@ -17,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
@@ -34,7 +35,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
     @Override
     public void addGoals() {
         // TODO: Never open your inventory
-        addGoal(advancementsGoal(id("get_advancements"), 26, 30));
+        addGoal(advancementsGoal(id("get_advancements"), 26, 35));
         addGoal(BingoGoal.builder(id("cure_zombie_villager"))
                 .criterion("transform", CuredZombieVillagerTrigger.TriggerInstance.curedZombieVillager())
                 .name(Component.translatable("enigmaticsbingogoals.goal.cure_zombie_villager"))
@@ -46,7 +47,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD)
         );
         addGoal(advancementProgressGoal(id("breed_some_unique_mobs"),
-                new ResourceLocation("minecraft", "husbandry/bred_all_animals"), 6, 15)
+                new ResourceLocation("minecraft", "husbandry/bred_all_animals"), 11, 15)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_some_unique_mobs", 0),
                         subber -> subber.sub("with.0", "count"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BREED_MOB)
@@ -66,15 +67,6 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.END, EnigmaticsBingoTags.END_ENTRY)
                 .icon(IndicatorIcon.infer(Items.DRAGON_HEAD, Items.NETHERITE_SWORD))
         );
-        addGoal(killEntityGoal(id("kill_endermite"), EntityType.ENDERMITE)
-                .name(Component.translatable("enigmaticsbingogoals.goal.kill_endermite", EntityType.ENDERMITE.getDescription()))
-                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.END, BingoTags.VILLAGE,
-                        EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.NETHER_LATE)
-        );
-        addGoal(killEntityGoal(id("kill_zoglin"), EntityType.ZOGLIN)
-                .name(Component.translatable("enigmaticsbingogoals.goal.kill_zoglin", EntityType.ZOGLIN.getDescription()))
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST)
-        );
         addGoal(wearArmorPiecesGoal(id("wear_full_diamond"), Items.DIAMOND_HELMET, Items.DIAMOND_CHESTPLATE,
                 Items.DIAMOND_LEGGINGS, Items.DIAMOND_BOOTS)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.ARMOR)
@@ -92,7 +84,8 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         Blocks.GRASS_BLOCK
                 ))
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
-                        EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE));
+                        EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE)
+        );
         addGoal(BingoGoal.builder(id("huge_warped_fungus_in_overworld"))
                 .criterion("grow", GrowFeatureTrigger.builder()
                         .feature(EnigmaticsBingoFeatureTags.HUGE_WARPED_FUNGI)
@@ -105,14 +98,11 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         Blocks.GRASS_BLOCK
                 ))
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
-                        EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE));
-        addGoal(obtainItemGoal(id("obtain_experience_bottle"), Items.EXPERIENCE_BOTTLE)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.ANCIENT_CITY,
-                        BingoTags.VILLAGE)
+                        EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE)
         );
         // TODO: Use a Skull Banner Pattern
         addGoal(advancementProgressGoal(id("eat_some_unique_foods"),
-                new ResourceLocation("minecraft", "husbandry/balanced_diet"), 21, 25)
+                new ResourceLocation("minecraft", "husbandry/balanced_diet"), 25, 32)
                 .name(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods", 0),
                         subber -> subber.sub("with.0", "count")
                 )
@@ -122,18 +112,6 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         CycleIcon.infer(Arrays.stream(VanillaHusbandryAdvancements.EDIBLE_ITEMS)),
                         subber -> subber.sub("icons.*.item.count", "count")
                 )
-        );
-        addGoal(advancementGoal(id("get_advancement_is_it_a_bird"),
-                Component.translatable("advancements.adventure.spyglass_at_parrot.title"),
-                new ResourceLocation("minecraft", "adventure/spyglass_at_parrot"))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.AMETHYST, EnigmaticsBingoTags.JUNGLE)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
-        );
-        addGoal(advancementGoal(id("get_advancement_is_it_a_balloon"),
-                Component.translatable("advancements.adventure.spyglass_at_ghast.title"),
-                new ResourceLocation("minecraft", "adventure/spyglass_at_ghast"))
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.AMETHYST, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.GHAST)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(id("get_advancement_is_it_a_plane"),
                 Component.translatable("advancements.adventure.spyglass_at_dragon.title"),
@@ -164,11 +142,6 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 new ResourceLocation("minecraft", "adventure/craft_decorated_pot_using_only_sherds"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.DECORATED_POT), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
-        );
-        addGoal(obtainAllItemsFromTagGoal(id("obtain_all_diamond_tools"), EnigmaticsBingoItemTags.DIAMOND_TOOLS)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools",
-                        Component.translatable(EnigmaticsBingoItemTags.DIAMOND_TOOLS.getTranslationKey())))
         );
         addGoal(potionGoal(id("obtain_potion_of_leaping"),
                 Potions.LEAPING, Potions.LONG_LEAPING, Potions.STRONG_LEAPING)
@@ -253,6 +226,28 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 new ResourceLocation("minecraft", "nether/ride_strider"))
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.STRIDER)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WARPED_FUNGUS_ON_A_STICK), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+        );
+        addGoal(obtainItemGoal(id("obtain_crimson_nylium"), Items.CRIMSON_NYLIUM)
+                .tags(BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
+                        EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.NETHER_LATE)
+        );
+        addGoal(obtainItemGoal(id("obtain_lodestone"), Items.LODESTONE)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHERITE)
+        );
+        addGoal(obtainItemGoal(id("obtain_netherite_ingot"), Items.NETHERITE_INGOT)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHERITE)
+        );
+        addGoal(obtainItemGoal(id("obtain_wither_skeleton_skull"), Items.WITHER_SKELETON_SKULL)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS)
+        );
+        addGoal(breedFrogVariantGoal(id("breed_white_frog"), FrogVariant.WARM)
+                .name(Component.translatable("enigmaticsbingogoals.goal.breed_white_frog", EntityType.FROG.getDescription()))
+        );
+        addGoal(breedFrogVariantGoal(id("breed_orange_frog"), FrogVariant.TEMPERATE)
+                .name(Component.translatable("enigmaticsbingogoals.goal.breed_orange_frog", EntityType.FROG.getDescription()))
+        );
+        addGoal(breedFrogVariantGoal(id("breed_green_frog"), FrogVariant.COLD)
+                .name(Component.translatable("enigmaticsbingogoals.goal.breed_green_frog", EntityType.FROG.getDescription()))
         );
     }
 }
