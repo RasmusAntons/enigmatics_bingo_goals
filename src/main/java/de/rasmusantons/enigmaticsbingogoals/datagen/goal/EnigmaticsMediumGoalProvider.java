@@ -496,8 +496,32 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         Items.GREEN_WOOL.getDescription()))
         );
         // TODO: Show an Egg to the World | Tooltip: Visit 10-20 biomes with an Egg in your off-hand
-        // TODO: Apply Glow Ink to a Crimson Sign
-        // TODO: Apply Glow Ink to a Warped Sign
+        addGoal(BingoGoal.builder(id("use_glow_ink_on_crimson_sign"))
+                .criterion("use", ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(
+                        LocationPredicate.Builder.location().setBlock(
+                                BlockPredicate.Builder.block()
+                                        .of(Blocks.CRIMSON_SIGN)
+                        ),
+                        ItemPredicate.Builder.item().of(Items.GLOW_INK_SAC)
+                ))
+                .name(Component.translatable("enigmaticsbingogoals.goal.use_item_on_block",
+                        Items.GLOW_INK_SAC.getDescription(), Items.CRIMSON_SIGN.getDescription()))
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CRIMSON_SIGN), ItemIcon.ofItem(Items.GLOW_INK_SAC)))
+        );
+        addGoal(BingoGoal.builder(id("use_glow_ink_on_warped_sign"))
+                .criterion("use", ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(
+                        LocationPredicate.Builder.location().setBlock(
+                                BlockPredicate.Builder.block()
+                                        .of(Blocks.WARPED_SIGN)
+                        ),
+                        ItemPredicate.Builder.item().of(Items.GLOW_INK_SAC)
+                ))
+                .name(Component.translatable("enigmaticsbingogoals.goal.use_item_on_block",
+                        Items.GLOW_INK_SAC.getDescription(), Items.WARPED_SIGN.getDescription()))
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.WARPED_FOREST)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WARPED_SIGN), ItemIcon.ofItem(Items.GLOW_INK_SAC)))
+        );
         addGoal(advancementGoal(id("get_advancement_a_terrible_fortress"),
                 Component.translatable("advancements.nether.find_fortress.title"),
                 new ResourceLocation("minecraft", "nether/find_fortress"))

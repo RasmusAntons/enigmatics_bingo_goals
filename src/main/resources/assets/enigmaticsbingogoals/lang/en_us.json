@@ -90,6 +90,7 @@
   "enigmaticsbingogoals.goal.summon_the_wither": "Summon the %s",
   "enigmaticsbingogoals.goal.tame_animal": "Tame a %s",
   "enigmaticsbingogoals.goal.use_carrot_on_a_stick": "Boost a %s using a %s",
+  "enigmaticsbingogoals.goal.use_item_on_block": "Use a %s on a %s",
   "enigmaticsbingogoals.goal.visit_some_unique_overworld_biomes": "Visit %d unique Overworld biomes",
   "enigmaticsbingogoals.goal.visit_some_unique_overworld_biomes.tooltip": "Only biomes from [%s] count.",
   "enigmaticsbingogoals.goal.wear_full_diamond": "Wear a full set of Diamond Armor",
