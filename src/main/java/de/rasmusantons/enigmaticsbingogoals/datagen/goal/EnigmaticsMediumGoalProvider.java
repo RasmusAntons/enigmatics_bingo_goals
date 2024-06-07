@@ -334,7 +334,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         Optional.of(EntityPredicate.wrap(EntityPredicate.Builder.entity().of(EntityType.WOLF)))
                 ))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ARMOR)
-                .name(Component.translatable("enigmaticsbingogoals.goal.equip_a_wolf_with_armor"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.equip_a_wolf_with_armor", EntityType.WOLF.getDescription()))
                 .icon(IndicatorIcon.infer(EntityType.WOLF, Items.WOLF_ARMOR))
         );
         addGoal(wearArmorPiecesGoal(id("wear_full_gold"), Items.GOLDEN_HELMET, Items.GOLDEN_CHESTPLATE,
@@ -477,8 +477,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         Optional.of(EntityPredicate.wrap(EntityPredicate.Builder.entity().of(EntityType.SHEEP)))
                 ))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.WOODLAND_MANSION)
-                .name(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb"))
-                .tooltip(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb.tooltip"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb", EntityType.SHEEP.getDescription()))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb.tooltip", EntityType.SHEEP.getDescription(), "jeb_"))
                 .icon(IndicatorIcon.infer(EntityType.SHEEP, Items.NAME_TAG))
         );
         addGoal(obtainItemGoal(id("obtain_cyan_glazed_terracotta"), Items.CYAN_GLAZED_TERRACOTTA)
