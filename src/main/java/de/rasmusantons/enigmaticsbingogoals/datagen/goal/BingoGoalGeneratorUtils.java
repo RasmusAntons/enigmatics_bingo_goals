@@ -3,10 +3,7 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
 import de.rasmusantons.enigmaticsbingogoals.datagen.tag.EnigmaticsBingoEntityTypeTagProvider;
-import io.github.gaming32.bingo.data.icons.CycleIcon;
-import io.github.gaming32.bingo.data.icons.EntityIcon;
-import io.github.gaming32.bingo.data.icons.GoalIcon;
-import io.github.gaming32.bingo.data.icons.ItemIcon;
+import io.github.gaming32.bingo.data.icons.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -38,21 +35,21 @@ public class BingoGoalGeneratorUtils {
         return stack;
     }
 
-    public static GoalIcon getEntityIcon(EntityType<?> entityType) {
+    public static GoalIcon getEntityIcon(EntityType<?> entityType, int count) {
         if (entityType == EntityType.ENDER_DRAGON)
             return ItemIcon.ofItem(Items.DRAGON_HEAD);
         if (entityType == EntityType.ELDER_GUARDIAN)
             return new ItemIcon(getCustomPLayerHead(PlayerHeadTextures.ELDER_GUARDIAN));
         if (entityType == EntityType.GHAST)
             return new ItemIcon(getCustomPLayerHead(PlayerHeadTextures.GHAST));
-        return EntityIcon.ofSpawnEgg(entityType);
+        return EntityIcon.ofSpawnEgg(entityType, new CompoundTag(), count);
     }
 
-    public static CycleIcon getEntityIcon(TagKey<EntityType<?>> entityTypeTag) {
+    public static GoalIcon getEntityIcon(TagKey<EntityType<?>> entityTypeTag, int count) {
         var resolvedTag = EnigmaticsBingoEntityTypeTagProvider.getEntityTagDuringDatagen(entityTypeTag);
         if (resolvedTag == null)
-            return CycleIcon.infer(entityTypeTag);
-        return CycleIcon.infer(Arrays.stream(resolvedTag).map(BingoGoalGeneratorUtils::getEntityIcon));
+            return new EntityTypeTagCycleIcon(entityTypeTag, count);
+        return CycleIcon.infer(Arrays.stream(resolvedTag).map(e -> getEntityIcon(e, count)));
     }
 
     public static EntityIcon getFrogVariantIcon(ResourceKey<FrogVariant> variant) {

@@ -45,7 +45,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalProvider {
@@ -115,12 +114,21 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
     }
 
     protected static BingoGoal.Builder killEntitiesFromTagGoal(ResourceLocation id, TagKey<EntityType<?>> typeTag, int min, int max, boolean unique) {
+        GoalIcon goalIcon = BingoGoalGeneratorUtils.getEntityIcon(typeTag, 2);
+        boolean nativeIcon = goalIcon instanceof EntityTypeTagCycleIcon;
+
         return BingoGoal.builder(id)
                 .sub("amount", BingoSub.random(min, max))
                 .criterion("kill", KillMobsTrigger.TriggerInstance.ofTag(typeTag, 1, unique),
                         subber -> subber.sub("conditions.amount", "amount"))
                 .progress("kill")
-                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getEntityIcon(typeTag), net.minecraft.world.item.Items.NETHERITE_SWORD));
+                .icon(
+                        IndicatorIcon.infer(
+                                goalIcon,
+                                Items.NETHERITE_SWORD
+                        ),
+                        subber -> subber.sub(nativeIcon ? "base.count" : "base.icons.*.item.count", "amount")
+                );
     }
 
     protected static BingoGoal.Builder dieToDamageTypeGoal(ResourceLocation id, TagKey<DamageType> damageType) {
