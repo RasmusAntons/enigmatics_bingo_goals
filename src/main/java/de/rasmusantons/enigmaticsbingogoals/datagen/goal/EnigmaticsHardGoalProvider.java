@@ -46,6 +46,19 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(breedAnimalGoal(id("breed_mule"), EntityType.MULE)
                 .tags(BingoTags.OVERWORLD)
         );
+        addGoal(advancementProgressGoal(id("visit_some_unique_overworld_biomes"),
+                new ResourceLocation("minecraft", "adventure/adventuring_time"), 26, 35)
+                .name(Component.translatable("enigmaticsbingogoals.goal.visit_some_unique_overworld_biomes", 0),
+                        subber -> subber.sub("with.0", "count")
+                )
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.visit_some_unique_overworld_biomes.tooltip",
+                        Component.translatable("advancements.adventure.adventuring_time.title")))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BIOMES, EnigmaticsBingoTags.OVERWORLD_EXPLORE)
+                .icon(
+                        Items.GOLDEN_BOOTS,
+                        subber -> subber.sub("item.count", "count")
+                )
+        );
         addGoal(advancementProgressGoal(id("breed_some_unique_mobs"),
                 new ResourceLocation("minecraft", "husbandry/bred_all_animals"), 11, 15)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_some_unique_mobs", 0),
