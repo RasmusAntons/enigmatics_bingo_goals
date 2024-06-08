@@ -123,6 +123,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         // TODO (requires OVERTAKABLE): Kill more unique mobs than the enemy
         // TODO (requires OVERTAKABLE): Kill more unique hostile mobs than the enemy
         // TODO (requires OVERTAKABLE): Kill more unique neutral mobs than the enemy
+        // TODO (requires OVERTAKABLE): Visit more unique Overworld Biomes than enemy team
+        // TODO (requires OVERTAKABLE): Take less damage than the enemy
         // TODO: Visit 15-25 unique Biomes
         addGoal(advancementProgressGoal(id("visit_some_unique_overworld_biomes"),
                 new ResourceLocation("minecraft", "adventure/adventuring_time"), 15, 25)
