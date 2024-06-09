@@ -22,7 +22,7 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
 
     @Override
     public void addGoals() {
-        addGoal(advancementsGoal(id("get_advancements"), 31, 35));
+        addGoal(advancementsGoal(id("get_advancements"), 36, 40));
         addGoal(advancementProgressGoal(id("eat_some_unique_foods"),
                 new ResourceLocation("minecraft", "husbandry/balanced_diet"), 33, 38)
                 .name(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods", 0),
