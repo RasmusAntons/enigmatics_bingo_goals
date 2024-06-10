@@ -16,8 +16,9 @@
     "ServerPlayerMixin",
     "ServerStatsCounterMixin",
     "SpectralArrowMixin",
+    "TadpoleMixin",
     "ThrownPotionMixin",
-    "TadpoleMixin"
+    "SetBookCoverFunctionMixin"
   ],
   "injectors": {
     "defaultRequire": 1

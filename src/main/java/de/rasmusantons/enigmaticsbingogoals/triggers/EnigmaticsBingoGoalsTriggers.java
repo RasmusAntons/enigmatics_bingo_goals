@@ -25,6 +25,8 @@ public class EnigmaticsBingoGoalsTriggers {
     public static final RegistryValue<DamageExceptTeamTrigger> DAMAGE_EXCEPT_TEAM = register("damage_except_team", DamageExceptTeamTrigger::new);
     public static final RegistryValue<KillMobsTrigger> KILL_MOBS = register("kill_mobs", KillMobsTrigger::new);
     public static final RegistryValue<TadpoleMaturesTrigger> TADPOLE_MATURES = register("tadpole_matures", TadpoleMaturesTrigger::new);
+    public static final RegistryValue<WriteBookTrigger> WRITE_BOOK = register("write_book", WriteBookTrigger::new);
+
 
     public static void load() {
     }
