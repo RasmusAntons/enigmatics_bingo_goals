@@ -271,6 +271,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
 
 
 
+        // todo: rename WriteBookTrigger to SignBookTrigger and remove generation parameter?
         addGoal(
                 BingoGoal.builder(id("sign_book_and_quill"))
                         .criterion("sign", WriteBookTrigger.TriggerInstance.signer())
@@ -278,6 +279,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         .tags(BingoTags.ITEM, BingoTags.OVERWORLD)
                         .icon(ItemIcon.ofItem(Items.WRITABLE_BOOK))
         );
+        // todo: user https://minecraft.wiki/w/Advancement_definition#minecraft:recipe_crafted instead?
         addGoal(
                 BingoGoal.builder(id("make_copy_of_copy"))
                         .sub("iteration", BingoSub.literal(3))
