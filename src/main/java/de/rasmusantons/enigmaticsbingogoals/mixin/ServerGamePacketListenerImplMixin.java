@@ -19,6 +19,6 @@ public class ServerGamePacketListenerImplMixin {
 
     @Inject(method = "signBook", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;setItem(ILnet/minecraft/world/item/ItemStack;)V"))
     private void onSignBook(FilteredText title, List<FilteredText> pages, int index, CallbackInfo ci) {
-        EnigmaticsBingoGoalsTriggers.WRITE_BOOK.get().trigger(this.player, title.filteredOrEmpty(), 0);
+        EnigmaticsBingoGoalsTriggers.WRITE_BOOK.get().trigger(this.player, title.filteredOrEmpty());
     }
 }

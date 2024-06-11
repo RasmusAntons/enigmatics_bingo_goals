@@ -270,8 +270,6 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
 
 
 
-
-        // todo: rename WriteBookTrigger to SignBookTrigger and remove generation parameter?
         addGoal(
                 BingoGoal.builder(id("sign_book_and_quill"))
                         .criterion("sign", WriteBookTrigger.TriggerInstance.signer())
@@ -283,7 +281,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(
                 BingoGoal.builder(id("make_copy_of_copy"))
                         .sub("iteration", BingoSub.literal(3))
-                        .criterion("sign", WriteBookTrigger.TriggerInstance.generation(MinMaxBounds.Ints.exactly(2)))
+                        .criterion("sign", WriteBookTrigger.TriggerInstance.signer())
                         .name(Component.literal("copy_of_copy"))
                         .tags(BingoTags.ITEM, BingoTags.OVERWORLD)
                         .icon(ItemIcon.ofItem(Items.WRITTEN_BOOK),

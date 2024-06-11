@@ -6,7 +6,6 @@ import io.github.gaming32.bingo.triggers.progress.SimpleProgressibleCriterionTri
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,35 +18,26 @@ public class WriteBookTrigger extends SimpleProgressibleCriterionTrigger<WriteBo
         return TriggerInstance.CODEC;
     }
 
-    public void trigger(ServerPlayer player, String title, int generation) {
-        trigger(player, triggerInstance -> triggerInstance.matches(title, generation));
+    public void trigger(ServerPlayer player, String title) {
+        trigger(player, triggerInstance -> triggerInstance.matches(title));
     }
 
-    public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<String> title, MinMaxBounds.Ints generation)
+    public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<String> title)
             implements SimpleInstance {
         public static final Codec<TriggerInstance> CODEC = RecordCodecBuilder.create(
                 instance -> instance.group(
                         EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(TriggerInstance::player),
-                        Codec.STRING.optionalFieldOf("title").forGetter(TriggerInstance::title),
-                        MinMaxBounds.Ints.CODEC.optionalFieldOf("generation", MinMaxBounds.Ints.ANY).forGetter(TriggerInstance::generation)
+                        Codec.STRING.optionalFieldOf("title").forGetter(TriggerInstance::title)
                 ).apply(instance, TriggerInstance::new)
         );
 
-        public static Criterion<TriggerInstance> generation(MinMaxBounds.Ints generation) {
-            return EnigmaticsBingoGoalsTriggers.WRITE_BOOK.get().createCriterion(
-                    new TriggerInstance(Optional.empty(), Optional.empty(), generation)
-            );
-        }
-
         public static Criterion<TriggerInstance> signer() {
             return EnigmaticsBingoGoalsTriggers.WRITE_BOOK.get().createCriterion(
-                    new TriggerInstance(Optional.empty(), Optional.empty(), MinMaxBounds.Ints.ANY)
+                    new TriggerInstance(Optional.empty(), Optional.empty())
             );
         }
 
-        public boolean matches(String title, int gen) {
-            if (!generation.matches(gen))
-                return false;
+        public boolean matches(String title) {
             return this.title.isEmpty() || this.title.get().equals(title);
         }
     }
