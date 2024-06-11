@@ -108,6 +108,6 @@ public final class EnigmaticsBingoTags {
     }
 
     private static ResourceLocation create(String name) {
-        return new ResourceLocation(Bingo.MOD_ID, name);
+        return ResourceLocation.fromNamespaceAndPath(Bingo.MOD_ID, name);
     }
 }

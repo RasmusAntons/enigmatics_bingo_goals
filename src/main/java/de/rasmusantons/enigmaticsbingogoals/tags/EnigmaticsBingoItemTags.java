@@ -23,6 +23,6 @@ public final class EnigmaticsBingoItemTags {
     }
 
     private static TagKey<Item> create(String name) {
-        return TagKey.create(Registries.ITEM, new ResourceLocation(EnigmaticsBingoGoals.MOD_ID, name));
+        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, name));
     }
 }

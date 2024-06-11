@@ -1,14 +1,15 @@
 package de.rasmusantons.enigmaticsbingogoals.mixin;
 
-import de.rasmusantons.enigmaticsbingogoals.extension.JukeboxBlockEntityExtension;
+import de.rasmusantons.enigmaticsbingogoals.extension.JukeboxSongPlayerExtension;
 import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTriggers;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.JukeboxBlockEntity;
+import net.minecraft.world.item.JukeboxSongPlayer;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -16,16 +17,17 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(JukeboxBlockEntity.class)
-public abstract class JukeboxBlockEntityMixin implements JukeboxBlockEntityExtension {
+@Mixin(JukeboxSongPlayer.class)
+public abstract class JukeboxSongPlayerMixin implements JukeboxSongPlayerExtension {
+    @Shadow
+    @Final
+    private BlockPos blockPos;
+
     @Unique
     private final static int MAX_DISTANCE = 60;
 
     @Unique
     private ServerPlayer lastPlayed;
-
-    @Shadow
-    public abstract ItemStack getTheItem();
 
     public ServerPlayer enigmaticsbingogoals$getLastPlayed() {
         return lastPlayed;
@@ -35,14 +37,16 @@ public abstract class JukeboxBlockEntityMixin implements JukeboxBlockEntityExten
         lastPlayed = serverPlayer;
     }
 
-    @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;gameEvent(Lnet/minecraft/core/Holder;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)V"))
-    private void onGameEvent(Level level, BlockPos pos, BlockState state, CallbackInfo ci) {
+    @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/LevelAccessor;gameEvent(Lnet/minecraft/core/Holder;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)V"))
+    private void onGameEvent(LevelAccessor levelAccessor, BlockState blockState, CallbackInfo ci) {
         if (lastPlayed == null)
             return;
-        for (Player player : level.players()) {
+        if (!(levelAccessor instanceof ServerLevel serverLevel))
+            return;
+        for (Player player : serverLevel.players()) {
             if (!(player instanceof ServerPlayer serverPlayer))
                 continue;
-            if (serverPlayer.position().distanceTo(pos.getCenter()) > MAX_DISTANCE)
+            if (serverPlayer.position().distanceTo(this.blockPos.getCenter()) > MAX_DISTANCE)
                 continue;
             if (lastPlayed.getTeam() == serverPlayer.getTeam())
                 continue;

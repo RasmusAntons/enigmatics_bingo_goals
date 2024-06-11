@@ -32,6 +32,6 @@ public class EnigmaticsBingoGoalsTriggers {
     }
 
     private static <T extends CriterionTrigger<?>> RegistryValue<T> register(String name, Supplier<T> init) {
-        return REGISTER.register(new ResourceLocation(EnigmaticsBingoGoals.MOD_ID, name), init);
+        return REGISTER.register(ResourceLocation.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, name), init);
     }
 }
