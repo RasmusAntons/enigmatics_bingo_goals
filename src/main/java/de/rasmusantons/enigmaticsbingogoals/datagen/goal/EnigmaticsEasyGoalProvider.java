@@ -6,12 +6,14 @@ import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.DamageExceptTeamTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
+import de.rasmusantons.enigmaticsbingogoals.triggers.WriteBookTrigger;
 import io.github.gaming32.bingo.conditions.HasAnyEffectCondition;
 import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
+import io.github.gaming32.bingo.data.subs.BingoSub;
 import io.github.gaming32.bingo.data.tags.BingoFeatureTags;
 import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -26,6 +28,7 @@ import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
@@ -33,6 +36,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootContext;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 
@@ -141,8 +145,9 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .criterion("deal", DamageExceptTeamTrigger.TriggerInstance.dealtDamage(MinMaxBounds.Ints.atLeast(5000)))
                 .progress(new CriterionProgressTracker("deal", 0.1f))
                 .name(Component.translatable("enigmaticsbingogoals.goal.deal_some_hearts_of_damage", 500))
+                .tags(EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.deal_some_hearts_of_damage.tooltip"))
-                .icon(IndicatorIcon.infer(EntityType.COW, ItemIcon.ofItem(Items.NETHERITE_SWORD)))
+                .icon(IndicatorIcon.infer(EntityIcon.ofSpawnEgg(EntityType.COW, 500), ItemIcon.ofItem(Items.NETHERITE_SWORD)))
         );
         addGoal(dieToEntityGoal(id("die_to_bee"), EntityType.BEE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE)
@@ -264,7 +269,34 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         subber -> subber.sub("icons.*.item.count", "count")
                 )
         );
-        // TODO: Sign a Book and Quill
+        addGoal(
+                BingoGoal.builder(id("sign_book_and_quill"))
+                        .criterion("sign", WriteBookTrigger.TriggerInstance.signer())
+                        .name(Component.translatable("enigmaticsbingogoals.goal.sign_book_and_quill",
+                                Items.WRITABLE_BOOK.getDescription()))
+                        .tags(BingoTags.ITEM, BingoTags.OVERWORLD)
+                        .icon(ItemIcon.ofItem(Items.WRITABLE_BOOK))
+        );
+        addGoal(
+                BingoGoal.builder(id("make_copy_of_copy"))
+                        .criterion("clone", RecipeCraftedTrigger.TriggerInstance.craftedItem(
+                                new ResourceLocation("book_cloning"),
+                                List.of(ItemPredicate.Builder.item().withSubPredicate(
+                                        ItemSubPredicates.WRITTEN_BOOK,
+                                        new ItemWrittenBookPredicate(
+                                                Optional.empty(),
+                                                Optional.empty(),
+                                                Optional.empty(),
+                                                MinMaxBounds.Ints.exactly(1),
+                                                Optional.empty()
+                                        )
+                                ))
+                        ))
+                        .name(Component.translatable("enigmaticsbingogoals.goal.make_copy_of_copy",
+                                Component.translatable("book.generation.2")))
+                        .tags(BingoTags.ITEM, BingoTags.OVERWORLD)
+                        .icon(new ItemIcon(new ItemStack(Items.WRITTEN_BOOK, 3)))
+        );
         addGoal(BingoGoal.builder(id("wear_pumpkin"))
                 .tags(
                         BingoTags.OVERWORLD,
