@@ -28,6 +28,7 @@ import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
@@ -35,6 +36,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootContext;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 
@@ -267,33 +269,34 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         subber -> subber.sub("icons.*.item.count", "count")
                 )
         );
-
-
-
         addGoal(
                 BingoGoal.builder(id("sign_book_and_quill"))
                         .criterion("sign", WriteBookTrigger.TriggerInstance.signer())
-                        .name(Component.literal("sign"))
+                        .name(Component.translatable("enigmaticsbingogoals.goal.sign_book_and_quill",
+                                Items.WRITABLE_BOOK.getDescription()))
                         .tags(BingoTags.ITEM, BingoTags.OVERWORLD)
                         .icon(ItemIcon.ofItem(Items.WRITABLE_BOOK))
         );
-        // todo: user https://minecraft.wiki/w/Advancement_definition#minecraft:recipe_crafted instead?
         addGoal(
                 BingoGoal.builder(id("make_copy_of_copy"))
-                        .sub("iteration", BingoSub.literal(3))
-                        .criterion("sign", WriteBookTrigger.TriggerInstance.signer())
-                        .name(Component.literal("copy_of_copy"))
+                        .criterion("clone", RecipeCraftedTrigger.TriggerInstance.craftedItem(
+                                new ResourceLocation("book_cloning"),
+                                List.of(ItemPredicate.Builder.item().withSubPredicate(
+                                        ItemSubPredicates.WRITTEN_BOOK,
+                                        new ItemWrittenBookPredicate(
+                                                Optional.empty(),
+                                                Optional.empty(),
+                                                Optional.empty(),
+                                                MinMaxBounds.Ints.exactly(1),
+                                                Optional.empty()
+                                        )
+                                ))
+                        ))
+                        .name(Component.translatable("enigmaticsbingogoals.goal.make_copy_of_copy",
+                                Component.translatable("book.generation.2")))
                         .tags(BingoTags.ITEM, BingoTags.OVERWORLD)
-                        .icon(ItemIcon.ofItem(Items.WRITTEN_BOOK),
-                                subber -> subber.sub("item.count", "iteration")
-                        )
+                        .icon(new ItemIcon(new ItemStack(Items.WRITTEN_BOOK, 3)))
         );
-        // TODO: Sign a Book and Quill
-        // TODO: Make a Copy of a Copy
-
-
-
-
         addGoal(BingoGoal.builder(id("wear_pumpkin"))
                 .tags(
                         BingoTags.OVERWORLD,
