@@ -149,7 +149,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.deal_some_hearts_of_damage.tooltip"))
                 .icon(IndicatorIcon.infer(EntityIcon.ofSpawnEgg(EntityType.COW, 500), ItemIcon.ofItem(Items.NETHERITE_SWORD)))
         );
-        addGoal(dieToEntityGoal(id("die_to_bee"), EntityType.BEE)
+        addGoal(dieToMobEntityGoal(id("die_to_bee"), EntityType.BEE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_bee",
                         EntityType.BEE.getDescription()))
@@ -491,12 +491,12 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.BARTERING)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.GOLD_INGOT), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
-        addGoal(dieToEntityGoal(id("die_to_dolphin"), EntityType.DOLPHIN)
+        addGoal(dieToMobEntityGoal(id("die_to_dolphin"), EntityType.DOLPHIN)
                 .tags(BingoTags.OVERWORLD)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_dolphin",
                         EntityType.DOLPHIN.getDescription()))
         );
-        addGoal(dieToEntityGoal(id("die_to_iron_golem"), EntityType.IRON_GOLEM)
+        addGoal(dieToMobEntityGoal(id("die_to_iron_golem"), EntityType.IRON_GOLEM)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_iron_golem",
                         EntityType.IRON_GOLEM.getDescription()))
@@ -557,6 +557,10 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         subber -> subber.sub("with.0", "count")
                 )
         );
-        // TODO: Die to a TNT Minecart
+        addGoal(dieToEntityGoal(id("die_to_tnt_minecart"), EntityType.TNT_MINECART, ItemIcon.ofItem(Items.TNT_MINECART))
+                .tags(BingoTags.OVERWORLD)
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_tnt_minecart",
+                        EntityType.TNT_MINECART.getDescription()))
+        );
     }
 }

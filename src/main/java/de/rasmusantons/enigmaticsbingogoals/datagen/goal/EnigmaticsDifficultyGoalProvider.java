@@ -200,7 +200,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         subber -> subber.sub("with.0", "count"));
     }
 
-    protected static BingoGoal.Builder dieToEntityGoal(ResourceLocation id, EntityType<?> entityType) {
+    protected static BingoGoal.Builder dieToMobEntityGoal(ResourceLocation id, EntityType<?> entityType) {
         return BingoGoal.builder(id)
                 .criterion("die", BingoTriggers.DEATH.get().createCriterion(DeathTrigger.TriggerInstance.death(
                                 DamageSourcePredicate.Builder.damageType()
@@ -211,6 +211,19 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .tags(EnigmaticsBingoTags.DIE_TO)
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.directly_killed.tooltip", entityType.getDescription()))
                 .icon(IndicatorIcon.infer(entityType, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)));
+    }
+
+    protected static BingoGoal.Builder dieToEntityGoal(ResourceLocation id, EntityType<?> entityType, GoalIcon icon) {
+        return BingoGoal.builder(id)
+                .criterion("die", BingoTriggers.DEATH.get().createCriterion(DeathTrigger.TriggerInstance.death(
+                                DamageSourcePredicate.Builder.damageType()
+                                        .direct(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityType)))
+                                        .build()
+                        )
+                ))
+                .tags(EnigmaticsBingoTags.DIE_TO)
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.directly_killed.tooltip", entityType.getDescription()))
+                .icon(IndicatorIcon.infer(icon, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)));
     }
 
     protected static BingoGoal.Builder killEntityGoal(ResourceLocation id, EntityType<?> entityType) {

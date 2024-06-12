@@ -154,7 +154,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_intentional_game_design"))
                 .icon(IndicatorIcon.infer(Items.RED_BED, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
         );
-        addGoal(dieToEntityGoal(id("die_to_goat"), EntityType.GOAT)
+        addGoal(dieToMobEntityGoal(id("die_to_goat"), EntityType.GOAT)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_goat",
                         EntityType.GOAT.getDescription()))
@@ -590,12 +590,12 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(breedAnimalGoal(id("breed_hoglin"), EntityType.HOGLIN)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST)
         );
-        addGoal(dieToEntityGoal(id("die_to_llama"), EntityType.LLAMA)
+        addGoal(dieToMobEntityGoal(id("die_to_llama"), EntityType.LLAMA)
                 .tags(BingoTags.OVERWORLD)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_llama",
                         EntityType.LLAMA.getDescription()))
         );
-        addGoal(dieToEntityGoal(id("die_to_stray"), EntityType.STRAY)
+        addGoal(dieToMobEntityGoal(id("die_to_stray"), EntityType.STRAY)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_stray",
                         EntityType.STRAY.getDescription()))
