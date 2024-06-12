@@ -31,6 +31,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -164,11 +165,15 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         EnigmaticsBingoTags.OCEAN_MONUMENT, EnigmaticsBingoTags.INSTANT_DAMAGE,
                         EnigmaticsBingoTags.RAID, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.WOODLAND_MANSION)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_magic"))
-                .icon(IndicatorIcon.infer(EffectIcon.of(MobEffects.HARM), BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
+                .icon(IndicatorIcon.infer(
+                                PotionContents.createItemStack(Items.SPLASH_POTION, Potions.STRONG_HARMING),
+                                BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)
+                        )
+                )
         );
         addGoal(dieToDamageTypeGoal(id("die_to_anvil"), EnigmaticsBingoDamageTypeTags.ANVIL)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
-                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_anvil"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_anvil", Items.ANVIL.getDescription()))
                 .icon(IndicatorIcon.infer(Items.ANVIL, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
         );
         addGoal(obtainItemGoal(id("obtain_observer"), Items.OBSERVER)
