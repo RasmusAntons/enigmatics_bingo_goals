@@ -13,7 +13,6 @@ import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
-import io.github.gaming32.bingo.data.subs.BingoSub;
 import io.github.gaming32.bingo.data.tags.BingoFeatureTags;
 import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -33,6 +32,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ChiseledBookShelfBlock;
 import net.minecraft.world.level.storage.loot.LootContext;
 
 import java.util.Arrays;
@@ -226,7 +226,27 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.KILL_MOB, EnigmaticsBingoTags.KILL_MOB_BATCH)
         );
         // TODO: Wash something in a Cauldron
-        // TODO: Fill a Chiseled Bookshelf with books
+        addGoal(BingoGoal.builder(id("fill_a_chiseled_bookshelf"))
+                .criterion("use", ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(
+                        LocationPredicate.Builder.location().setBlock(
+                                BlockPredicate.Builder.block()
+                                        .of(Blocks.CHISELED_BOOKSHELF)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(ChiseledBookShelfBlock.SLOT_OCCUPIED_PROPERTIES.get(0), true)
+                                                .hasProperty(ChiseledBookShelfBlock.SLOT_OCCUPIED_PROPERTIES.get(1), true)
+                                                .hasProperty(ChiseledBookShelfBlock.SLOT_OCCUPIED_PROPERTIES.get(2), true)
+                                                .hasProperty(ChiseledBookShelfBlock.SLOT_OCCUPIED_PROPERTIES.get(3), true)
+                                                .hasProperty(ChiseledBookShelfBlock.SLOT_OCCUPIED_PROPERTIES.get(4), true)
+                                                .hasProperty(ChiseledBookShelfBlock.SLOT_OCCUPIED_PROPERTIES.get(5), true)
+                                        )
+                        ),
+                        ItemPredicate.Builder.item().of(EnigmaticsBingoItemTags.BOOKS)
+                ))
+                .name(Component.translatable("enigmaticsbingogoals.goal.fill_chiseled_bookshelf",
+                        Items.CHISELED_BOOKSHELF.getDescription()))
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.BOOK, EnigmaticsBingoTags.WOODLAND_MANSION)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CHISELED_BOOKSHELF), new ItemTagCycleIcon(EnigmaticsBingoItemTags.BOOKS)))
+        );
         addGoal(advancementGoal(id("get_advancement_what_a_deal"),
                 Component.translatable("advancements.adventure.trade.title"),
                 new ResourceLocation("minecraft", "adventure/trade"))

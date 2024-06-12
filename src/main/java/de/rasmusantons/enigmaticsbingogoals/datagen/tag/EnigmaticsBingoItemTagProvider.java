@@ -94,5 +94,13 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.DARK_OAK_SAPLING,
                 Items.CHERRY_SAPLING
         );
+
+        getOrCreateTagBuilder(EnigmaticsBingoItemTags.BOOKS).add(
+                Items.BOOK,
+                Items.WRITABLE_BOOK,
+                Items.WRITTEN_BOOK,
+                Items.ENCHANTED_BOOK,
+                Items.KNOWLEDGE_BOOK
+        );
     }
 }

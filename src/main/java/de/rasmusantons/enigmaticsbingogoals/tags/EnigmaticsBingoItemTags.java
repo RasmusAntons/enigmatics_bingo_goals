@@ -17,6 +17,7 @@ public final class EnigmaticsBingoItemTags {
     public static final TagKey<Item> CHAINMAIL_ARMOR = create("chainmail_armor");
     public static final TagKey<Item> SEEDS = create("seeds");
     public static final TagKey<Item> SAPLINGS = create("saplings");
+    public static final TagKey<Item> BOOKS = create("books");
 
     private EnigmaticsBingoItemTags() {
     }
