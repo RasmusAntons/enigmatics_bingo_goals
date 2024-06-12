@@ -99,20 +99,6 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
                         EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE)
         );
-        addGoal(BingoGoal.builder(id("huge_warped_fungus_in_overworld"))
-                .criterion("grow", GrowFeatureTrigger.builder()
-                        .feature(EnigmaticsBingoFeatureTags.HUGE_WARPED_FUNGI)
-                        .location(
-                                LocationPredicate.Builder.inDimension(Level.OVERWORLD).build()
-                        ).build())
-                .name(Component.translatable("enigmaticsbingogoals.goal.huge_fungus_in_overworld", Items.WARPED_FUNGUS.getDescription()))
-                .icon(IndicatorIcon.infer(
-                        Items.WARPED_FUNGUS,
-                        Blocks.GRASS_BLOCK
-                ))
-                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
-                        EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE)
-        );
         // TODO: Use a Skull Banner Pattern
         addGoal(advancementProgressGoal(id("eat_some_unique_foods"),
                 new ResourceLocation("minecraft", "husbandry/balanced_diet"), 25, 32)
