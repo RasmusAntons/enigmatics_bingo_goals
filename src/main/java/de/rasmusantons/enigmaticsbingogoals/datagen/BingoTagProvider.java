@@ -126,6 +126,7 @@ public class BingoTagProvider implements DataProvider {
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.PIG).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.SADDLE).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.AMETHYST).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.WRITE_BOOK).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BOOK).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.OUTPOST).difficultyMax(2, 2, 2, 2, 2, 2).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.REDSTONE).difficultyMax(1, 1, 1, 1, 1, 1).build());
@@ -179,6 +180,5 @@ public class BingoTagProvider implements DataProvider {
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.STRONGHOLD).difficultyMax(2, 2, 2, 2, 2, 2).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.WOODLAND_MANSION).difficultyMax(9, 9, 9, 9, 9, 9).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.TRAIL_RUINS).difficultyMax(3, 3, 3, 3, 3, 3).build());
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.WRITE_BOOK).difficultyMax(1, 1, 1, 1, 1, 1).build());
     }
 }

@@ -49,6 +49,7 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation PIG = create("pig");
     public static final ResourceLocation SADDLE = create("saddle");
     public static final ResourceLocation AMETHYST = create("amethyst");
+    public static final ResourceLocation WRITE_BOOK = create("write_book");
     public static final ResourceLocation BOOK = create("book");
     public static final ResourceLocation OUTPOST = create("outpost");
     public static final ResourceLocation REDSTONE = create("redstone");
@@ -102,7 +103,6 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation STRONGHOLD = create("stronghold");
     public static final ResourceLocation WOODLAND_MANSION = create("woodland_mansion");
     public static final ResourceLocation TRAIL_RUINS = create("trail_ruins");
-    public static final ResourceLocation WRITE_BOOK = create("write_book");
 
     private EnigmaticsBingoTags() {
     }

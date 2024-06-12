@@ -294,7 +294,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         .criterion("sign", WriteBookTrigger.TriggerInstance.signer())
                         .name(Component.translatable("enigmaticsbingogoals.goal.sign_book_and_quill",
                                 Items.WRITABLE_BOOK.getDescription()))
-                        .tags(BingoTags.ITEM, BingoTags.OVERWORLD, EnigmaticsBingoTags.WRITE_BOOK)
+                        .tags(BingoTags.ITEM, BingoTags.OVERWORLD, EnigmaticsBingoTags.WRITE_BOOK, EnigmaticsBingoTags.BOOK)
                         .icon(ItemIcon.ofItem(Items.WRITABLE_BOOK))
         );
         addGoal(
@@ -314,7 +314,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         ))
                         .name(Component.translatable("enigmaticsbingogoals.goal.make_copy_of_copy",
                                 Component.translatable("book.generation.2")))
-                        .tags(BingoTags.ITEM, BingoTags.OVERWORLD, EnigmaticsBingoTags.WRITE_BOOK)
+                        .tags(BingoTags.ITEM, BingoTags.OVERWORLD, EnigmaticsBingoTags.WRITE_BOOK, EnigmaticsBingoTags.BOOK)
                         .icon(new ItemIcon(new ItemStack(Items.WRITTEN_BOOK, 3)))
         );
         addGoal(BingoGoal.builder(id("wear_pumpkin"))
