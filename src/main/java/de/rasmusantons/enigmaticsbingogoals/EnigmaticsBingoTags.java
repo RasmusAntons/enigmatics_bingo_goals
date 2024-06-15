@@ -106,6 +106,7 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation TRIAL_CHAMBER = create("trial_chamber");
     public static final ResourceLocation BREEZE = create("breeze");
     public static final ResourceLocation SILVERFISH = create("silverfish");
+    public static final ResourceLocation SWAMP = create("swamp");
 
     private EnigmaticsBingoTags() {
     }

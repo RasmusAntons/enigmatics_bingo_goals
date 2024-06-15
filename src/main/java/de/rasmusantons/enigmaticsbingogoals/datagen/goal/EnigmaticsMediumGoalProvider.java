@@ -188,7 +188,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(obtainItemGoal(id("obtain_sticky_piston"), Items.STICKY_PISTON)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
-                        EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.ANCIENT_CITY)
+                        EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.ANCIENT_CITY, EnigmaticsBingoTags.SWAMP)
         );
         addGoal(obtainItemGoal(id("obtain_redstone_lamp"), Items.REDSTONE_LAMP)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
@@ -212,7 +212,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(killEntityGoal(id("kill_bogged"), EntityType.BOGGED)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_bogged", EntityType.SILVERFISH.getDescription()))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRIAL_CHAMBER, EnigmaticsBingoTags.SWAMP)
         );
         addGoal(tameAnimalGoal(id("tame_ocelot"), EntityType.OCELOT)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE)
@@ -309,7 +309,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB)
         );
         addGoal(obtainItemGoal(id("obtain_tadpole_bucket"), Items.TADPOLE_BUCKET)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB, EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.FROG)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB, EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.FROG,
+                        EnigmaticsBingoTags.SWAMP)
         );
         addGoal(advancementGoal(id("get_advancement_sound_of_music"),
                 Component.translatable("advancements.adventure.play_jukebox_in_meadows.title"),
@@ -479,7 +480,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 )
         );
         addGoal(obtainItemGoal(id("obtain_slime_block"), Items.SLIME_BLOCK)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SLIME)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.SWAMP)
         );
         addGoal(obtainItemGoal(id("obtain_honey_block"), Items.HONEY_BLOCK)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE)
@@ -569,7 +570,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(potionGoal(id("obtain_potion_of_oozing"),
                 Potions.OOZING)
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.SLIME)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.SLIME,
+                        EnigmaticsBingoTags.SWAMP)
         );
         addGoal(potionGoal(id("obtain_potion_of_infestation"),
                 Potions.INFESTED)

@@ -426,7 +426,8 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
     protected static BingoGoal.Builder breedFrogVariantGoal(ResourceLocation id, ResourceKey<FrogVariant> variant) {
         return BingoGoal.builder(id)
                 .criterion("hatch", TadpoleMaturesTrigger.TriggerInstance.ofVariant(variant))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.BREED_MOB, EnigmaticsBingoTags.FROG)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.BREED_MOB, EnigmaticsBingoTags.FROG,
+                        EnigmaticsBingoTags.SWAMP)
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getFrogVariantIcon(variant), Items.SLIME_BALL))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.breed_frog.tooltip", EntityType.TADPOLE.getDescription()));
     }
