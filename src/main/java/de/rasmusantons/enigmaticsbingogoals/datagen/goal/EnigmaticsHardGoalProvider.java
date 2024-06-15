@@ -42,7 +42,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.IGLOO)
                 .icon(IndicatorIcon.infer(EntityType.ZOMBIE_VILLAGER, ItemIcon.ofItem(Items.GOLDEN_APPLE)))
         );
-        addGoal(numberOfEffectsGoal(id("get_some_effects"), 8, 10));
+        addGoal(numberOfEffectsGoal(id("get_some_effects"), 15, 20));
         addGoal(breedAnimalGoal(id("breed_mule"), EntityType.MULE)
                 .tags(BingoTags.OVERWORLD)
         );
@@ -70,7 +70,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         ), EffectIcon.of(MobEffects.HEALTH_BOOST)),
                         subber -> subber.sub("base.icons.*.item.count", "count"))
         );
-        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs"), EnigmaticsBingoEntityTypeTags.HOSTILE, 11, 15, true)
+        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs"), EnigmaticsBingoEntityTypeTags.HOSTILE, 15, 20, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS, EnigmaticsBingoTags.KILL_MOB)
@@ -139,7 +139,8 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(advancementGoal(id("get_advancement_careful_restoration"),
                 Component.translatable("advancements.adventure.craft_decorated_pot_using_only_sherds.title"),
                 ResourceLocation.withDefaultNamespace("adventure/craft_decorated_pot_using_only_sherds"))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH,
+                        EnigmaticsBingoTags.TRIAL_CHAMBER)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.DECORATED_POT), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(potionGoal(id("obtain_potion_of_leaping"),
@@ -173,9 +174,6 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(obtainItemGoal(id("obtain_dragon_egg"), Items.DRAGON_EGG)
                 .tags(BingoTags.END, EnigmaticsBingoTags.END_ENTRY)
-        );
-        addGoal(obtainItemGoal(id("obtain_lingering_potion"), Items.LINGERING_POTION)
-                .tags(BingoTags.END, EnigmaticsBingoTags.POTIONS, EnigmaticsBingoTags.END_ENTRY)
         );
         addGoal(advancementGoal(id("get_advancement_the_city_at_the_end_of_the_game"),
                 Component.translatable("advancements.end.find_end_city.title"),

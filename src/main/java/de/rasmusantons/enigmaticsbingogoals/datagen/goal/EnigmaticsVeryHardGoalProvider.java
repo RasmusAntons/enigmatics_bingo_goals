@@ -35,7 +35,7 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
                         subber -> subber.sub("icons.*.item.count", "count")
                 )
         );
-        addGoal(numberOfEffectsGoal(id("get_some_effects"), 11, 20));
+        addGoal(numberOfEffectsGoal(id("get_some_effects"), 21, 30));
         addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs"), EnigmaticsBingoEntityTypeTags.HOSTILE, 16, 24, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
