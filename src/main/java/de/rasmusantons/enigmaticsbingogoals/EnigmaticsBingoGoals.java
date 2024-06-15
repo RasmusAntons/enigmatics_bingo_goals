@@ -10,9 +10,9 @@ public class EnigmaticsBingoGoals implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        if (BingoPlatform.platform != null) {
-            EnigmaticsBingoGoalsConditions.load();
-            EnigmaticsBingoGoalsTriggers.load();
-        }
+        if (BingoPlatform.platform == null)
+            throw new RuntimeException("Bingo mod isn't initialized???");
+        EnigmaticsBingoGoalsConditions.load();
+        EnigmaticsBingoGoalsTriggers.load();
     }
 }

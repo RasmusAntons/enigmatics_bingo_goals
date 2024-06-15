@@ -17,6 +17,6 @@ public class EnigmaticsBingoDamageTypeTags {
     }
 
     private static TagKey<DamageType> create(String name) {
-        return TagKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(EnigmaticsBingoGoals.MOD_ID, name));
+        return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, name));
     }
 }

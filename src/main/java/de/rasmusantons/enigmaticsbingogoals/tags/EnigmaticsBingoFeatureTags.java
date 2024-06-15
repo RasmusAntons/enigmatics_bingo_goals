@@ -14,6 +14,6 @@ public final class EnigmaticsBingoFeatureTags {
     public static final TagKey<ConfiguredFeature<?, ?>> HUGE_CRIMSON_FUNGI = create("huge_crimson_fungi");
 
     private static TagKey<ConfiguredFeature<?, ?>> create(String name) {
-        return TagKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(EnigmaticsBingoGoals.MOD_ID, name));
+        return TagKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, name));
     }
 }

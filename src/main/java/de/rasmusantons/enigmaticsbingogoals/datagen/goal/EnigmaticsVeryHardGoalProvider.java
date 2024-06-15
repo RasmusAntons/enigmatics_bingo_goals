@@ -24,7 +24,7 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
     public void addGoals() {
         addGoal(advancementsGoal(id("get_advancements"), 36, 40));
         addGoal(advancementProgressGoal(id("eat_some_unique_foods"),
-                new ResourceLocation("minecraft", "husbandry/balanced_diet"), 33, 38)
+                ResourceLocation.withDefaultNamespace("husbandry/balanced_diet"), 33, 38)
                 .name(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods", 0),
                         subber -> subber.sub("with.0", "count")
                 )

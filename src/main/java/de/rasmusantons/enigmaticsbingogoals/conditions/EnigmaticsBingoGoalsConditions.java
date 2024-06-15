@@ -23,6 +23,6 @@ public class EnigmaticsBingoGoalsConditions {
     }
 
     private static RegistryValue<LootItemConditionType> register(String registryName, MapCodec<? extends LootItemCondition> codec) {
-        return REGISTER.register(new ResourceLocation(Bingo.MOD_ID, registryName), () -> new LootItemConditionType(codec));
+        return REGISTER.register(ResourceLocation.fromNamespaceAndPath(Bingo.MOD_ID, registryName), () -> new LootItemConditionType(codec));
     }
 }

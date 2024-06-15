@@ -48,7 +48,7 @@ import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
 public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalProvider {
-    public static final ResourceLocation ENIGMATICS = new ResourceLocation(Bingo.MOD_ID, "enigmatics");
+    public static final ResourceLocation ENIGMATICS = ResourceLocation.fromNamespaceAndPath(Bingo.MOD_ID, "enigmatics");
 
     public EnigmaticsDifficultyGoalProvider(ResourceLocation difficulty,
                                             BiConsumer<ResourceLocation, BingoGoal> goalAdder,

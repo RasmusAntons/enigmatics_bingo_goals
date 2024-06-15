@@ -128,7 +128,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         // TODO (requires OVERTAKABLE): Take less damage than the enemy
         // TODO: Visit 15-25 unique Biomes
         addGoal(advancementProgressGoal(id("visit_some_unique_overworld_biomes"),
-                new ResourceLocation("minecraft", "adventure/adventuring_time"), 15, 25)
+                ResourceLocation.withDefaultNamespace("adventure/adventuring_time"), 15, 25)
                 .name(Component.translatable("enigmaticsbingogoals.goal.visit_some_unique_overworld_biomes", 0),
                         subber -> subber.sub("with.0", "count")
                 )
@@ -299,7 +299,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(advancementGoal(id("get_advancement_sound_of_music"),
                 Component.translatable("advancements.adventure.play_jukebox_in_meadows.title"),
-                new ResourceLocation("minecraft", "adventure/play_jukebox_in_meadows"))
+                ResourceLocation.withDefaultNamespace("adventure/play_jukebox_in_meadows"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MUSIC_DISC, EnigmaticsBingoTags.ANCIENT_CITY,
                         EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.TRAIL_RUINS)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
@@ -334,7 +334,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 )
         );
         addGoal(advancementProgressGoal(id("eat_some_unique_foods"),
-                new ResourceLocation("minecraft", "husbandry/balanced_diet"), 14, 24)
+                ResourceLocation.withDefaultNamespace("husbandry/balanced_diet"), 14, 24)
                 .name(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods", 0),
                         subber -> subber.sub("with.0", "count")
                 )
@@ -347,13 +347,13 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(advancementGoal(id("get_advancement_sniper_duel"),
                 Component.translatable("advancements.adventure.sniper_duel.title"),
-                new ResourceLocation("minecraft", "adventure/sniper_duel"))
+                ResourceLocation.withDefaultNamespace("adventure/sniper_duel"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BOW)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ARROW), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(id("get_advancement_bullseye"),
                 Component.translatable("advancements.adventure.bullseye.title"),
-                new ResourceLocation("minecraft", "adventure/bullseye"))
+                ResourceLocation.withDefaultNamespace("adventure/bullseye"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BOW)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.TARGET), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
@@ -415,9 +415,9 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SADDLE)
         );
         addGoal(advancementGoal(id("get_any_spyglass_advancement"), null,
-                new ResourceLocation("minecraft", "adventure/spyglass_at_parrot"),
-                new ResourceLocation("minecraft", "adventure/spyglass_at_ghast"),
-                new ResourceLocation("minecraft", "adventure/spyglass_at_dragon"))
+                ResourceLocation.withDefaultNamespace("adventure/spyglass_at_parrot"),
+                ResourceLocation.withDefaultNamespace("adventure/spyglass_at_ghast"),
+                ResourceLocation.withDefaultNamespace("adventure/spyglass_at_dragon"))
                 .name(Component.translatable("enigmaticsbingogoals.goal.get_any_spyglass_advancement"))
                 .tags(EnigmaticsBingoTags.AMETHYST, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.NETHER_ENTRY,
                         EnigmaticsBingoTags.NETHER_ENTRY)
@@ -475,7 +475,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(advancementGoal(id("get_advancement_enchanter"),
                 Component.translatable("advancements.story.enchant_item.title"),
-                new ResourceLocation("minecraft", "story/enchant_item"))
+                ResourceLocation.withDefaultNamespace("story/enchant_item"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ENCHANTED_BOOK), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
@@ -518,25 +518,25 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(advancementGoal(id("get_advancement_a_terrible_fortress"),
                 Component.translatable("advancements.nether.find_fortress.title"),
-                new ResourceLocation("minecraft", "nether/find_fortress"))
+                ResourceLocation.withDefaultNamespace("nether/find_fortress"))
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.NETHER_EXPLORE)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.NETHER_BRICKS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(id("get_advancement_those_were_the_days"),
                 Component.translatable("advancements.nether.find_bastion.title"),
-                new ResourceLocation("minecraft", "nether/find_bastion"))
+                ResourceLocation.withDefaultNamespace("nether/find_bastion"))
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.NETHER_EXPLORE)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.POLISHED_BLACKSTONE_BRICKS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(id("get_advancement_not_quite_nine_lives"),
                 Component.translatable("advancements.nether.charge_respawn_anchor.title"),
-                new ResourceLocation("minecraft", "nether/charge_respawn_anchor"))
+                ResourceLocation.withDefaultNamespace("nether/charge_respawn_anchor"))
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.RESPAWN_ANCHOR), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(id("get_advancement_hot_tourist_destinations"),
                 Component.translatable("advancements.nether.explore_nether.title"),
-                new ResourceLocation("minecraft", "nether/explore_nether"))
+                ResourceLocation.withDefaultNamespace("nether/explore_nether"))
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BIOMES, EnigmaticsBingoTags.NETHER_EXPLORE,
                         EnigmaticsBingoTags.NETHER_LATE)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.NETHERITE_BOOTS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
@@ -640,7 +640,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         // TODO: Use a Bordure Banner Pattern
         // TODO: Use an Anvil
         addGoal(advancementProgressGoal(id("breed_some_unique_mobs"),
-                new ResourceLocation("minecraft", "husbandry/bred_all_animals"), 6, 10)
+                ResourceLocation.withDefaultNamespace("husbandry/bred_all_animals"), 6, 10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_some_unique_mobs", 0),
                         subber -> subber.sub("with.0", "count"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BREED_MOB)
@@ -652,13 +652,13 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(advancementGoal(id("get_advancement_is_it_a_bird"),
                 Component.translatable("advancements.adventure.spyglass_at_parrot.title"),
-                new ResourceLocation("minecraft", "adventure/spyglass_at_parrot"))
+                ResourceLocation.withDefaultNamespace("adventure/spyglass_at_parrot"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.AMETHYST, EnigmaticsBingoTags.JUNGLE)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(id("get_advancement_is_it_a_balloon"),
                 Component.translatable("advancements.adventure.spyglass_at_ghast.title"),
-                new ResourceLocation("minecraft", "adventure/spyglass_at_ghast"))
+                ResourceLocation.withDefaultNamespace("adventure/spyglass_at_ghast"))
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.AMETHYST, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.GHAST)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );

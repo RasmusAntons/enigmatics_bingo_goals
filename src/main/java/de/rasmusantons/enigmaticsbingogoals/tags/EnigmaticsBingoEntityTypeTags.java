@@ -14,6 +14,6 @@ public class EnigmaticsBingoEntityTypeTags {
     }
 
     private static TagKey<EntityType<?>> create(String name) {
-        return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(EnigmaticsBingoGoals.MOD_ID, name));
+        return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, name));
     }
 }

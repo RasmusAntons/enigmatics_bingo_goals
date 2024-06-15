@@ -35,6 +35,6 @@ public enum KillEnemyPlayerCondition implements LootItemCondition {
     @NotNull
     @Override
     public Set<LootContextParam<?>> getReferencedContextParams() {
-        return Set.of(LootContextParams.THIS_ENTITY, LootContextParams.KILLER_ENTITY);
+        return Set.of(LootContextParams.THIS_ENTITY, LootContextParams.ATTACKING_ENTITY);
     }
 }

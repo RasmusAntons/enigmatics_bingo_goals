@@ -18,11 +18,12 @@ public final class EnigmaticsBingoItemTags {
     public static final TagKey<Item> SEEDS = create("seeds");
     public static final TagKey<Item> SAPLINGS = create("saplings");
     public static final TagKey<Item> BOOKS = create("books");
+    public static final TagKey<Item> MUSIC_DISCS = create("music_discs");
 
     private EnigmaticsBingoItemTags() {
     }
 
     private static TagKey<Item> create(String name) {
-        return TagKey.create(Registries.ITEM, new ResourceLocation(EnigmaticsBingoGoals.MOD_ID, name));
+        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, name));
     }
 }
