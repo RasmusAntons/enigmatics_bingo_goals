@@ -336,6 +336,9 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.LUSH_CAVE,
                         EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.SHIPWRECK)
         );
+        addGoal(obtainItemGoal(id("obtain_polished_tuff_wall"), Items.POLISHED_TUFF_WALL)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL)
+        );
         addGoal(obtainAllItemsFromTagGoal(id("obtain_all_iron_tools"), EnigmaticsBingoItemTags.IRON_TOOLS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools",

@@ -103,6 +103,9 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation STRONGHOLD = create("stronghold");
     public static final ResourceLocation WOODLAND_MANSION = create("woodland_mansion");
     public static final ResourceLocation TRAIL_RUINS = create("trail_ruins");
+    public static final ResourceLocation TRIAL_CHAMBER = create("trial_chamber");
+    public static final ResourceLocation BREEZE = create("breeze");
+    public static final ResourceLocation SILVERFISH = create("silverfish");
 
     private EnigmaticsBingoTags() {
     }

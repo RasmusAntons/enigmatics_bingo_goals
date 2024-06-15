@@ -121,6 +121,12 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .name(Component.translatable("enigmaticsbingogoals.goal.hit_player_with_snowball", EntityType.SNOWBALL.getDescription()))
                 .icon(IndicatorIcon.infer(Items.SNOWBALL, Items.PLAYER_HEAD))
         );
+        addGoal(BingoGoal.builder(id("hit_other_team_with_wind_charge"))
+                .criterion("hit", HitOtherTeamWithProjectileTrigger.TriggerInstance.ofType(EntityType.WIND_CHARGE))
+                .tags(EnigmaticsBingoTags.PVP, EnigmaticsBingoTags.TRIAL_CHAMBER, EnigmaticsBingoTags.BREEZE)
+                .name(Component.translatable("enigmaticsbingogoals.goal.hit_player_with_wind_charge", EntityType.WIND_CHARGE.getDescription()))
+                .icon(IndicatorIcon.infer(Items.SNOWBALL, Items.PLAYER_HEAD))
+        );
         // TODO (requires OVERTAKABLE): Kill more unique mobs than the enemy
         // TODO (requires OVERTAKABLE): Kill more unique hostile mobs than the enemy
         // TODO (requires OVERTAKABLE): Kill more unique neutral mobs than the enemy
@@ -198,7 +204,15 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(killEntityGoal(id("kill_silverfish"), EntityType.SILVERFISH)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_silverfish", EntityType.SILVERFISH.getDescription()))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.STRONGHOLD, EnigmaticsBingoTags.MOUNTAIN,
-                        EnigmaticsBingoTags.WOODLAND_MANSION)
+                        EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.SILVERFISH)
+        );
+        addGoal(killEntityGoal(id("kill_breeze"), EntityType.BREEZE)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_breeze", EntityType.SILVERFISH.getDescription()))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRIAL_CHAMBER, EnigmaticsBingoTags.BREEZE)
+        );
+        addGoal(killEntityGoal(id("kill_bogged"), EntityType.BOGGED)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_bogged", EntityType.SILVERFISH.getDescription()))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRIAL_CHAMBER)
         );
         addGoal(tameAnimalGoal(id("tame_ocelot"), EntityType.OCELOT)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE)
@@ -553,6 +567,23 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.EYE_OF_ENDER, EnigmaticsBingoTags.BLAZE_POWDER,
                         EnigmaticsBingoTags.FORTRESS)
         );
+        addGoal(potionGoal(id("obtain_potion_of_oozing"),
+                Potions.OOZING)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.SLIME)
+        );
+        addGoal(potionGoal(id("obtain_potion_of_infestation"),
+                Potions.INFESTED)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.SILVERFISH)
+        );
+        addGoal(potionGoal(id("obtain_potion_of_weaving"),
+                Potions.WEAVING)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.MINESHAFT)
+        );
+        addGoal(potionGoal(id("obtain_potion_of_wind_charging"),
+                Potions.OOZING)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.TRIAL_CHAMBER,
+                        EnigmaticsBingoTags.BREEZE)
+        );
         addGoal(potionGoal(id("obtain_potion_of_strength"),
                 Potions.STRENGTH, Potions.LONG_STRENGTH, Potions.STRONG_STRENGTH)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
@@ -693,6 +724,33 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(obtainItemGoal(id("obtain_experience_bottle"), Items.EXPERIENCE_BOTTLE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.ANCIENT_CITY,
                         BingoTags.VILLAGE)
+        );
+        addGoal(obtainItemGoal(id("obtain_copper_bulb"), Items.COPPER_BULB)
+                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.TRIAL_CHAMBER)
+        );
+        addGoal(advancementGoal(id("get_advancement_minecraft_trials_edition"),
+                Component.translatable("advancements.adventure.minecraft_trials_edition.title"),
+                ResourceLocation.withDefaultNamespace("adventure/minecraft_trials_edition"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CHISELED_TUFF), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+        );
+        addGoal(advancementGoal(id("get_advancement_crafters_crafting_crafters"),
+                Component.translatable("advancements.adventure.crafters_crafting_crafters.title"),
+                ResourceLocation.withDefaultNamespace("adventure/crafters_crafting_crafters"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.REDSTONE, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.WOODLAND_MANSION)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CRAFTER), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+        );
+        addGoal(advancementGoal(id("get_advancement_who_needs_rockets"),
+                Component.translatable("advancements.adventure.who_needs_rockets.title"),
+                ResourceLocation.withDefaultNamespace("adventure/who_needs_rockets"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRIAL_CHAMBER, EnigmaticsBingoTags.BREEZE)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WIND_CHARGE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+        );
+        addGoal(advancementGoal(id("get_advancement_blowback"),
+                Component.translatable("advancements.adventure.blowback.title"),
+                ResourceLocation.withDefaultNamespace("adventure/blowback"))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRIAL_CHAMBER, EnigmaticsBingoTags.BREEZE)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WIND_CHARGE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
     }
 }

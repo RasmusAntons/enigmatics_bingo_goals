@@ -180,5 +180,8 @@ public class BingoTagProvider implements DataProvider {
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.STRONGHOLD).difficultyMax(2, 2, 2, 2, 2, 2).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.WOODLAND_MANSION).difficultyMax(9, 9, 9, 9, 9, 9).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.TRAIL_RUINS).difficultyMax(3, 3, 3, 3, 3, 3).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.TRIAL_CHAMBER).difficultyMax(3, 3, 3, 3, 3, 3).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BREEZE).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.SILVERFISH).difficultyMax(1, 1, 1, 1, 1, 1).build());
     }
 }
