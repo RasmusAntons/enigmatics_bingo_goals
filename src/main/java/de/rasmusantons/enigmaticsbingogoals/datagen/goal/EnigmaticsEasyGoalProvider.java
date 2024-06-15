@@ -549,8 +549,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(obtainItemGoal(id("obtain_mud_brick_wall"), Items.MUD_BRICK_WALL)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.TRAIL_RUINS)
         );
-        // todo: custom tag for other discs? or rename to get creeper drop music discs
-        addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_music_discs"), ItemTags.CREEPER_DROP_MUSIC_DISCS, 2, 5)
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_music_discs"), EnigmaticsBingoItemTags.MUSIC_DISCS, 2, 5)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MUSIC_DISC, EnigmaticsBingoTags.ANCIENT_CITY,
                         EnigmaticsBingoTags.TRAIL_RUINS)
                 .name(
