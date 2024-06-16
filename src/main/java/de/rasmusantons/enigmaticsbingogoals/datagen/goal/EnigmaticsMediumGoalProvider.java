@@ -209,11 +209,11 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.SILVERFISH, EnigmaticsBingoTags.TRIAL_CHAMBER)
         );
         addGoal(killEntityGoal(id("kill_breeze"), EntityType.BREEZE)
-                .name(Component.translatable("enigmaticsbingogoals.goal.kill_breeze", EntityType.SILVERFISH.getDescription()))
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_breeze", EntityType.BREEZE.getDescription()))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRIAL_CHAMBER, EnigmaticsBingoTags.BREEZE)
         );
         addGoal(killEntityGoal(id("kill_bogged"), EntityType.BOGGED)
-                .name(Component.translatable("enigmaticsbingogoals.goal.kill_bogged", EntityType.SILVERFISH.getDescription()))
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_bogged", EntityType.BOGGED.getDescription()))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRIAL_CHAMBER, EnigmaticsBingoTags.SWAMP)
         );
         addGoal(tameAnimalGoal(id("tame_ocelot"), EntityType.OCELOT)
