@@ -144,8 +144,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 )
         );
         addGoal(BingoGoal.builder(id("deal_500_hearts_of_damage"))
-                .criterion("deal", DamageExceptTeamTrigger.TriggerInstance.dealtDamage(MinMaxBounds.Ints.atLeast(5000)))
-                .progress(new CriterionProgressTracker("deal", 0.1f))
+                .criterion("deal", DamageExceptTeamTrigger.TriggerInstance.dealtDamage(MinMaxBounds.Ints.atLeast(10000)))
+                .progress(new CriterionProgressTracker("deal", 0.05f))
                 .name(Component.translatable("enigmaticsbingogoals.goal.deal_some_hearts_of_damage", 500))
                 .tags(EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.deal_some_hearts_of_damage.tooltip"))

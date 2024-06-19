@@ -12,26 +12,26 @@ import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin {
     @Shadow
     public abstract ItemStack getItemBySlot(EquipmentSlot slot);
 
-    @Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;awardStat(Lnet/minecraft/resources/ResourceLocation;I)V"))
-    private void onAttackLivingEntity(Entity target, CallbackInfo ci, @Local(ordinal = 4) float m) {
+    @ModifyArg(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;awardStat(Lnet/minecraft/resources/ResourceLocation;I)V"))
+    private int onAttackLivingEntity(int damage, @Local(argsOnly = true) Entity target) {
         //noinspection ConstantValue
         if (!(((Object) this) instanceof ServerPlayer serverPlayer))
-            return;
+            return damage;
         if (target instanceof ServerPlayer targetPlayer && targetPlayer.getTeam() == serverPlayer.getTeam())
-            return;
+            return damage;
         if (Bingo.activeGame == null)
-            return;
+            return damage;
         var totalDamageMap = ((BingoGameExtension) Bingo.activeGame).enigmatics_bingo_goals$getTotalDamage();
-        int totalDamage = totalDamageMap.getOrDefault(serverPlayer.getUUID(), 0) + Math.round(m * 10F);
+        int totalDamage = totalDamageMap.getOrDefault(serverPlayer.getUUID(), 0) + damage;
         totalDamageMap.put(serverPlayer.getUUID(), totalDamage);
         EnigmaticsBingoGoalsTriggers.DAMAGE_EXCEPT_TEAM.get().trigger(serverPlayer, totalDamage);
+        return damage;
     }
 }
