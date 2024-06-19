@@ -1,7 +1,7 @@
 {
   "pack": {
     "description": "enigmatics additional goals for bingo",
-    "pack_format": 41
+    "pack_format": 48
   },
   "filter": {
     "block": [
