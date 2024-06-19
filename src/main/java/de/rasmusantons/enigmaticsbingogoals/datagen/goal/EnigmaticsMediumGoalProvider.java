@@ -730,8 +730,9 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.ANCIENT_CITY,
                         BingoTags.VILLAGE)
         );
-        addGoal(obtainItemGoal(id("obtain_copper_bulb"), Items.COPPER_BULB)
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_copper_bulb"), EnigmaticsBingoItemTags.COPPER_BULBS, 1, 1)
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_copper_bulb", Items.COPPER_BULB.getDescription()))
         );
         addGoal(advancementGoal(id("get_advancement_minecraft_trials_edition"),
                 Component.translatable("advancements.adventure.minecraft_trials_edition.title"),

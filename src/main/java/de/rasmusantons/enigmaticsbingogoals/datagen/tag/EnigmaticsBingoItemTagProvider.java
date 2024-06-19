@@ -124,5 +124,16 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.MUSIC_DISC_CREATOR,
                 Items.MUSIC_DISC_CREATOR_MUSIC_BOX
         );
+
+        getOrCreateTagBuilder(EnigmaticsBingoItemTags.COPPER_BULBS).add(
+                Items.COPPER_BULB,
+                Items.EXPOSED_COPPER_BULB,
+                Items.WEATHERED_COPPER_BULB,
+                Items.OXIDIZED_COPPER_BULB,
+                Items.WAXED_COPPER_BULB,
+                Items.WAXED_EXPOSED_COPPER_BULB,
+                Items.WAXED_WEATHERED_COPPER_BULB,
+                Items.WAXED_OXIDIZED_COPPER_BULB
+        );
     }
 }
