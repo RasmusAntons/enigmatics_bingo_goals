@@ -31,11 +31,12 @@ import java.util.UUID;
 public abstract class BingoGameMixin implements BingoGameExtension {
     @Unique
     private final Map<UUID, Integer> totalDamage = new HashMap<>();
-    @Shadow
+
+    @Shadow(remap = false)
     @Final
     private Map<UUID, Object2IntMap<Stat<?>>> baseStats;
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract BingoBoard getBoard();
 
     @Unique
