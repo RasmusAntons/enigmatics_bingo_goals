@@ -8,8 +8,14 @@
     --color-hard: #f5bb77;
     --color-very-hard: #f83159;
 
+	--color-infrequency: #aaaaaa;
+
     --color-tag-dimension: #0ff;
     --color-tag-special: #f83159;
+
+    --color-antisynergy: #ff7d9c;
+    --color-catalyst: #757ffd;
+    --color-reactant: #9f66e4;
 }
 
 .very_easy { --background-color: var(--color-very-easy); }
@@ -18,9 +24,27 @@
 .hard { --background-color: var(--color-hard); }
 .very_hard { --background-color: var(--color-very-hard); }
 
+.infrequency { --background-color: var(--color-infrequency); }
+
 .dimension_tag { color: var(--color-tag-dimension); }
 .special_tag { color: var(--color-tag-special); }
 
+.antisynergy { color: var(--color-antisynergy); }
+.catalyst { color: var(--color-catalyst); }
+.reactant { color: var(--color-reactant); }
+
+.antisynergy:before {
+	content: "- ";
+    color: var(--color-antisynergy);
+}
+.catalyst:before {
+	content: "> ";
+    color: var(--color-catalyst);
+}
+.reactant:before {
+	content: "< ";
+    color: var(--color-reactant);
+}
 
 *, *::before, *::after {
     margin: 0px;
@@ -171,9 +195,9 @@ td:first-of-type::before {
     		{% endfor %}
     		</td>
 	        <td>
-		    {% for antisynergy in goal.antisynergies %}<span class="antisynergy">{{ antisynergy }}</span>{% endfor %}
-		    {% for catalyst in goal.catalysts %}<span class="catalyst">{{ catalyst }}</span>{% endfor %}
-		    {% for reactant in goal.reactants %}<span class="reactant">{{ reactant }}</span>{% endfor %}
+		    {% for antisynergy in goal.antisynergies %}<span class="tag antisynergy">{{ antisynergy }}</span>{% endfor %}
+		    {% for catalyst in goal.catalysts %}<span class="tag catalyst">{{ catalyst }}</span>{% endfor %}
+		    {% for reactant in goal.reactants %}<span class="tag reactant">{{ reactant }}</span>{% endfor %}
 	        </td>
     	</tr>
     	{% endfor %}
