@@ -161,6 +161,9 @@ td:first-of-type::before {
     		<td>
     		    <span>{{ goal._name }}</span>
     		    <span class="pill {{ goal._diff }}">{{ goal._diff_title }}</span>
+			    {% if goal.infrequency %}
+				    <span class="pill infrequency">1/{{ goal.infrequency + 1 }}</span>
+			    {% endif %}
     		</td>
     		<td>
     		{% for tag in goal.tags %}

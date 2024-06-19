@@ -350,56 +350,67 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_red_concrete"), Items.RED_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .infrequency(10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.RED_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_yellow_concrete"), Items.YELLOW_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .infrequency(10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.YELLOW_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_orange_concrete"), Items.ORANGE_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .infrequency(10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.ORANGE_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_black_concrete"), Items.BLACK_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .infrequency(10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.BLACK_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_white_concrete"), Items.WHITE_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .infrequency(10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.WHITE_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_gray_concrete"), Items.GRAY_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .infrequency(10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.GRAY_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_light_gray_concrete"), Items.LIGHT_GRAY_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .infrequency(10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.LIGHT_GRAY_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_pink_concrete"), Items.PINK_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .infrequency(10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.PINK_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_magenta_concrete"), Items.MAGENTA_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .infrequency(10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.MAGENTA_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_blue_concrete"), Items.BLUE_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .infrequency(10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.BLUE_CONCRETE.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_purple_concrete"), Items.PURPLE_CONCRETE, 64)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CONCRETE)
+                .infrequency(10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.PURPLE_CONCRETE.getDescription()))
         );
