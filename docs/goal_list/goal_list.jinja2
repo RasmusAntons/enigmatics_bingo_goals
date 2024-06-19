@@ -155,7 +155,7 @@ td:first-of-type::before {
 <body>
 <main>
     <table>
-    	<tr><th>Goal</th><th>Tags</th></tr>
+    	<tr><th>Goal</th><th>Tags</th><th>Synergies</th></tr>
     	{% for goal in goals %}
     	<tr>
     		<td>
@@ -167,6 +167,11 @@ td:first-of-type::before {
     			<span class="{% if tag in dimension_tags %}dimension_tag {% elif tag in special_tags %}special_tag {% elif tag == 'todo' %}todo {% endif %}tag">{{ tag }}</span>
     		{% endfor %}
     		</td>
+	        <td>
+		    {% for antisynergy in goal.antisynergies %}
+			    <span class="antisynergy">{{ antisynergy }}</span>
+			{% endfor %}
+	        </td>
     	</tr>
     	{% endfor %}
     </table>

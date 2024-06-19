@@ -39,8 +39,13 @@ def load_todos(difficulty, original):
                 'difficulty': difficulty,
                 '_diff_title': difficulty.replace('_', ' ').title(),
                 '_name': m.group(1),
-                'tags': ['todo']
+                'tags': ['todo'],
+                'antisynergies': []
             }
+
+
+def _ensure_list(o):
+    return o if isinstance(o, list) else [o]
 
 
 def load_goals(original):
@@ -61,6 +66,7 @@ def load_goals(original):
                 goal['_diff_title'] = difficulty_title
                 goal['_name'] = entry.name[:-5].replace('_', ' ').title()
                 goal['tags'] = sorted(goal.get('tags', []), key=tag_weight)
+                goal['antisynergies'] = sorted(_ensure_list(goal.get('antisynergy', [])))
                 yield goal
             yield from load_todos(difficulty, original)
 
