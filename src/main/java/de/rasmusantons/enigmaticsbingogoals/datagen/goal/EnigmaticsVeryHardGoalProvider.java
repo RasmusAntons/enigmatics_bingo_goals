@@ -1,6 +1,7 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
+import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
@@ -52,9 +53,11 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
                 )
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.summon_the_wither", EntityType.WITHER.getDescription()))
+                .antisynergy(EnigmaticsBingoSynergies.WITHER)
                 .icon(IndicatorIcon.infer(EntityType.WITHER, Items.WITHER_SKELETON_SKULL))
         );
         addGoal(obtainItemGoal(id("obtain_nether_star"), Items.NETHER_STAR)
+                .antisynergy(EnigmaticsBingoSynergies.WITHER)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
         );
     }
