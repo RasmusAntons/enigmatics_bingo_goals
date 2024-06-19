@@ -66,8 +66,6 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation BEEHIVE = create("beehive");
     public static final ResourceLocation JUNGLE = create("jungle");
     public static final ResourceLocation ANVIL = create("anvil");
-    public static final ResourceLocation CONCRETE = create("concrete");
-    public static final ResourceLocation WOOL = create("wool");
     public static final ResourceLocation NETHER_ENTRY = create("nether_entry");
     public static final ResourceLocation GROW_TREE = create("grow_tree");
     public static final ResourceLocation BIOMES = create("biome");

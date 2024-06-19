@@ -499,12 +499,16 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ENCHANTED_BOOK), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_cyan_wool"), Items.CYAN_WOOL, 64)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL, EnigmaticsBingoTags.IGLOO)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO)
+                .antisynergy(EnigmaticsBingoSynergies.WOOL)
+                .infrequency(12)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.CYAN_WOOL.getDescription()))
         );
         addGoal(obtainItemGoal(id("obtain_stack_of_green_wool"), Items.GREEN_WOOL, 64)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOOL, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .antisynergy(EnigmaticsBingoSynergies.WOOL)
+                .infrequency(12)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
                         Items.GREEN_WOOL.getDescription()))
         );
