@@ -34,15 +34,18 @@
 .reactant { color: var(--color-reactant); }
 
 .antisynergy:before {
-	content: "- ";
+	content: "-\00a0";
+    white-space: nowrap;
     color: var(--color-antisynergy);
 }
 .catalyst:before {
-	content: "> ";
+	content: ">\00a0";
+    white-space: nowrap;
     color: var(--color-catalyst);
 }
 .reactant:before {
-	content: "< ";
+	content: "<\00a0";
+	white-space: nowrap;
     color: var(--color-reactant);
 }
 
