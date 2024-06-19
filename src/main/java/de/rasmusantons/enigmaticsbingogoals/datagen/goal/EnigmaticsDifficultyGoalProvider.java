@@ -2,6 +2,7 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.NumberOfEffectsCondition;
+import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.triggers.*;
 import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.data.BingoGoal;
@@ -209,6 +210,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         )
                 ))
                 .tags(EnigmaticsBingoTags.DIE_TO)
+                .reactant(EnigmaticsBingoSynergies.DIE)
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.directly_killed.tooltip", entityType.getDescription()))
                 .icon(IndicatorIcon.infer(entityType, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)));
     }

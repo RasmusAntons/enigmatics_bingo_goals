@@ -67,6 +67,9 @@ def load_goals(original):
                 goal['_name'] = entry.name[:-5].replace('_', ' ').title()
                 goal['tags'] = sorted(goal.get('tags', []), key=tag_weight)
                 goal['antisynergies'] = sorted(_ensure_list(goal.get('antisynergy', [])))
+                goal['catalysts'] = sorted(_ensure_list(goal.get('catalyst', [])))
+                goal['reactants'] = sorted(_ensure_list(goal.get('reactant', [])))
+                goal['antisynergies'] = sorted(_ensure_list(goal.get('antisynergy', [])))
                 if (infrequency := goal.get('infrequency')) is not None:
                     goal['infrequency'] = infrequency
                 yield goal
