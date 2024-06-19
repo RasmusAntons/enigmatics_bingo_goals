@@ -155,17 +155,6 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Potions.TURTLE_MASTER, Potions.LONG_TURTLE_MASTER, Potions.STRONG_TURTLE_MASTER)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
         );
-        addGoal(BingoGoal.builder(id("summon_the_wither"))
-                .criterion("summon", SummonedEntityTrigger.TriggerInstance.summonedEntity(
-                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.WITHER)))
-                )
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
-                .name(Component.translatable("enigmaticsbingogoals.goal.summon_the_wither", EntityType.WITHER.getDescription()))
-                .icon(IndicatorIcon.infer(EntityType.WITHER, Items.WITHER_SKELETON_SKULL))
-        );
-        addGoal(obtainItemGoal(id("obtain_nether_star"), Items.NETHER_STAR)
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
-        );
         addGoal(advancementGoal(id("get_advancement_the_end"),
                 Component.translatable("advancements.end.root.title"),
                 ResourceLocation.withDefaultNamespace("end/root"))

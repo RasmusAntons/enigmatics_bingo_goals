@@ -6,10 +6,15 @@ import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.CycleIcon;
+import io.github.gaming32.bingo.data.icons.IndicatorIcon;
+import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.critereon.EntityTypePredicate;
+import net.minecraft.advancements.critereon.SummonedEntityTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 
 import java.util.Arrays;
@@ -40,6 +45,17 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS, EnigmaticsBingoTags.KILL_MOB)
+        );
+        addGoal(BingoGoal.builder(id("summon_the_wither"))
+                .criterion("summon", SummonedEntityTrigger.TriggerInstance.summonedEntity(
+                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.WITHER)))
+                )
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
+                .name(Component.translatable("enigmaticsbingogoals.goal.summon_the_wither", EntityType.WITHER.getDescription()))
+                .icon(IndicatorIcon.infer(EntityType.WITHER, Items.WITHER_SKELETON_SKULL))
+        );
+        addGoal(obtainItemGoal(id("obtain_nether_star"), Items.NETHER_STAR)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
         );
     }
 }
