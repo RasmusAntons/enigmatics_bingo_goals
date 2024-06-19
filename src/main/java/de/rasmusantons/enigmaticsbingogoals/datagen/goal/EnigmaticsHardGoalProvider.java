@@ -42,7 +42,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.IGLOO)
                 .icon(IndicatorIcon.infer(EntityType.ZOMBIE_VILLAGER, ItemIcon.ofItem(Items.GOLDEN_APPLE)))
         );
-        addGoal(numberOfEffectsGoal(id("get_some_effects"), 15, 20));
+        addGoal(numberOfEffectsGoal(id("get_some_effects"), 13, 19));
         addGoal(breedAnimalGoal(id("breed_mule"), EntityType.MULE)
                 .tags(BingoTags.OVERWORLD)
         );

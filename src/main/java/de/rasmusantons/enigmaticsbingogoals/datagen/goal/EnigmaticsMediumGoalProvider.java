@@ -148,7 +148,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         subber -> subber.sub("item.count", "count")
                 )
         );
-        addGoal(numberOfEffectsGoal(id("get_some_effects"), 7, 14));
+        addGoal(numberOfEffectsGoal(id("get_some_effects"), 6, 12));
         addGoal(effectGoal(id("get_slowness"), MobEffects.MOVEMENT_SLOWDOWN)
                 .tags(EnigmaticsBingoTags.SLOWNESS, EnigmaticsBingoTags.TRIAL_CHAMBER)
         );
