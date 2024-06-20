@@ -152,10 +152,12 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(numberOfEffectsGoal(id("get_some_effects"), 6, 12));
         addGoal(effectGoal(id("get_slowness"), MobEffects.MOVEMENT_SLOWDOWN)
-                .tags(EnigmaticsBingoTags.SLOWNESS, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .tags(EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .antisynergy(EnigmaticsBingoSynergies.SLOWNESS)
         );
         addGoal(effectGoal(id("get_mining_fatigue"), MobEffects.DIG_SLOWDOWN)
-                .tags(EnigmaticsBingoTags.SATURATION, EnigmaticsBingoTags.OCEAN_MONUMENT)
+                .tags(EnigmaticsBingoTags.OCEAN_MONUMENT)
+                .antisynergy(EnigmaticsBingoSynergies.SATURATION)
         );
         addGoal(effectGoal(id("get_nausea"), MobEffects.CONFUSION)
                 .tags(EnigmaticsBingoTags.PUFFER_FISH)
@@ -474,10 +476,13 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .icon(IndicatorIcon.infer(EntityType.SHEEP, Items.NAME_TAG))
         );
         addGoal(obtainItemGoal(id("obtain_cyan_glazed_terracotta"), Items.CYAN_GLAZED_TERRACOTTA)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS)
+                .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
+                .infrequency(7)
         );
         addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_different_colors_of_terracotta"), ItemTags.TERRACOTTA, 6, 11)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TERRACOTTA, EnigmaticsBingoTags.TRAIL_RUINS)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS)
+                .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
                 .name(
                         Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_colors_of_terracotta", 0),
                         subber -> subber.sub("with.0", "count")
@@ -579,7 +584,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(potionGoal(id("obtain_potion_of_oozing"),
                 Potions.OOZING)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.SLIME,
-                        EnigmaticsBingoTags.SWAMP)
+                        EnigmaticsBingoTags.SWAMP, EnigmaticsBingoTags.TRIAL_CHAMBER)
         );
         addGoal(potionGoal(id("obtain_potion_of_infestation"),
                 Potions.INFESTED)
@@ -587,7 +592,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(potionGoal(id("obtain_potion_of_weaving"),
                 Potions.WEAVING)
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.MINESHAFT)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.MINESHAFT,
+                        EnigmaticsBingoTags.TRIAL_CHAMBER)
         );
         addGoal(potionGoal(id("obtain_potion_of_wind_charging"),
                 Potions.OOZING)
@@ -608,6 +614,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(potionGoal(id("obtain_potion_of_slowness"),
                 Potions.SLOWNESS, Potions.STRONG_SLOWNESS, Potions.LONG_SLOWNESS)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
+                .antisynergy(EnigmaticsBingoSynergies.SLOWNESS)
         );
         addGoal(potionGoal(id("obtain_potion_of_harming"),
                 Potions.HARMING, Potions.LONG_STRENGTH, Potions.STRONG_STRENGTH)
@@ -616,6 +623,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(potionGoal(id("obtain_potion_of_poison"), Potions.POISON, Potions.LONG_POISON, Potions.STRONG_POISON)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
+                .antisynergy(EnigmaticsBingoSynergies.POISON)
         );
         addGoal(potionGoal(id("obtain_potion_of_night_vision"), Potions.NIGHT_VISION, Potions.LONG_NIGHT_VISION)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
@@ -651,17 +659,23 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE)
         );
         addGoal(effectGoal(id("get_weakness"), MobEffects.WEAKNESS)
-                .tags(EnigmaticsBingoTags.WEAKNESS, EnigmaticsBingoTags.SUSPICIOUS_STEW, EnigmaticsBingoTags.IGLOO)
+                .tags(EnigmaticsBingoTags.IGLOO)
+                .antisynergy(EnigmaticsBingoSynergies.WEAKNESS)
+                .reactant(EnigmaticsBingoSynergies.SUSPICIOUS_STEW)
         );
         addGoal(obtainSomeItemsFromTagGoal(id("obtain_colored_candle"), ItemTags.CANDLES, 1, 1)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE, EnigmaticsBingoTags.ANCIENT_CITY, EnigmaticsBingoTags.TRIAL_CHAMBER)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_colored_candle"))
         );
         addGoal(obtainItemGoal(id("obtain_green_glazed_terracotta"), Items.GREEN_GLAZED_TERRACOTTA)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.TERRACOTTA, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
+                .infrequency(7)
         );
         addGoal(obtainItemGoal(id("obtain_lime_glazed_terracotta"), Items.LIME_GLAZED_TERRACOTTA)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TERRACOTTA)
+                .tags(BingoTags.OVERWORLD)
+                .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
+                .infrequency(7)
         );
         addGoal(obtainItemGoal(id("obtain_honey_bottle"), Items.HONEY_BOTTLE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE, EnigmaticsBingoTags.TRIAL_CHAMBER)
@@ -685,7 +699,9 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 ResourceLocation.withDefaultNamespace("husbandry/bred_all_animals"), 6, 10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_some_unique_mobs", 0),
                         subber -> subber.sub("with.0", "count"))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BREED_MOB)
+                .tags(BingoTags.OVERWORLD)
+                .antisynergy(EnigmaticsBingoSynergies.BREED_MOB_BATCH)
+                .catalyst(EnigmaticsBingoSynergies.BREED_MOB)
                 .icon(IndicatorIcon.infer(CycleIcon.infer(
                                 Stream.concat(VanillaHusbandryAdvancements.BREEDABLE_ANIMALS.stream(),
                                         VanillaHusbandryAdvancements.INDIRECTLY_BREEDABLE_ANIMALS.stream()).toList()

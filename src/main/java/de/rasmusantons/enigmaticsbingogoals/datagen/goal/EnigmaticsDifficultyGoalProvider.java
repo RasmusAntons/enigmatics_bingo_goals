@@ -141,7 +141,9 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                                                 .build()
                                 )
                         )
-                );
+                )
+                .reactant(EnigmaticsBingoSynergies.TAKE_DAMAGE)
+                .reactant(EnigmaticsBingoSynergies.DIE);
     }
 
     protected static BingoGoal.Builder eatItemGoal(ResourceLocation id, Item item) {
@@ -178,6 +180,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         )
                 )
                 .tags(EnigmaticsBingoTags.GET_EFFECT)
+                .reactant(EnigmaticsBingoSynergies.GET_EFFECT)
                 .name(Component.translatable("enigmaticsbingogoals.goal.get_effect", effect.value().getDisplayName()))
                 .icon(EffectIcon.of(effect));
     }
@@ -192,7 +195,8 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         Optional.empty(),
                         Optional.empty()
                 )), subber -> subber.sub("conditions.player.0.effects.min", "count"))
-                .tags(EnigmaticsBingoTags.GET_EFFECT_BATCH)
+                .antisynergy(EnigmaticsBingoSynergies.GET_EFFECT_BATCH)
+                .catalyst(EnigmaticsBingoSynergies.GET_EFFECT)
                 .icon(IndicatorIcon.infer(
                         new ItemIcon(icon),
                         CycleIcon.infer(BuiltInRegistries.MOB_EFFECT.holders().map(EffectIcon::of))
@@ -210,6 +214,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         )
                 ))
                 .tags(EnigmaticsBingoTags.DIE_TO)
+                .reactant(EnigmaticsBingoSynergies.TAKE_DAMAGE)
                 .reactant(EnigmaticsBingoSynergies.DIE)
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.directly_killed.tooltip", entityType.getDescription()))
                 .icon(IndicatorIcon.infer(entityType, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)));
@@ -412,6 +417,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .criterion("breed", BredAnimalsTrigger.TriggerInstance.bredAnimals(
                         EntityPredicate.Builder.entity().of(entityType)))
                 .tags(EnigmaticsBingoTags.BREED_MOB)
+                .reactant(EnigmaticsBingoSynergies.BREED_MOB)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_animal", entityType.getDescription()))
                 .icon(IndicatorIcon.infer(entityType, EffectIcon.of(MobEffects.HEALTH_BOOST)));
     }

@@ -96,31 +96,35 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         // TODO (requires OVERTAKABLE): Have a higher level than the enemy
         addGoal(numberOfEffectsGoal(id("get_some_effects"), 3, 4)
-                .tags(EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.PUFFER_FISH, EnigmaticsBingoTags.IGLOO,
+                .tags(EnigmaticsBingoTags.PUFFER_FISH, EnigmaticsBingoTags.IGLOO,
                         EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.ANCIENT_CITY)
         );
         addGoal(effectGoal(id("get_poison"), MobEffects.POISON)
-                .tags(EnigmaticsBingoTags.PUFFER_FISH, EnigmaticsBingoTags.POISON, EnigmaticsBingoTags.SUSPICIOUS_STEW,
+                .tags(EnigmaticsBingoTags.PUFFER_FISH,
                         EnigmaticsBingoTags.BEEHIVE, EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.SWAMP,
                         EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .antisynergy(EnigmaticsBingoSynergies.POISON)
+                .reactant(EnigmaticsBingoSynergies.SUSPICIOUS_STEW)
         );
-        addGoal(effectGoal(id("get_leaping"), MobEffects.JUMP)
-                .tags(EnigmaticsBingoTags.LEAPING, EnigmaticsBingoTags.SUSPICIOUS_STEW)
+        addGoal(effectGoal(id("get_jump_boost"), MobEffects.JUMP)
+                .antisynergy(EnigmaticsBingoSynergies.JUMP_BOOST)
+                .reactant(EnigmaticsBingoSynergies.SUSPICIOUS_STEW)
         );
         addGoal(effectGoal(id("get_blindness"), MobEffects.BLINDNESS)
-                .tags(EnigmaticsBingoTags.SUSPICIOUS_STEW)
+                .reactant(EnigmaticsBingoSynergies.BLINDNESS)
         );
         addGoal(effectGoal(id("get_saturation"), MobEffects.SATURATION)
-                .tags(EnigmaticsBingoTags.SATURATION, EnigmaticsBingoTags.SUSPICIOUS_STEW)
+                .antisynergy(EnigmaticsBingoSynergies.SATURATION)
+                .reactant(EnigmaticsBingoSynergies.SATURATION)
         );
         addGoal(effectGoal(id("get_absorption"), MobEffects.ABSORPTION)
-                .tags(EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.WOODLAND_MANSION,
+                .tags(EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.WOODLAND_MANSION,
                         EnigmaticsBingoTags.TRIAL_CHAMBER)
         );
         addGoal(eatItemGoal(id("eat_suspicious_stew"), Items.SUSPICIOUS_STEW)
-                .tags(BingoTags.END, EnigmaticsBingoTags.SUSPICIOUS_STEW, EnigmaticsBingoTags.SATURATION,
-                        EnigmaticsBingoTags.WEAKNESS, EnigmaticsBingoTags.NIGHT_VISION, EnigmaticsBingoTags.LEAPING,
-                        EnigmaticsBingoTags.POISON, EnigmaticsBingoTags.STEW)
+                .tags(BingoTags.END, EnigmaticsBingoTags.STEW)
+                .catalyst(EnigmaticsBingoSynergies.SUSPICIOUS_STEW)
+                .antisynergy(EnigmaticsBingoSynergies.GET_EFFECT_BATCH)
         );
         addGoal(BingoGoal.builder(id("clear_effect_with_milk"))
                 .criterion("clear_effect", CriteriaTriggers.CONSUME_ITEM.createCriterion(
@@ -247,7 +251,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 ))
                 .name(Component.translatable("enigmaticsbingogoals.goal.fill_chiseled_bookshelf",
                         Items.CHISELED_BOOKSHELF.getDescription()))
-                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.BOOK, EnigmaticsBingoTags.WOODLAND_MANSION)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
+                .antisynergy(EnigmaticsBingoSynergies.BOOK)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CHISELED_BOOKSHELF), new ItemTagCycleIcon(EnigmaticsBingoItemTags.BOOKS)))
         );
         addGoal(advancementGoal(id("get_advancement_what_a_deal"),
@@ -298,7 +303,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         .criterion("sign", WriteBookTrigger.TriggerInstance.signer())
                         .name(Component.translatable("enigmaticsbingogoals.goal.sign_book_and_quill",
                                 Items.WRITABLE_BOOK.getDescription()))
-                        .tags(BingoTags.ITEM, BingoTags.OVERWORLD, EnigmaticsBingoTags.WRITE_BOOK, EnigmaticsBingoTags.BOOK)
+                        .tags(BingoTags.ITEM, BingoTags.OVERWORLD, EnigmaticsBingoTags.WRITE_BOOK)
+                        .antisynergy(EnigmaticsBingoSynergies.BOOK)
                         .icon(ItemIcon.ofItem(Items.WRITABLE_BOOK))
         );
         addGoal(
@@ -318,7 +324,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         ))
                         .name(Component.translatable("enigmaticsbingogoals.goal.make_copy_of_copy",
                                 Component.translatable("book.generation.2")))
-                        .tags(BingoTags.ITEM, BingoTags.OVERWORLD, EnigmaticsBingoTags.WRITE_BOOK, EnigmaticsBingoTags.BOOK)
+                        .tags(BingoTags.ITEM, BingoTags.OVERWORLD, EnigmaticsBingoTags.WRITE_BOOK)
+                        .antisynergy(EnigmaticsBingoSynergies.BOOK)
                         .icon(new ItemIcon(new ItemStack(Items.WRITTEN_BOOK, 3)))
         );
         addGoal(BingoGoal.builder(id("wear_pumpkin"))
@@ -559,7 +566,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .icon(IndicatorIcon.infer(Items.POINTED_DRIPSTONE, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
         );
         addGoal(eatItemGoal(id("eat_poisonous_potato"), Items.POISONOUS_POTATO)
-                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.POISON, EnigmaticsBingoTags.SHIPWRECK)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.SHIPWRECK)
+                .antisynergy(EnigmaticsBingoSynergies.POISON)
         );
         addGoal(advancementGoal(id("get_advancement_return_to_sender"),
                 Component.translatable("advancements.nether.return_to_sender.title"),
@@ -569,7 +577,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(killEntityGoal(id("kill_zombie_villager"), EntityType.ZOMBIE_VILLAGER)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_zombie_villager", EntityType.ZOMBIE_VILLAGER.getDescription()))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.GOLDEN_APPLE)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO)
         );
         addGoal(neverDamageGoal(id("never_50_damage"), 50));
         addGoal(obtainAllItemsFromTagGoal(id("obtain_all_golden_tools"), EnigmaticsBingoItemTags.GOLDEN_TOOLS)
@@ -583,7 +591,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         Component.translatable(EnigmaticsBingoItemTags.RAW_ORE_BLOCKS.getTranslationKey())))
         );
         addGoal(obtainItemGoal(id("obtain_cake"), Items.CAKE)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MILK, EnigmaticsBingoTags.CHICKEN, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MILK, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .antisynergy(EnigmaticsBingoSynergies.CHICKEN)
         );
         addGoal(obtainItemGoal(id("obtain_daylight_detector"), Items.DAYLIGHT_DETECTOR)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.REDSTONE, EnigmaticsBingoTags.NETHER_ENTRY)

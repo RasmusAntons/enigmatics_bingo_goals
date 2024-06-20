@@ -2,6 +2,7 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.FullUniqueInventoryCondition;
+import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.EmptyHungerTrigger;
 import io.github.gaming32.bingo.data.BingoDifficulties;
@@ -38,7 +39,8 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
     @Override
     public void addGoals() {
         addGoal(breedAnimalGoal(id("breed_chicken"), EntityType.CHICKEN)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.CHICKEN)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY)
+                .antisynergy(EnigmaticsBingoSynergies.CHICKEN)
         );
         addGoal(BingoGoal.builder(id("crouch_500_meters"))
                 .criterion("crouch", RelativeStatsTrigger.builder()
@@ -51,6 +53,7 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
         addGoal(BingoGoal.builder(id("empty_hunger"))
                 .criterion("empty_hunger", EmptyHungerTrigger.TriggerInstance.emptyHunger())
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.COVER_DISTANCE)
+                .reactant(EnigmaticsBingoSynergies.TAKE_DAMAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.empty_hunger"))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HUNGER), ItemIcon.ofItem(Items.CLOCK)))
         );
@@ -81,7 +84,8 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
         );
         addGoal(BingoGoal.builder(id("hatch_baby_chicken"))
                 .criterion("hatch", ChickenHatchTrigger.builder().build())
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.CHICKEN)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY)
+                .antisynergy(EnigmaticsBingoSynergies.CHICKEN)
                 .name(Component.translatable("enigmaticsbingogoals.goal.hatch_baby_chicken",
                         EntityType.CHICKEN.getDescription(),
                         Items.EGG.getDescription()
@@ -99,22 +103,33 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                         Component.translatable(EnigmaticsBingoItemTags.STONE_TOOLS.getTranslationKey())))
         );
         addGoal(obtainItemGoal(id("obtain_black_glazed_terracotta"), Items.BLACK_GLAZED_TERRACOTTA)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS)
+                .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
+                .infrequency(7)
         );
         addGoal(obtainItemGoal(id("obtain_blue_glazed_terracotta"), Items.BLUE_GLAZED_TERRACOTTA)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS)
+                .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
+                .infrequency(7)
         );
         addGoal(obtainItemGoal(id("obtain_gray_glazed_terracotta"), Items.GRAY_GLAZED_TERRACOTTA)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS)
+                .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
+                .infrequency(7)
         );
         addGoal(obtainItemGoal(id("obtain_orange_glazed_terracotta"), Items.ORANGE_GLAZED_TERRACOTTA)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS)
+                .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
+                .infrequency(7)
         );
         addGoal(obtainItemGoal(id("obtain_bookshelf"), Items.BOOKSHELF)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BOOK, EnigmaticsBingoTags.WOODLAND_MANSION)
+                .tags(BingoTags.OVERWORLD)
+                .antisynergy(EnigmaticsBingoSynergies.BOOK)
         );
         addGoal(obtainItemGoal(id("obtain_white_glazed_terracotta"), Items.WHITE_GLAZED_TERRACOTTA)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TERRACOTTA)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS)
+                .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
+                .infrequency(7)
         );
         addGoal(BingoGoal.builder(id("reach_build_limit"))
                 .criterion("reach", PlayerTrigger.TriggerInstance.located(

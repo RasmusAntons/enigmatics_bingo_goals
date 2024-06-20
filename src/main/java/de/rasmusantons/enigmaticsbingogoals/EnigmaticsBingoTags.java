@@ -12,16 +12,12 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation PVP = create("pvp");
     // TODO: overtakable 1
     public static final ResourceLocation COVER_DISTANCE = create("cover_distance");
-    public static final ResourceLocation GOLDEN_APPLE = create("golden_apple");
     public static final ResourceLocation PUFFER_FISH = create("puffer_fish");
-    public static final ResourceLocation GET_EFFECT_BATCH = create("get_effect_batch");
     public static final ResourceLocation GET_EFFECT = create("get_effect");
-    public static final ResourceLocation SUSPICIOUS_STEW = create("suspicious_stew");
     public static final ResourceLocation MILK = create("milk");
     public static final ResourceLocation LEVEL = create("level");
     public static final ResourceLocation REACH_LEVEL = create("reach_level");
     public static final ResourceLocation OVERWORLD_ENTRY = create("overworld_entry");
-    public static final ResourceLocation CHICKEN = create("chicken");
     public static final ResourceLocation REACH_WORLD_LIMIT = create("reach_world_limit");
     public static final ResourceLocation DIE_TO = create("die_to");
     public static final ResourceLocation CAVING = create("caving");
@@ -50,7 +46,6 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation SADDLE = create("saddle");
     public static final ResourceLocation AMETHYST = create("amethyst");
     public static final ResourceLocation WRITE_BOOK = create("write_book");
-    public static final ResourceLocation BOOK = create("book");
     public static final ResourceLocation OUTPOST = create("outpost");
     public static final ResourceLocation REDSTONE = create("redstone");
     public static final ResourceLocation OCEAN_MONUMENT = create("ocean_monument");
@@ -61,7 +56,6 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation FULL_TOOL_SET = create("full_tool_set");
     public static final ResourceLocation SHIPWRECK = create("shipwreck");
     public static final ResourceLocation MINESHAFT = create("mineshaft");
-    public static final ResourceLocation TERRACOTTA = create("terracotta");
     public static final ResourceLocation SLIME = create("slime");
     public static final ResourceLocation BEEHIVE = create("beehive");
     public static final ResourceLocation JUNGLE = create("jungle");
@@ -77,12 +71,6 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation BLAZE_POWDER = create("blaze_powder");
     public static final ResourceLocation POTIONS = create("potions");
     public static final ResourceLocation INSTANT_DAMAGE = create("instant_damage");
-    public static final ResourceLocation SATURATION = create("saturation");
-    public static final ResourceLocation WEAKNESS = create("weakness");
-    public static final ResourceLocation NIGHT_VISION = create("night_vision");
-    public static final ResourceLocation SLOWNESS = create("slowness");
-    public static final ResourceLocation LEAPING = create("leaping");
-    public static final ResourceLocation POISON = create("poison");
     public static final ResourceLocation STRAY = create("stray");
     public static final ResourceLocation WITHER_SKULL = create("wither_skull");
     public static final ResourceLocation FORTRESS = create("fortress");

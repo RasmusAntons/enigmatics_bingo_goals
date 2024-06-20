@@ -1,6 +1,7 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
+import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoFeatureTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
@@ -39,7 +40,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(BingoGoal.builder(id("cure_zombie_villager"))
                 .criterion("transform", CuredZombieVillagerTrigger.TriggerInstance.curedZombieVillager())
                 .name(Component.translatable("enigmaticsbingogoals.goal.cure_zombie_villager"))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.GOLDEN_APPLE, EnigmaticsBingoTags.IGLOO)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO)
                 .icon(IndicatorIcon.infer(EntityType.ZOMBIE_VILLAGER, ItemIcon.ofItem(Items.GOLDEN_APPLE)))
         );
         addGoal(numberOfEffectsGoal(id("get_some_effects"), 13, 19));
@@ -63,7 +64,9 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 ResourceLocation.withDefaultNamespace("husbandry/bred_all_animals"), 11, 15)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_some_unique_mobs", 0),
                         subber -> subber.sub("with.0", "count"))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BREED_MOB)
+                .tags(BingoTags.OVERWORLD)
+                .antisynergy(EnigmaticsBingoSynergies.BREED_MOB_BATCH)
+                .catalyst(EnigmaticsBingoSynergies.BREED_MOB)
                 .icon(IndicatorIcon.infer(CycleIcon.infer(
                                 Stream.concat(VanillaHusbandryAdvancements.BREEDABLE_ANIMALS.stream(),
                                         VanillaHusbandryAdvancements.INDIRECTLY_BREEDABLE_ANIMALS.stream()).toList()
@@ -191,6 +194,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(BingoGoal.builder(id("never_damage"))
                 .criterion("damage", EntityHurtPlayerTrigger.TriggerInstance.entityHurtPlayer())
                 .tags(BingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
+                .catalyst(EnigmaticsBingoSynergies.TAKE_DAMAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_damage"))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
         );
