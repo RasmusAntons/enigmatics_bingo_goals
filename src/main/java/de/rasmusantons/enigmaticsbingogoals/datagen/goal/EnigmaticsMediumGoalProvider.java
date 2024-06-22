@@ -304,7 +304,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         EnigmaticsBingoTags.WOODLAND_MANSION)
                 .name(
                         Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_seeds",
-                                Component.translatable(EnigmaticsBingoItemTags.SEEDS.getTranslationKey()), 0),
+                                0, Component.translatable(EnigmaticsBingoItemTags.SEEDS.getTranslationKey())),
                         subber -> subber.sub("with.0", "count")
                 )
         );
