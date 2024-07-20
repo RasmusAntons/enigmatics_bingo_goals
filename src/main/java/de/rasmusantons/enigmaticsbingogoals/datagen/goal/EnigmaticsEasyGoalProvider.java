@@ -524,7 +524,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(advancementGoal(id("get_advancement_we_need_to_go_deeper"),
                 Component.translatable("advancements.story.enter_the_nether.title"),
-                ResourceLocation.withDefaultNamespace("nether/enter_the_nether"))
+                ResourceLocation.withDefaultNamespace("story/enter_the_nether"))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.NETHER_ENTRY)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.FLINT_AND_STEEL), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
