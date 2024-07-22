@@ -628,5 +628,25 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS, EnigmaticsBingoTags.KILL_MOB)
         );
+        addGoal(BingoGoal.builder(id("kill_bat_with_arrow"))
+                .criterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(
+                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.BAT)),
+                        DamageSourcePredicate.Builder.damageType()
+                                .direct(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.ARROW)))
+                ))
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .icon(IndicatorIcon.infer(EntityType.BAT, Items.ARROW))
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_bat_with_arrow", EntityType.BAT.getDescription(), EntityType.ARROW.getDescription()))
+        );
+        addGoal(BingoGoal.builder(id("kill_rabbit_with_arrow"))
+                .criterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(
+                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.RABBIT)),
+                        DamageSourcePredicate.Builder.damageType()
+                                .direct(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.ARROW)))
+                ))
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .icon(IndicatorIcon.infer(EntityType.RABBIT, Items.ARROW))
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_rabbit_with_arrow", EntityType.RABBIT.getDescription(), EntityType.ARROW.getDescription()))
+        );
     }
 }
