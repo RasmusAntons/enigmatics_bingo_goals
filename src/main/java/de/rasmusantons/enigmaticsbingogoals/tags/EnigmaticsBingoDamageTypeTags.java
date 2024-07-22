@@ -12,6 +12,7 @@ public class EnigmaticsBingoDamageTypeTags {
     public static final TagKey<DamageType> ANVIL = create("anvil");
     public static final TagKey<DamageType> FIREWORKS = create("fireworks");
     public static final TagKey<DamageType> INTENTIONAL_GAME_DESIGN = create("intentional_game_design");
+    public static final TagKey<DamageType> SUFFOCATION = create("suffocation");
 
     private EnigmaticsBingoDamageTypeTags() {
     }

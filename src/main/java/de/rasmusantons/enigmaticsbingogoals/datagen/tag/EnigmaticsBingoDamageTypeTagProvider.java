@@ -36,5 +36,8 @@ public class EnigmaticsBingoDamageTypeTagProvider extends FabricTagProvider<Dama
         getOrCreateTagBuilder(EnigmaticsBingoDamageTypeTags.INTENTIONAL_GAME_DESIGN).add(
                 DamageTypes.BAD_RESPAWN_POINT
         );
+        getOrCreateTagBuilder(EnigmaticsBingoDamageTypeTags.SUFFOCATION).add(
+                DamageTypes.IN_WALL
+        );
     }
 }

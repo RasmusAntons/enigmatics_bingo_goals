@@ -3,6 +3,7 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.FullUniqueInventoryCondition;
 import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
+import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoDamageTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.EmptyHungerTrigger;
 import io.github.gaming32.bingo.data.BingoDifficulties;
@@ -175,6 +176,11 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.REACH_WORLD_LIMIT)
                 .name(Component.translatable("enigmaticsbingogoals.goal.stand_on_bedrock"))
                 .icon(ItemIcon.ofItem(Items.BEDROCK))
+        );
+        addGoal(dieToDamageTypeGoal(id("die_to_suffocation"), EnigmaticsBingoDamageTypeTags.SUFFOCATION)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_suffocation"))
+                .icon(IndicatorIcon.infer(Items.SAND, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
         );
     }
 }
