@@ -522,7 +522,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .criterion("use", ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(
                         LocationPredicate.Builder.location().setBlock(
                                 BlockPredicate.Builder.block()
-                                        .of(Blocks.CRIMSON_SIGN)
+                                        .of(Blocks.CRIMSON_SIGN, Blocks.CRIMSON_WALL_SIGN)
                         ),
                         ItemPredicate.Builder.item().of(Items.GLOW_INK_SAC)
                 ))
@@ -535,7 +535,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .criterion("use", ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(
                         LocationPredicate.Builder.location().setBlock(
                                 BlockPredicate.Builder.block()
-                                        .of(Blocks.WARPED_SIGN)
+                                        .of(Blocks.WARPED_SIGN, Blocks.WARPED_WALL_SIGN)
                         ),
                         ItemPredicate.Builder.item().of(Items.GLOW_INK_SAC)
                 ))
