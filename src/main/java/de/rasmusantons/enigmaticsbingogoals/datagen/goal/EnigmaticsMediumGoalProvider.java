@@ -792,5 +792,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(obtainItemGoal(id("obtain_sea_lantern"), Items.SEA_LANTERN)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OCEAN_MONUMENT)
         );
+        addGoal(obtainItemGoal(id("obtain_soul_lantern"), Items.SOUL_LANTERN)
+                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, EnigmaticsBingoTags.SOUL_SAND, EnigmaticsBingoTags.ANCIENT_CITY)
+        );
     }
 }
