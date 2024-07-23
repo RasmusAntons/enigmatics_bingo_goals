@@ -20,4 +20,5 @@ public class EnigmaticsBingoSynergies {
     public static final String SLOWNESS = "slowness";
     public static final String JUMP_BOOST = "jump_boost";
     public static final String POISON = "poison";
+    public static final String STAINED_GLASS_PANE = "stained_glass_pane";
 }
