@@ -795,5 +795,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(obtainItemGoal(id("obtain_soul_lantern"), Items.SOUL_LANTERN)
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, EnigmaticsBingoTags.SOUL_SAND, EnigmaticsBingoTags.ANCIENT_CITY)
         );
+        addGoal(obtainItemGoal(id("obtain_soul_campfire"), Items.SOUL_CAMPFIRE)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.SOUL_SAND)
+        );
     }
 }
