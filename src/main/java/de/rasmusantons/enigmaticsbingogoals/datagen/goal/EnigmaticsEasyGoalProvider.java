@@ -8,6 +8,7 @@ import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.DamageExceptTeamTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.WriteBookTrigger;
+import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.conditions.HasAnyEffectCondition;
 import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
@@ -654,6 +655,9 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(obtainItemGoal(id("obtain_glow_item_frame"), Items.GLOW_ITEM_FRAME)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.GLOW_INK)
+        );
+        addGoal(obtainItemGoal(id("obtain_target"), Items.TARGET)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
         );
     }
 }
