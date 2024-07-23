@@ -652,5 +652,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SIGN)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_hanging_sign"))
         );
+        addGoal(obtainItemGoal(id("obtain_glow_item_frame"), Items.GLOW_ITEM_FRAME)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.GLOW_INK)
+        );
     }
 }
