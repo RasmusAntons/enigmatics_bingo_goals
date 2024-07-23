@@ -798,5 +798,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(obtainItemGoal(id("obtain_soul_campfire"), Items.SOUL_CAMPFIRE)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.SOUL_SAND)
         );
+        addGoal(obtainItemGoal(id("obtain_bamboo_mosaic"), Items.BAMBOO_MOSAIC)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.TRIAL_CHAMBER)
+        );
     }
 }

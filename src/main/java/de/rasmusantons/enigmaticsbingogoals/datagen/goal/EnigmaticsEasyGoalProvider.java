@@ -659,5 +659,17 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(obtainItemGoal(id("obtain_target"), Items.TARGET)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
         );
+        addGoal(obtainItemGoal(id("obtain_chiseled_copper"), Items.CHISELED_COPPER)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.TRIAL_CHAMBER)
+        );
+        addGoal(obtainItemGoal(id("obtain_chiseled_deepslate"), Items.CHISELED_DEEPSLATE)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING)
+        );
+        addGoal(obtainItemGoal(id("obtain_chiseled_nether_bricks"), Items.CHISELED_NETHER_BRICKS)
+                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.FORTRESS)
+        );
+        addGoal(obtainItemGoal(id("obtain_chiseled_polished_blackstone"), Items.CHISELED_POLISHED_BLACKSTONE)
+                .tags(BingoTags.OVERWORLD, BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY)
+        );
     }
 }
