@@ -198,9 +198,15 @@ td:first-of-type::before {
     		{% endfor %}
     		</td>
 	        <td>
-		    {% for antisynergy in goal.antisynergies %}<span class="tag antisynergy">{{ antisynergy }}</span>{% endfor %}
-		    {% for catalyst in goal.catalysts %}<span class="tag catalyst">{{ catalyst }}</span>{% endfor %}
-		    {% for reactant in goal.reactants %}<span class="tag reactant">{{ reactant }}</span>{% endfor %}
+		    {% for antisynergy in goal.antisynergies %}
+		        <span class="tag antisynergy">{{ antisynergy }}</span>
+		    {% endfor %}
+		    {% for catalyst in goal.catalysts %}
+		        <span class="tag catalyst">{{ catalyst }}</span>
+		    {% endfor %}
+		    {% for reactant in goal.reactants %}
+		        <span class="tag reactant">{{ reactant }}</span>
+		    {% endfor %}
 	        </td>
     	</tr>
     	{% endfor %}
