@@ -801,5 +801,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(obtainItemGoal(id("obtain_bamboo_mosaic"), Items.BAMBOO_MOSAIC)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.TRIAL_CHAMBER)
         );
+        addGoal(obtainItemGoal(id("obtain_tinted_glass"), Items.TINTED_GLASS)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.AMETHYST)
+        );
     }
 }
