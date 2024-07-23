@@ -553,7 +553,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(advancementGoal(id("get_advancement_those_were_the_days"),
                 Component.translatable("advancements.nether.find_bastion.title"),
                 ResourceLocation.withDefaultNamespace("nether/find_bastion"))
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.NETHER_EXPLORE)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.NETHER_EXPLORE, EnigmaticsBingoTags.BASTION)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.POLISHED_BLACKSTONE_BRICKS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(id("get_advancement_not_quite_nine_lives"),
@@ -783,6 +783,9 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(obtainItemGoal(id("obtain_lingering_potion"), Items.LINGERING_POTION)
                 .tags(BingoTags.OVERWORLD, BingoTags.END, EnigmaticsBingoTags.POTIONS, EnigmaticsBingoTags.TRIAL_CHAMBER,
                         EnigmaticsBingoTags.END_ENTRY)
+        );
+        addGoal(obtainItemGoal(id("obtain_gilded_blackstone"), Items.GILDED_BLACKSTONE)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.NETHER_EXPLORE, EnigmaticsBingoTags.BASTION)
         );
     }
 }
