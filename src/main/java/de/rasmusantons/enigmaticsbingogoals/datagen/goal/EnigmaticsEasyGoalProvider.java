@@ -648,5 +648,9 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .icon(IndicatorIcon.infer(EntityType.RABBIT, Items.ARROW))
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_rabbit_with_arrow", EntityType.RABBIT.getDescription(), EntityType.ARROW.getDescription()))
         );
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_hanging_sign"), EnigmaticsBingoItemTags.HANGING_SIGNS, 1, 1)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SIGN)
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_hanging_sign"))
+        );
     }
 }

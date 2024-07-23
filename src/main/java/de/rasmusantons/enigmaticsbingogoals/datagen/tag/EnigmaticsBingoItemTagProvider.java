@@ -135,5 +135,19 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.WAXED_WEATHERED_COPPER_BULB,
                 Items.WAXED_OXIDIZED_COPPER_BULB
         );
+
+        getOrCreateTagBuilder(EnigmaticsBingoItemTags.HANGING_SIGNS).add(
+                Items.OAK_HANGING_SIGN,
+                Items.SPRUCE_HANGING_SIGN,
+                Items.BIRCH_HANGING_SIGN,
+                Items.JUNGLE_HANGING_SIGN,
+                Items.ACACIA_HANGING_SIGN,
+                Items.DARK_OAK_HANGING_SIGN,
+                Items.MANGROVE_HANGING_SIGN,
+                Items.CHERRY_HANGING_SIGN,
+                Items.BAMBOO_HANGING_SIGN,
+                Items.CRIMSON_HANGING_SIGN,
+                Items.WARPED_HANGING_SIGN
+        );
     }
 }

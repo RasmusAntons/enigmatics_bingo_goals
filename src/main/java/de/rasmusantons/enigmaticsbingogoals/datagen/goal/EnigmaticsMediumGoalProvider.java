@@ -528,7 +528,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 ))
                 .name(Component.translatable("enigmaticsbingogoals.goal.use_item_on_block",
                         Items.GLOW_INK_SAC.getDescription(), Items.CRIMSON_SIGN.getDescription()))
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.SIGN)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CRIMSON_SIGN), ItemIcon.ofItem(Items.GLOW_INK_SAC)))
         );
         addGoal(BingoGoal.builder(id("use_glow_ink_on_warped_sign"))
@@ -541,7 +541,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 ))
                 .name(Component.translatable("enigmaticsbingogoals.goal.use_item_on_block",
                         Items.GLOW_INK_SAC.getDescription(), Items.WARPED_SIGN.getDescription()))
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.WARPED_FOREST)
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.SIGN)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WARPED_SIGN), ItemIcon.ofItem(Items.GLOW_INK_SAC)))
         );
         addGoal(advancementGoal(id("get_advancement_a_terrible_fortress"),
