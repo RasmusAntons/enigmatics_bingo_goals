@@ -1,6 +1,7 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
+import de.rasmusantons.enigmaticsbingogoals.conditions.UniqueFoodsOnCampfireCondition;
 import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoDamageTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
@@ -8,7 +9,6 @@ import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.DamageExceptTeamTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.WriteBookTrigger;
-import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.conditions.HasAnyEffectCondition;
 import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
@@ -736,6 +736,18 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
                 .infrequency(10)
                 .name(Items.YELLOW_STAINED_GLASS_PANE.getDescription())
+        );
+        addGoal(BingoGoal.builder(id("unique_foods_on_campfire"))
+                .criterion("use", CriteriaTriggers.ITEM_USED_ON_BLOCK.createCriterion(
+                        new ItemUsedOnLocationTrigger.TriggerInstance(
+                                Optional.empty(),
+                                Optional.of(ContextAwarePredicate.create(new UniqueFoodsOnCampfireCondition(MinMaxBounds.Ints.atLeast(4))))
+                        )
+                ))
+                .name(Component.translatable("enigmaticsbingogoals.goal.unique_foods_on_campfire",
+                        Items.CAMPFIRE.getDescription()))
+                .tags(BingoTags.OVERWORLD)
+                .icon(ItemIcon.ofItem(Items.CAMPFIRE))
         );
     }
 }
