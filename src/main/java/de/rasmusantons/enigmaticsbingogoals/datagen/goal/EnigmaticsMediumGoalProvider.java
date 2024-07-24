@@ -339,7 +339,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.ARMOR)
                 .name(Component.translatable("enigmaticsbingogoals.goal.wear_full_gold"))
         );
-        addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_saplings"), EnigmaticsBingoItemTags.SAPLINGS, 5, 7)
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_saplings"), EnigmaticsBingoItemTags.SAPLINGS, 4, 5)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.PLANT_BATCH)
                 .name(
                         Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_saplings", 0,

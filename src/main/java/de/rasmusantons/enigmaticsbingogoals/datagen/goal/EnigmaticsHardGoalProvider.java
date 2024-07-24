@@ -73,7 +73,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         ), EffectIcon.of(MobEffects.HEALTH_BOOST)),
                         subber -> subber.sub("base.icons.*.item.count", "count"))
         );
-        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs"), EnigmaticsBingoEntityTypeTags.HOSTILE, 15, 20, true)
+        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs"), EnigmaticsBingoEntityTypeTags.HOSTILE, 15, 19, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS, EnigmaticsBingoTags.KILL_MOB)
@@ -238,6 +238,14 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(breedFrogVariantGoal(id("breed_green_frog"), FrogVariant.COLD)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_green_frog", EntityType.FROG.getDescription()))
+        );
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_saplings"), EnigmaticsBingoItemTags.SAPLINGS, 6, 7)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.PLANT_BATCH)
+                .name(
+                        Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_saplings", 0,
+                                Component.translatable(EnigmaticsBingoItemTags.SAPLINGS.getTranslationKey())),
+                        subber -> subber.sub("with.0", "count")
+                )
         );
     }
 }
