@@ -633,7 +633,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .criterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(
                         EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.BAT)),
                         DamageSourcePredicate.Builder.damageType()
-                                .direct(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.ARROW)))
+                                .direct(EntityPredicate.Builder.entity().of(EntityTypeTags.ARROWS))
                 ))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .icon(IndicatorIcon.infer(EntityType.BAT, Items.ARROW))
@@ -643,7 +643,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .criterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(
                         EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.RABBIT)),
                         DamageSourcePredicate.Builder.damageType()
-                                .direct(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.ARROW)))
+                                .direct(EntityPredicate.Builder.entity().of(EntityTypeTags.ARROWS))
                 ))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .icon(IndicatorIcon.infer(EntityType.RABBIT, Items.ARROW))
