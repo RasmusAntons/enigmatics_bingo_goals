@@ -747,7 +747,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .name(Component.translatable("enigmaticsbingogoals.goal.unique_foods_on_campfire",
                         Items.CAMPFIRE.getDescription()))
                 .tags(BingoTags.OVERWORLD)
-                .icon(ItemIcon.ofItem(Items.CAMPFIRE))
+                .icon(new ItemIcon(new ItemStack(Items.CAMPFIRE, 4)))
         );
     }
 }
