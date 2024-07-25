@@ -611,7 +611,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(obtainItemGoal(id("obtain_mud_brick_wall"), Items.MUD_BRICK_WALL)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.TRAIL_RUINS)
         );
-        addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_music_discs"), EnigmaticsBingoItemTags.MUSIC_DISCS, 2, 5)
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_music_discs"), EnigmaticsBingoItemTags.MUSIC_DISCS, 1, 2)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MUSIC_DISC, EnigmaticsBingoTags.ANCIENT_CITY,
                         EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TRIAL_CHAMBER)
                 .name(

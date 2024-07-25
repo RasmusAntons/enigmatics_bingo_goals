@@ -804,5 +804,13 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(obtainItemGoal(id("obtain_tinted_glass"), Items.TINTED_GLASS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.AMETHYST)
         );
+        addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_music_discs"), EnigmaticsBingoItemTags.MUSIC_DISCS, 3, 5)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MUSIC_DISC, EnigmaticsBingoTags.ANCIENT_CITY,
+                        EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .name(
+                        Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_music_discs", 0),
+                        subber -> subber.sub("with.0", "count")
+                )
+        );
     }
 }
