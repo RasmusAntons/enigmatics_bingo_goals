@@ -675,67 +675,56 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
                 .infrequency(10)
-                .name(Items.BLACK_STAINED_GLASS_PANE.getDescription())
         );
         addGoal(obtainItemGoal(id("obtain_blue_stained_glass_pane"), Items.BLUE_STAINED_GLASS_PANE)
                 .tags(BingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
                 .infrequency(10)
-                .name(Items.BLUE_STAINED_GLASS_PANE.getDescription())
         );
         addGoal(obtainItemGoal(id("obtain_gray_stained_glass_pane"), Items.GRAY_STAINED_GLASS_PANE)
                 .tags(BingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
                 .infrequency(10)
-                .name(Items.GRAY_STAINED_GLASS_PANE.getDescription())
         );
         addGoal(obtainItemGoal(id("obtain_light_gray_stained_glass_pane"), Items.LIGHT_GRAY_STAINED_GLASS_PANE)
                 .tags(BingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
                 .infrequency(10)
-                .name(Items.LIGHT_GRAY_STAINED_GLASS_PANE.getDescription())
         );
         addGoal(obtainItemGoal(id("obtain_magenta_stained_glass_pane"), Items.MAGENTA_STAINED_GLASS_PANE)
                 .tags(BingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
                 .infrequency(10)
-                .name(Items.MAGENTA_STAINED_GLASS_PANE.getDescription())
         );
         addGoal(obtainItemGoal(id("obtain_orange_stained_glass_pane"), Items.ORANGE_STAINED_GLASS_PANE)
                 .tags(BingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
                 .infrequency(10)
-                .name(Items.ORANGE_STAINED_GLASS_PANE.getDescription())
         );
         addGoal(obtainItemGoal(id("obtain_pink_stained_glass_pane"), Items.PINK_STAINED_GLASS_PANE)
                 .tags(BingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
                 .infrequency(10)
-                .name(Items.PINK_STAINED_GLASS_PANE.getDescription())
         );
         addGoal(obtainItemGoal(id("obtain_purple_stained_glass_pane"), Items.PURPLE_STAINED_GLASS_PANE)
                 .tags(BingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
                 .infrequency(10)
-                .name(Items.PURPLE_STAINED_GLASS_PANE.getDescription())
         );
         addGoal(obtainItemGoal(id("obtain_red_stained_glass_pane"), Items.RED_STAINED_GLASS_PANE)
                 .tags(BingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
                 .infrequency(10)
-                .name(Items.RED_STAINED_GLASS_PANE.getDescription())
         );
         addGoal(obtainItemGoal(id("obtain_white_stained_glass_pane"), Items.WHITE_STAINED_GLASS_PANE)
                 .tags(BingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
                 .infrequency(10)
-                .name(Items.WHITE_STAINED_GLASS_PANE.getDescription())
         );
         addGoal(obtainItemGoal(id("obtain_yellow_stained_glass_pane"), Items.YELLOW_STAINED_GLASS_PANE)
                 .tags(BingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
                 .infrequency(10)
-                .name(Items.YELLOW_STAINED_GLASS_PANE.getDescription())
         );
         addGoal(BingoGoal.builder(id("unique_foods_on_campfire"))
                 .criterion("use", CriteriaTriggers.ITEM_USED_ON_BLOCK.createCriterion(
