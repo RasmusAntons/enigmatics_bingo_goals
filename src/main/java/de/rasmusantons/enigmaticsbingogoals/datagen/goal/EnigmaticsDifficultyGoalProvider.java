@@ -431,6 +431,29 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(IndicatorIcon.infer(entityType, ItemIcon.ofItem(net.minecraft.world.item.Items.BONE)));
     }
 
+    protected static BingoGoal.Builder tameSomeCatsGoal(ResourceLocation id, int minProgress, int maxProgress) {
+        return advancementProgressGoal(id,
+                ResourceLocation.withDefaultNamespace("husbandry/complete_catalogue"),
+                minProgress,
+                maxProgress
+        )
+                .name(Component.translatable("enigmaticsbingogoals.goal.tame_some_cats", 0,
+                                EntityType.CAT.getDescription()),
+                        subber -> subber.sub("with.0", "count")
+                )
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.WITCH_HUT, BingoTags.VILLAGE)
+                .antisynergy(EnigmaticsBingoSynergies.CAT)
+                .icon(
+                        IndicatorIcon.infer(
+                                CycleIcon.infer(
+                                        BuiltInRegistries.CAT_VARIANT.holders().map(h -> BingoGoalGeneratorUtils.getCatVariantIcon(h.key()))
+                                ),
+                                ItemIcon.ofItem(Items.COD)
+                        ),
+                        subber -> subber.sub("base.icons.*.item.count", "count")
+                );
+    }
+
     protected static BingoGoal.Builder breedFrogVariantGoal(ResourceLocation id, ResourceKey<FrogVariant> variant) {
         return BingoGoal.builder(id)
                 .criterion("hatch", TadpoleMaturesTrigger.TriggerInstance.ofVariant(variant))

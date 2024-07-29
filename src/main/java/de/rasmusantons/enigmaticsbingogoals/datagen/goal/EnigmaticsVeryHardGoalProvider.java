@@ -47,6 +47,7 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS, EnigmaticsBingoTags.KILL_MOB)
         );
+        addGoal(tameSomeCatsGoal(id("tame_some_cats"), 10, 11));
         addGoal(BingoGoal.builder(id("summon_the_wither"))
                 .criterion("summon", SummonedEntityTrigger.TriggerInstance.summonedEntity(
                         EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.WITHER)))

@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.CatVariant;
 import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
@@ -50,6 +51,12 @@ public class BingoGoalGeneratorUtils {
         if (resolvedTag == null)
             return new EntityTypeTagCycleIcon(entityTypeTag, count);
         return CycleIcon.infer(Arrays.stream(resolvedTag).map(e -> getEntityIcon(e, count)));
+    }
+
+    public static EntityIcon getCatVariantIcon(ResourceKey<CatVariant> variant) {
+        CompoundTag data = new CompoundTag();
+        data.putString("variant", variant.location().toString());
+        return new EntityIcon(EntityType.CAT, data, new ItemStack(Items.CAT_SPAWN_EGG));
     }
 
     public static EntityIcon getFrogVariantIcon(ResourceKey<FrogVariant> variant) {

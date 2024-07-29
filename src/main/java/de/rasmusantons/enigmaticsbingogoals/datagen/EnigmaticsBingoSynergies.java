@@ -4,6 +4,7 @@ public class EnigmaticsBingoSynergies {
     public static final String CONCRETE = "concrete";
     public static final String WOOL = "wool";
     public static final String DIE = "die";
+    public static final String CAT = "cat";
     public static final String WITHER = "wither";
     public static final String TERRACOTTA = "terracotta";
     public static final String TAKE_DAMAGE = "take_damage";

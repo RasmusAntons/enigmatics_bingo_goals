@@ -689,6 +689,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(tameAnimalGoal(id("tame_parrot"), EntityType.PARROT)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE)
         );
+        addGoal(tameSomeCatsGoal(id("tame_some_cats"), 2, 4));
         addGoal(tameAnimalGoal(id("tame_wolf"), EntityType.WOLF)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL)
         );
