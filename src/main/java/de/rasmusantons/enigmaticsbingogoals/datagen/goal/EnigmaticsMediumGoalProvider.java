@@ -129,7 +129,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .criterion("hit", HitOtherTeamWithProjectileTrigger.TriggerInstance.ofType(EntityType.WIND_CHARGE))
                 .tags(EnigmaticsBingoTags.PVP, EnigmaticsBingoTags.TRIAL_CHAMBER, EnigmaticsBingoTags.BREEZE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.hit_player_with_wind_charge", EntityType.WIND_CHARGE.getDescription()))
-                .icon(IndicatorIcon.infer(Items.SNOWBALL, Items.PLAYER_HEAD))
+                .icon(IndicatorIcon.infer(Items.WIND_CHARGE, Items.PLAYER_HEAD))
         );
         // TODO (requires OVERTAKABLE): Kill more unique mobs than the enemy
         // TODO (requires OVERTAKABLE): Kill more unique hostile mobs than the enemy
