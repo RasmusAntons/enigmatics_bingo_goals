@@ -15,6 +15,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class EnigmaticsBingoEntityTypeTagProvider extends FabricTagProvider.EntityTypeTagProvider {
     public static List<EntityType<?>> UNUSED_ENTITIES = List.of(EntityType.GIANT, EntityType.ILLUSIONER, EntityType.ZOMBIE_HORSE);
+    public static List<EntityType<?>> MISC_ENTITIES_TO_KEEP = List.of(EntityType.SNOW_GOLEM, EntityType.IRON_GOLEM);
 
     public EnigmaticsBingoEntityTypeTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
         super(output, completableFuture);
@@ -26,7 +27,7 @@ public class EnigmaticsBingoEntityTypeTagProvider extends FabricTagProvider.Enti
 
     public static EntityType<?>[] getAllMobs() {
         return BuiltInRegistries.ENTITY_TYPE.stream()
-                .filter(entityType -> entityType.getCategory() != MobCategory.MISC)
+                .filter(entityType -> entityType.getCategory() != MobCategory.MISC || MISC_ENTITIES_TO_KEEP.contains(entityType))
                 .filter(entityType -> !UNUSED_ENTITIES.contains(entityType))
                 .toArray(EntityType[]::new);
     }
