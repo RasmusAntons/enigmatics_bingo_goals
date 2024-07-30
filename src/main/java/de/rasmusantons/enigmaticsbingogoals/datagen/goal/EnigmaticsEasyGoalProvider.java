@@ -51,10 +51,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
     public void addGoals() {
         addGoal(BingoGoal.builder(id("never_seeds"))
                 .criterion("obtain", InventoryChangeTrigger.TriggerInstance.hasItems(Items.WHEAT_SEEDS))
-                .tags(
-                        BingoTags.NEVER,
-                        EnigmaticsBingoTags.SEEDS
-                )
+                .tags(BingoTags.NEVER)
+                .antisynergy(EnigmaticsBingoSynergies.SEEDS)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_wheat_seeds",
                         Items.WHEAT_SEEDS.getDescription()))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WHEAT_SEEDS), ItemIcon.ofItem(Items.BARRIER)))
@@ -292,8 +290,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         .name(Component.translatable("enigmaticsbingogoals.goal.wear_full_iron"))
         );
         addGoal(eatItemGoal(id("eat_glow_berries"), Items.GLOW_BERRIES)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.LUSH_CAVE, EnigmaticsBingoTags.ANCIENT_CITY,
-                        EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ANCIENT_CITY, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .antisynergy(EnigmaticsBingoSynergies.LUSH_CAVE)
         );
         // TODO: Use a Loom
         // TODO: Use a Cartography Table
@@ -354,12 +352,12 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(obtainItemGoal(id("obtain_mossy_stone_brick_wall"), Items.MOSSY_STONE_BRICK_WALL)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.IGLOO,
-                        EnigmaticsBingoTags.LUSH_CAVE, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.SHIPWRECK,
-                        EnigmaticsBingoTags.TRIAL_CHAMBER)
+                        EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.SHIPWRECK, EnigmaticsBingoTags.TRIAL_CHAMBER,
+                        EnigmaticsBingoTags.MOSS)
         );
         addGoal(obtainItemGoal(id("obtain_mossy_cobblestone_wall"), Items.MOSSY_COBBLESTONE_WALL)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.LUSH_CAVE,
-                        EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.SHIPWRECK, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.JUNGLE,
+                        EnigmaticsBingoTags.SHIPWRECK, EnigmaticsBingoTags.TRIAL_CHAMBER, EnigmaticsBingoTags.MOSS)
         );
         addGoal(obtainItemGoal(id("obtain_polished_tuff_wall"), Items.POLISHED_TUFF_WALL)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL)
@@ -615,7 +613,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         EnigmaticsBingoTags.REDSTONE, EnigmaticsBingoTags.TRIAL_CHAMBER)
         );
         addGoal(obtainItemGoal(id("obtain_flowering_azalea"), Items.FLOWERING_AZALEA)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.LUSH_CAVE)
+                .tags(BingoTags.OVERWORLD)
+                .antisynergy(EnigmaticsBingoSynergies.LUSH_CAVE)
         );
         addGoal(obtainItemGoal(id("obtain_grass_block"), Items.GRASS_BLOCK)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH)
@@ -624,8 +623,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WALL, EnigmaticsBingoTags.TRAIL_RUINS)
         );
         addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_music_discs"), EnigmaticsBingoItemTags.MUSIC_DISCS, 1, 2)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MUSIC_DISC, EnigmaticsBingoTags.ANCIENT_CITY,
-                        EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ANCIENT_CITY, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .antisynergy(EnigmaticsBingoSynergies.MUSIC_DISC)
                 .name(
                         Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_music_discs", 0),
                         subber -> subber.sub("with.0", "count")

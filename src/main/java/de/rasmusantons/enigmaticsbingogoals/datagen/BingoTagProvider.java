@@ -103,13 +103,9 @@ public class BingoTagProvider implements DataProvider {
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BREED_MOB).difficultyMax(2, 2, 2, 2, 2, 2).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.KILL_MOB).difficultyMax(3, 3, 3, 3, 3, 3).build());
         tagAdder.accept(BingoTag.builder(BingoTags.VILLAGE).difficultyMax(3, 3, 3, 3, 3, 3).build());
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.FROG).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BUCKET_WITH_MOB).difficultyMax(1, 1, 1, 1, 1, 1).build());
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.MUSIC_DISC).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.ARMOR).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.PLANT_BATCH).difficultyMax(1, 1, 1, 1, 1, 1).build());
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.SEEDS).difficultyMax(1, 1, 1, 1, 1, 1).build());
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.LUSH_CAVE).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.USE_WORKSTATION).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.LOOM).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.UNIQUE_FOOD).difficultyMax(1, 1, 1, 1, 1, 1).build());
@@ -170,5 +166,6 @@ public class BingoTagProvider implements DataProvider {
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BASTION).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.GLOW_INK).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.GOAT).difficultyMax(1, 1, 1, 1, 1, 1).build());
+        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.MOSS).difficultyMax(1, 1, 1, 1, 1, 1).build());
     }
 }

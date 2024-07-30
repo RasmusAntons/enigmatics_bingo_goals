@@ -249,6 +249,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_saplings"), EnigmaticsBingoItemTags.SAPLINGS, 6, 7)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.PLANT_BATCH)
+                .antisynergy(EnigmaticsBingoSynergies.SAPLING)
                 .name(
                         Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_saplings", 0,
                                 Component.translatable(EnigmaticsBingoItemTags.SAPLINGS.getTranslationKey())),

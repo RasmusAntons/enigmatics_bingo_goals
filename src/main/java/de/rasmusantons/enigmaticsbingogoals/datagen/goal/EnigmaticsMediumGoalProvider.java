@@ -110,12 +110,12 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .criterion("music", PlayMusicToOtherTeamTrigger.TriggerInstance.playMusic())
                 .tags(
                         EnigmaticsBingoTags.PVP,
-                        EnigmaticsBingoTags.MUSIC_DISC,
                         EnigmaticsBingoTags.ANCIENT_CITY,
                         EnigmaticsBingoTags.WOODLAND_MANSION,
                         EnigmaticsBingoTags.TRAIL_RUINS,
                         EnigmaticsBingoTags.TRAIL_RUINS
                 )
+                .antisynergy(EnigmaticsBingoSynergies.MUSIC_DISC)
                 .name(Component.translatable("enigmaticsbingogoals.goal.play_music_to_other_team"))
                 .icon(IndicatorIcon.infer(Items.JUKEBOX, Items.PLAYER_HEAD))
         );
@@ -236,7 +236,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.OVERWORLD)
         );
         addGoal(breedAnimalGoal(id("breed_axolotl"), EntityType.AXOLOTL)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.LUSH_CAVE)
+                .tags(BingoTags.OVERWORLD)
+                .antisynergy(EnigmaticsBingoSynergies.LUSH_CAVE)
         );
         addGoal(breedAnimalGoal(id("breed_strider"), EntityType.STRIDER)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.STRIDER)
@@ -302,8 +303,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         Component.translatable(EnigmaticsBingoItemTags.CHAINMAIL_ARMOR.getTranslationKey())))
         );
         addGoal(obtainSomeItemsFromTagGoal(id("obtain_4_different_seeds"), EnigmaticsBingoItemTags.SEEDS, 4, 4)
-                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.SEEDS,
-                        EnigmaticsBingoTags.WOODLAND_MANSION)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.WOODLAND_MANSION)
+                .antisynergy(EnigmaticsBingoSynergies.SEEDS)
                 .name(
                         Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_seeds",
                                 0, Component.translatable(EnigmaticsBingoItemTags.SEEDS.getTranslationKey())),
@@ -317,14 +318,15 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB)
         );
         addGoal(obtainItemGoal(id("obtain_tadpole_bucket"), Items.TADPOLE_BUCKET)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB, EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.FROG,
-                        EnigmaticsBingoTags.SWAMP)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.BUCKET_WITH_MOB, EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.SWAMP)
+                .antisynergy(EnigmaticsBingoSynergies.FROG)
         );
         addGoal(advancementGoal(id("get_advancement_sound_of_music"),
                 Component.translatable("advancements.adventure.play_jukebox_in_meadows.title"),
                 ResourceLocation.withDefaultNamespace("adventure/play_jukebox_in_meadows"))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MUSIC_DISC, EnigmaticsBingoTags.ANCIENT_CITY,
-                        EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ANCIENT_CITY, EnigmaticsBingoTags.WOODLAND_MANSION,
+                        EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .antisynergy(EnigmaticsBingoSynergies.MUSIC_DISC)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(BingoGoal.builder(id("equip_wolf_armor"))
@@ -332,7 +334,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         ItemPredicate.Builder.item().of(Items.WOLF_ARMOR),
                         Optional.of(EntityPredicate.wrap(EntityPredicate.Builder.entity().of(EntityType.WOLF)))
                 ))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ARMOR)
+                .tags(BingoTags.OVERWORLD)
+                .antisynergy(EnigmaticsBingoSynergies.WOLF)
                 .name(Component.translatable("enigmaticsbingogoals.goal.equip_a_wolf_with_armor", EntityType.WOLF.getDescription()))
                 .icon(IndicatorIcon.infer(EntityType.WOLF, Items.WOLF_ARMOR))
         );
@@ -343,6 +346,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_saplings"), EnigmaticsBingoItemTags.SAPLINGS, 4, 5)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.PLANT_BATCH)
+                .antisynergy(EnigmaticsBingoSynergies.SAPLING)
                 .name(
                         Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_saplings", 0,
                                 Component.translatable(EnigmaticsBingoItemTags.SAPLINGS.getTranslationKey())),
@@ -351,6 +355,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_bonemealable_blocks"), BingoItemTags.BONEMEALABLE, 10, 20)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.PLANT_BATCH)
+                .antisynergy(EnigmaticsBingoSynergies.SAPLING, EnigmaticsBingoSynergies.SEEDS)
                 .name(
                         Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_bonemealable_blocks", 0),
                         subber -> subber.sub("with.0", "count")
@@ -694,6 +699,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(tameSomeCatsGoal(id("tame_some_cats"), 2, 4));
         addGoal(tameAnimalGoal(id("tame_wolf"), EntityType.WOLF)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL)
+                .antisynergy(EnigmaticsBingoSynergies.WOLF)
         );
         // TODO (requires OVERTAKABLE): Eat more unique foods than the enemy
         // TODO: Die to falling off vines
@@ -808,8 +814,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.AMETHYST)
         );
         addGoal(obtainSomeItemsFromTagGoal(id("obtain_some_music_discs"), EnigmaticsBingoItemTags.MUSIC_DISCS, 3, 5)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MUSIC_DISC, EnigmaticsBingoTags.ANCIENT_CITY,
-                        EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ANCIENT_CITY, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TRIAL_CHAMBER)
+                .antisynergy(EnigmaticsBingoSynergies.MUSIC_DISC)
                 .name(
                         Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_music_discs", 0),
                         subber -> subber.sub("with.0", "count")

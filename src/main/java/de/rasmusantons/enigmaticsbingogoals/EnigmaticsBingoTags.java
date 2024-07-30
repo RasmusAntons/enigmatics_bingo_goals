@@ -26,13 +26,9 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation BREED_MOB = create("breed_mob");
     public static final ResourceLocation KILL_MOB = create("kill_mob");
     // BingoTags.VILLAGE 3
-    public static final ResourceLocation FROG = create("frog");
     public static final ResourceLocation BUCKET_WITH_MOB = create("bucket_with_mob");
-    public static final ResourceLocation MUSIC_DISC = create("music_disc");
     public static final ResourceLocation ARMOR = create("armor");
     public static final ResourceLocation PLANT_BATCH = create("plant_batch");
-    public static final ResourceLocation SEEDS = create("seeds");
-    public static final ResourceLocation LUSH_CAVE = create("lush_cave");
     public static final ResourceLocation USE_WORKSTATION = create("use_workstation");
     public static final ResourceLocation LOOM = create("loom");
     public static final ResourceLocation UNIQUE_FOOD = create("unique_food");
@@ -93,6 +89,7 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation BASTION = create("bastion");
     public static final ResourceLocation GLOW_INK = create("glow_ink");
     public static final ResourceLocation GOAT = create("goat");
+    public static final ResourceLocation MOSS = create("moss");
 
     private EnigmaticsBingoTags() {
     }
