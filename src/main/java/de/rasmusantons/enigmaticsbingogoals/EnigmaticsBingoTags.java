@@ -96,6 +96,7 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation SIGN = create("sign");
     public static final ResourceLocation BASTION = create("bastion");
     public static final ResourceLocation GLOW_INK = create("glow_ink");
+    public static final ResourceLocation GOAT = create("goat");
 
     private EnigmaticsBingoTags() {
     }

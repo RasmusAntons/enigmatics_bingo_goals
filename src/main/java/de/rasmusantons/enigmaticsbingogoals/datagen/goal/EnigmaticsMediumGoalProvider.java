@@ -168,7 +168,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .icon(IndicatorIcon.infer(CycleIcon.infer(Items.RED_BED, Items.RESPAWN_ANCHOR), BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
         );
         addGoal(dieToMobEntityGoal(id("die_to_goat"), EntityType.GOAT)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN, EnigmaticsBingoTags.GOAT)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_goat",
                         EntityType.GOAT.getDescription()))
         );
@@ -812,6 +812,9 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_music_discs", 0),
                         subber -> subber.sub("with.0", "count")
                 )
+        );
+        addGoal(obtainItemGoal(id("obtain_goat_horn"), Items.GOAT_HORN)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN, EnigmaticsBingoTags.GOAT, EnigmaticsBingoTags.OUTPOST)
         );
     }
 }
