@@ -45,7 +45,8 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
         addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs"), EnigmaticsBingoEntityTypeTags.HOSTILE, 20, 24, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
-                .tags(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS, EnigmaticsBingoTags.KILL_MOB)
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
         addGoal(tameSomeCatsGoal(id("tame_some_cats"), 10, 11));
         addGoal(BingoGoal.builder(id("summon_the_wither"))
@@ -56,6 +57,12 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
                 .name(Component.translatable("enigmaticsbingogoals.goal.summon_the_wither", EntityType.WITHER.getDescription()))
                 .antisynergy(EnigmaticsBingoSynergies.WITHER)
                 .icon(IndicatorIcon.infer(EntityType.WITHER, Items.WITHER_SKELETON_SKULL))
+        );
+        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_mobs"), EnigmaticsBingoEntityTypeTags.MOBS, 40, 45, true)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_mobs", 0),
+                        subber -> subber.sub("with.0", "amount"))
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.UNIQUE_NEUTRAL_MOBS, EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
         addGoal(obtainItemGoal(id("obtain_nether_star"), Items.NETHER_STAR)
                 .antisynergy(EnigmaticsBingoSynergies.WITHER)

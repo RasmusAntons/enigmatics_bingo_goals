@@ -101,11 +101,7 @@ public class BingoTagProvider implements DataProvider {
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.MOUNTAIN).difficultyMax(2, 2, 2, 2, 2, 2).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.TAME_ANIMAL).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BREED_MOB).difficultyMax(2, 2, 2, 2, 2, 2).build());
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.UNIQUE_MOBS).difficultyMax(1, 1, 1, 1, 1, 1).build());
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.UNIQUE_NEUTRAL_MOBS).difficultyMax(1, 1, 1, 1, 1, 1).build());
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.KILL_MOB).difficultyMax(3, 3, 3, 3, 3, 3).build());
-        tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.KILL_MOB_BATCH).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(BingoTags.VILLAGE).difficultyMax(3, 3, 3, 3, 3, 3).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.FROG).difficultyMax(1, 1, 1, 1, 1, 1).build());
         tagAdder.accept(BingoTag.builder(EnigmaticsBingoTags.BUCKET_WITH_MOB).difficultyMax(1, 1, 1, 1, 1, 1).build());

@@ -77,7 +77,8 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs"), EnigmaticsBingoEntityTypeTags.HOSTILE, 15, 19, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
-                .tags(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS, EnigmaticsBingoTags.KILL_MOB)
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
         addGoal(killEntityGoal(id("kill_ender_dragon"), EntityType.ENDER_DRAGON)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_ender_dragon", EntityType.ENDER_DRAGON.getDescription()))
@@ -115,6 +116,12 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         CycleIcon.infer(Arrays.stream(VanillaHusbandryAdvancements.EDIBLE_ITEMS)),
                         subber -> subber.sub("icons.*.item.count", "count")
                 )
+        );
+        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_mobs"), EnigmaticsBingoEntityTypeTags.MOBS, 26, 35, true)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_mobs", 0),
+                        subber -> subber.sub("with.0", "amount"))
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.UNIQUE_NEUTRAL_MOBS, EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
         addGoal(advancementGoal(id("get_advancement_is_it_a_plane"),
                 Component.translatable("advancements.adventure.spyglass_at_dragon.title"),

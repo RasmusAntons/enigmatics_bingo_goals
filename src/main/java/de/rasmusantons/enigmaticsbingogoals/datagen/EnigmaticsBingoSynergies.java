@@ -22,4 +22,8 @@ public class EnigmaticsBingoSynergies {
     public static final String JUMP_BOOST = "jump_boost";
     public static final String POISON = "poison";
     public static final String STAINED_GLASS_PANE = "stained_glass_pane";
+    public static final String UNIQUE_NEUTRAL_MOBS = "unique_neutral_mobs";
+    public static final String UNIQUE_HOSTILE_MOBS = "unique_hostile_mobs";
+    public static final String UNDEAD_MOB_BATCH = "undead_mob_batch";
+    public static final String ARTHROPOD_MOB_BATCH = "arthropod_mob_batch";
 }

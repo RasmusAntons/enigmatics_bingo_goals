@@ -24,11 +24,7 @@ public final class EnigmaticsBingoTags {
     public static final ResourceLocation MOUNTAIN = create("mountain");
     public static final ResourceLocation TAME_ANIMAL = create("tame_animal");
     public static final ResourceLocation BREED_MOB = create("breed_mob");
-    public static final ResourceLocation UNIQUE_MOBS = create("unique_mobs");
-    public static final ResourceLocation UNIQUE_NEUTRAL_MOBS = create("unique_neutral_mobs");
-    public static final ResourceLocation UNIQUE_HOSTILE_MOBS = create("unique_hostile_mobs");
     public static final ResourceLocation KILL_MOB = create("kill_mob");
-    public static final ResourceLocation KILL_MOB_BATCH = create("kill_mob_batch");
     // BingoTags.VILLAGE 3
     public static final ResourceLocation FROG = create("frog");
     public static final ResourceLocation BUCKET_WITH_MOB = create("bucket_with_mob");

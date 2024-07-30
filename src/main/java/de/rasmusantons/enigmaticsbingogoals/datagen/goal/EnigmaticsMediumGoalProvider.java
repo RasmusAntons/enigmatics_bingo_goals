@@ -241,17 +241,19 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(breedAnimalGoal(id("breed_strider"), EntityType.STRIDER)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.STRIDER)
         );
-        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_mobs"), EnigmaticsBingoEntityTypeTags.MOBS, 10, 25, true)
+        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_mobs"), EnigmaticsBingoEntityTypeTags.MOBS, 16, 25, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
-                .tags(EnigmaticsBingoTags.UNIQUE_MOBS, EnigmaticsBingoTags.KILL_MOB)
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.UNIQUE_NEUTRAL_MOBS, EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
         // TODO: Kill (5-7) unique Neutral Mobs
         // TODO: Kill (7-10) unique Neutral Mobs
         addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs"), EnigmaticsBingoEntityTypeTags.HOSTILE, 11, 14, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
-                .tags(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS, EnigmaticsBingoTags.KILL_MOB)
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
         addGoal(BingoGoal.builder(id("kill_mob_while_dead"))
                 .criterion("kill", CriteriaTriggers.PLAYER_KILLED_ENTITY.createCriterion(

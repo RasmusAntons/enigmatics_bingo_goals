@@ -209,30 +209,41 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(killEntitiesFromTagGoal(id("kill_50_mobs"), EnigmaticsBingoEntityTypeTags.MOBS, 50, 50, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
-                .tags(EnigmaticsBingoTags.KILL_MOB, EnigmaticsBingoTags.KILL_MOB_BATCH)
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.UNDEAD_MOB_BATCH, EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH)
         );
         addGoal(killEntitiesFromTagGoal(id("kill_100_mobs"), EnigmaticsBingoEntityTypeTags.MOBS, 100, 100, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
-                .tags(EnigmaticsBingoTags.KILL_MOB, EnigmaticsBingoTags.KILL_MOB_BATCH)
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.UNDEAD_MOB_BATCH, EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH)
         );
         addGoal(killEntitiesFromTagGoal(id("kill_30_arthropods"), EntityTypeTags.ARTHROPOD, 30, 30, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
                                 Component.translatable(EntityTypeTags.ARTHROPOD.getTranslationKey())),
                         subber -> subber.sub("with.0", "amount"))
-                .tags(EnigmaticsBingoTags.KILL_MOB, EnigmaticsBingoTags.KILL_MOB_BATCH)
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH)
         );
         addGoal(killEntitiesFromTagGoal(id("kill_30_undead_mobs"), EntityTypeTags.UNDEAD, 30, 30, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
                                 Component.translatable(EntityTypeTags.UNDEAD.getTranslationKey())),
                         subber -> subber.sub("with.0", "amount"))
-                .tags(EnigmaticsBingoTags.KILL_MOB, EnigmaticsBingoTags.KILL_MOB_BATCH)
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.UNDEAD_MOB_BATCH)
         );
         addGoal(killEntitiesFromTagGoal(id("kill_50_undead_mobs"), EntityTypeTags.UNDEAD, 50, 50, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
                                 Component.translatable(EntityTypeTags.UNDEAD.getTranslationKey())),
                         subber -> subber.sub("with.0", "amount"))
-                .tags(EnigmaticsBingoTags.KILL_MOB, EnigmaticsBingoTags.KILL_MOB_BATCH)
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.UNDEAD_MOB_BATCH)
+        );
+        addGoal(killEntitiesFromTagGoal(id("kill_some_unique_mobs"), EnigmaticsBingoEntityTypeTags.MOBS, 10, 15, true)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_mobs", 0),
+                        subber -> subber.sub("with.0", "amount"))
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.UNIQUE_NEUTRAL_MOBS, EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
         // TODO: Wash something in a Cauldron
         addGoal(BingoGoal.builder(id("fill_a_chiseled_bookshelf"))
@@ -628,7 +639,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(killEntitiesFromTagGoal(id("kill_some_unique_hostile_mobs"), EnigmaticsBingoEntityTypeTags.HOSTILE, 7, 10, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
-                .tags(EnigmaticsBingoTags.UNIQUE_HOSTILE_MOBS, EnigmaticsBingoTags.KILL_MOB)
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
         addGoal(BingoGoal.builder(id("kill_bat_with_arrow"))
                 .criterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(
