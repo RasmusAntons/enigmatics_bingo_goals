@@ -221,6 +221,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TRIAL_CHAMBER, EnigmaticsBingoTags.SWAMP)
         );
         addGoal(tameAnimalGoal(id("tame_ocelot"), EntityType.OCELOT)
+                .name(Component.translatable("enigmaticsbingogoals.goal.tame_ocelot", EntityType.OCELOT.getDescription()))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE)
         );
         addGoal(breedAnimalGoal(id("breed_pig"), EntityType.PIG)
