@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.JukeboxSongPlayer;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Final;
@@ -45,6 +46,8 @@ public abstract class JukeboxSongPlayerMixin implements JukeboxSongPlayerExtensi
             return;
         for (Player player : serverLevel.players()) {
             if (!(player instanceof ServerPlayer serverPlayer))
+                continue;
+            if (serverPlayer.gameMode.getGameModeForPlayer() == GameType.SPECTATOR)
                 continue;
             if (serverPlayer.position().distanceTo(this.blockPos.getCenter()) > MAX_DISTANCE)
                 continue;
