@@ -194,6 +194,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(breedAnimalGoal(id("breed_rabbit"), EntityType.RABBIT)
                 .tags(BingoTags.OVERWORLD)
+                .antisynergy(EnigmaticsBingoSynergies.RABBIT)
         );
         addGoal(killEntityGoal(id("kill_ghast"), EntityType.GHAST)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_ghast", EntityType.GHAST.getDescription()))
@@ -658,6 +659,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                                 .direct(EntityPredicate.Builder.entity().of(EntityTypeTags.ARROWS))
                 ))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.RABBIT)
                 .icon(IndicatorIcon.infer(EntityType.RABBIT, Items.ARROW))
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_rabbit_with_arrow", EntityType.RABBIT.getDescription(), EntityType.ARROW.getDescription()))
         );
