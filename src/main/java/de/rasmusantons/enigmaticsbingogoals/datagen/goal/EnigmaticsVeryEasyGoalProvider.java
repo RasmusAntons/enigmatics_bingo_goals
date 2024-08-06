@@ -182,5 +182,12 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_suffocation"))
                 .icon(IndicatorIcon.infer(Items.SAND, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
         );
+        addGoal(BingoGoal.builder(id("kill_baby_mob"))
+                .criterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(
+                        EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setIsBaby(true))))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.KILL_MOB)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_baby_mob"))
+                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.BABY), Items.NETHERITE_SWORD))
+        );
     }
 }
