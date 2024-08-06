@@ -717,6 +717,12 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         ), EffectIcon.of(MobEffects.HEALTH_BOOST)),
                         subber -> subber.sub("base.icons.*.item.count", "count"))
         );
+        addGoal(advancementGoal(id("get_advancement_subspace_bubble"),
+                Component.translatable("advancements.nether.fast_travel.title"),
+                ResourceLocation.withDefaultNamespace("nether/fast_travel"))
+                .tags(BingoTags.NETHER)
+                .icon(new IndicatorIcon(BlockIcon.ofBlock(Blocks.NETHER_PORTAL), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+        );
         addGoal(advancementGoal(id("get_advancement_is_it_a_bird"),
                 Component.translatable("advancements.adventure.spyglass_at_parrot.title"),
                 ResourceLocation.withDefaultNamespace("adventure/spyglass_at_parrot"))
