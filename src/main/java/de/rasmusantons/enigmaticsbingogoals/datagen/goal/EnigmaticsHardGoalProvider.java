@@ -61,6 +61,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 )
         );
         addGoal(tameSomeCatsGoal(id("tame_some_cats"), 5, 6));
+        addGoal(tameSomeWolvesGoal(id("tame_some_wolves"), 3, 4));
         addGoal(advancementProgressGoal(id("breed_some_unique_mobs"),
                 ResourceLocation.withDefaultNamespace("husbandry/bred_all_animals"), 11, 15)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_some_unique_mobs", 0),

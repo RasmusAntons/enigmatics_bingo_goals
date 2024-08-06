@@ -48,7 +48,8 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
-        addGoal(tameSomeCatsGoal(id("tame_some_cats"), 10, 11));
+        addGoal(tameSomeCatsGoal(id("tame_some_cats"), 9, 11));
+        addGoal(tameSomeWolvesGoal(id("tame_some_wolves"), 6, 9));
         addGoal(BingoGoal.builder(id("summon_the_wither"))
                 .criterion("summon", SummonedEntityTrigger.TriggerInstance.summonedEntity(
                         EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(EntityType.WITHER)))

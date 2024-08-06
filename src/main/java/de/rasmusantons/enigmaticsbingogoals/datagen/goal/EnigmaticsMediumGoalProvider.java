@@ -698,10 +698,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE)
         );
         addGoal(tameSomeCatsGoal(id("tame_some_cats"), 2, 4));
-        addGoal(tameAnimalGoal(id("tame_wolf"), EntityType.WOLF)
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL)
-                .antisynergy(EnigmaticsBingoSynergies.WOLF)
-        );
+        addGoal(tameSomeWolvesGoal(id("tame_some_wolves"), 2, 2));
         // TODO (requires OVERTAKABLE): Eat more unique foods than the enemy
         // TODO: Die to falling off vines
         // TODO: Wear 4 different armor materials

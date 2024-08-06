@@ -192,6 +192,10 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.WITCH_HUT, BingoTags.VILLAGE)
                 .antisynergy(EnigmaticsBingoSynergies.CAT)
         );
+        addGoal(tameAnimalGoal(id("tame_wolf"), EntityType.WOLF)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL)
+                .antisynergy(EnigmaticsBingoSynergies.WOLF)
+        );
         addGoal(breedAnimalGoal(id("breed_rabbit"), EntityType.RABBIT)
                 .tags(BingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.RABBIT)

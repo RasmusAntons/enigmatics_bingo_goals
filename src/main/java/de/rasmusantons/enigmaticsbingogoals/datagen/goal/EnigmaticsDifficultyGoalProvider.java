@@ -3,6 +3,7 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.NumberOfEffectsCondition;
 import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
+import de.rasmusantons.enigmaticsbingogoals.datagen.goal.BingoGoalGeneratorUtils.WolfVariantCollector;
 import de.rasmusantons.enigmaticsbingogoals.triggers.*;
 import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.data.BingoGoal;
@@ -31,6 +32,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.FrogVariant;
+import net.minecraft.world.entity.animal.WolfVariants;
 import net.minecraft.world.inventory.SlotRange;
 import net.minecraft.world.inventory.SlotRanges;
 import net.minecraft.world.item.Item;
@@ -449,6 +451,31 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                                         BuiltInRegistries.CAT_VARIANT.holders().map(h -> BingoGoalGeneratorUtils.getCatVariantIcon(h.key()))
                                 ),
                                 ItemIcon.ofItem(Items.COD)
+                        ),
+                        subber -> subber.sub("base.icons.*.item.count", "count")
+                );
+    }
+
+    protected static BingoGoal.Builder tameSomeWolvesGoal(ResourceLocation id, int minProgress, int maxProgress) {
+        WolfVariantCollector wolfContext = new WolfVariantCollector();
+        WolfVariants.bootstrap(wolfContext);
+        return advancementProgressGoal(id,
+                ResourceLocation.withDefaultNamespace("husbandry/whole_pack"),
+                minProgress,
+                maxProgress
+        )
+                .name(Component.translatable("enigmaticsbingogoals.goal.tame_some_wolves", 0,
+                                EntityType.WOLF.getDescription()),
+                        subber -> subber.sub("with.0", "count")
+                )
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL)
+                .antisynergy(EnigmaticsBingoSynergies.WOLF)
+                .icon(
+                        IndicatorIcon.infer(
+                                CycleIcon.infer(
+                                        wolfContext.variants.stream().map(v -> BingoGoalGeneratorUtils.getWolfVariantIcon(v))
+                                ),
+                                ItemIcon.ofItem(Items.BONE)
                         ),
                         subber -> subber.sub("base.icons.*.item.count", "count")
                 );

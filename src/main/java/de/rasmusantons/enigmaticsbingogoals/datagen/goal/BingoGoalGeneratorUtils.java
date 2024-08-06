@@ -2,28 +2,35 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
+import com.mojang.serialization.Lifecycle;
 import de.rasmusantons.enigmaticsbingogoals.datagen.tag.EnigmaticsBingoEntityTypeTagProvider;
 import io.github.gaming32.bingo.data.icons.*;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.*;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.CatVariant;
 import net.minecraft.world.entity.animal.FrogVariant;
+import net.minecraft.world.entity.animal.WolfVariant;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ResolvableProfile;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.block.entity.BannerPatterns;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 public class BingoGoalGeneratorUtils {
@@ -59,6 +66,12 @@ public class BingoGoalGeneratorUtils {
         return new EntityIcon(EntityType.CAT, data, new ItemStack(Items.CAT_SPAWN_EGG));
     }
 
+    public static EntityIcon getWolfVariantIcon(ResourceKey<WolfVariant> variant) {
+        CompoundTag data = new CompoundTag();
+        data.putString("variant", variant.location().toString());
+        return new EntityIcon(EntityType.WOLF, data, new ItemStack(Items.WOLF_SPAWN_EGG));
+    }
+
     public static EntityIcon getFrogVariantIcon(ResourceKey<FrogVariant> variant) {
         CompoundTag data = new CompoundTag();
         data.putString("variant", variant.location().toString());
@@ -83,6 +96,30 @@ public class BingoGoalGeneratorUtils {
         itemStack.set(DataComponents.HIDE_ADDITIONAL_TOOLTIP, Unit.INSTANCE);
         itemStack.set(DataComponents.ITEM_NAME, Component.translatable("block.minecraft.ominous_banner").withStyle(ChatFormatting.GOLD));
         return itemStack;
+    }
+
+    static class WolfVariantCollector implements BootstrapContext<WolfVariant> {
+        List<ResourceKey<WolfVariant>> variants = new ArrayList<>();
+        @Override
+        public Holder.Reference<WolfVariant> register(ResourceKey<WolfVariant> key, WolfVariant value, Lifecycle registryLifecycle) {
+            variants.add(key);
+            return null;
+        }
+
+        @Override
+        public <S> HolderGetter<S> lookup(ResourceKey<? extends Registry<? extends S>> registryKey) {
+            return new HolderGetter<S>() {
+                @Override
+                public Optional<Holder.Reference<S>> get(ResourceKey<S> resourceKey) {
+                    return Optional.of((Holder.Reference<S>) Holder.Reference.createStandAlone(null, Biomes.CHERRY_GROVE));
+                }
+
+                @Override
+                public Optional<HolderSet.Named<S>> get(TagKey<S> tagKey) {
+                    return Optional.of((HolderSet.Named<S>) HolderSet.emptyNamed(null, BiomeTags.IS_SAVANNA));
+                }
+            };
+        }
     }
 
     public enum PlayerHeadTextures {

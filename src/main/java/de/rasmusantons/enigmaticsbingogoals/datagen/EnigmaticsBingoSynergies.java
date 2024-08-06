@@ -5,6 +5,7 @@ public class EnigmaticsBingoSynergies {
     public static final String WOOL = "wool";
     public static final String DIE = "die";
     public static final String CAT = "cat";
+    public static final String WOLF = "wolf";
     public static final String WITHER = "wither";
     public static final String TERRACOTTA = "terracotta";
     public static final String TAKE_DAMAGE = "take_damage";
@@ -28,7 +29,6 @@ public class EnigmaticsBingoSynergies {
     public static final String ARTHROPOD_MOB_BATCH = "arthropod_mob_batch";
     public static final String FROG = "frog";
     public static final String MUSIC_DISC = "music_disc";
-    public static final String WOLF = "wolf";
     public static final String SAPLING = "sapling";
     public static final String SEEDS = "seeds";
     public static final String LUSH_CAVE = "lush_cave";
