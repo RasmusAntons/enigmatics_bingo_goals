@@ -3,4 +3,3 @@ accessible field net/minecraft/data/advancements/packs/VanillaHusbandryAdvanceme
 accessible method net/minecraft/advancements/AdvancementProgress countCompletedRequirements ()I
 accessible field net/minecraft/server/PlayerAdvancements progress Ljava/util/Map;
 accessible field net/minecraft/data/advancements/packs/VanillaAdventureAdvancements MOBS_TO_KILL Ljava/util/List;
-accessible field net/minecraft/advancements/critereon/EntityFlagsPredicate$Builder isBaby Ljava/util/Optional;
