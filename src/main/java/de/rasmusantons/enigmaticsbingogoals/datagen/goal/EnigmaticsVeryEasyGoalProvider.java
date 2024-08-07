@@ -196,7 +196,7 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
         );
         addGoal(BingoGoal.builder(id("use_loom"))
                         .criterion("use", ApplyPatternTrigger.TriggerInstance.numberOfPatterns(MinMaxBounds.Ints.atLeast(0)))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.USE_WORKSTATION)
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, BingoTags.VILLAGE, EnigmaticsBingoTags.USE_WORKSTATION)
                 .antisynergy(EnigmaticsBingoSynergies.LOOM)
                 .name(Component.translatable("enigmaticsbingogoals.goal.use_loom", Items.LOOM.getDescription()))
                 .icon(BlockIcon.ofBlock(Blocks.LOOM))

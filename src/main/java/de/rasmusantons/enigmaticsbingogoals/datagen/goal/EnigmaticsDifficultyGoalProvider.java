@@ -42,6 +42,7 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BannerPattern;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import org.jetbrains.annotations.Nullable;
@@ -488,5 +489,15 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .antisynergy(EnigmaticsBingoSynergies.FROG)
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getFrogVariantIcon(variant), Items.SLIME_BALL))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.breed_frog.tooltip", EntityType.TADPOLE.getDescription()));
+    }
+
+    protected static BingoGoal.Builder makeBannerWithPatternItemGoal(ResourceLocation id, ResourceKey<BannerPattern> pattern, String patternName) {
+        return BingoGoal.builder(id)
+                .criterion("use", ApplyPatternTrigger.TriggerInstance.hasPatterns(List.of(pattern)))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.USE_WORKSTATION)
+                .antisynergy(EnigmaticsBingoSynergies.LOOM)
+                .name(Component.translatable("enigmaticsbingogoals.goal.use_loom_pattern", patternName, Items.LOOM.getDescription()))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.use_loom_pattern.tooltip"))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WHITE_BANNER), BlockIcon.ofBlock(Blocks.LOOM)));
     }
 }

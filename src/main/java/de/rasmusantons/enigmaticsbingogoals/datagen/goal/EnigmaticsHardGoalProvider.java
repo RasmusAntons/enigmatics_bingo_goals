@@ -25,6 +25,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BannerPatterns;
 
 import java.util.Arrays;
 import java.util.function.BiConsumer;
@@ -107,7 +108,9 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
                         EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE)
         );
-        // TODO: Use a Skull Banner Pattern
+        addGoal(makeBannerWithPatternItemGoal(id("use_skull_pattern"), BannerPatterns.SKULL, "Skull Charge Pattern")
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS)
+        );
         addGoal(advancementProgressGoal(id("eat_some_unique_foods"),
                 ResourceLocation.withDefaultNamespace("husbandry/balanced_diet"), 25, 32)
                 .name(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods", 0),
@@ -258,6 +261,12 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                                 Component.translatable(EnigmaticsBingoItemTags.SAPLINGS.getTranslationKey())),
                         subber -> subber.sub("with.0", "count")
                 )
+        );
+        addGoal(makeBannerWithPatternItemGoal(id("use_globe_pattern"), BannerPatterns.GLOBE, "Globe Pattern")
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
+        );
+        addGoal(makeBannerWithPatternItemGoal(id("use_snout_pattern"), BannerPatterns.PIGLIN, "Snout Pattern")
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHER_EXPLORE, EnigmaticsBingoTags.BASTION)
         );
     }
 }

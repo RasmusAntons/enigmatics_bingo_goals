@@ -703,7 +703,6 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         // TODO (requires OVERTAKABLE): Eat more unique foods than the enemy
         // TODO: Die to falling off vines
         // TODO: Wear 4 different armor materials
-        // TODO: Use a Bordure Banner Pattern
         // TODO: Use an Anvil
         addGoal(advancementProgressGoal(id("breed_some_unique_mobs"),
                 ResourceLocation.withDefaultNamespace("husbandry/bred_all_animals"), 6, 10)

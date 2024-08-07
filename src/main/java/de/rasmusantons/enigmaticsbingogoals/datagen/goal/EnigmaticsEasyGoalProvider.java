@@ -35,6 +35,7 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ChiseledBookShelfBlock;
+import net.minecraft.world.level.block.entity.BannerPatterns;
 import net.minecraft.world.level.storage.loot.LootContext;
 
 import java.util.Arrays;
@@ -297,8 +298,9 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .antisynergy(EnigmaticsBingoSynergies.LUSH_CAVE)
         );
         // TODO: Use a Cartography Table
-        // TODO: Use a Flower Banner Pattern
-        // TODO: Use a Masoned Banner Pattern
+        addGoal(makeBannerWithPatternItemGoal(id("use_flower_pattern"), BannerPatterns.FLOWER, "Flower Charge Pattern")
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, BingoTags.VILLAGE)
+        );
         addGoal(advancementProgressGoal(id("eat_some_unique_foods"),
                 ResourceLocation.withDefaultNamespace("husbandry/balanced_diet"), 7, 13)
                 .name(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods", 0),
