@@ -5,12 +5,10 @@ import de.rasmusantons.enigmaticsbingogoals.conditions.FullUniqueInventoryCondit
 import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoDamageTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
-import de.rasmusantons.enigmaticsbingogoals.triggers.ApplyPatternTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.EmptyHungerTrigger;
 import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
-import io.github.gaming32.bingo.data.icons.BlockIcon;
 import io.github.gaming32.bingo.data.icons.EffectIcon;
 import io.github.gaming32.bingo.data.icons.IndicatorIcon;
 import io.github.gaming32.bingo.data.icons.ItemIcon;
@@ -193,13 +191,6 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                 .reactant(EnigmaticsBingoSynergies.BABY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_baby_mob"))
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.BABY), Items.NETHERITE_SWORD))
-        );
-        addGoal(BingoGoal.builder(id("use_loom"))
-                        .criterion("use", ApplyPatternTrigger.TriggerInstance.numberOfPatterns(MinMaxBounds.Ints.atLeast(0)))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, BingoTags.VILLAGE, EnigmaticsBingoTags.USE_WORKSTATION)
-                .antisynergy(EnigmaticsBingoSynergies.LOOM)
-                .name(Component.translatable("enigmaticsbingogoals.goal.use_loom", Items.LOOM.getDescription()))
-                .icon(BlockIcon.ofBlock(Blocks.LOOM))
         );
     }
 }

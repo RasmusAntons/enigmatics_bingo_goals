@@ -6,6 +6,7 @@ import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoDamageTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
+import de.rasmusantons.enigmaticsbingogoals.triggers.ApplyPatternTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.DamageExceptTeamTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
 import de.rasmusantons.enigmaticsbingogoals.triggers.WriteBookTrigger;
@@ -757,6 +758,13 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(obtainItemGoal(id("obtain_bell"), Items.BELL)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
+        );
+        addGoal(BingoGoal.builder(id("use_loom"))
+                .criterion("use", ApplyPatternTrigger.TriggerInstance.numberOfPatterns(MinMaxBounds.Ints.atLeast(0)))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, BingoTags.VILLAGE, EnigmaticsBingoTags.USE_WORKSTATION)
+                .antisynergy(EnigmaticsBingoSynergies.LOOM)
+                .name(Component.translatable("enigmaticsbingogoals.goal.use_loom", Items.LOOM.getDescription()))
+                .icon(BlockIcon.ofBlock(Blocks.LOOM))
         );
     }
 }
