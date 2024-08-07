@@ -199,6 +199,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(breedAnimalGoal(id("breed_rabbit"), EntityType.RABBIT)
                 .tags(BingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.RABBIT)
+                .catalyst(EnigmaticsBingoSynergies.BABY)
         );
         addGoal(killEntityGoal(id("kill_ghast"), EntityType.GHAST)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_ghast", EntityType.GHAST.getDescription()))

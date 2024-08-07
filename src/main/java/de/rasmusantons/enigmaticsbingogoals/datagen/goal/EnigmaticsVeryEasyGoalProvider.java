@@ -42,6 +42,7 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
         addGoal(breedAnimalGoal(id("breed_chicken"), EntityType.CHICKEN)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .antisynergy(EnigmaticsBingoSynergies.CHICKEN)
+                .catalyst(EnigmaticsBingoSynergies.BABY)
         );
         addGoal(BingoGoal.builder(id("crouch_500_meters"))
                 .criterion("crouch", RelativeStatsTrigger.builder()
@@ -87,6 +88,7 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                 .criterion("hatch", ChickenHatchTrigger.builder().build())
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .antisynergy(EnigmaticsBingoSynergies.CHICKEN)
+                .catalyst(EnigmaticsBingoSynergies.BABY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.hatch_baby_chicken",
                         EntityType.CHICKEN.getDescription(),
                         Items.EGG.getDescription()
@@ -186,6 +188,7 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                 .criterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(
                         EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setIsBaby(true))))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.KILL_MOB)
+                .reactant(EnigmaticsBingoSynergies.BABY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_baby_mob"))
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.BABY), Items.NETHERITE_SWORD))
         );

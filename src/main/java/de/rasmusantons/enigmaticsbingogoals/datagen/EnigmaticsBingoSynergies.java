@@ -16,6 +16,7 @@ public class EnigmaticsBingoSynergies {
     public static final String SUSPICIOUS_STEW = "suspicious_stew";
     public static final String BREED_MOB_BATCH = "breed_mob_batch";
     public static final String BREED_MOB = "breed_mob";
+    public static final String BABY = "baby";
     public static final String SATURATION = "saturation";
     public static final String WEAKNESS = "weakness";
     public static final String BLINDNESS = "blindness";

@@ -226,9 +226,11 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(breedAnimalGoal(id("breed_pig"), EntityType.PIG)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
+                .catalyst(EnigmaticsBingoSynergies.BABY)
         );
         addGoal(breedAnimalGoal(id("breed_fox"), EntityType.FOX)
                 .tags(BingoTags.OVERWORLD)
+                .catalyst(EnigmaticsBingoSynergies.BABY)
         );
         addGoal(breedAnimalGoal(id("breed_armadillo"), EntityType.ARMADILLO)
                 .tags(BingoTags.OVERWORLD)
