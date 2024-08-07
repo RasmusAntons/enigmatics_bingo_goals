@@ -135,11 +135,8 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.END, EnigmaticsBingoTags.AMETHYST, EnigmaticsBingoTags.END_ENTRY)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
-        addGoal(advancementGoal(id("get_advancement_hero_of_the_village"),
-                Component.translatable("advancements.adventure.hero_of_the_village.title"),
-                ResourceLocation.withDefaultNamespace("adventure/hero_of_the_village"))
+        addGoal(effectGoal(id("get_hero_of_the_village"), MobEffects.HERO_OF_THE_VILLAGE)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.RAID)
-                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HERO_OF_THE_VILLAGE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(id("get_postmortal"),
                 Component.translatable("advancements.adventure.totem_of_undying.title"),
