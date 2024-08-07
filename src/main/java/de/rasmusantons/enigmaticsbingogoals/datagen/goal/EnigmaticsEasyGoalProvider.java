@@ -281,9 +281,6 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(eatItemGoal(id("eat_rabbit_stew"), Items.RABBIT_STEW)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.STEW)
         );
-        addGoal(obtainItemGoal(id("obtain_bell"), Items.BELL)
-                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
-        );
         // TODO: Give an armor stand 4 pieces of armor
         addGoal(wearArmorPiecesGoal(id("wear_full_leather"), Items.LEATHER_HELMET, Items.LEATHER_CHESTPLATE,
                 Items.LEATHER_LEGGINGS, Items.LEATHER_BOOTS)

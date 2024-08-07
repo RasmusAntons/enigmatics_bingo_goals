@@ -201,5 +201,8 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                 .name(Component.translatable("enigmaticsbingogoals.goal.use_loom", Items.LOOM.getDescription()))
                 .icon(BlockIcon.ofBlock(Blocks.LOOM))
         );
+        addGoal(obtainItemGoal(id("obtain_bell"), Items.BELL)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
+        );
     }
 }
