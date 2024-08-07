@@ -18,7 +18,8 @@
     "SpectralArrowMixin",
     "TadpoleMixin",
     "ThrownPotionMixin",
-    "ServerGamePacketListenerImplMixin"
+    "ServerGamePacketListenerImplMixin",
+    "LoomMenuMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -299,7 +299,6 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ANCIENT_CITY, EnigmaticsBingoTags.TRIAL_CHAMBER)
                 .antisynergy(EnigmaticsBingoSynergies.LUSH_CAVE)
         );
-        // TODO: Use a Loom
         // TODO: Use a Cartography Table
         // TODO: Use a Flower Banner Pattern
         // TODO: Use a Masoned Banner Pattern
