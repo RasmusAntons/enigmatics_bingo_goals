@@ -17,6 +17,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.entity.BannerPatterns;
 
 import java.util.Arrays;
 import java.util.function.BiConsumer;
@@ -68,6 +69,9 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
         addGoal(obtainItemGoal(id("obtain_nether_star"), Items.NETHER_STAR)
                 .antisynergy(EnigmaticsBingoSynergies.WITHER)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
+        );
+        addGoal(makeBannerWithPatternItemGoal(id("use_snout_pattern"), BannerPatterns.PIGLIN, "Snout Pattern")
+                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHER_EXPLORE, EnigmaticsBingoTags.BASTION)
         );
     }
 }

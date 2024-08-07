@@ -265,8 +265,5 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(makeBannerWithPatternItemGoal(id("use_globe_pattern"), BannerPatterns.GLOBE, "Globe Pattern")
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
         );
-        addGoal(makeBannerWithPatternItemGoal(id("use_snout_pattern"), BannerPatterns.PIGLIN, "Snout Pattern")
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHER_EXPLORE, EnigmaticsBingoTags.BASTION)
-        );
     }
 }

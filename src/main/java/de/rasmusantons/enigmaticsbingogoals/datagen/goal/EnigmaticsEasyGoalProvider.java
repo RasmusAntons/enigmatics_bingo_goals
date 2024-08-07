@@ -755,5 +755,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD)
                 .icon(new ItemIcon(new ItemStack(Items.CAMPFIRE, 4)))
         );
+        addGoal(obtainItemGoal(id("obtain_bell"), Items.BELL)
+                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
+        );
     }
 }
