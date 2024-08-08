@@ -22,6 +22,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -35,6 +36,7 @@ import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.entity.animal.WolfVariants;
 import net.minecraft.world.inventory.SlotRange;
 import net.minecraft.world.inventory.SlotRanges;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -53,7 +55,6 @@ import java.util.stream.Stream;
 
 public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalProvider {
     public static final ResourceLocation ENIGMATICS = ResourceLocation.fromNamespaceAndPath(Bingo.MOD_ID, "enigmatics");
-
     public EnigmaticsDifficultyGoalProvider(ResourceLocation difficulty,
                                             BiConsumer<ResourceLocation, BingoGoal> goalAdder,
                                             HolderLookup.Provider registries) {
@@ -490,14 +491,17 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getFrogVariantIcon(variant), Items.SLIME_BALL))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.breed_frog.tooltip", EntityType.TADPOLE.getDescription()));
     }
-
-    protected static BingoGoal.Builder makeBannerWithPatternItemGoal(ResourceLocation id, ResourceKey<BannerPattern> pattern, String patternName) {
+    protected BingoGoal.Builder makeBannerWithPatternItemGoal(ResourceLocation id, ResourceKey<BannerPattern> pattern, String patternName) {
+        HolderLookup.RegistryLookup<BannerPattern> bannerPatterns = registries.lookupOrThrow(Registries.BANNER_PATTERN);
         return BingoGoal.builder(id)
                 .criterion("use", ApplyPatternTrigger.TriggerInstance.hasPatterns(List.of(pattern)))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.USE_WORKSTATION)
                 .antisynergy(EnigmaticsBingoSynergies.LOOM)
                 .name(Component.translatable("enigmaticsbingogoals.goal.use_loom_pattern", patternName, Items.LOOM.getDescription()))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.use_loom_pattern.tooltip"))
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WHITE_BANNER), BlockIcon.ofBlock(Blocks.LOOM)));
+                .icon(IndicatorIcon.infer(
+                        makeBannerWithPattern(Items.WHITE_BANNER, bannerPatterns.getOrThrow(pattern), DyeColor.BLACK),
+                        BlockIcon.ofBlock(Blocks.LOOM)
+                ));
     }
 }
