@@ -6,6 +6,7 @@ import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.datagen.goal.BingoGoalGeneratorUtils.WolfVariantCollector;
 import de.rasmusantons.enigmaticsbingogoals.triggers.*;
 import io.github.gaming32.bingo.Bingo;
+import io.github.gaming32.bingo.conditions.WearingDifferentArmorCondition;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.icons.*;
@@ -348,8 +349,25 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         Component.translatable(oneOfThese[0].getDescriptionId())));
     }
 
+    protected BingoGoal.Builder wearDifferentMaterialsGoal(ResourceLocation id, int count) {
+        return BingoGoal.builder(id)
+                .criterion("armor", CriteriaTriggers.INVENTORY_CHANGED.createCriterion(
+                        new InventoryChangeTrigger.TriggerInstance(
+                                Optional.of(ContextAwarePredicate.create(
+                                        new WearingDifferentArmorCondition(
+                                                MinMaxBounds.Ints.atLeast(count), MinMaxBounds.Ints.atLeast(count)
+                                        ))
+                                ),
+                                InventoryChangeTrigger.TriggerInstance.Slots.ANY,
+                                Collections.emptyList()
+                        )
+                ))
+                .tags(EnigmaticsBingoTags.ARMOR)
+                .name(Component.translatable("enigmaticsbingogoals.goal.wear_different_armor", count))
+                .icon(BingoGoalGeneratorUtils.createAllDifferentMaterialsIcon());
+    }
 
-    protected static BingoGoal.Builder wearArmorPiecesGoal(ResourceLocation id, Item head, Item chest, Item legs, Item boots) {
+    protected BingoGoal.Builder wearArmorPiecesGoal(ResourceLocation id, Item head, Item chest, Item legs, Item boots) {
         Map<SlotRange, ItemPredicate> armorItems = new HashMap<>();
 
         if (head != null) {
@@ -385,7 +403,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                                 )
                         )
                 )
-                .icon(CycleIcon.infer(Stream.of(head, chest, legs, boots).filter(Objects::nonNull)));
+                .icon(CycleIcon.infer(Stream.of(head, chest, legs, boots).filter(Objects::nonNull).map(i -> new ItemStack(i, armorItems.size()))));
     }
 
 

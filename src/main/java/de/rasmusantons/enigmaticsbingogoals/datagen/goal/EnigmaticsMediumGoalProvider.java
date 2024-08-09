@@ -702,7 +702,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(tameSomeWolvesGoal(id("tame_some_wolves"), 2, 2));
         // TODO (requires OVERTAKABLE): Eat more unique foods than the enemy
         // TODO: Die to falling off vines
-        // TODO: Wear 4 different armor materials
+        addGoal(wearDifferentMaterialsGoal(id("wear_4_different_materials"), 4));
         // TODO: Use an Anvil
         addGoal(advancementProgressGoal(id("breed_some_unique_mobs"),
                 ResourceLocation.withDefaultNamespace("husbandry/bred_all_animals"), 6, 10)

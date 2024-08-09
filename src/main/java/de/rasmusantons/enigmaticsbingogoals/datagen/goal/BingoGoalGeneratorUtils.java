@@ -1,5 +1,8 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableTable;
+import com.google.common.collect.Table;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.serialization.Lifecycle;
@@ -8,6 +11,7 @@ import io.github.gaming32.bingo.data.icons.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.*;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.nbt.CompoundTag;
@@ -20,18 +24,13 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.CatVariant;
 import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.entity.animal.WolfVariant;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ResolvableProfile;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.block.entity.BannerPatterns;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class BingoGoalGeneratorUtils {
     public static ItemStack getCustomPLayerHead(PlayerHeadTextures textures) {
@@ -78,6 +77,24 @@ public class BingoGoalGeneratorUtils {
         return new EntityIcon(EntityType.FROG, data, new ItemStack(Items.FROG_SPAWN_EGG));
     }
 
+    public static GoalIcon createAllDifferentMaterialsIcon() {
+        final int iterations = 4;
+        final var armors = getArmors();
+        final List<ArmorMaterial> materials = ImmutableList.copyOf(armors.columnKeySet());
+        final ImmutableList.Builder<GoalIcon> icons = ImmutableList.builderWithExpectedSize(iterations * armors.rowMap().size());
+        int materialIndex = 0;
+        for (int iteration = 0; iteration < iterations; iteration++) {
+            for (final ArmorItem.Type type : armors.rowKeySet()) {
+                ArmorItem item;
+                do {
+                    item = armors.get(type, materials.get(materialIndex++ % materials.size()));
+                } while (item == null);
+                icons.add(new ItemIcon(new ItemStack(item, 4)));
+            }
+        }
+        return new CycleIcon(icons.build());
+    }
+
     public static ItemStack getOminousBanner(HolderLookup.Provider registries) {
         var patternRegistry = registries.lookupOrThrow(Registries.BANNER_PATTERN);
 
@@ -120,6 +137,18 @@ public class BingoGoalGeneratorUtils {
                 }
             };
         }
+    }
+
+    public static Table<ArmorItem.Type, ArmorMaterial, ArmorItem> getArmors() {
+        final ImmutableTable.Builder<ArmorItem.Type, ArmorMaterial, ArmorItem> armors = ImmutableTable.builder();
+        armors.orderRowsBy(Comparator.reverseOrder());
+        armors.orderColumnsBy(Comparator.comparingInt(BuiltInRegistries.ARMOR_MATERIAL::getId));
+        for (final Item item : BuiltInRegistries.ITEM) {
+            if (!(item instanceof ArmorItem armorItem) || armorItem.getType() == ArmorItem.Type.BODY)
+                continue;
+            armors.put(armorItem.getType(), armorItem.getMaterial().value(), armorItem);
+        }
+        return armors.build();
     }
 
     public enum PlayerHeadTextures {
