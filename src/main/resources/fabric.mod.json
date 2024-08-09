@@ -25,7 +25,7 @@
   "depends": {
     "fabricloader": ">=0.15.11",
     "fabric": "*",
-    "minecraft": ">=1.21- <1.21.1",
+    "minecraft": ">=1.21- <1.22",
     "bingo": "1.1.10"
   },
   "accessWidener": "enigmaticsbingogoals.accesswidener"
