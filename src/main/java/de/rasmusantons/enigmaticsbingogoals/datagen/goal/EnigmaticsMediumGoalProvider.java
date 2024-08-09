@@ -136,7 +136,6 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         // TODO (requires OVERTAKABLE): Kill more unique neutral mobs than the enemy
         // TODO (requires OVERTAKABLE): Visit more unique Overworld Biomes than enemy team
         // TODO (requires OVERTAKABLE): Take less damage than the enemy
-        // TODO: Visit 15-25 unique Biomes
         addGoal(advancementProgressGoal(id("visit_some_unique_overworld_biomes"),
                 ResourceLocation.withDefaultNamespace("adventure/adventuring_time"), 15, 25)
                 .name(Component.translatable("enigmaticsbingogoals.goal.visit_some_unique_overworld_biomes", 0),
