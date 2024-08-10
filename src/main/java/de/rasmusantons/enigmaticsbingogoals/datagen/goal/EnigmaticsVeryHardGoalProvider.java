@@ -70,7 +70,8 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
                 .antisynergy(EnigmaticsBingoSynergies.WITHER)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
         );
-        addGoal(makeBannerWithPatternItemGoal(id("use_snout_pattern"), BannerPatterns.PIGLIN, "Snout Pattern")
+        addGoal(makeBannerWithPatternItemGoal(id("use_snout_pattern"),  Items.PIGLIN_BANNER_PATTERN,
+                BannerPatterns.PIGLIN, "Snout Pattern")
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHER_EXPLORE, EnigmaticsBingoTags.BASTION)
         );
     }

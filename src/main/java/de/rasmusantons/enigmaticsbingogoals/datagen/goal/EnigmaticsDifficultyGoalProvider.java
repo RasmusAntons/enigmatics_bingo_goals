@@ -509,17 +509,27 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getFrogVariantIcon(variant), Items.SLIME_BALL))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.breed_frog.tooltip", EntityType.TADPOLE.getDescription()));
     }
-    protected BingoGoal.Builder makeBannerWithPatternItemGoal(ResourceLocation id, ResourceKey<BannerPattern> pattern, String patternName) {
+    protected BingoGoal.Builder makeBannerWithPatternItemGoal(ResourceLocation id, ItemLike patternItem, ResourceKey<BannerPattern> pattern, String patternName) {
         HolderLookup.RegistryLookup<BannerPattern> bannerPatterns = registries.lookupOrThrow(Registries.BANNER_PATTERN);
         return BingoGoal.builder(id)
-                .criterion("use", ApplyPatternTrigger.TriggerInstance.hasPatterns(List.of(pattern)))
+                .criterion("use", EnigmaticsBingoGoalsTriggers.USE_LOOM.get().createCriterion(
+                                new UseLoomTrigger.TriggerInstance(
+                                        Optional.empty(),
+                                        Optional.empty(),
+                                        Optional.empty(),
+                                        Optional.empty(),
+                                        Optional.of(ItemPredicate.Builder.item().of(patternItem).build())
+                                )
+                        )
+                )
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.USE_WORKSTATION)
                 .antisynergy(EnigmaticsBingoSynergies.LOOM)
-                .name(Component.translatable("enigmaticsbingogoals.goal.use_loom_pattern", patternName, Items.LOOM.getDescription()))
+                .name(Component.translatable("enigmaticsbingogoals.goal.use_loom_pattern", patternName))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.use_loom_pattern.tooltip"))
                 .icon(IndicatorIcon.infer(
                         makeBannerWithPattern(Items.WHITE_BANNER, bannerPatterns.getOrThrow(pattern), DyeColor.BLACK),
                         BlockIcon.ofBlock(Blocks.LOOM)
                 ));
+
     }
 }

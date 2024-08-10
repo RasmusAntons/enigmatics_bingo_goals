@@ -108,7 +108,8 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, BingoTags.NETHER, BingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
                         EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE)
         );
-        addGoal(makeBannerWithPatternItemGoal(id("use_skull_pattern"), BannerPatterns.SKULL, "Skull Charge Pattern")
+        addGoal(makeBannerWithPatternItemGoal(id("use_skull_pattern"),  Items.SKULL_BANNER_PATTERN,
+                BannerPatterns.SKULL, "Skull Charge Pattern")
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS)
         );
         addGoal(advancementProgressGoal(id("eat_some_unique_foods"),
@@ -259,7 +260,8 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         subber -> subber.sub("with.0", "count")
                 )
         );
-        addGoal(makeBannerWithPatternItemGoal(id("use_globe_pattern"), BannerPatterns.GLOBE, "Globe Pattern")
+        addGoal(makeBannerWithPatternItemGoal(id("use_globe_pattern"),  Items.GLOBE_BANNER_PATTERN,
+                BannerPatterns.GLOBE, "Globe Pattern")
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE)
         );
     }
