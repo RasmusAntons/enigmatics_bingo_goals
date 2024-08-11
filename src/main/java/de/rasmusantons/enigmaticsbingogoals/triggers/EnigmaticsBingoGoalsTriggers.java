@@ -27,6 +27,7 @@ public class EnigmaticsBingoGoalsTriggers {
     public static final RegistryValue<TadpoleMaturesTrigger> TADPOLE_MATURES = register("tadpole_matures", TadpoleMaturesTrigger::new);
     public static final RegistryValue<WriteBookTrigger> WRITE_BOOK = register("write_book", WriteBookTrigger::new);
     public static final RegistryValue<UseLoomTrigger> USE_LOOM = register("use_loom", UseLoomTrigger::new);
+    public static final RegistryValue<UseCartographyTableTrigger> USE_CARTOGRAPHY_TABLE = register("use_cartography_table", UseCartographyTableTrigger::new);
 
     public static void load() {
     }

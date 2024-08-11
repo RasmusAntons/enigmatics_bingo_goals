@@ -6,10 +6,7 @@ import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoDamageTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
-import de.rasmusantons.enigmaticsbingogoals.triggers.UseLoomTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.DamageExceptTeamTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.WearPumpkinTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.WriteBookTrigger;
+import de.rasmusantons.enigmaticsbingogoals.triggers.*;
 import io.github.gaming32.bingo.conditions.HasAnyEffectCondition;
 import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
@@ -298,7 +295,13 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ANCIENT_CITY, EnigmaticsBingoTags.TRIAL_CHAMBER)
                 .antisynergy(EnigmaticsBingoSynergies.LUSH_CAVE)
         );
-        // TODO: Use a Cartography Table
+        addGoal(BingoGoal.builder(id("use_cartography_table"))
+                .criterion("use", UseCartographyTableTrigger.TriggerInstance.used())
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, BingoTags.VILLAGE, EnigmaticsBingoTags.USE_WORKSTATION)
+                .antisynergy(EnigmaticsBingoSynergies.MAP)
+                .name(Component.translatable("enigmaticsbingogoals.goal.use_cartography_table", Items.CARTOGRAPHY_TABLE.getDescription()))
+                .icon(BlockIcon.ofBlock(Blocks.CARTOGRAPHY_TABLE))
+        );
         addGoal(makeBannerWithPatternItemGoal(id("use_flower_pattern"), Items.FLOWER_BANNER_PATTERN,
                 BannerPatterns.FLOWER, "Flower Charge Pattern")
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, BingoTags.VILLAGE)

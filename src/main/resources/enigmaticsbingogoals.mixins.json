@@ -19,7 +19,8 @@
     "SpectralArrowMixin",
     "TadpoleMixin",
     "ThrownPotionMixin",
-    "LoomMenuMixin"
+    "LoomMenuMixin",
+    "CartographyTableMenuMixin"
   ],
   "injectors": {
     "defaultRequire": 1
