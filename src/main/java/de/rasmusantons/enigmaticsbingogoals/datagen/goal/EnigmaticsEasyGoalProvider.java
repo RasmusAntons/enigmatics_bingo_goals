@@ -1,6 +1,7 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
+import de.rasmusantons.enigmaticsbingogoals.conditions.PlayerAliveCondition;
 import de.rasmusantons.enigmaticsbingogoals.conditions.UniqueFoodsOnCampfireCondition;
 import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoDamageTypeTags;
@@ -790,6 +791,20 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .antisynergy(EnigmaticsBingoSynergies.LOOM)
                 .name(Component.translatable("enigmaticsbingogoals.goal.use_loom", Items.LOOM.getDescription()))
                 .icon(BlockIcon.ofBlock(Blocks.LOOM))
+        );
+        addGoal(BingoGoal.builder(id("survive_explosion"))
+                .criterion("survive", CriteriaTriggers.ENTITY_HURT_PLAYER.createCriterion(
+                        new EntityHurtPlayerTrigger.TriggerInstance(
+                                Optional.of(ContextAwarePredicate.create(
+                                    PlayerAliveCondition.INSTANCE
+                                )),
+                                Optional.empty()
+                        ))
+                )
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY)
+                .antisynergy(EnigmaticsBingoSynergies.EXPLOSION)
+                .name(Component.translatable("enigmaticsbingogoals.goal.survive_explosion"))
+                .icon(IndicatorIcon.infer(BlockIcon.ofBlock(Blocks.TNT), EffectIcon.of(MobEffects.REGENERATION)))
         );
     }
 }
