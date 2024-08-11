@@ -221,6 +221,13 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.UNDEAD_MOB_BATCH, EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH)
         );
+        addGoal(killEntitiesFromTagGoal(id("kill_15_arthropods"), EntityTypeTags.ARTHROPOD, 15, 15, false)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
+                                Component.translatable(EntityTypeTags.ARTHROPOD.getTranslationKey())),
+                        subber -> subber.sub("with.0", "amount"))
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH)
+        );
         addGoal(killEntitiesFromTagGoal(id("kill_30_arthropods"), EntityTypeTags.ARTHROPOD, 30, 30, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
                                 Component.translatable(EntityTypeTags.ARTHROPOD.getTranslationKey())),
