@@ -20,7 +20,8 @@
     "TadpoleMixin",
     "ThrownPotionMixin",
     "LoomMenuMixin",
-    "CartographyTableMenuMixin"
+    "CartographyTableMenuMixin",
+    "AnvilMenuMixin"
   ],
   "injectors": {
     "defaultRequire": 1

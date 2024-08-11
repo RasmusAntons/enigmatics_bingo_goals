@@ -21,7 +21,7 @@ public abstract class LoomMenuMixin  {
     private LoomMenu loomMenu;
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void init(LoomMenu loomMenu, Container container, int i, int j, int k, ContainerLevelAccess containerLevelAccess, CallbackInfo ci) {
+    private void LoomMenu(LoomMenu loomMenu, Container container, int i, int j, int k, ContainerLevelAccess containerLevelAccess, CallbackInfo ci) {
         this.loomMenu = loomMenu;
     }
 

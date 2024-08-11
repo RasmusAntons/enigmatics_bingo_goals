@@ -46,10 +46,10 @@ public class UseCartographyTableTrigger extends SimpleCriterionTrigger<UseCartog
         public boolean matches(ItemStack result, ItemStack map, ItemStack modifier) {
 
             boolean resultMatch = this.result.isEmpty() || this.result.get().test(result);
-            boolean bannerMatch = this.map.isEmpty() || this.map.get().test(map);
-            boolean dyeMatch = this.modifier.isEmpty() || this.modifier.get().test(modifier);
+            boolean mapMatch = this.map.isEmpty() || this.map.get().test(map);
+            boolean modifierMatch = this.modifier.isEmpty() || this.modifier.get().test(modifier);
 
-            return (resultMatch && bannerMatch && dyeMatch);
+            return (resultMatch && mapMatch && modifierMatch);
         }
     }
 }

@@ -8,9 +8,7 @@ import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoDamageTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoFeatureTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
-import de.rasmusantons.enigmaticsbingogoals.triggers.GiveEffectToOtherTeamTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.HitOtherTeamWithProjectileTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger;
+import de.rasmusantons.enigmaticsbingogoals.triggers.*;
 import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
@@ -703,7 +701,12 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         // TODO: Die to falling off vines
         addGoal(wearDifferentMaterialsGoal(id("wear_4_different_materials"), 4));
         // TODO: Disenchant using a Grindstone
-        // TODO: Use an Anvil
+        addGoal(BingoGoal.builder(id("use_anvil"))
+                .criterion("use", UseAnvilTrigger.TriggerInstance.used())
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ANVIL, EnigmaticsBingoTags.USE_WORKSTATION)
+                .name(Component.translatable("enigmaticsbingogoals.goal.use_anvil", Items.ANVIL.getDescription()))
+                .icon(BlockIcon.ofBlock(Blocks.ANVIL))
+        );
         addGoal(advancementProgressGoal(id("breed_some_unique_mobs"),
                 ResourceLocation.withDefaultNamespace("husbandry/bred_all_animals"), 6, 10)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_some_unique_mobs", 0),
