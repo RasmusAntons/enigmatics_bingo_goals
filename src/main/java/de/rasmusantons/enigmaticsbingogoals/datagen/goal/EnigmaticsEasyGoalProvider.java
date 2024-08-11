@@ -213,13 +213,13 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
-                .antisynergy(EnigmaticsBingoSynergies.UNDEAD_MOB_BATCH, EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH)
+                .antisynergy(EnigmaticsBingoSynergies.UNDEAD_MOB_BATCH, EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH, EnigmaticsBingoSynergies.AQUATIC_MOB_BATCH)
         );
         addGoal(killEntitiesFromTagGoal(id("kill_100_mobs"), EnigmaticsBingoEntityTypeTags.MOBS, 100, 100, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
-                .antisynergy(EnigmaticsBingoSynergies.UNDEAD_MOB_BATCH, EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH)
+                .antisynergy(EnigmaticsBingoSynergies.UNDEAD_MOB_BATCH, EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH, EnigmaticsBingoSynergies.AQUATIC_MOB_BATCH)
         );
         addGoal(killEntitiesFromTagGoal(id("kill_15_arthropods"), EntityTypeTags.ARTHROPOD, 15, 15, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
@@ -234,6 +234,20 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH)
+        );
+        addGoal(killEntitiesFromTagGoal(id("kill_10_aquatic_mobs"), EntityTypeTags.AQUATIC, 10, 10, false)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
+                                Component.translatable(EntityTypeTags.AQUATIC.getTranslationKey())),
+                        subber -> subber.sub("with.0", "amount"))
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.AQUATIC_MOB_BATCH)
+        );
+        addGoal(killEntitiesFromTagGoal(id("kill_20_aquatic_mobs"), EntityTypeTags.AQUATIC, 20, 20, false)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
+                                Component.translatable(EntityTypeTags.AQUATIC.getTranslationKey())),
+                        subber -> subber.sub("with.0", "amount"))
+                .tags(EnigmaticsBingoTags.KILL_MOB)
+                .antisynergy(EnigmaticsBingoSynergies.AQUATIC_MOB_BATCH)
         );
         addGoal(killEntitiesFromTagGoal(id("kill_30_undead_mobs"), EntityTypeTags.UNDEAD, 30, 30, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,

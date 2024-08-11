@@ -27,6 +27,7 @@ public class EnigmaticsBingoSynergies {
     public static final String UNIQUE_NEUTRAL_MOBS = "unique_neutral_mobs";
     public static final String UNIQUE_HOSTILE_MOBS = "unique_hostile_mobs";
     public static final String UNDEAD_MOB_BATCH = "undead_mob_batch";
+    public static final String AQUATIC_MOB_BATCH = "aquatic_mob_batch";
     public static final String ARTHROPOD_MOB_BATCH = "arthropod_mob_batch";
     public static final String FROG = "frog";
     public static final String MUSIC_DISC = "music_disc";
