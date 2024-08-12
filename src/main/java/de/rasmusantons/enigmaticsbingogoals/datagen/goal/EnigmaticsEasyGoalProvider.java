@@ -163,6 +163,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(dieToDamageTypeGoal(id("die_to_fireworks"), EnigmaticsBingoDamageTypeTags.FIREWORKS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_fireworks", Items.FIREWORK_ROCKET.getDescription()))
+                .catalyst(EnigmaticsBingoSynergies.EXPLOSION)
                 .icon(IndicatorIcon.infer(Items.FIREWORK_ROCKET, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
         );
         addGoal(breakBlockGoal(id("break_diamond_ore"), Blocks.DIAMOND_ORE, Blocks.DEEPSLATE_DIAMOND_ORE)
@@ -663,6 +664,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(dieToEntityGoal(id("die_to_tnt_minecart"), EntityType.TNT_MINECART, ItemIcon.ofItem(Items.TNT_MINECART))
                 .tags(BingoTags.OVERWORLD)
+                .catalyst(EnigmaticsBingoSynergies.EXPLOSION)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_tnt_minecart",
                         EntityType.TNT_MINECART.getDescription()))
         );
@@ -798,11 +800,15 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                                 Optional.of(ContextAwarePredicate.create(
                                     PlayerAliveCondition.INSTANCE
                                 )),
-                                Optional.empty()
+                                Optional.of(DamagePredicate.Builder.damageInstance().type(
+                                        DamageSourcePredicate.Builder.damageType()
+                                                .tag(TagPredicate.is(DamageTypeTags.IS_EXPLOSION))
+                                                .build()
+                                ).build())
                         ))
                 )
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY)
-                .antisynergy(EnigmaticsBingoSynergies.EXPLOSION)
+                .reactant(EnigmaticsBingoSynergies.EXPLOSION)
                 .name(Component.translatable("enigmaticsbingogoals.goal.survive_explosion"))
                 .icon(IndicatorIcon.infer(BlockIcon.ofBlock(Blocks.TNT), EffectIcon.of(MobEffects.REGENERATION)))
         );

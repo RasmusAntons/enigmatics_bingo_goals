@@ -167,7 +167,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(dieToDamageTypeGoal(id("die_to_intentional_game_design"), EnigmaticsBingoDamageTypeTags.INTENTIONAL_GAME_DESIGN)
                 .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.DIE_TO)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_intentional_game_design"))
-                .antisynergy(EnigmaticsBingoSynergies.EXPLOSION)
+                .catalyst(EnigmaticsBingoSynergies.EXPLOSION)
                 .icon(IndicatorIcon.infer(CycleIcon.infer(Items.RED_BED, Items.RESPAWN_ANCHOR), BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)))
         );
         addGoal(dieToMobEntityGoal(id("die_to_goat"), EntityType.GOAT)
