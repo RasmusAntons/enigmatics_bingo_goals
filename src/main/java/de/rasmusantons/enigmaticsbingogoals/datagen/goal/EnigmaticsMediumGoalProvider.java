@@ -8,10 +8,7 @@ import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoDamageTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoFeatureTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
-import de.rasmusantons.enigmaticsbingogoals.triggers.GiveEffectToOtherTeamTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.HitOtherTeamWithProjectileTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.PlayMusicToOtherTeamTrigger;
-import de.rasmusantons.enigmaticsbingogoals.triggers.UseAnvilTrigger;
+import de.rasmusantons.enigmaticsbingogoals.triggers.*;
 import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoGoal;
 import io.github.gaming32.bingo.data.BingoTags;
@@ -704,7 +701,6 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(tameSomeCatsGoal(id("tame_some_cats"), 2, 4));
         addGoal(tameSomeWolvesGoal(id("tame_some_wolves"), 2, 2));
         // TODO (requires OVERTAKABLE): Eat more unique foods than the enemy
-        // TODO: Die to falling off vines
         addGoal(wearDifferentMaterialsGoal(id("wear_4_different_materials"), 4));
         addGoal(BingoGoal.builder(id("use_grindstone_to_disenchant"))
                 .criterion("disenchant_enchant_slot_1", UseGrindstoneTrigger.builder().firstItem(
@@ -873,6 +869,26 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(obtainItemGoal(id("obtain_goat_horn"), Items.GOAT_HORN)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN, EnigmaticsBingoTags.GOAT, EnigmaticsBingoTags.OUTPOST)
+        );
+        addGoal(BingoGoal.builder(id("die_to_vines"))
+                .criterion("die", EnigmaticsBingoGoalsTriggers.FALL_FROM_BLOCK.get().createCriterion(
+                                new FallFromBlockTrigger.TriggerInstance(
+                                        Optional.of(ContextAwarePredicate.create(
+                                                new InvertedLootItemCondition(
+                                                        PlayerAliveCondition.INSTANCE
+                                                )
+                                        )),
+                                        Optional.of(BlockPredicate.Builder.block().of(Blocks.VINE).build()),
+                                        Optional.empty()
+                                )
+                        )
+                )
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_vines", Items.VINE.getDescription()))
+                .icon(IndicatorIcon.infer(
+                        Items.VINE,
+                        BingoGoalGeneratorUtils.getCustomPLayerHead((BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD))
+                ))
+                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.DIE_TO)
         );
     }
 }
