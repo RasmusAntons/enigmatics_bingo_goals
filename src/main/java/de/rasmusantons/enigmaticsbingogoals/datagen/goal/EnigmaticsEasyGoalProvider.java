@@ -271,7 +271,17 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.UNIQUE_NEUTRAL_MOBS, EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
-        // TODO: Wash something in a Cauldron
+        addGoal(
+                BingoGoal.builder(id("clean_armor_in_cauldron"))
+                        .criterion("sign", CleanArmorInCauldronTrigger.TriggerInstance.cleanArmor())
+                        .name(Component.translatable("enigmaticsbingogoals.goal.clean_armor_in_cauldron",
+                                Items.CAULDRON.getDescription()))
+                        .tags(BingoTags.ITEM, BingoTags.OVERWORLD, BingoTags.VILLAGE)
+                        .icon(IndicatorIcon.infer(
+                                BlockIcon.ofBlock(Blocks.WATER_CAULDRON),
+                                new ItemTagCycleIcon(ItemTags.DYEABLE)
+                        ))
+        );
         addGoal(BingoGoal.builder(id("fill_a_chiseled_bookshelf"))
                 .criterion("use", ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(
                         LocationPredicate.Builder.location().setBlock(

@@ -79,7 +79,7 @@ public class BingoGoalGeneratorUtils {
 
     public static GoalIcon createAllDifferentMaterialsIcon() {
         final int iterations = 4;
-        final var armors = getArmors();
+        final var armors = getPlayerArmors();
         final List<ArmorMaterial> materials = ImmutableList.copyOf(armors.columnKeySet());
         final ImmutableList.Builder<GoalIcon> icons = ImmutableList.builderWithExpectedSize(iterations * armors.rowMap().size());
         int materialIndex = 0;
@@ -139,7 +139,7 @@ public class BingoGoalGeneratorUtils {
         }
     }
 
-    public static Table<ArmorItem.Type, ArmorMaterial, ArmorItem> getArmors() {
+    public static Table<ArmorItem.Type, ArmorMaterial, ArmorItem> getPlayerArmors() {
         final ImmutableTable.Builder<ArmorItem.Type, ArmorMaterial, ArmorItem> armors = ImmutableTable.builder();
         armors.orderRowsBy(Comparator.reverseOrder());
         armors.orderColumnsBy(Comparator.comparingInt(BuiltInRegistries.ARMOR_MATERIAL::getId));

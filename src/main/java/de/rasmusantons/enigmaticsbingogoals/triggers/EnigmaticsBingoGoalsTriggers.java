@@ -30,6 +30,8 @@ public class EnigmaticsBingoGoalsTriggers {
     public static final RegistryValue<UseCartographyTableTrigger> USE_CARTOGRAPHY_TABLE = register("use_cartography_table", UseCartographyTableTrigger::new);
     public static final RegistryValue<UseAnvilTrigger> USE_ANVIL = register("use_anvil", UseAnvilTrigger::new);
     public static final RegistryValue<FallFromBlockTrigger> FALL_FROM_BLOCK = register("fall_from_block", FallFromBlockTrigger::new);
+    public static final RegistryValue<CleanArmorInCauldronTrigger> CLEAN_ARMOR_IN_CAULDRON = register("clean_armor_in_cauldron", CleanArmorInCauldronTrigger::new);
+
 
     public static void load() {
     }

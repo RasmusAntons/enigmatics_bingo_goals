@@ -21,7 +21,8 @@
     "ThrownPotionMixin",
     "LoomMenuMixin",
     "CartographyTableMenuMixin",
-    "AnvilMenuMixin"
+    "AnvilMenuMixin",
+    "AbstractCauldronBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
