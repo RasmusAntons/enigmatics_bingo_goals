@@ -237,14 +237,14 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH)
         );
-        addGoal(killEntitiesFromTagGoal(id("kill_10_aquatic_mobs"), EntityTypeTags.AQUATIC, 10, 10, false)
+        addGoal(killEntitiesFromTagGoal(id("kill_20_aquatic_mobs"), EntityTypeTags.AQUATIC, 20, 10, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
                                 Component.translatable(EntityTypeTags.AQUATIC.getTranslationKey())),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.AQUATIC_MOB_BATCH)
         );
-        addGoal(killEntitiesFromTagGoal(id("kill_20_aquatic_mobs"), EntityTypeTags.AQUATIC, 20, 20, false)
+        addGoal(killEntitiesFromTagGoal(id("kill_40_aquatic_mobs"), EntityTypeTags.AQUATIC, 40, 20, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
                                 Component.translatable(EntityTypeTags.AQUATIC.getTranslationKey())),
                         subber -> subber.sub("with.0", "amount"))
