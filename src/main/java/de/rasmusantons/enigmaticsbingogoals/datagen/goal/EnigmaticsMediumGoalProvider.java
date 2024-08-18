@@ -19,10 +19,13 @@ import io.github.gaming32.bingo.triggers.*;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponentPredicate;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -33,11 +36,13 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -700,44 +705,53 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(tameSomeWolvesGoal(id("tame_some_wolves"), 2, 2));
         // TODO (requires OVERTAKABLE): Eat more unique foods than the enemy
         addGoal(wearDifferentMaterialsGoal(id("wear_4_different_materials"), 4));
-        addGoal(BingoGoal.builder(id("use_grindstone_to_disenchant"))
-                .criterion("disenchant_enchant_slot_1", UseGrindstoneTrigger.builder().firstItem(
-                        ItemPredicate.Builder.item().withSubPredicate(
-                                ItemSubPredicates.ENCHANTMENTS,
-                                ItemEnchantmentsPredicate.enchantments(List.of(
-                                        new EnchantmentPredicate(Optional.empty(), MinMaxBounds.Ints.atLeast(0))
-                                ))
-                        ).build()).build()
-                )
-                .criterion("disenchant__stored_enchant_slot_1", UseGrindstoneTrigger.builder().secondItem(
-                        ItemPredicate.Builder.item().withSubPredicate(
-                                ItemSubPredicates.STORED_ENCHANTMENTS,
-                                ItemEnchantmentsPredicate.storedEnchantments(List.of(
-                                        new EnchantmentPredicate(Optional.empty(), MinMaxBounds.Ints.atLeast(0))
-                                ))
-                        ).build()).build()
-                )
-                .criterion("disenchant__enchant_slot_2", UseGrindstoneTrigger.builder().firstItem(
-                        ItemPredicate.Builder.item().withSubPredicate(
-                                ItemSubPredicates.ENCHANTMENTS,
-                                ItemEnchantmentsPredicate.enchantments(List.of(
-                                        new EnchantmentPredicate(Optional.empty(), MinMaxBounds.Ints.atLeast(0))
-                                ))
-                        ).build()).build()
-                )
-                .criterion("disenchant__stored_enchant_slot_2", UseGrindstoneTrigger.builder().secondItem(
-                        ItemPredicate.Builder.item().withSubPredicate(
-                                ItemSubPredicates.STORED_ENCHANTMENTS,
-                                ItemEnchantmentsPredicate.storedEnchantments(List.of(
-                                        new EnchantmentPredicate(Optional.empty(), MinMaxBounds.Ints.atLeast(0))
-                                ))
-                        ).build()).build()
-                )
-                .requirements(AdvancementRequirements.Strategy.OR)
-                .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.USE_WORKSTATION)
-                .name(Component.translatable("enigmaticsbingogoals.goal.use_grindstone_to_disenchant", Items.GRINDSTONE.getDescription()))
-                .icon(new IndicatorIcon(BlockIcon.ofBlock(Blocks.GRINDSTONE), ItemIcon.ofItem(Items.ENCHANTED_BOOK)))
-        );
+        {
+            HolderLookup.RegistryLookup<Enchantment> enchantmentRegistry = registries.lookupOrThrow(Registries.ENCHANTMENT);
+            List<Holder.Reference<Enchantment>> enchantmentNoCurses = enchantmentRegistry
+                    .listElements()
+                    .filter(hr -> !StringUtils.containsIgnoreCase(hr.toString(), "curse"))
+                    .toList();
+            HolderSet<Enchantment> enchantmentHolderSetNoCurses = HolderSet.direct(enchantmentNoCurses);
+
+            addGoal(BingoGoal.builder(id("use_grindstone_to_disenchant"))
+                    .criterion("disenchant_enchant_slot_1", UseGrindstoneTrigger.builder().firstItem(
+                            ItemPredicate.Builder.item().withSubPredicate(
+                                    ItemSubPredicates.ENCHANTMENTS,
+                                    ItemEnchantmentsPredicate.enchantments(List.of(
+                                            new EnchantmentPredicate(Optional.of(enchantmentHolderSetNoCurses), MinMaxBounds.Ints.atLeast(0))
+                                    ))
+                            ).build()).build()
+                    )
+                    .criterion("disenchant_stored_enchant_slot_1", UseGrindstoneTrigger.builder().firstItem(
+                            ItemPredicate.Builder.item().withSubPredicate(
+                                    ItemSubPredicates.STORED_ENCHANTMENTS,
+                                    ItemEnchantmentsPredicate.storedEnchantments(List.of(
+                                            new EnchantmentPredicate(Optional.of(enchantmentHolderSetNoCurses), MinMaxBounds.Ints.atLeast(0))
+                                    ))
+                            ).build()).build()
+                    )
+                    .criterion("disenchant_enchant_slot_2", UseGrindstoneTrigger.builder().secondItem(
+                            ItemPredicate.Builder.item().withSubPredicate(
+                                    ItemSubPredicates.ENCHANTMENTS,
+                                    ItemEnchantmentsPredicate.enchantments(List.of(
+                                            new EnchantmentPredicate(Optional.of(enchantmentHolderSetNoCurses), MinMaxBounds.Ints.atLeast(0))
+                                    ))
+                            ).build()).build()
+                    )
+                    .criterion("disenchant_stored_enchant_slot_2", UseGrindstoneTrigger.builder().secondItem(
+                            ItemPredicate.Builder.item().withSubPredicate(
+                                    ItemSubPredicates.STORED_ENCHANTMENTS,
+                                    ItemEnchantmentsPredicate.storedEnchantments(List.of(
+                                            new EnchantmentPredicate(Optional.of(enchantmentHolderSetNoCurses), MinMaxBounds.Ints.atLeast(0))
+                                    ))
+                            ).build()).build()
+                    )
+                    .requirements(AdvancementRequirements.Strategy.OR)
+                    .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.USE_WORKSTATION)
+                    .name(Component.translatable("enigmaticsbingogoals.goal.use_grindstone_to_disenchant", Items.GRINDSTONE.getDescription()))
+                    .icon(new IndicatorIcon(BlockIcon.ofBlock(Blocks.GRINDSTONE), ItemIcon.ofItem(Items.ENCHANTED_BOOK)))
+            );
+        }
         addGoal(BingoGoal.builder(id("use_anvil"))
                 .criterion("use", UseAnvilTrigger.TriggerInstance.used())
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ANVIL, EnigmaticsBingoTags.USE_WORKSTATION)
