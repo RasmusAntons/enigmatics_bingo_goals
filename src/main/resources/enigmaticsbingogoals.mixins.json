@@ -22,7 +22,8 @@
     "LoomMenuMixin",
     "CartographyTableMenuMixin",
     "AnvilMenuMixin",
-    "AbstractCauldronBlockMixin"
+    "AbstractCauldronBlockMixin",
+    "ArmorStandMixin"
   ],
   "injectors": {
     "defaultRequire": 1

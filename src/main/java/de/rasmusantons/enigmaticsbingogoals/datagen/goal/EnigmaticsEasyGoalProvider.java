@@ -271,8 +271,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.UNIQUE_NEUTRAL_MOBS, EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
-        addGoal(
-                BingoGoal.builder(id("clean_armor_in_cauldron"))
+        addGoal(BingoGoal.builder(id("clean_armor_in_cauldron"))
                         .criterion("sign", CleanArmorInCauldronTrigger.TriggerInstance.cleanArmor())
                         .name(Component.translatable("enigmaticsbingogoals.goal.clean_armor_in_cauldron",
                                 Items.CAULDRON.getDescription()))
@@ -313,7 +312,16 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(eatItemGoal(id("eat_rabbit_stew"), Items.RABBIT_STEW)
                 .tags(BingoTags.OVERWORLD, BingoTags.VILLAGE, EnigmaticsBingoTags.STEW)
         );
-        // TODO: Give an armor stand 4 pieces of armor
+        addGoal(BingoGoal.builder(id("armor_stand_full_armor"))
+                        .criterion("full", ArmorStandSwapTrigger.TriggerInstance.fullArmor())
+                        .name(Component.translatable("enigmaticsbingogoals.goal.armor_stand_full_armor",
+                                Items.ARMOR_STAND.getDescription()))
+                        .tags(BingoTags.ITEM, BingoTags.OVERWORLD)
+                        .icon(IndicatorIcon.infer(
+                                EntityIcon.of(EntityType.ARMOR_STAND, Items.ARMOR_STAND.getDefaultInstance()),
+                                BingoGoalGeneratorUtils.createAllDifferentMaterialsIcon()
+                        ))
+        );
         addGoal(wearArmorPiecesGoal(id("wear_full_leather"), Items.LEATHER_HELMET, Items.LEATHER_CHESTPLATE,
                 Items.LEATHER_LEGGINGS, Items.LEATHER_BOOTS)
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.ARMOR)
