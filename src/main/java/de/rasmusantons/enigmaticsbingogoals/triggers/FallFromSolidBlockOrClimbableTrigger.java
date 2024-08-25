@@ -11,11 +11,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-public class FallFromBlockTrigger extends SimpleCriterionTrigger<FallFromBlockTrigger.TriggerInstance> {
+public class FallFromSolidBlockOrClimbableTrigger extends SimpleCriterionTrigger<FallFromSolidBlockOrClimbableTrigger.TriggerInstance> {
     @NotNull
     @Override
-    public Codec<FallFromBlockTrigger.TriggerInstance> codec() {
-        return FallFromBlockTrigger.TriggerInstance.CODEC;
+    public Codec<FallFromSolidBlockOrClimbableTrigger.TriggerInstance> codec() {
+        return FallFromSolidBlockOrClimbableTrigger.TriggerInstance.CODEC;
     }
 
     public void trigger(ServerPlayer player, BlockPos block, Vec3 origin) {
@@ -25,17 +25,17 @@ public class FallFromBlockTrigger extends SimpleCriterionTrigger<FallFromBlockTr
     public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<BlockPredicate> block,
                                   Optional<DistancePredicate> distance)
             implements SimpleInstance {
-        public static final Codec<FallFromBlockTrigger.TriggerInstance> CODEC = RecordCodecBuilder.create(
+        public static final Codec<FallFromSolidBlockOrClimbableTrigger.TriggerInstance> CODEC = RecordCodecBuilder.create(
                 instance -> instance.group(
                         EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(TriggerInstance::player),
                         BlockPredicate.CODEC.optionalFieldOf("block").forGetter(TriggerInstance::block),
                         DistancePredicate.CODEC.optionalFieldOf("distance").forGetter(TriggerInstance::distance)
-                ).apply(instance, FallFromBlockTrigger.TriggerInstance::new)
+                ).apply(instance, FallFromSolidBlockOrClimbableTrigger.TriggerInstance::new)
         );
 
-        public static Criterion<FallFromBlockTrigger.TriggerInstance> fallFromBlock(BlockPredicate block, DistancePredicate distance) {
+        public static Criterion<FallFromSolidBlockOrClimbableTrigger.TriggerInstance> fallFromBlock(BlockPredicate block, DistancePredicate distance) {
             return EnigmaticsBingoGoalsTriggers.FALL_FROM_BLOCK.get().createCriterion(
-                    new FallFromBlockTrigger.TriggerInstance(Optional.empty(), Optional.of(block), Optional.of(distance))
+                    new FallFromSolidBlockOrClimbableTrigger.TriggerInstance(Optional.empty(), Optional.of(block), Optional.of(distance))
             );
         }
 

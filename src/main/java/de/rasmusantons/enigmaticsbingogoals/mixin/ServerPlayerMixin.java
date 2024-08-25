@@ -4,6 +4,7 @@ import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTrigger
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -45,8 +46,48 @@ public abstract class ServerPlayerMixin extends PlayerMixin {
 
     @Inject(method = "onChangedBlock", at = @At("HEAD"))
     protected void onChangedBlock(ServerLevel level, BlockPos pos, CallbackInfo ci) {
+
         if (level.getBlockState(pos).getBlock() != Blocks.AIR) {
-            lastBlockPos = blockPos;
+
+           if (lastBlockPos == null && blockPos != null) {
+                System.out.println("BLOCK CHANGED 1");
+                System.out.printf("PREVIOUS: null\n");
+                System.out.printf("FROM: %s \n", level.getBlockState(blockPos).getBlock());
+                System.out.printf("TO: %s \n", level.getBlockState(pos).getBlock());
+            }
+            else if (blockPos == null && lastBlockPos != null) {
+                System.out.println("BLOCK CHANGED 2");
+                System.out.printf("PREVIOUS: %s \n", level.getBlockState(lastBlockPos).getBlock());
+                System.out.printf("FROM: null\n");
+                System.out.printf("TO: %s \n", level.getBlockState(pos).getBlock());
+            }
+           else if (blockPos == null && lastBlockPos == null) {
+               System.out.println("BLOCK CHANGED 2");
+               System.out.printf("PREVIOUS: null\n");
+               System.out.printf("FROM: null\n");
+               System.out.printf("TO: %s \n", level.getBlockState(pos).getBlock());
+           }
+            else {
+                System.out.println("BLOCK CHANGED 3");
+                System.out.printf("PREVIOUS: %s \n", level.getBlockState(lastBlockPos).getBlock());
+                System.out.printf("FROM: %s \n", level.getBlockState(blockPos).getBlock());
+                System.out.printf("TO: %s \n", level.getBlockState(pos).getBlock());
+            }
+
+
+            if (blockPos != null) {
+                boolean isSolid = !level.getBlockState(blockPos).getCollisionShape(level, pos).isEmpty();
+                boolean isClimbable = level.getBlockState(blockPos).is(BlockTags.CLIMBABLE);
+
+                System.out.println("IS SOLID");
+                System.out.println(isSolid);
+                System.out.println("IS CLIMBABLE");
+                System.out.println(isClimbable);
+
+                if (isSolid || isClimbable) {
+                    lastBlockPos = blockPos;
+                }
+            }
             blockPos = pos;
         };
     }
@@ -54,7 +95,7 @@ public abstract class ServerPlayerMixin extends PlayerMixin {
     @Inject(method = "resetFallDistance", at = @At("HEAD"))
     private void resetFallDistance(CallbackInfo ci) {
 
-        if (startingToFallPosition != null) {
+        if (startingToFallPosition != null && lastBlockPos != null) {
             EnigmaticsBingoGoalsTriggers.FALL_FROM_BLOCK.get().trigger((ServerPlayer) (Object) this, this.lastBlockPos, startingToFallPosition);
         }
     }

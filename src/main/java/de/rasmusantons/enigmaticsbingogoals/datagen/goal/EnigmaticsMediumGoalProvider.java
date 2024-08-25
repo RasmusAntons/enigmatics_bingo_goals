@@ -884,7 +884,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(BingoGoal.builder(id("die_to_vines"))
                 .criterion("die", EnigmaticsBingoGoalsTriggers.FALL_FROM_BLOCK.get().createCriterion(
-                                new FallFromBlockTrigger.TriggerInstance(
+                                new FallFromSolidBlockOrClimbableTrigger.TriggerInstance(
                                         Optional.of(ContextAwarePredicate.create(
                                                 new InvertedLootItemCondition(
                                                         PlayerAliveCondition.INSTANCE
