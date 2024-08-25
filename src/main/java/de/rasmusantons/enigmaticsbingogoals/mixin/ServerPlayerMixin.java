@@ -50,7 +50,7 @@ public abstract class ServerPlayerMixin extends PlayerMixin {
         if (level.getBlockState(pos).getBlock() != Blocks.AIR) {
 
             if (blockPos != null) {
-                boolean isSolid = !level.getBlockState(blockPos).getCollisionShape(level, pos).isEmpty();
+                boolean isSolid = !level.getBlockState(blockPos).getCollisionShape(level, blockPos).isEmpty();
                 boolean isClimbable = level.getBlockState(blockPos).is(BlockTags.CLIMBABLE);
 
                 if (isSolid || isClimbable) {
