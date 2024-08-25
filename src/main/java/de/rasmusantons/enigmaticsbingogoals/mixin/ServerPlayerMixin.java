@@ -49,40 +49,9 @@ public abstract class ServerPlayerMixin extends PlayerMixin {
 
         if (level.getBlockState(pos).getBlock() != Blocks.AIR) {
 
-           if (lastBlockPos == null && blockPos != null) {
-                System.out.println("BLOCK CHANGED 1");
-                System.out.printf("PREVIOUS: null\n");
-                System.out.printf("FROM: %s \n", level.getBlockState(blockPos).getBlock());
-                System.out.printf("TO: %s \n", level.getBlockState(pos).getBlock());
-            }
-            else if (blockPos == null && lastBlockPos != null) {
-                System.out.println("BLOCK CHANGED 2");
-                System.out.printf("PREVIOUS: %s \n", level.getBlockState(lastBlockPos).getBlock());
-                System.out.printf("FROM: null\n");
-                System.out.printf("TO: %s \n", level.getBlockState(pos).getBlock());
-            }
-           else if (blockPos == null && lastBlockPos == null) {
-               System.out.println("BLOCK CHANGED 2");
-               System.out.printf("PREVIOUS: null\n");
-               System.out.printf("FROM: null\n");
-               System.out.printf("TO: %s \n", level.getBlockState(pos).getBlock());
-           }
-            else {
-                System.out.println("BLOCK CHANGED 3");
-                System.out.printf("PREVIOUS: %s \n", level.getBlockState(lastBlockPos).getBlock());
-                System.out.printf("FROM: %s \n", level.getBlockState(blockPos).getBlock());
-                System.out.printf("TO: %s \n", level.getBlockState(pos).getBlock());
-            }
-
-
             if (blockPos != null) {
                 boolean isSolid = !level.getBlockState(blockPos).getCollisionShape(level, pos).isEmpty();
                 boolean isClimbable = level.getBlockState(blockPos).is(BlockTags.CLIMBABLE);
-
-                System.out.println("IS SOLID");
-                System.out.println(isSolid);
-                System.out.println("IS CLIMBABLE");
-                System.out.println(isClimbable);
 
                 if (isSolid || isClimbable) {
                     lastBlockPos = blockPos;
