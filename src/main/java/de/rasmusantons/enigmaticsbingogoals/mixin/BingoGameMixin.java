@@ -6,7 +6,7 @@ import de.rasmusantons.enigmaticsbingogoals.triggers.AdvancementsTrigger;
 import io.github.gaming32.bingo.game.ActiveGoal;
 import io.github.gaming32.bingo.game.BingoBoard;
 import io.github.gaming32.bingo.game.BingoGame;
-import io.github.gaming32.bingo.game.BingoGameMode;
+import io.github.gaming32.bingo.game.mode.BingoGameMode;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
@@ -45,7 +45,7 @@ public abstract class BingoGameMixin implements BingoGameExtension {
     }
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void onInit(BingoBoard board, BingoGameMode gameMode, boolean requireClient, boolean persistent, boolean continueAfterWin, PlayerTeam[] teams, CallbackInfo ci) {
+    private void onInit(BingoBoard board, BingoGameMode gameMode, boolean requireClient, boolean continueAfterWin, int autoForfeitTicks, PlayerTeam[] teams, CallbackInfo ci) {
         totalDamage.clear();
     }
 

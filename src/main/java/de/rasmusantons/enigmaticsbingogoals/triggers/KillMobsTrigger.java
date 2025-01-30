@@ -54,10 +54,10 @@ public class KillMobsTrigger extends SimpleProgressibleCriterionTrigger<KillMobs
         }
 
         public boolean matches(ServerPlayer player, ProgressListener<TriggerInstance> progressListener) {
-            final BingoGame game = Bingo.activeGame;
-            if (game == null)
+            final BingoGame activeGame = player.server.bingo$getGame();
+            if (activeGame == null)
                 return false;
-            final Object2IntMap<Stat<?>> baseStats = game.getBaseStats(player);
+            final Object2IntMap<Stat<?>> baseStats = activeGame.getBaseStats(player);
             if (baseStats == null)
                 return false;
             final StatsCounter currentStats = player.getStats();

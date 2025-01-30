@@ -2,7 +2,6 @@ package de.rasmusantons.enigmaticsbingogoals.mixin;
 
 import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTriggers;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -17,7 +16,7 @@ public class FoodDataMixin {
     private int foodLevel;
 
     @Inject(method = "tick", at = @At("TAIL"))
-    public void onTick(Player player, CallbackInfo ci) {
+    public void onTick(ServerPlayer player, CallbackInfo ci) {
         if (foodLevel <= 0.0 && player instanceof ServerPlayer serverPlayer) {
 
             EnigmaticsBingoGoalsTriggers.EMPTY_HUNGER.get().trigger(serverPlayer);

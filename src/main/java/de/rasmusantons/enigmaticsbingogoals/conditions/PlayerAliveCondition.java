@@ -2,8 +2,8 @@ package de.rasmusantons.enigmaticsbingogoals.conditions;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.context.ContextKey;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParam;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
@@ -24,13 +24,13 @@ public enum PlayerAliveCondition implements LootItemCondition {
 
     @Override
     public boolean test(LootContext lootContext) {
-        return lootContext.getParamOrNull(LootContextParams.THIS_ENTITY) instanceof ServerPlayer serverPlayer
+        return lootContext.getOptionalParameter(LootContextParams.THIS_ENTITY) instanceof ServerPlayer serverPlayer
                 && serverPlayer.isAlive();
     }
 
     @NotNull
     @Override
-    public Set<LootContextParam<?>> getReferencedContextParams() {
+    public Set<ContextKey<?>> getReferencedContextParams() {
         return Set.of(LootContextParams.THIS_ENTITY);
     }
 }

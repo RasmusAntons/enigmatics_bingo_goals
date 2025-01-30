@@ -1,5 +1,6 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
+import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoGoals;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.NumberOfEffectsCondition;
 import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
@@ -7,18 +8,20 @@ import de.rasmusantons.enigmaticsbingogoals.datagen.goal.BingoGoalGeneratorUtils
 import de.rasmusantons.enigmaticsbingogoals.triggers.*;
 import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.conditions.WearingDifferentArmorCondition;
-import io.github.gaming32.bingo.data.BingoGoal;
+import io.github.gaming32.bingo.data.BingoDifficulty;
 import io.github.gaming32.bingo.data.BingoTags;
+import io.github.gaming32.bingo.data.goal.BingoGoal;
+import io.github.gaming32.bingo.data.goal.GoalBuilder;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
 import io.github.gaming32.bingo.data.subs.BingoSub;
 import io.github.gaming32.bingo.fabric.datagen.goal.DifficultyGoalProvider;
 import io.github.gaming32.bingo.triggers.*;
-import io.github.gaming32.bingo.util.BingoUtil;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponents;
@@ -42,6 +45,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -54,36 +58,41 @@ import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
+import static de.rasmusantons.enigmaticsbingogoals.datagen.goal.BingoGoalGeneratorUtils.getAllEffectsIcon;
+
 public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalProvider {
-    public static final ResourceLocation ENIGMATICS = ResourceLocation.fromNamespaceAndPath(Bingo.MOD_ID, "enigmatics");
-    public EnigmaticsDifficultyGoalProvider(ResourceLocation difficulty,
+    public EnigmaticsDifficultyGoalProvider(ResourceKey<BingoDifficulty> difficulty,
                                             BiConsumer<ResourceLocation, BingoGoal> goalAdder,
                                             HolderLookup.Provider registries) {
         super(difficulty, goalAdder, registries);
     }
 
-    protected static BingoGoal.Builder obtainSomeItemsGoal(ResourceLocation id, Item item, int min, int max) {
+    protected final ResourceLocation eid(String path) {
+        return ResourceLocation.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, id(path).getPath());
+    }
+
+    protected static GoalBuilder obtainSomeItemsGoal(ResourceLocation id, HolderLookup<Item> items, Item item, int min, int max) {
         return BingoGoal.builder(id)
                 .sub("count", BingoSub.random(min, max))
                 .criterion("obtain", TotalCountInventoryChangeTrigger.builder().items(
-                                ItemPredicate.Builder.item().of(item).withCount(MinMaxBounds.Ints.atLeast(0)).build()).build(),
+                                ItemPredicate.Builder.item().of(items, item).withCount(MinMaxBounds.Ints.atLeast(0)).build()).build(),
                         subber -> subber.sub("conditions.items.0.count.min", "count"))
                 .tags(BingoTags.ITEM)
-                .name(Component.translatable("enigmaticsbingogoals.goal.get_some_items", 0, item.getDescription()),
+                .name(Component.translatable("enigmaticsbingogoals.goal.get_some_items", 0, item.getName()),
                         subber -> subber.sub("with.0", "count"))
                 .icon(ItemIcon.ofItem(item),
                         subber -> subber.sub("item.count", "count"));
     }
 
-    protected static BingoGoal.Builder obtainItemGoal(ResourceLocation id, ItemLike item) {
-        return obtainItemGoal(id, item, 1);
+    protected static GoalBuilder obtainItemGoal(ResourceLocation id, HolderLookup<Item> items, ItemLike item) {
+        return obtainItemGoal(id, items, item, 1);
     }
 
-    protected static BingoGoal.Builder obtainItemGoal(ResourceLocation id, ItemLike item, int count) {
-        Component itemName = item.asItem().getDescription();
-        BingoGoal.Builder builder = BingoGoal.builder(id)
+    protected static GoalBuilder obtainItemGoal(ResourceLocation id, HolderLookup<Item> items, ItemLike item, int count) {
+        Component itemName = item.asItem().getName();
+        GoalBuilder builder = BingoGoal.builder(id)
                 .criterion("obtain", TotalCountInventoryChangeTrigger.builder().items(
-                        ItemPredicate.Builder.item().of(item).withCount(MinMaxBounds.Ints.atLeast(count)).build()
+                        ItemPredicate.Builder.item().of(items, item).withCount(MinMaxBounds.Ints.atLeast(count)).build()
                 ).build())
                 .tags(BingoTags.ITEM);
         if (count == 1)
@@ -98,7 +107,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
         return builder;
     }
 
-    protected static BingoGoal.Builder obtainAllItemsFromTagGoal(ResourceLocation id, TagKey<Item> tag) {
+    protected static GoalBuilder obtainAllItemsFromTagGoal(ResourceLocation id, TagKey<Item> tag) {
         return BingoGoal.builder(id)
                 .criterion("obtain", HasSomeItemsFromTagTrigger.builder().tag(tag).requiresAll().build())
                 .progress("obtain")
@@ -106,7 +115,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(new ItemTagCycleIcon(tag));
     }
 
-    protected static BingoGoal.Builder obtainSomeItemsFromTagGoal(ResourceLocation id, TagKey<Item> tag, int min, int max) {
+    protected static GoalBuilder obtainSomeItemsFromTagGoal(ResourceLocation id, TagKey<Item> tag, int min, int max) {
         return BingoGoal.builder(id)
                 .sub("count", BingoSub.random(min, max))
                 .criterion("obtain", HasSomeItemsFromTagTrigger.builder().tag(tag).requiredCount(1).build(),
@@ -119,7 +128,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 );
     }
 
-    protected static BingoGoal.Builder killEntitiesFromTagGoal(ResourceLocation id, TagKey<EntityType<?>> typeTag, int min, int max, boolean unique) {
+    protected static GoalBuilder killEntitiesFromTagGoal(ResourceLocation id, TagKey<EntityType<?>> typeTag, int min, int max, boolean unique) {
         GoalIcon goalIcon = BingoGoalGeneratorUtils.getEntityIcon(typeTag, 2);
         boolean nativeIcon = goalIcon instanceof EntityTypeTagCycleIcon;
 
@@ -137,7 +146,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 );
     }
 
-    protected static BingoGoal.Builder dieToDamageTypeGoal(ResourceLocation id, TagKey<DamageType> damageType) {
+    protected static GoalBuilder dieToDamageTypeGoal(ResourceLocation id, TagKey<DamageType> damageType) {
         return BingoGoal.builder(id)
                 .criterion("damage", BingoTriggers.DEATH.get().createCriterion(
                                 DeathTrigger.TriggerInstance.death(
@@ -151,22 +160,23 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .reactant(EnigmaticsBingoSynergies.DIE);
     }
 
-    protected static BingoGoal.Builder eatItemGoal(ResourceLocation id, Item item) {
+    protected static GoalBuilder eatItemGoal(ResourceLocation id, HolderLookup<Item> items, Item item) {
         return BingoGoal.builder(id)
-                .criterion("eat", ConsumeItemTrigger.TriggerInstance.usedItem(item))
-                .name(Component.translatable("enigmaticsbingogoals.goal.eat_something", item.getDescription()))
+                .criterion("eat", ConsumeItemTrigger.TriggerInstance.usedItem(items, item))
+                .name(Component.translatable("enigmaticsbingogoals.goal.eat_something", item.getName()))
                 .icon(ItemIcon.ofItem(item));
     }
 
     @SafeVarargs
-    protected static BingoGoal.Builder potionGoal(ResourceLocation id, Holder<Potion>... potions) {
-        ItemStack potionItem = BingoUtil.setPotion(new ItemStack(net.minecraft.world.item.Items.POTION), potions[0]);
+    protected static GoalBuilder potionGoal(ResourceLocation id, HolderLookup<Item> items, Holder<Potion>... potions) {
+        ItemStack potionItem = PotionContents.createItemStack(Items.POTION, potions[0]);
         return obtainItemGoal(
                 id,
+                items,
                 potionItem,
                 Arrays.stream(potions)
                         .map(potion -> ItemPredicate.Builder.item()
-                                .of(net.minecraft.world.item.Items.POTION)
+                                .of(items, net.minecraft.world.item.Items.POTION)
                                 .withSubPredicate(
                                         ItemSubPredicates.POTIONS,
                                         new ItemPotionsPredicate(HolderSet.direct(potion))
@@ -178,7 +188,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_item", net.minecraft.world.item.Items.POTION.getName(potionItem)));
     }
 
-    protected static BingoGoal.Builder effectGoal(ResourceLocation id, Holder<MobEffect> effect) {
+    protected static GoalBuilder effectGoal(ResourceLocation id, Holder<MobEffect> effect) {
         return BingoGoal.builder(id)
                 .criterion("effect", EffectsChangedTrigger.TriggerInstance.hasEffects(
                                 MobEffectsPredicate.Builder.effects().and(effect)
@@ -190,7 +200,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(EffectIcon.of(effect));
     }
 
-    protected static BingoGoal.Builder numberOfEffectsGoal(ResourceLocation id, int minEffects, int maxEffects) {
+    protected static GoalBuilder numberOfEffectsGoal(ResourceLocation id, int minEffects, int maxEffects) {
         ItemStack icon = new ItemStack(net.minecraft.world.item.Items.GLASS_BOTTLE);
         icon.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
         return BingoGoal.builder(id)
@@ -202,19 +212,17 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 )), subber -> subber.sub("conditions.player.0.effects.min", "count"))
                 .antisynergy(EnigmaticsBingoSynergies.GET_EFFECT_BATCH)
                 .catalyst(EnigmaticsBingoSynergies.GET_EFFECT)
-                .icon(IndicatorIcon.infer(
-                        new ItemIcon(icon),
-                        CycleIcon.infer(BuiltInRegistries.MOB_EFFECT.holders().map(EffectIcon::of))
-                ), subber -> subber.sub("base.item.count", "count"))
+                .icon(IndicatorIcon.infer(new ItemIcon(icon), getAllEffectsIcon()),
+                        subber -> subber.sub("base.item.count", "count"))
                 .name(Component.translatable("enigmaticsbingogoals.goal.get_some_effects", 0),
                         subber -> subber.sub("with.0", "count"));
     }
 
-    protected static BingoGoal.Builder dieToMobEntityGoal(ResourceLocation id, EntityType<?> entityType) {
+    protected static GoalBuilder dieToMobEntityGoal(ResourceLocation id, HolderGetter<EntityType<?>> entityTypes, EntityType<?> entityType) {
         return BingoGoal.builder(id)
                 .criterion("die", BingoTriggers.DEATH.get().createCriterion(DeathTrigger.TriggerInstance.death(
                                 DamageSourcePredicate.Builder.damageType()
-                                        .source(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityType)))
+                                        .source(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityTypes, entityType)))
                                         .build()
                         )
                 ))
@@ -225,11 +233,11 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(IndicatorIcon.infer(entityType, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)));
     }
 
-    protected static BingoGoal.Builder dieToEntityGoal(ResourceLocation id, EntityType<?> entityType, GoalIcon icon) {
+    protected static GoalBuilder dieToEntityGoal(ResourceLocation id, HolderGetter<EntityType<?>> entityTypes, EntityType<?> entityType, GoalIcon icon) {
         return BingoGoal.builder(id)
                 .criterion("die", BingoTriggers.DEATH.get().createCriterion(DeathTrigger.TriggerInstance.death(
                                 DamageSourcePredicate.Builder.damageType()
-                                        .direct(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityType)))
+                                        .direct(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityTypes, entityType)))
                                         .build()
                         )
                 ))
@@ -238,15 +246,15 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(IndicatorIcon.infer(icon, BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)));
     }
 
-    protected static BingoGoal.Builder killEntityGoal(ResourceLocation id, EntityType<?> entityType) {
+    protected static GoalBuilder killEntityGoal(ResourceLocation id, HolderGetter<EntityType<?>> entityTypes, EntityType<?> entityType) {
         return BingoGoal.builder(id)
                 .criterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(
-                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityType))))
+                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityTypes, entityType))))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .icon(IndicatorIcon.infer(entityType, net.minecraft.world.item.Items.NETHERITE_SWORD));
     }
 
-    protected static BingoGoal.Builder neverLevelsGoal(ResourceLocation id, int minLevels, int maxLevels) {
+    protected static GoalBuilder neverLevelsGoal(ResourceLocation id, int minLevels, int maxLevels) {
         return BingoGoal.builder(id)
                 .sub("count", BingoSub.random(minLevels, maxLevels))
                 .criterion("obtain", ExperienceChangeTrigger.builder().levels(MinMaxBounds.Ints.atLeast(0)).build(),
@@ -260,7 +268,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .antisynergy("levels");
     }
 
-    protected static BingoGoal.Builder reachLevelsGoal(ResourceLocation id, int minLevels, int maxLevels) {
+    protected static GoalBuilder reachLevelsGoal(ResourceLocation id, int minLevels, int maxLevels) {
         return BingoGoal.builder(id)
                 .sub("count", BingoSub.random(minLevels, maxLevels))
                 .criterion("obtain", ExperienceChangeTrigger.builder().levels(MinMaxBounds.Ints.atLeast(0)).build(),
@@ -274,7 +282,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .antisynergy("levels");
     }
 
-    protected static BingoGoal.Builder neverDamageGoal(ResourceLocation id, int damage) {
+    protected static GoalBuilder neverDamageGoal(ResourceLocation id, int damage) {
         return BingoGoal.builder(id)
                 .criterion("damage", RelativeStatsTrigger.builder()
                         .stat(Stats.DAMAGE_TAKEN, MinMaxBounds.Ints.atLeast(damage * 20)).build()
@@ -285,7 +293,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .progress(new CriterionProgressTracker("damage", 0.05f));
     }
 
-    protected static BingoGoal.Builder advancementProgressGoal(ResourceLocation id, ResourceLocation advancement, int minProgress, int maxProgress) {
+    protected static GoalBuilder advancementProgressGoal(ResourceLocation id, ResourceLocation advancement, int minProgress, int maxProgress) {
         return BingoGoal.builder(id)
                 .sub("count", BingoSub.random(minProgress, maxProgress))
                 .criterion("advance", AdvancementProgressTrigger.TriggerInstance.reach(
@@ -298,7 +306,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
 
     }
 
-    protected static BingoGoal.Builder advancementsGoal(ResourceLocation id, int minNumber, int maxNumber) {
+    protected static GoalBuilder advancementsGoal(ResourceLocation id, int minNumber, int maxNumber) {
         return BingoGoal.builder(id)
                 .sub("number", BingoSub.random(minNumber, maxNumber))
                 .criterion("achieve", AdvancementsTrigger.TriggerInstance.advancements(MinMaxBounds.Ints.atLeast(0)),
@@ -311,7 +319,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .progress("achieve");
     }
 
-    protected static BingoGoal.Builder advancementGoal(ResourceLocation id, @Nullable Component title, ResourceLocation... oneOfThese) {
+    protected static GoalBuilder advancementGoal(ResourceLocation id, @Nullable Component title, ResourceLocation... oneOfThese) {
         var builder = BingoGoal.builder(id);
         if (oneOfThese.length == 1) {
             builder.criterion("achieve", AdvancementsTrigger.TriggerInstance.advancement(oneOfThese[0]));
@@ -327,15 +335,15 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .tags(BingoTags.STAT, EnigmaticsBingoTags.ADVANCEMENTS);
     }
 
-    protected static BingoGoal.Builder breakBlockGoal(ResourceLocation id, Block... oneOfThese) {
-        BingoGoal.Builder builder = BingoGoal.builder(id);
+    protected static GoalBuilder breakBlockGoal(ResourceLocation id, HolderGetter<Block> blocks, Block... oneOfThese) {
+        GoalBuilder builder = BingoGoal.builder(id);
         if (oneOfThese.length == 1) {
             builder
-                    .criterion("break", BreakBlockTrigger.builder().block(oneOfThese[0]).build())
+                    .criterion("break", BreakBlockTrigger.builder().block(blocks, oneOfThese[0]).build())
                     .icon(IndicatorIcon.infer(oneOfThese[0], net.minecraft.world.item.Items.NETHERITE_PICKAXE));
         } else {
             for (int i = 0; i < oneOfThese.length; i++)
-                builder.criterion("break_" + i, BreakBlockTrigger.builder().block(oneOfThese[i]).build());
+                builder.criterion("break_" + i, BreakBlockTrigger.builder().block(blocks, oneOfThese[i]).build());
             builder.icon(
                     IndicatorIcon.infer(
                             CycleIcon.infer(Arrays.stream(oneOfThese).map(BlockIcon::ofBlock)),
@@ -349,7 +357,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         Component.translatable(oneOfThese[0].getDescriptionId())));
     }
 
-    protected BingoGoal.Builder wearDifferentMaterialsGoal(ResourceLocation id, int count) {
+    protected GoalBuilder wearDifferentMaterialsGoal(ResourceLocation id, int count) {
         return BingoGoal.builder(id)
                 .criterion("armor", CriteriaTriggers.INVENTORY_CHANGED.createCriterion(
                         new InventoryChangeTrigger.TriggerInstance(
@@ -364,27 +372,28 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 ))
                 .tags(EnigmaticsBingoTags.ARMOR)
                 .name(Component.translatable("enigmaticsbingogoals.goal.wear_different_armor", count))
-                .icon(BingoGoalGeneratorUtils.createAllDifferentMaterialsIcon());
+                .icon(BingoGoalGeneratorUtils.createAllDifferentMaterialsIcon(registries));
     }
 
-    protected BingoGoal.Builder wearArmorPiecesGoal(ResourceLocation id, Item head, Item chest, Item legs, Item boots) {
+    protected GoalBuilder wearArmorPiecesGoal(ResourceLocation id, HolderGetter<EntityType<?>> entityTypes, HolderGetter<Item> items,
+                                              Item head, Item chest, Item legs, Item boots) {
         Map<SlotRange, ItemPredicate> armorItems = new HashMap<>();
 
         if (head != null) {
             armorItems.put(Objects.requireNonNull(SlotRanges.nameToIds("armor.head")),
-                    ItemPredicate.Builder.item().of(head).build());
+                    ItemPredicate.Builder.item().of(items, head).build());
         }
         if (chest != null) {
             armorItems.put(Objects.requireNonNull(SlotRanges.nameToIds("armor.chest")),
-                    ItemPredicate.Builder.item().of(chest).build());
+                    ItemPredicate.Builder.item().of(items, chest).build());
         }
         if (legs != null) {
             armorItems.put(Objects.requireNonNull(SlotRanges.nameToIds("armor.legs")),
-                    ItemPredicate.Builder.item().of(legs).build());
+                    ItemPredicate.Builder.item().of(items, legs).build());
         }
         if (boots != null) {
             armorItems.put(Objects.requireNonNull(SlotRanges.nameToIds("armor.feet")),
-                    ItemPredicate.Builder.item().of(boots).build());
+                    ItemPredicate.Builder.item().of(items, boots).build());
         }
 
         return BingoGoal.builder(id)
@@ -394,7 +403,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                                         Optional.of(ContextAwarePredicate.create(
                                                 LootItemEntityPropertyCondition.hasProperties(
                                                         LootContext.EntityTarget.THIS,
-                                                        EntityPredicate.Builder.entity().of(EntityType.PLAYER)
+                                                        EntityPredicate.Builder.entity().of(entityTypes, EntityType.PLAYER)
                                                                 .slots(new SlotsPredicate(armorItems))
                                                 ).build()
                                         )),
@@ -407,16 +416,17 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
     }
 
 
-    protected static BingoGoal.Builder rideAbstractHorseWithSaddleGoal(ResourceLocation id, EntityType<?> entityType) {
+    protected static GoalBuilder rideAbstractHorseWithSaddleGoal(ResourceLocation id, HolderGetter<EntityType<?>> entityTypes,
+                                                                 HolderGetter<Item> items, EntityType<?> entityType) {
         var playerPredicate = Optional.of(ContextAwarePredicate.create(
                 LootItemEntityPropertyCondition.hasProperties(
                         LootContext.EntityTarget.THIS,
-                        EntityPredicate.Builder.entity().of(EntityType.PLAYER).vehicle(
-                                EntityPredicate.Builder.entity().of(EntityType.HORSE).slots(
+                        EntityPredicate.Builder.entity().of(entityTypes, EntityType.PLAYER).vehicle(
+                                EntityPredicate.Builder.entity().of(entityTypes, EntityType.HORSE).slots(
                                         new SlotsPredicate(
                                                 Map.of(
                                                         Objects.requireNonNull(SlotRanges.nameToIds("horse.saddle")),
-                                                        ItemPredicate.Builder.item().of(net.minecraft.world.item.Items.SADDLE).build()
+                                                        ItemPredicate.Builder.item().of(items, net.minecraft.world.item.Items.SADDLE).build()
                                                 )
                                         )
                                 )
@@ -434,26 +444,26 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(IndicatorIcon.infer(entityType, net.minecraft.world.item.Items.SADDLE));
     }
 
-    protected static BingoGoal.Builder breedAnimalGoal(ResourceLocation id, EntityType<?> entityType) {
+    protected static GoalBuilder breedAnimalGoal(ResourceLocation id, HolderGetter<EntityType<?>> entityTypes, EntityType<?> entityType) {
         return BingoGoal.builder(id)
                 .criterion("breed", BredAnimalsTrigger.TriggerInstance.bredAnimals(
-                        EntityPredicate.Builder.entity().of(entityType)))
+                        EntityPredicate.Builder.entity().of(entityTypes, entityType)))
                 .tags(EnigmaticsBingoTags.BREED_MOB)
                 .reactant(EnigmaticsBingoSynergies.BREED_MOB)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_animal", entityType.getDescription()))
                 .icon(IndicatorIcon.infer(entityType, EffectIcon.of(MobEffects.HEALTH_BOOST)));
     }
 
-    protected static BingoGoal.Builder tameAnimalGoal(ResourceLocation id, EntityType<?> entityType) {
+    protected static GoalBuilder tameAnimalGoal(ResourceLocation id, HolderGetter<EntityType<?>> entityTypes, EntityType<?> entityType) {
         return BingoGoal.builder(id)
                 .criterion("tame", TameAnimalTrigger.TriggerInstance.tamedAnimal(
-                        EntityPredicate.Builder.entity().of(entityType)))
+                        EntityPredicate.Builder.entity().of( entityTypes, entityType)))
                 .tags(EnigmaticsBingoTags.TAME_ANIMAL)
                 .name(Component.translatable("enigmaticsbingogoals.goal.tame_animal", entityType.getDescription()))
                 .icon(IndicatorIcon.infer(entityType, ItemIcon.ofItem(net.minecraft.world.item.Items.BONE)));
     }
 
-    protected static BingoGoal.Builder tameSomeCatsGoal(ResourceLocation id, int minProgress, int maxProgress) {
+    protected static GoalBuilder tameSomeCatsGoal(ResourceLocation id, int minProgress, int maxProgress) {
         return advancementProgressGoal(id,
                 ResourceLocation.withDefaultNamespace("husbandry/complete_catalogue"),
                 minProgress,
@@ -468,7 +478,9 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(
                         IndicatorIcon.infer(
                                 CycleIcon.infer(
-                                        BuiltInRegistries.CAT_VARIANT.holders().map(h -> BingoGoalGeneratorUtils.getCatVariantIcon(h.key()))
+                                        BuiltInRegistries.CAT_VARIANT.stream().map(h -> BingoGoalGeneratorUtils.getCatVariantIcon(
+                                                BuiltInRegistries.CAT_VARIANT.wrapAsHolder(h).unwrapKey().orElseThrow()
+                                        ))
                                 ),
                                 ItemIcon.ofItem(Items.COD)
                         ),
@@ -476,7 +488,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 );
     }
 
-    protected static BingoGoal.Builder tameSomeWolvesGoal(ResourceLocation id, int minProgress, int maxProgress) {
+    protected static GoalBuilder tameSomeWolvesGoal(ResourceLocation id, int minProgress, int maxProgress) {
         WolfVariantCollector wolfContext = new WolfVariantCollector();
         WolfVariants.bootstrap(wolfContext);
         return advancementProgressGoal(id,
@@ -493,7 +505,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(
                         IndicatorIcon.infer(
                                 CycleIcon.infer(
-                                        wolfContext.variants.stream().map(v -> BingoGoalGeneratorUtils.getWolfVariantIcon(v))
+                                        wolfContext.variants.stream().map(BingoGoalGeneratorUtils::getWolfVariantIcon)
                                 ),
                                 ItemIcon.ofItem(Items.BONE)
                         ),
@@ -501,7 +513,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 );
     }
 
-    protected static BingoGoal.Builder breedFrogVariantGoal(ResourceLocation id, ResourceKey<FrogVariant> variant) {
+    protected static GoalBuilder breedFrogVariantGoal(ResourceLocation id, ResourceKey<FrogVariant> variant) {
         return BingoGoal.builder(id)
                 .criterion("hatch", TadpoleMaturesTrigger.TriggerInstance.ofVariant(variant))
                 .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.BREED_MOB, EnigmaticsBingoTags.SWAMP)
@@ -509,7 +521,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getFrogVariantIcon(variant), Items.SLIME_BALL))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.breed_frog.tooltip", EntityType.TADPOLE.getDescription()));
     }
-    protected BingoGoal.Builder makeBannerWithPatternItemGoal(ResourceLocation id, ItemLike patternItem, ResourceKey<BannerPattern> pattern, String patternName) {
+    protected GoalBuilder makeBannerWithPatternItemGoal(ResourceLocation id, HolderGetter<Item> items, ItemLike patternItem, ResourceKey<BannerPattern> pattern, String patternName) {
         HolderLookup.RegistryLookup<BannerPattern> bannerPatterns = registries.lookupOrThrow(Registries.BANNER_PATTERN);
         return BingoGoal.builder(id)
                 .criterion("use", EnigmaticsBingoGoalsTriggers.USE_LOOM.get().createCriterion(
@@ -518,7 +530,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                                         Optional.empty(),
                                         Optional.empty(),
                                         Optional.empty(),
-                                        Optional.of(ItemPredicate.Builder.item().of(patternItem).build())
+                                        Optional.of(ItemPredicate.Builder.item().of(items, patternItem).build())
                                 )
                         )
                 )

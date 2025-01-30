@@ -2,12 +2,12 @@ package de.rasmusantons.enigmaticsbingogoals.conditions;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.context.ContextKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParam;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
@@ -29,7 +29,7 @@ public enum FullUniqueInventoryCondition implements LootItemCondition {
 
     @Override
     public boolean test(LootContext lootContext) {
-        final Entity thisEntity = lootContext.getParam(LootContextParams.THIS_ENTITY);
+        final Entity thisEntity = lootContext.getParameter(LootContextParams.THIS_ENTITY);
         if (!(thisEntity instanceof ServerPlayer serverPlayer))
             return false;
         Inventory inventory = serverPlayer.getInventory();
@@ -47,7 +47,7 @@ public enum FullUniqueInventoryCondition implements LootItemCondition {
 
     @NotNull
     @Override
-    public Set<LootContextParam<?>> getReferencedContextParams() {
+    public Set<ContextKey<?>> getReferencedContextParams() {
         return Set.of(LootContextParams.THIS_ENTITY);
     }
 }

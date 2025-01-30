@@ -2,7 +2,8 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import com.google.gson.JsonElement;
 import com.mojang.serialization.DynamicOps;
-import io.github.gaming32.bingo.data.BingoGoal;
+import io.github.gaming32.bingo.data.goal.BingoGoal;
+import io.github.gaming32.bingo.data.goal.GoalBuilder;
 import io.github.gaming32.bingo.fabric.datagen.goal.*;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricCodecDataProvider;
@@ -25,7 +26,7 @@ public class EnigmaticsBingoGoalProvider extends FabricCodecDataProvider<BingoGo
     );
 
     public EnigmaticsBingoGoalProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, PackOutput.Target.DATA_PACK, "bingo/goals", BingoGoal.CODEC);
+        super(output, registries, PackOutput.Target.DATA_PACK, "bingo/goal", BingoGoal.CODEC);
     }
 
     @Override
@@ -36,14 +37,14 @@ public class EnigmaticsBingoGoalProvider extends FabricCodecDataProvider<BingoGo
 
     @Override
     protected void configure(BiConsumer<ResourceLocation, BingoGoal> adder, HolderLookup.Provider registries) {
-        final DynamicOps<JsonElement> oldOps = BingoGoal.Builder.JSON_OPS.get();
+        final DynamicOps<JsonElement> oldOps = GoalBuilder.JSON_OPS.get();
         try {
-            BingoGoal.Builder.JSON_OPS.set(registries.createSerializationContext(oldOps));
+            GoalBuilder.JSON_OPS.set(registries.createSerializationContext(oldOps));
             for (final GoalProviderProvider provider : PROVIDERS) {
                 provider.create(adder, registries).addGoals();
             }
         } finally {
-            BingoGoal.Builder.JSON_OPS.set(oldOps);
+            GoalBuilder.JSON_OPS.set(oldOps);
         }
     }
 

@@ -2,12 +2,14 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableTable;
+import com.google.common.collect.Ordering;
 import com.google.common.collect.Table;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.serialization.Lifecycle;
 import de.rasmusantons.enigmaticsbingogoals.datagen.tag.EnigmaticsBingoEntityTypeTagProvider;
 import io.github.gaming32.bingo.data.icons.*;
+import io.github.gaming32.bingo.fabric.datagen.BingoDataGenFabric;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.*;
 import net.minecraft.core.component.DataComponents;
@@ -17,10 +19,13 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.animal.CatVariant;
 import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.entity.animal.WolfVariant;
@@ -31,6 +36,7 @@ import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.block.entity.BannerPatterns;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class BingoGoalGeneratorUtils {
     public static ItemStack getCustomPLayerHead(PlayerHeadTextures textures) {
@@ -77,19 +83,23 @@ public class BingoGoalGeneratorUtils {
         return new EntityIcon(EntityType.FROG, data, new ItemStack(Items.FROG_SPAWN_EGG));
     }
 
-    public static GoalIcon createAllDifferentMaterialsIcon() {
+    public static CycleIcon getAllEffectsIcon() {
+        return CycleIcon.infer(BuiltInRegistries.MOB_EFFECT.stream().map(effect -> EffectIcon.of(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect))));
+    }
+
+    public static GoalIcon createAllDifferentMaterialsIcon(HolderLookup.Provider registries) {
         final int iterations = 4;
-        final var armors = getPlayerArmors();
-        final List<ArmorMaterial> materials = ImmutableList.copyOf(armors.columnKeySet());
+        final var armors = getPlayerArmors(registries);
+        final var materials = ImmutableList.copyOf(armors.columnKeySet());
         final ImmutableList.Builder<GoalIcon> icons = ImmutableList.builderWithExpectedSize(iterations * armors.rowMap().size());
         int materialIndex = 0;
         for (int iteration = 0; iteration < iterations; iteration++) {
-            for (final ArmorItem.Type type : armors.rowKeySet()) {
-                ArmorItem item;
+            for (final var type : armors.rowKeySet()) {
+                Item item;
                 do {
                     item = armors.get(type, materials.get(materialIndex++ % materials.size()));
                 } while (item == null);
-                icons.add(new ItemIcon(new ItemStack(item, 4)));
+                icons.add(ItemIcon.ofItem(item));
             }
         }
         return new CycleIcon(icons.build());
@@ -139,15 +149,20 @@ public class BingoGoalGeneratorUtils {
         }
     }
 
-    public static Table<ArmorItem.Type, ArmorMaterial, ArmorItem> getPlayerArmors() {
-        final ImmutableTable.Builder<ArmorItem.Type, ArmorMaterial, ArmorItem> armors = ImmutableTable.builder();
-        armors.orderRowsBy(Comparator.reverseOrder());
-        armors.orderColumnsBy(Comparator.comparingInt(BuiltInRegistries.ARMOR_MATERIAL::getId));
-        for (final Item item : BuiltInRegistries.ITEM) {
-            if (!(item instanceof ArmorItem armorItem) || armorItem.getType() == ArmorItem.Type.BODY)
-                continue;
-            armors.put(armorItem.getType(), armorItem.getMaterial().value(), armorItem);
-        }
+    public static Table<EquipmentSlot, ResourceLocation, Item> getPlayerArmors(HolderLookup.Provider registries) {
+        final var armors = ImmutableTable.<EquipmentSlot, ResourceLocation, Item>builder();
+        armors.orderRowsBy(Ordering.natural());
+        armors.orderColumnsBy(Ordering.natural());
+        Stream.of(ItemTags.HEAD_ARMOR, ItemTags.CHEST_ARMOR, ItemTags.LEG_ARMOR, ItemTags.FOOT_ARMOR)
+                .map(tag -> BingoDataGenFabric.loadVanillaTag(tag, registries))
+                .flatMap(HolderSet::stream)
+                .distinct()
+                .map(Holder::value)
+                .forEach(item -> {
+                    final var equippable = item.components().get(DataComponents.EQUIPPABLE);
+                    if (equippable == null || equippable.assetId().isEmpty()) return;
+                    armors.put(equippable.slot(), equippable.assetId().get().location(), item);
+                });
         return armors.build();
     }
 

@@ -6,6 +6,7 @@ import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -34,12 +35,12 @@ public class HitOtherTeamWithProjectileTrigger extends SimpleCriterionTrigger<Hi
                 ).apply(instance, TriggerInstance::new)
         );
 
-        public static Criterion<TriggerInstance> ofType(EntityType<? extends Projectile> entityType) {
+        public static Criterion<TriggerInstance> ofType(HolderGetter<EntityType<?>> entityTypes, EntityType<? extends Projectile> entityType) {
             return EnigmaticsBingoGoalsTriggers.HIT_OTHER_TEAM_WITH_PROJECTILE.get().createCriterion(
                     new TriggerInstance(
                             Optional.empty(),
                             Optional.empty(),
-                            Optional.of(EntityPredicate.Builder.entity().of(entityType).build())
+                            Optional.of(EntityPredicate.Builder.entity().of(entityTypes, entityType).build())
                     )
             );
         }

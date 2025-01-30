@@ -7,8 +7,10 @@ import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,13 +40,13 @@ public class ArmorStandSwapTrigger extends SimpleCriterionTrigger<ArmorStandSwap
                 ).apply(instance, ArmorStandSwapTrigger.TriggerInstance::new)
         );
 
-        public static Criterion<ArmorStandSwapTrigger.TriggerInstance> fullArmor() {
+        public static Criterion<ArmorStandSwapTrigger.TriggerInstance> fullArmor(HolderGetter<Item> items) {
             return EnigmaticsBingoGoalsTriggers.SWAP_ARMOR_STAND_ITEM.get().createCriterion(
                     new ArmorStandSwapTrigger.TriggerInstance(Optional.empty(),
-                            Optional.of(ItemPredicate.Builder.item().of(ItemTags.HEAD_ARMOR).build()),
-                            Optional.of(ItemPredicate.Builder.item().of(ItemTags.CHEST_ARMOR).build()),
-                            Optional.of(ItemPredicate.Builder.item().of(ItemTags.LEG_ARMOR).build()),
-                            Optional.of(ItemPredicate.Builder.item().of(ItemTags.FOOT_ARMOR).build()))
+                            Optional.of(ItemPredicate.Builder.item().of(items, ItemTags.HEAD_ARMOR).build()),
+                            Optional.of(ItemPredicate.Builder.item().of(items, ItemTags.CHEST_ARMOR).build()),
+                            Optional.of(ItemPredicate.Builder.item().of(items, ItemTags.LEG_ARMOR).build()),
+                            Optional.of(ItemPredicate.Builder.item().of(items, ItemTags.FOOT_ARMOR).build()))
             );
         }
 

@@ -3,7 +3,7 @@ package de.rasmusantons.enigmaticsbingogoals.mixin;
 import com.llamalad7.mixinextras.sugar.Local;
 import de.rasmusantons.enigmaticsbingogoals.extension.BingoGameExtension;
 import de.rasmusantons.enigmaticsbingogoals.triggers.EnigmaticsBingoGoalsTriggers;
-import io.github.gaming32.bingo.Bingo;
+import io.github.gaming32.bingo.game.BingoGame;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -26,9 +26,10 @@ public abstract class PlayerMixin {
             return damage;
         if (target instanceof ServerPlayer targetPlayer && targetPlayer.getTeam() == serverPlayer.getTeam())
             return damage;
-        if (Bingo.activeGame == null)
+        final BingoGame activeGame = serverPlayer.server.bingo$getGame();
+        if (activeGame == null)
             return damage;
-        var totalDamageMap = ((BingoGameExtension) Bingo.activeGame).enigmatics_bingo_goals$getTotalDamage();
+        var totalDamageMap = ((BingoGameExtension) activeGame).enigmatics_bingo_goals$getTotalDamage();
         int totalDamage = totalDamageMap.getOrDefault(serverPlayer.getUUID(), 0) + damage;
         totalDamageMap.put(serverPlayer.getUUID(), totalDamage);
         EnigmaticsBingoGoalsTriggers.DAMAGE_EXCEPT_TEAM.get().trigger(serverPlayer, totalDamage);

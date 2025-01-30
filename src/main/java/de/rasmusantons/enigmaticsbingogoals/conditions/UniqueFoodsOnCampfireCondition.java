@@ -3,12 +3,12 @@ package de.rasmusantons.enigmaticsbingogoals.conditions;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.context.ContextKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.CampfireBlockEntity;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParam;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
@@ -30,7 +30,7 @@ public record UniqueFoodsOnCampfireCondition(MinMaxBounds.Ints foods) implements
 
     @Override
     public boolean test(LootContext lootContext) {
-        Vec3 position = lootContext.getParamOrNull(LootContextParams.ORIGIN);
+        Vec3 position = lootContext.getOptionalParameter(LootContextParams.ORIGIN);
         if (position == null)
             return false;
         BlockEntity blockEntity = lootContext.getLevel().getBlockEntity(
@@ -45,7 +45,7 @@ public record UniqueFoodsOnCampfireCondition(MinMaxBounds.Ints foods) implements
 
     @NotNull
     @Override
-    public Set<LootContextParam<?>> getReferencedContextParams() {
+    public Set<ContextKey<?>> getReferencedContextParams() {
         return Set.of(LootContextParams.ORIGIN);
     }
 }

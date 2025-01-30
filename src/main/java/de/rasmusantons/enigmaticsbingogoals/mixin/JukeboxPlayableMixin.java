@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import de.rasmusantons.enigmaticsbingogoals.extension.JukeboxSongPlayerExtension;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.JukeboxPlayable;
@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(JukeboxPlayable.class)
 public class JukeboxPlayableMixin {
     @Inject(method = "tryInsertIntoJukebox", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/entity/JukeboxBlockEntity;setTheItem(Lnet/minecraft/world/item/ItemStack;)V"))
-    private static void onTryInsertIntoJukebox(Level level, BlockPos blockPos, ItemStack itemStack, Player player, CallbackInfoReturnable<ItemInteractionResult> cir, @Local JukeboxBlockEntity jukeboxBlockEntity) {
+    private static void onTryInsertIntoJukebox(Level level, BlockPos blockPos, ItemStack itemStack, Player player, CallbackInfoReturnable<InteractionResult> cir, @Local JukeboxBlockEntity jukeboxBlockEntity) {
         if (player instanceof ServerPlayer serverPlayer) {
             ((JukeboxSongPlayerExtension) jukeboxBlockEntity.getSongPlayer()).enigmaticsbingogoals$setLastPlayed(serverPlayer);
         }

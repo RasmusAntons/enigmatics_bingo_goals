@@ -3,8 +3,8 @@ package de.rasmusantons.enigmaticsbingogoals.conditions;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.context.ContextKey;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParam;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
@@ -25,14 +25,14 @@ public record NumberOfEffectsCondition(MinMaxBounds.Ints effects) implements Loo
 
     @Override
     public boolean test(LootContext lootContext) {
-        if (!(lootContext.getParamOrNull(LootContextParams.THIS_ENTITY) instanceof ServerPlayer serverPlayer))
+        if (!(lootContext.getOptionalParameter(LootContextParams.THIS_ENTITY) instanceof ServerPlayer serverPlayer))
             return false;
         return effects.matches(serverPlayer.getActiveEffects().size());
     }
 
     @NotNull
     @Override
-    public Set<LootContextParam<?>> getReferencedContextParams() {
+    public Set<ContextKey<?>> getReferencedContextParams() {
         return Set.of(LootContextParams.THIS_ENTITY);
     }
 }

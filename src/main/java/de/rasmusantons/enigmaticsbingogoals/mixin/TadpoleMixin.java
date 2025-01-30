@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Tadpole.class)
 public class TadpoleMixin {
-    @Inject(method = "ageUp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;addFreshEntityWithPassengers(Lnet/minecraft/world/entity/Entity;)V"))
-    public void ageUp(CallbackInfo ci, @Local ServerLevel level, @Local Frog frog) {
+    @Inject(method = "method_63651", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/animal/frog/Frog;fudgePositionAfterSizeChange(Lnet/minecraft/world/entity/EntityDimensions;)Z"))
+    public void multiply(CallbackInfo ci, @Local(argsOnly = true) ServerLevel level, @Local(argsOnly = true) Frog frog) {
         Player player = level.getNearestPlayer(frog.getX(), frog.getY(), frog.getZ(), 528, false);
         if (!(player instanceof ServerPlayer serverPlayer))
             return;

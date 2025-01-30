@@ -1,7 +1,7 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
-    id 'fabric-loom' version '1.6-SNAPSHOT'
+    id 'fabric-loom' version '1.9-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -117,6 +117,9 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+    include(implementation("com.electronwill.night-config:core:3.8.1"))
+    include(implementation("com.electronwill.night-config:toml:3.8.1"))
+
     modImplementation fileTree(dir: 'libs', include: 'bingo-' + bingo_version + '.jar')
 }
 
@@ -140,6 +143,7 @@ loom {
 fabricApi {
     configureDataGeneration {
         modId = "enigmaticsbingogoals"
+        client = true
     }
 }
 
