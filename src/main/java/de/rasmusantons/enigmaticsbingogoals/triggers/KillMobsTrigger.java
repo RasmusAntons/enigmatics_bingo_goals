@@ -3,7 +3,6 @@ package de.rasmusantons.enigmaticsbingogoals.triggers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.ListCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.game.BingoGame;
 import io.github.gaming32.bingo.triggers.progress.SimpleProgressibleCriterionTrigger;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;

@@ -7,7 +7,6 @@ import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoDamageTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.EmptyHungerTrigger;
-import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.EffectIcon;

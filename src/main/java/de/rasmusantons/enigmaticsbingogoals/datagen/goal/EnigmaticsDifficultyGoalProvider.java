@@ -6,7 +6,6 @@ import de.rasmusantons.enigmaticsbingogoals.conditions.NumberOfEffectsCondition;
 import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.datagen.goal.BingoGoalGeneratorUtils.WolfVariantCollector;
 import de.rasmusantons.enigmaticsbingogoals.triggers.*;
-import io.github.gaming32.bingo.Bingo;
 import io.github.gaming32.bingo.conditions.WearingDifferentArmorCondition;
 import io.github.gaming32.bingo.data.BingoDifficulty;
 import io.github.gaming32.bingo.data.BingoTags;

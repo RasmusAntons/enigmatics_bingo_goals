@@ -6,7 +6,6 @@ import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoFeatureTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
-import io.github.gaming32.bingo.data.BingoDifficulties;
 import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.*;
