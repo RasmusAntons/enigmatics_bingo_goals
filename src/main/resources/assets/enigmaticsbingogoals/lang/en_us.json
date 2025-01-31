@@ -45,7 +45,7 @@
   "enigmaticsbingogoals.goal.get_some_effects": "Get %d status effects concurrently",
   "enigmaticsbingogoals.goal.get_some_items": "Obtain %d %s",
   "enigmaticsbingogoals.goal.give_effect_to_other_team": "Give any status effect to an enemy Player",
-  "enigmaticsbingogoals.goal.grow_tree_in_nether": "Grow a Overworld tree in the Nether",
+  "enigmaticsbingogoals.goal.grow_tree_in_nether": "Grow an Overworld tree in the Nether",
   "enigmaticsbingogoals.goal.hatch_baby_chicken": "Hatch a %s from an %s",
   "enigmaticsbingogoals.goal.hit_player_with_snowball": "Hit an enemy Player with a %s",
   "enigmaticsbingogoals.goal.hit_player_with_wind_charge": "Hit an enemy Player with a %s",
