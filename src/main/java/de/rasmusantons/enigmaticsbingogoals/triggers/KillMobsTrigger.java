@@ -57,14 +57,13 @@ public class KillMobsTrigger extends SimpleProgressibleCriterionTrigger<KillMobs
             if (activeGame == null)
                 return false;
             final Object2IntMap<Stat<?>> baseStats = activeGame.getBaseStats(player);
-            if (baseStats == null)
-                return false;
             final StatsCounter currentStats = player.getStats();
 
             int relevantAmount = 0;
             for (Holder<EntityType<?>> holder : BuiltInRegistries.ENTITY_TYPE.getTagOrEmpty(typeTag)) {
                 Stat<EntityType<?>> stat = Stats.ENTITY_KILLED.get(holder.value());
-                int value = currentStats.getValue(stat) - baseStats.getInt(stat);
+                int currentValue = currentStats.getValue(stat);
+                int value = currentValue - baseStats.getOrDefault(stat, currentValue);
                 if (unique && value > 1)
                     value = 1;
                 relevantAmount += value;
