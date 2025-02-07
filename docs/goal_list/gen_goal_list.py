@@ -7,22 +7,22 @@ import jinja2
 
 _OWN_DIR = os.path.dirname(__file__)
 GOALS_ROOT = os.path.abspath(os.path.join(
-    _OWN_DIR, '..', '..', 'src', 'main', 'generated', 'data', 'bingo', 'bingo', 'goals'
+    _OWN_DIR, '..', '..', 'src', 'main', 'generated', 'data', 'enigmaticsbingogoals', 'bingo', 'goal'
 ))
 SOURCE_ROOT = os.path.abspath(os.path.join(
     _OWN_DIR, '..', '..', 'src', 'main', 'java', 'de', 'rasmusantons', 'enigmaticsbingogoals', 'datagen', 'goal'
 ))
 ORIGINAL_GOALS_ROOT = os.path.abspath(os.path.join(
     _OWN_DIR, '..', '..', 'build', 'bingo', f'bingo-{os.getenv("bingo_commit")}', 'common', 'src', 'main', 'generated',
-    'data', 'bingo', 'bingo', 'goals'
+    'data', 'enigmaticsbingogoals', 'bingo', 'goals'
 ))
 ORIGINAL_SOURCE_ROOT = os.path.abspath(os.path.join(
     _OWN_DIR, '..', '..', 'build', 'bingo', f'bingo-{os.getenv("bingo_commit")}', 'fabric', 'src', 'main', 'java', 'io',
     'github', 'gaming32', 'bingo', 'fabric', 'datagen', 'goal'
 ))
 DIFFICULTIES = ['very_easy', 'easy', 'medium', 'hard', 'very_hard']
-DIMENSION_TAGS = ['bingo:overworld', 'bingo:nether', 'bingo:end']
-SPECIAL_TAGS = ['bingo:never']
+DIMENSION_TAGS = ['enigmaticsbingogoals:overworld', 'enigmaticsbingogoals:nether', 'enigmaticsbingogoals:end']
+SPECIAL_TAGS = ['enigmaticsbingogoals:never']
 
 
 def load_todos(difficulty, original):
@@ -55,25 +55,25 @@ def load_goals(original):
         if not os.path.isdir(difficulty_root):
             print('no dir:', difficulty_root)
             continue
-        with os.scandir(difficulty_root) as scan:
-            for entry in scan:
-                if not entry.is_file() or not entry.name.endswith('.json'):
-                    continue
-                with open(entry.path) as f:
-                    goal = json.load(f)
-                goal['_id'] = entry.name
-                goal['_diff'] = difficulty
-                goal['_diff_title'] = difficulty_title
-                goal['_name'] = entry.name[:-5].replace('_', ' ').title()
-                goal['tags'] = sorted(goal.get('tags', []), key=tag_weight)
-                goal['antisynergies'] = sorted(_ensure_list(goal.get('antisynergy', [])))
-                goal['catalysts'] = sorted(_ensure_list(goal.get('catalyst', [])))
-                goal['reactants'] = sorted(_ensure_list(goal.get('reactant', [])))
-                goal['antisynergies'] = sorted(_ensure_list(goal.get('antisynergy', [])))
-                if (infrequency := goal.get('infrequency')) is not None:
-                    goal['infrequency'] = infrequency
-                yield goal
-            yield from load_todos(difficulty, original)
+        for entry in sorted(os.listdir(difficulty_root)):
+            entry_path = os.path.join(difficulty_root, entry)
+            if not os.path.isfile(entry_path) or not entry.endswith('.json'):
+                continue
+            with open(entry_path) as f:
+                goal = json.load(f)
+            goal['_id'] = entry
+            goal['_diff'] = difficulty
+            goal['_diff_title'] = difficulty_title
+            goal['_name'] = entry[:-5].replace('_', ' ').title()
+            goal['tags'] = sorted(_ensure_list(goal.get('tags', [])), key=tag_weight)
+            goal['antisynergies'] = sorted(_ensure_list(goal.get('antisynergy', [])))
+            goal['catalysts'] = sorted(_ensure_list(goal.get('catalyst', [])))
+            goal['reactants'] = sorted(_ensure_list(goal.get('reactant', [])))
+            goal['antisynergies'] = sorted(_ensure_list(goal.get('antisynergy', [])))
+            if (infrequency := goal.get('infrequency')) is not None:
+                goal['infrequency'] = infrequency
+            yield goal
+        yield from load_todos(difficulty, original)
 
 
 def tag_weight(tag):
