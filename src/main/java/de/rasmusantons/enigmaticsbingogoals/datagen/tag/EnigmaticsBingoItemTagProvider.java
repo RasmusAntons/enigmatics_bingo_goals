@@ -92,7 +92,8 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.JUNGLE_SAPLING,
                 Items.ACACIA_SAPLING,
                 Items.DARK_OAK_SAPLING,
-                Items.CHERRY_SAPLING
+                Items.CHERRY_SAPLING,
+                Items.PALE_OAK_SAPLING
         );
 
         getOrCreateTagBuilder(EnigmaticsBingoItemTags.BOOKS).add(
@@ -147,7 +148,8 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.CHERRY_HANGING_SIGN,
                 Items.BAMBOO_HANGING_SIGN,
                 Items.CRIMSON_HANGING_SIGN,
-                Items.WARPED_HANGING_SIGN
+                Items.WARPED_HANGING_SIGN,
+                Items.PALE_OAK_HANGING_SIGN
         );
     }
 }
