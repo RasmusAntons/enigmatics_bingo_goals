@@ -4,7 +4,6 @@ import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoDifficulties;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
-import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.CycleIcon;
 import io.github.gaming32.bingo.data.icons.IndicatorIcon;
@@ -40,7 +39,7 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
                         subber -> subber.sub("with.0", "count")
                 )
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods.tooltip", Items.CAKE.getName()))
-                .tags(BingoTags.OVERWORLD, EnigmaticsBingoTags.UNIQUE_FOOD)
+                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.UNIQUE_FOOD)
                 .icon(
                         CycleIcon.infer(Arrays.stream(VanillaHusbandryAdvancements.EDIBLE_ITEMS)),
                         subber -> subber.sub("icons.*.item.count", "count")
@@ -59,7 +58,7 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
                 .criterion("summon", SummonedEntityTrigger.TriggerInstance.summonedEntity(
                         EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityTypes, EntityType.WITHER)))
                 )
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
+                .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.summon_the_wither", EntityType.WITHER.getDescription()))
                 .antisynergy(EnigmaticsBingoSynergies.WITHER)
                 .icon(IndicatorIcon.infer(EntityType.WITHER, Items.WITHER_SKELETON_SKULL))
@@ -72,11 +71,11 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
         );
         addGoal(obtainItemGoal(eid("obtain_nether_star"), items, Items.NETHER_STAR)
                 .antisynergy(EnigmaticsBingoSynergies.WITHER)
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
+                .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
         );
         addGoal(makeBannerWithPatternItemGoal(eid("use_snout_pattern"), items, Items.PIGLIN_BANNER_PATTERN,
                 BannerPatterns.PIGLIN, "Snout Pattern")
-                .tags(BingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHER_EXPLORE, EnigmaticsBingoTags.BASTION)
+                .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHER_EXPLORE, EnigmaticsBingoTags.BASTION)
         );
     }
 }
