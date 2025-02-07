@@ -6,6 +6,7 @@ import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoFeatureTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
+import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
@@ -208,7 +209,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(BingoGoal.builder(eid("never_damage"))
                 .criterion("damage", EntityHurtPlayerTrigger.TriggerInstance.entityHurtPlayer())
-                .tags(EnigmaticsBingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
+                .tags(EnigmaticsBingoTags.NEVER, BingoTags.LOCKOUT_INFLICTABLE, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
                 .catalyst(EnigmaticsBingoSynergies.TAKE_DAMAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_damage"))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))

@@ -10,6 +10,7 @@ import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.*;
 import io.github.gaming32.bingo.conditions.HasAnyEffectCondition;
+import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
@@ -58,7 +59,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
 
         addGoal(BingoGoal.builder(eid("never_seeds"))
                 .criterion("obtain", InventoryChangeTrigger.TriggerInstance.hasItems(Items.WHEAT_SEEDS))
-                .tags(EnigmaticsBingoTags.NEVER)
+                .tags(EnigmaticsBingoTags.NEVER, BingoTags.LOCKOUT_INFLICTABLE)
                 .antisynergy(EnigmaticsBingoSynergies.SEEDS)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_wheat_seeds",
                         Items.WHEAT_SEEDS.getName()))
@@ -66,7 +67,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(BingoGoal.builder(eid("never_touch_water"))
                 .criterion("touch", EnterBlockTrigger.TriggerInstance.entersBlock(Blocks.WATER))
-                .tags(EnigmaticsBingoTags.NEVER)
+                .tags(EnigmaticsBingoTags.NEVER, BingoTags.LOCKOUT_INFLICTABLE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_touch_water",
                         Component.translatable(Blocks.WATER.getDescriptionId())))
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WATER_BUCKET), ItemIcon.ofItem(Items.BARRIER)))
@@ -77,7 +78,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                                 DamageSourcePredicate.Builder.damageType().tag(TagPredicate.is(DamageTypeTags.IS_FALL))
                         )
                 ))
-                .tags(EnigmaticsBingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
+                .tags(EnigmaticsBingoTags.NEVER, BingoTags.LOCKOUT_INFLICTABLE, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_fall_damage"))
                 .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
         );
@@ -87,7 +88,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                                 DamageSourcePredicate.Builder.damageType().tag(TagPredicate.is(DamageTypeTags.IS_FIRE))
                         )
                 ))
-                .tags(EnigmaticsBingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
+                .tags(EnigmaticsBingoTags.NEVER, BingoTags.LOCKOUT_INFLICTABLE, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_fire_damage"))
                 .icon(new IndicatorIcon(BlockIcon.ofBlock(Blocks.FIRE), ItemIcon.ofItem(Items.BARRIER)))
         );

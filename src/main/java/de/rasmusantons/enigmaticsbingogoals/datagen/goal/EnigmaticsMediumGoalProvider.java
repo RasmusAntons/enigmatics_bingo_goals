@@ -10,6 +10,7 @@ import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoFeatureTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.*;
+import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
@@ -65,6 +66,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .criterion("obtain", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CRAFTING_TABLE))
                 .tags(
                         EnigmaticsBingoTags.NEVER,
+                        BingoTags.LOCKOUT_INFLICTABLE,
                         EnigmaticsBingoTags.VILLAGE,
                         EnigmaticsBingoTags.OUTPOST,
                         EnigmaticsBingoTags.IGLOO,
@@ -80,7 +82,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .criterion("die", BingoTriggers.DEATH.get().createCriterion(
                         DeathTrigger.TriggerInstance.death(null)
                 ))
-                .tags(EnigmaticsBingoTags.NEVER, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE, EnigmaticsBingoTags.PLAYER_KILL)
+                .tags(EnigmaticsBingoTags.NEVER, BingoTags.LOCKOUT_INFLICTABLE, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE, EnigmaticsBingoTags.PLAYER_KILL)
                 .catalyst(EnigmaticsBingoSynergies.DIE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_die"))
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD), Items.BARRIER))
