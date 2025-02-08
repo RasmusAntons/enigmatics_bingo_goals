@@ -21,6 +21,7 @@ public final class EnigmaticsBingoItemTags {
     public static final TagKey<Item> MUSIC_DISCS = create("music_discs");
     public static final TagKey<Item> COPPER_BULBS = create("copper_bulbs");
     public static final TagKey<Item> HANGING_SIGNS = create("hanging_signs");
+    public static final TagKey<Item> COLORED_CANDLES = create("colored_candles");
 
     private EnigmaticsBingoItemTags() {
     }

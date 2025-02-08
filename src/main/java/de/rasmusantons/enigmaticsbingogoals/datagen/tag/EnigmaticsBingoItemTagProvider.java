@@ -151,5 +151,24 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.WARPED_HANGING_SIGN,
                 Items.PALE_OAK_HANGING_SIGN
         );
+
+        getOrCreateTagBuilder(EnigmaticsBingoItemTags.COLORED_CANDLES).add(
+                Items.WHITE_CANDLE,
+                Items.ORANGE_CANDLE,
+                Items.MAGENTA_CANDLE,
+                Items.LIGHT_BLUE_CANDLE,
+                Items.YELLOW_CANDLE,
+                Items.LIME_CANDLE,
+                Items.PINK_CANDLE,
+                Items.GRAY_CANDLE,
+                Items.LIGHT_GRAY_CANDLE,
+                Items.CYAN_CANDLE,
+                Items.PURPLE_CANDLE,
+                Items.BLUE_CANDLE,
+                Items.BROWN_CANDLE,
+                Items.GREEN_CANDLE,
+                Items.RED_CANDLE,
+                Items.BLACK_CANDLE
+        );
     }
 }

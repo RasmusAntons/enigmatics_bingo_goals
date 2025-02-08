@@ -667,7 +667,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .antisynergy(EnigmaticsBingoSynergies.WEAKNESS)
                 .reactant(EnigmaticsBingoSynergies.SUSPICIOUS_STEW)
         );
-        addGoal(obtainSomeItemsFromTagGoal(eid("obtain_colored_candle"), ItemTags.CANDLES, 1, 1)
+        addGoal(obtainSomeItemsFromTagGoal(eid("obtain_colored_candle"), EnigmaticsBingoItemTags.COLORED_CANDLES, 1, 1)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE, EnigmaticsBingoTags.ANCIENT_CITY, EnigmaticsBingoTags.TRIAL_CHAMBER)
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_colored_candle"))
         );
