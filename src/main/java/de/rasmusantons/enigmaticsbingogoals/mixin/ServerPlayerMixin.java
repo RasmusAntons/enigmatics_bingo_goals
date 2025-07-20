@@ -24,7 +24,7 @@ public abstract class ServerPlayerMixin extends PlayerMixin {
 
     @Inject(method = "tick", at = @At("TAIL"))
     private void doTick(CallbackInfo ci) {
-        ItemStack itemStack = getItemBySlot(EquipmentSlot.HEAD);
+        ItemStack itemStack = ((ServerPlayer) (Object) this).getItemBySlot(EquipmentSlot.HEAD);
         if (!itemStack.isEmpty() && itemStack.getItem() == Items.CARVED_PUMPKIN) {
             if (++carvedPumpkinTimer % 20 == 0)
                 EnigmaticsBingoGoalsTriggers.WEAR_PUMPKIN.get().trigger((ServerPlayer) (Object) this, carvedPumpkinTimer / 20);

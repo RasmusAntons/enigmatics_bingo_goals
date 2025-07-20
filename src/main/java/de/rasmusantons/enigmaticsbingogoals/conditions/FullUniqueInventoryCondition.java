@@ -34,7 +34,7 @@ public enum FullUniqueInventoryCondition implements LootItemCondition {
             return false;
         Inventory inventory = serverPlayer.getInventory();
         Set<Item> seenItems = new HashSet<>();
-        for (ItemStack itemStack : inventory.items) {
+        for (ItemStack itemStack : inventory) {
             if (itemStack.isEmpty())
                 return false;
             Item item = itemStack.getItem();

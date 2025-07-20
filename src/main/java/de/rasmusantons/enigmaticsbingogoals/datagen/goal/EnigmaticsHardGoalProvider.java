@@ -21,7 +21,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.animal.FrogVariant;
+import net.minecraft.world.entity.animal.frog.FrogVariants;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
@@ -67,7 +67,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         subber -> subber.sub("item.count", "count")
                 )
         );
-        addGoal(tameSomeCatsGoal(eid("tame_some_cats"), 5, 6));
+        // addGoal(tameSomeCatsGoal(eid("tame_some_cats"), 5, 6));  // todo: add tameSomeCatsGoal
         addGoal(tameSomeWolvesGoal(eid("tame_some_wolves"), 3, 4));
         addGoal(advancementProgressGoal(eid("breed_some_unique_mobs"),
                 ResourceLocation.withDefaultNamespace("husbandry/bred_all_animals"), 11, 15)
@@ -212,7 +212,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.NEVER, BingoTags.LOCKOUT_INFLICTABLE, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
                 .catalyst(EnigmaticsBingoSynergies.TAKE_DAMAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_damage"))
-                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
+                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.INSTANT_DAMAGE), ItemIcon.ofItem(Items.BARRIER)))
         );
         addGoal(neverLevelsGoal(eid("never_levels"), 1, 1));
         addGoal(reachLevelsGoal(eid("reach_levels"), 26, 35));
@@ -246,13 +246,13 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(obtainItemGoal(eid("obtain_wither_skeleton_skull"), items, Items.WITHER_SKELETON_SKULL)
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS)
         );
-        addGoal(breedFrogVariantGoal(eid("breed_white_frog"), FrogVariant.WARM)
+        addGoal(breedFrogVariantGoal(eid("breed_white_frog"), FrogVariants.WARM)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_white_frog", EntityType.FROG.getDescription()))
         );
-        addGoal(breedFrogVariantGoal(eid("breed_orange_frog"), FrogVariant.TEMPERATE)
+        addGoal(breedFrogVariantGoal(eid("breed_orange_frog"), FrogVariants.TEMPERATE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_orange_frog", EntityType.FROG.getDescription()))
         );
-        addGoal(breedFrogVariantGoal(eid("breed_green_frog"), FrogVariant.COLD)
+        addGoal(breedFrogVariantGoal(eid("breed_green_frog"), FrogVariants.COLD)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_green_frog", EntityType.FROG.getDescription()))
         );
         addGoal(obtainSomeItemsFromTagGoal(eid("obtain_some_saplings"), EnigmaticsBingoItemTags.SAPLINGS, 6, 7)

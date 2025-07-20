@@ -1,7 +1,7 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
-    id 'fabric-loom' version '1.9-SNAPSHOT'
+    id 'fabric-loom' version '1.10-SNAPSHOT'
     id 'maven-publish'
 }
 

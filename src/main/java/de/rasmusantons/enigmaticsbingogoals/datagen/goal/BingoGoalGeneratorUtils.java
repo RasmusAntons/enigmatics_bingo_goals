@@ -10,6 +10,7 @@ import com.mojang.serialization.Lifecycle;
 import de.rasmusantons.enigmaticsbingogoals.datagen.tag.EnigmaticsBingoEntityTypeTagProvider;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.fabric.datagen.BingoDataGenFabric;
+import io.github.gaming32.bingo.fabric.datagen.BingoDataGenUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.*;
 import net.minecraft.core.component.DataComponents;
@@ -27,10 +28,11 @@ import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.animal.CatVariant;
-import net.minecraft.world.entity.animal.FrogVariant;
-import net.minecraft.world.entity.animal.WolfVariant;
+import net.minecraft.world.entity.animal.frog.FrogVariant;
+import net.minecraft.world.entity.animal.wolf.WolfVariant;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ResolvableProfile;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.block.entity.BannerPatterns;
@@ -120,8 +122,9 @@ public class BingoGoalGeneratorUtils {
                 .addIfRegistered(patternRegistry, BannerPatterns.BORDER, DyeColor.BLACK)
                 .build();
         itemStack.set(DataComponents.BANNER_PATTERNS, bannerPatternLayers);
-        itemStack.set(DataComponents.HIDE_ADDITIONAL_TOOLTIP, Unit.INSTANCE);
-        itemStack.set(DataComponents.ITEM_NAME, Component.translatable("block.minecraft.ominous_banner").withStyle(ChatFormatting.GOLD));
+        itemStack.set(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT.withHidden(DataComponents.BANNER_PATTERNS, true));
+        itemStack.set(DataComponents.ITEM_NAME, Component.translatable("block.minecraft.ominous_banner"));
+        itemStack.set(DataComponents.RARITY, Rarity.UNCOMMON);
         return itemStack;
     }
 
@@ -154,7 +157,7 @@ public class BingoGoalGeneratorUtils {
         armors.orderRowsBy(Ordering.natural());
         armors.orderColumnsBy(Ordering.natural());
         Stream.of(ItemTags.HEAD_ARMOR, ItemTags.CHEST_ARMOR, ItemTags.LEG_ARMOR, ItemTags.FOOT_ARMOR)
-                .map(tag -> BingoDataGenFabric.loadVanillaTag(tag, registries))
+                .map(tag -> BingoDataGenUtil.loadVanillaTag(tag, registries))
                 .flatMap(HolderSet::stream)
                 .distinct()
                 .map(Holder::value)

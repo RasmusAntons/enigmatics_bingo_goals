@@ -24,6 +24,8 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.component.predicates.DataComponentPredicates;
+import net.minecraft.core.component.predicates.PotionsPredicate;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -35,8 +37,8 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.animal.FrogVariant;
-import net.minecraft.world.entity.animal.WolfVariants;
+import net.minecraft.world.entity.animal.frog.FrogVariant;
+import net.minecraft.world.entity.animal.wolf.WolfVariants;
 import net.minecraft.world.inventory.SlotRange;
 import net.minecraft.world.inventory.SlotRanges;
 import net.minecraft.world.item.DyeColor;
@@ -122,7 +124,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .progress("obtain")
                 .tags(EnigmaticsBingoTags.ITEM)
                 .icon(
-                        new ItemTagCycleIcon(tag, 0),
+                        new ItemTagCycleIcon(tag, 2),
                         subber -> subber.sub("count", "count")
                 );
     }
@@ -176,9 +178,13 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 Arrays.stream(potions)
                         .map(potion -> ItemPredicate.Builder.item()
                                 .of(items, net.minecraft.world.item.Items.POTION)
-                                .withSubPredicate(
-                                        ItemSubPredicates.POTIONS,
-                                        new ItemPotionsPredicate(HolderSet.direct(potion))
+                                .withComponents(
+                                        DataComponentMatchers.Builder.components()
+                                                .partial(
+                                                        DataComponentPredicates.POTIONS,
+                                                        new PotionsPredicate(HolderSet.direct(potion))
+                                                )
+                                                .build()
                                 )
                         )
                         .toArray(ItemPredicate.Builder[]::new)
@@ -288,7 +294,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 )
                 .tags(EnigmaticsBingoTags.NEVER, BingoTags.LOCKOUT_INFLICTABLE, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_some_hearts_damage", damage))
-                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(net.minecraft.world.item.Items.BARRIER)))
+                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.INSTANT_DAMAGE), ItemIcon.ofItem(net.minecraft.world.item.Items.BARRIER)))
                 .progress(new CriterionProgressTracker("damage", 0.05f));
     }
 
@@ -415,33 +421,33 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
     }
 
 
-    protected static GoalBuilder rideAbstractHorseWithSaddleGoal(ResourceLocation id, HolderGetter<EntityType<?>> entityTypes,
-                                                                 HolderGetter<Item> items, EntityType<?> entityType) {
-        var playerPredicate = Optional.of(ContextAwarePredicate.create(
-                LootItemEntityPropertyCondition.hasProperties(
-                        LootContext.EntityTarget.THIS,
-                        EntityPredicate.Builder.entity().of(entityTypes, EntityType.PLAYER).vehicle(
-                                EntityPredicate.Builder.entity().of(entityTypes, EntityType.HORSE).slots(
-                                        new SlotsPredicate(
-                                                Map.of(
-                                                        Objects.requireNonNull(SlotRanges.nameToIds("horse.saddle")),
-                                                        ItemPredicate.Builder.item().of(items, net.minecraft.world.item.Items.SADDLE).build()
-                                                )
-                                        )
-                                )
-                        )
-                ).build()
-        ));
-        return BingoGoal.builder(id)
-                .criterion("change", EnigmaticsBingoGoalsTriggers.VEHICLE_INVENTORY_CHANGE.get().createCriterion(
-                        new VehicleInventoryChangeTrigger.TriggerInstance(playerPredicate)
-                ))
-                .criterion("mount", CriteriaTriggers.START_RIDING_TRIGGER.createCriterion(
-                        new StartRidingTrigger.TriggerInstance(playerPredicate)
-                ))
-                .requirements(AdvancementRequirements.Strategy.OR)
-                .icon(IndicatorIcon.infer(entityType, net.minecraft.world.item.Items.SADDLE));
-    }
+//    protected static GoalBuilder rideAbstractHorseWithSaddleGoal(ResourceLocation id, HolderGetter<EntityType<?>> entityTypes,
+//                                                                 HolderGetter<Item> items, EntityType<?> entityType) {
+//        var playerPredicate = Optional.of(ContextAwarePredicate.create(
+//                LootItemEntityPropertyCondition.hasProperties(
+//                        LootContext.EntityTarget.THIS,
+//                        EntityPredicate.Builder.entity().of(entityTypes, EntityType.PLAYER).vehicle(
+//                                EntityPredicate.Builder.entity().of(entityTypes, EntityType.HORSE).slots(
+//                                        new SlotsPredicate(
+//                                                Map.of(
+//                                                        Objects.requireNonNull(SlotRanges.nameToIds("horse.saddle")),
+//                                                        ItemPredicate.Builder.item().of(items, net.minecraft.world.item.Items.SADDLE).build()
+//                                                )
+//                                        )
+//                                )
+//                        )
+//                ).build()
+//        ));
+//        return BingoGoal.builder(id)
+//                .criterion("change", EnigmaticsBingoGoalsTriggers.VEHICLE_INVENTORY_CHANGE.get().createCriterion(
+//                        new VehicleInventoryChangeTrigger.TriggerInstance(playerPredicate)
+//                ))
+//                .criterion("mount", CriteriaTriggers.START_RIDING_TRIGGER.createCriterion(
+//                        new StartRidingTrigger.TriggerInstance(playerPredicate)
+//                ))
+//                .requirements(AdvancementRequirements.Strategy.OR)
+//                .icon(IndicatorIcon.infer(entityType, net.minecraft.world.item.Items.SADDLE));
+//    }
 
     protected static GoalBuilder breedAnimalGoal(ResourceLocation id, HolderGetter<EntityType<?>> entityTypes, EntityType<?> entityType) {
         return BingoGoal.builder(id)
@@ -462,30 +468,30 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(IndicatorIcon.infer(entityType, ItemIcon.ofItem(net.minecraft.world.item.Items.BONE)));
     }
 
-    protected static GoalBuilder tameSomeCatsGoal(ResourceLocation id, int minProgress, int maxProgress) {
-        return advancementProgressGoal(id,
-                ResourceLocation.withDefaultNamespace("husbandry/complete_catalogue"),
-                minProgress,
-                maxProgress
-        )
-                .name(Component.translatable("enigmaticsbingogoals.goal.tame_some_cats", 0,
-                                EntityType.CAT.getDescription()),
-                        subber -> subber.sub("with.0", "count")
-                )
-                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.WITCH_HUT, EnigmaticsBingoTags.VILLAGE)
-                .antisynergy(EnigmaticsBingoSynergies.CAT)
-                .icon(
-                        IndicatorIcon.infer(
-                                CycleIcon.infer(
-                                        BuiltInRegistries.CAT_VARIANT.stream().map(h -> BingoGoalGeneratorUtils.getCatVariantIcon(
-                                                BuiltInRegistries.CAT_VARIANT.wrapAsHolder(h).unwrapKey().orElseThrow()
-                                        ))
-                                ),
-                                ItemIcon.ofItem(Items.COD)
-                        ),
-                        subber -> subber.sub("base.icons.*.item.count", "count")
-                );
-    }
+//    protected static GoalBuilder tameSomeCatsGoal(ResourceLocation id, int minProgress, int maxProgress) {
+//        return advancementProgressGoal(id,
+//                ResourceLocation.withDefaultNamespace("husbandry/complete_catalogue"),
+//                minProgress,
+//                maxProgress
+//        )
+//                .name(Component.translatable("enigmaticsbingogoals.goal.tame_some_cats", 0,
+//                                EntityType.CAT.getDescription()),
+//                        subber -> subber.sub("with.0", "count")
+//                )
+//                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.WITCH_HUT, EnigmaticsBingoTags.VILLAGE)
+//                .antisynergy(EnigmaticsBingoSynergies.CAT)
+//                .icon(
+//                        IndicatorIcon.infer(
+//                                CycleIcon.infer(
+//                                        BuiltInRegistries.CAT_VARIANT.stream().map(h -> BingoGoalGeneratorUtils.getCatVariantIcon(
+//                                                BuiltInRegistries.CAT_VARIANT.wrapAsHolder(h).unwrapKey().orElseThrow()
+//                                        ))
+//                                ),
+//                                ItemIcon.ofItem(Items.COD)
+//                        ),
+//                        subber -> subber.sub("base.icons.*.item.count", "count")
+//                );
+//    }
 
     protected static GoalBuilder tameSomeWolvesGoal(ResourceLocation id, int minProgress, int maxProgress) {
         WolfVariantCollector wolfContext = new WolfVariantCollector();

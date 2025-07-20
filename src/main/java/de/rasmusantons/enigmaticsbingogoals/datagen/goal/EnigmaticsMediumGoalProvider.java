@@ -22,8 +22,11 @@ import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
-import net.minecraft.core.component.DataComponentPredicate;
+import net.minecraft.core.component.DataComponentExactPredicate;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.component.predicates.DataComponentPredicates;
+import net.minecraft.core.component.predicates.EnchantmentsPredicate;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
@@ -159,15 +162,15 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 )
         );
         addGoal(numberOfEffectsGoal(eid("get_some_effects"), 6, 12));
-        addGoal(effectGoal(eid("get_slowness"), MobEffects.MOVEMENT_SLOWDOWN)
+        addGoal(effectGoal(eid("get_slowness"), MobEffects.SLOWNESS)
                 .tags(EnigmaticsBingoTags.TRIAL_CHAMBER)
                 .antisynergy(EnigmaticsBingoSynergies.SLOWNESS)
         );
-        addGoal(effectGoal(eid("get_mining_fatigue"), MobEffects.DIG_SLOWDOWN)
+        addGoal(effectGoal(eid("get_mining_fatigue"), MobEffects.MINING_FATIGUE)
                 .tags(EnigmaticsBingoTags.OCEAN_MONUMENT)
                 .antisynergy(EnigmaticsBingoSynergies.SATURATION)
         );
-        addGoal(effectGoal(eid("get_nausea"), MobEffects.CONFUSION)
+        addGoal(effectGoal(eid("get_nausea"), MobEffects.NAUSEA)
                 .tags(EnigmaticsBingoTags.PUFFER_FISH)
         );
         addGoal(dieToDamageTypeGoal(eid("die_to_intentional_game_design"), EnigmaticsBingoDamageTypeTags.INTENTIONAL_GAME_DESIGN)
@@ -401,7 +404,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.SADDLE, EnigmaticsBingoTags.PIG)
                 .name(Component.translatable("enigmaticsbingogoals.goal.ride_pig_distance",
                         EntityType.PIG.getDescription(), 300))
-                .icon(IndicatorIcon.infer(EntityType.PIG, EffectIcon.of(MobEffects.MOVEMENT_SPEED)))
+                .icon(IndicatorIcon.infer(EntityType.PIG, EffectIcon.of(MobEffects.SPEED)))
         );
         addGoal(BingoGoal.builder(eid("ride_pig_lava"))
                 .criterion("ride", CriteriaTriggers.RIDE_ENTITY_IN_LAVA_TRIGGER.createCriterion(
@@ -446,11 +449,11 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .icon(IndicatorIcon.infer(EntityType.PIG, Items.CARROT_ON_A_STICK))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.PIG, EnigmaticsBingoTags.SADDLE)
         );
-        addGoal(rideAbstractHorseWithSaddleGoal(eid("ride_horse"), entityTypes, items, EntityType.HORSE)
-                .name(Component.translatable("enigmaticsbingogoals.goal.ride_horse",
-                        EntityType.HORSE.getDescription(), Items.SADDLE.getName()))
-                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.SADDLE)
-        );
+//        addGoal(rideAbstractHorseWithSaddleGoal(eid("ride_horse"), entityTypes, items, EntityType.HORSE)  // todo: add rideAbstractHorseWithSaddleGoal
+//                .name(Component.translatable("enigmaticsbingogoals.goal.ride_horse",
+//                        EntityType.HORSE.getDescription(), Items.SADDLE.getName()))
+//                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.SADDLE)
+//        );
         addGoal(advancementGoal(eid("get_any_spyglass_advancement"), null,
                 ResourceLocation.withDefaultNamespace("adventure/spyglass_at_parrot"),
                 ResourceLocation.withDefaultNamespace("adventure/spyglass_at_ghast"),
@@ -481,8 +484,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(BingoGoal.builder(eid("name_a_sheep_jeb"))
                 .criterion("use", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(
-                        ItemPredicate.Builder.item().of(items, Items.NAME_TAG).hasComponents(DataComponentPredicate.builder()
-                                .expect(DataComponents.CUSTOM_NAME, Component.literal("jeb_"))
+                        ItemPredicate.Builder.item().of(items, Items.NAME_TAG).withComponents(DataComponentMatchers.Builder.components()
+                                .exact(DataComponentExactPredicate.expect(DataComponents.CUSTOM_NAME, Component.literal("jeb_")))
                                 .build()),
                         Optional.of(EntityPredicate.wrap(EntityPredicate.Builder.entity().of(entityTypes, EntityType.SHEEP)))
                 ))
@@ -691,7 +694,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(tameAnimalGoal(eid("tame_parrot"), entityTypes, EntityType.PARROT)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE)
         );
-        addGoal(tameSomeCatsGoal(eid("tame_some_cats"), 2, 4));
+        // addGoal(tameSomeCatsGoal(eid("tame_some_cats"), 2, 4)); // todo: add tameSomeCatsGoal
         addGoal(tameSomeWolvesGoal(eid("tame_some_wolves"), 2, 2));
         // TODO (requires OVERTAKABLE): Eat more unique foods than the enemy
         addGoal(wearDifferentMaterialsGoal(eid("wear_4_different_materials"), 4));
@@ -705,35 +708,43 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
 
             addGoal(BingoGoal.builder(eid("use_grindstone_to_disenchant"))
                     .criterion("disenchant_enchant_slot_1", UseGrindstoneTrigger.builder().firstItem(
-                            ItemPredicate.Builder.item().withSubPredicate(
-                                    ItemSubPredicates.ENCHANTMENTS,
-                                    ItemEnchantmentsPredicate.enchantments(List.of(
-                                            new EnchantmentPredicate(Optional.of(enchantmentHolderSetNoCurses), MinMaxBounds.Ints.atLeast(0))
-                                    ))
+                            ItemPredicate.Builder.item().withComponents(
+                                    DataComponentMatchers.Builder.components().partial(
+                                            DataComponentPredicates.ENCHANTMENTS,
+                                            EnchantmentsPredicate.enchantments(
+                                                    List.of(new EnchantmentPredicate(Optional.of(enchantmentHolderSetNoCurses), MinMaxBounds.Ints.atLeast(0)))
+                                            )
+                                    ).build()
                             ).build()).build()
                     )
                     .criterion("disenchant_stored_enchant_slot_1", UseGrindstoneTrigger.builder().firstItem(
-                            ItemPredicate.Builder.item().withSubPredicate(
-                                    ItemSubPredicates.STORED_ENCHANTMENTS,
-                                    ItemEnchantmentsPredicate.storedEnchantments(List.of(
-                                            new EnchantmentPredicate(Optional.of(enchantmentHolderSetNoCurses), MinMaxBounds.Ints.atLeast(0))
-                                    ))
+                            ItemPredicate.Builder.item().withComponents(
+                                    DataComponentMatchers.Builder.components().partial(
+                                            DataComponentPredicates.STORED_ENCHANTMENTS,
+                                            EnchantmentsPredicate.storedEnchantments(
+                                                    List.of(new EnchantmentPredicate(Optional.of(enchantmentHolderSetNoCurses), MinMaxBounds.Ints.atLeast(0)))
+                                            )
+                                    ).build()
                             ).build()).build()
                     )
                     .criterion("disenchant_enchant_slot_2", UseGrindstoneTrigger.builder().secondItem(
-                            ItemPredicate.Builder.item().withSubPredicate(
-                                    ItemSubPredicates.ENCHANTMENTS,
-                                    ItemEnchantmentsPredicate.enchantments(List.of(
-                                            new EnchantmentPredicate(Optional.of(enchantmentHolderSetNoCurses), MinMaxBounds.Ints.atLeast(0))
-                                    ))
+                            ItemPredicate.Builder.item().withComponents(
+                                    DataComponentMatchers.Builder.components().partial(
+                                            DataComponentPredicates.STORED_ENCHANTMENTS,
+                                            EnchantmentsPredicate.storedEnchantments(
+                                                    List.of(new EnchantmentPredicate(Optional.of(enchantmentHolderSetNoCurses), MinMaxBounds.Ints.atLeast(0)))
+                                            )
+                                    ).build()
                             ).build()).build()
                     )
                     .criterion("disenchant_stored_enchant_slot_2", UseGrindstoneTrigger.builder().secondItem(
-                            ItemPredicate.Builder.item().withSubPredicate(
-                                    ItemSubPredicates.STORED_ENCHANTMENTS,
-                                    ItemEnchantmentsPredicate.storedEnchantments(List.of(
-                                            new EnchantmentPredicate(Optional.of(enchantmentHolderSetNoCurses), MinMaxBounds.Ints.atLeast(0))
-                                    ))
+                            ItemPredicate.Builder.item().withComponents(
+                                    DataComponentMatchers.Builder.components().partial(
+                                            DataComponentPredicates.STORED_ENCHANTMENTS,
+                                            EnchantmentsPredicate.storedEnchantments(
+                                                    List.of(new EnchantmentPredicate(Optional.of(enchantmentHolderSetNoCurses), MinMaxBounds.Ints.atLeast(0)))
+                                            )
+                                    ).build()
                             ).build()).build()
                     )
                     .requirements(AdvancementRequirements.Strategy.OR)

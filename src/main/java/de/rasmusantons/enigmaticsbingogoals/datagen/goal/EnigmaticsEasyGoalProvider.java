@@ -20,6 +20,8 @@ import io.github.gaming32.bingo.util.ResourceLocations;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.predicates.DataComponentPredicates;
+import net.minecraft.core.component.predicates.WrittenBookPredicate;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
@@ -80,7 +82,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 ))
                 .tags(EnigmaticsBingoTags.NEVER, BingoTags.LOCKOUT_INFLICTABLE, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_fall_damage"))
-                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
+                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.INSTANT_DAMAGE), ItemIcon.ofItem(Items.BARRIER)))
         );
         addGoal(BingoGoal.builder(eid("never_fire_damage"))
                 .criterion("damage", EntityHurtPlayerTrigger.TriggerInstance.entityHurtPlayer(
@@ -113,7 +115,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .antisynergy(EnigmaticsBingoSynergies.POISON)
                 .reactant(EnigmaticsBingoSynergies.SUSPICIOUS_STEW)
         );
-        addGoal(effectGoal(eid("get_jump_boost"), MobEffects.JUMP)
+        addGoal(effectGoal(eid("get_jump_boost"), MobEffects.JUMP_BOOST)
                 .antisynergy(EnigmaticsBingoSynergies.JUMP_BOOST)
                 .reactant(EnigmaticsBingoSynergies.SUSPICIOUS_STEW)
         );
@@ -377,15 +379,19 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 BingoGoal.builder(eid("make_copy_of_copy"))
                         .criterion("clone", RecipeCraftedTrigger.TriggerInstance.craftedItem(
                                 ResourceKey.create(Registries.RECIPE, ResourceLocations.minecraft("book_cloning")),
-                                List.of(ItemPredicate.Builder.item().withSubPredicate(
-                                        ItemSubPredicates.WRITTEN_BOOK,
-                                        new ItemWrittenBookPredicate(
-                                                Optional.empty(),
-                                                Optional.empty(),
-                                                Optional.empty(),
-                                                MinMaxBounds.Ints.exactly(1),
-                                                Optional.empty()
-                                        )
+                                List.of(ItemPredicate.Builder.item().withComponents(
+                                        DataComponentMatchers.Builder.components()
+                                                .partial(
+                                                        DataComponentPredicates.WRITTEN_BOOK,
+                                                        new WrittenBookPredicate(
+                                                            Optional.empty(),
+                                                            Optional.empty(),
+                                                            Optional.empty(),
+                                                            MinMaxBounds.Ints.exactly(1),
+                                                            Optional.empty()
+                                                        )
+                                                )
+                                                .build()
                                 ))
                         ))
                         .name(Component.translatable("enigmaticsbingogoals.goal.make_copy_of_copy",

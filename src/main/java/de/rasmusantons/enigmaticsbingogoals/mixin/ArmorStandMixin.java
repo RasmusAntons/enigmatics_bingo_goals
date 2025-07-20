@@ -17,8 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ArmorStand.class)
 public class ArmorStandMixin {
-
-
     @Shadow 
     @Final 
     private NonNullList<ItemStack> armorItems;

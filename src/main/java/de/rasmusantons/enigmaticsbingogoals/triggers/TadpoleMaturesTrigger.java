@@ -9,8 +9,8 @@ import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.entity.animal.frog.Frog;
+import net.minecraft.world.entity.animal.frog.FrogVariant;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;

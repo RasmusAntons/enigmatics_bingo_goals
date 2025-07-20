@@ -16,9 +16,6 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin {
-    @Shadow
-    public abstract ItemStack getItemBySlot(EquipmentSlot slot);
-
     @ModifyArg(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;awardStat(Lnet/minecraft/resources/ResourceLocation;I)V"))
     private int onAttackLivingEntity(int damage, @Local(argsOnly = true) Entity target) {
         //noinspection ConstantValue

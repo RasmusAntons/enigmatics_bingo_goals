@@ -7,9 +7,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Blocks;
@@ -26,7 +28,10 @@ public abstract class AbstractCauldronBlockMixin {
     @Inject(method = "useItemOn", at = @At("HEAD"))
     protected void useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
 
-        if ((stack.is(ItemTags.DYEABLE)) && stack.getItem() instanceof ArmorItem && stack.has(DataComponents.DYED_COLOR)) {
+        if ((stack.is(ItemTags.DYEABLE)) && stack.getItem() instanceof Item && stack.has(DataComponents.DYED_COLOR)) {
+            Equippable equippable = stack.get(DataComponents.EQUIPPABLE);
+            if (equippable == null || equippable.slot().getType() != EquipmentSlot.Type.HUMANOID_ARMOR)
+                return;
             if ((AbstractCauldronBlock) (Object) this instanceof LayeredCauldronBlock layeredCauldronBlock) {
                 if (layeredCauldronBlock.getStateDefinition().getOwner() == Blocks.WATER_CAULDRON) {
                     EnigmaticsBingoGoalsTriggers.CLEAN_ARMOR_IN_CAULDRON.get().trigger((ServerPlayer) player, stack);

@@ -52,7 +52,7 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
-        addGoal(tameSomeCatsGoal(eid("tame_some_cats"), 9, 11));
+        // addGoal(tameSomeCatsGoal(eid("tame_some_cats"), 9, 11)); // todo: add tameSomeCatsGoal
         addGoal(tameSomeWolvesGoal(eid("tame_some_wolves"), 6, 9));
         addGoal(BingoGoal.builder(eid("summon_the_wither"))
                 .criterion("summon", SummonedEntityTrigger.TriggerInstance.summonedEntity(
