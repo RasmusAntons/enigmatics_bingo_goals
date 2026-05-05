@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ServerStatsCounter.class)
 public class ServerStatsCounterMixin {
     @Inject(method = "setValue", at = @At("RETURN"))
-    private void onSetValue(Player player, Stat<?> stat, int value, CallbackInfo ci) {
+    private void onSetValue(Player player, Stat<?> stat, int count, CallbackInfo ci) {
         if (player instanceof ServerPlayer serverPlayer) {
             EnigmaticsBingoGoalsTriggers.KILL_MOBS.get().trigger(serverPlayer);
         }

@@ -1,82 +1,89 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.tag;
 
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.Items;
+import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagProvider {
+public class EnigmaticsBingoItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
 
-    public EnigmaticsBingoItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
+    public EnigmaticsBingoItemTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
         super(output, completableFuture);
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider registries) {
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.WOODEN_TOOLS).add(
+    protected void addTags(HolderLookup.@NonNull Provider registries) {
+        valueLookupBuilder(EnigmaticsBingoItemTags.WOODEN_TOOLS).add(
                 Items.WOODEN_AXE,
                 Items.WOODEN_SHOVEL,
                 Items.WOODEN_PICKAXE,
                 Items.WOODEN_HOE,
-                Items.WOODEN_SWORD
+                Items.WOODEN_SWORD,
+                Items.WOODEN_SPEAR
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.STONE_TOOLS).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.STONE_TOOLS).add(
                 Items.STONE_AXE,
                 Items.STONE_SHOVEL,
                 Items.STONE_PICKAXE,
                 Items.STONE_HOE,
-                Items.STONE_SWORD
+                Items.STONE_SWORD,
+                Items.STONE_SPEAR
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.IRON_TOOLS).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.IRON_TOOLS).add(
                 Items.IRON_AXE,
                 Items.IRON_SHOVEL,
                 Items.IRON_PICKAXE,
                 Items.IRON_HOE,
-                Items.IRON_SWORD
+                Items.IRON_SWORD,
+                Items.IRON_SPEAR
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.GOLDEN_TOOLS).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.GOLDEN_TOOLS).add(
                 Items.GOLDEN_AXE,
                 Items.GOLDEN_SHOVEL,
                 Items.GOLDEN_PICKAXE,
                 Items.GOLDEN_HOE,
-                Items.GOLDEN_SWORD
+                Items.GOLDEN_SWORD,
+                Items.GOLDEN_SPEAR
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.DIAMOND_TOOLS).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.DIAMOND_TOOLS).add(
                 Items.DIAMOND_AXE,
                 Items.DIAMOND_SHOVEL,
                 Items.DIAMOND_PICKAXE,
                 Items.DIAMOND_HOE,
-                Items.DIAMOND_SWORD
+                Items.DIAMOND_SWORD,
+                Items.DIAMOND_SPEAR
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.HORSE_ARMORS).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.HORSE_ARMORS).add(
                 Items.LEATHER_HORSE_ARMOR,
                 Items.IRON_HORSE_ARMOR,
                 Items.GOLDEN_HORSE_ARMOR,
-                Items.DIAMOND_HORSE_ARMOR
+                Items.DIAMOND_HORSE_ARMOR,
+                Items.COPPER_HORSE_ARMOR
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.RAW_ORE_BLOCKS).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.RAW_ORE_BLOCKS).add(
                 Items.RAW_COPPER_BLOCK,
                 Items.RAW_GOLD_BLOCK,
                 Items.RAW_IRON_BLOCK
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.CHAINMAIL_ARMOR).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.CHAINMAIL_ARMOR).add(
                 Items.CHAINMAIL_HELMET,
                 Items.CHAINMAIL_CHESTPLATE,
                 Items.CHAINMAIL_LEGGINGS,
                 Items.CHAINMAIL_BOOTS
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.SEEDS).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.SEEDS).add(
                 Items.WHEAT_SEEDS,
                 Items.MELON_SEEDS,
                 Items.PUMPKIN_SEEDS,
@@ -85,7 +92,7 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.PITCHER_POD
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.SAPLINGS).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.SAPLINGS).add(
                 Items.OAK_SAPLING,
                 Items.SPRUCE_SAPLING,
                 Items.BIRCH_SAPLING,
@@ -96,7 +103,7 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.PALE_OAK_SAPLING
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.BOOKS).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.BOOKS).add(
                 Items.BOOK,
                 Items.WRITABLE_BOOK,
                 Items.WRITTEN_BOOK,
@@ -104,7 +111,7 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.KNOWLEDGE_BOOK
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.MUSIC_DISCS).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.MUSIC_DISCS).add(
                 Items.MUSIC_DISC_13,
                 Items.MUSIC_DISC_CAT,
                 Items.MUSIC_DISC_BLOCKS,
@@ -123,10 +130,12 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.MUSIC_DISC_RELIC,
                 Items.MUSIC_DISC_PRECIPICE,
                 Items.MUSIC_DISC_CREATOR,
-                Items.MUSIC_DISC_CREATOR_MUSIC_BOX
+                Items.MUSIC_DISC_CREATOR_MUSIC_BOX,
+                Items.MUSIC_DISC_LAVA_CHICKEN,
+                Items.MUSIC_DISC_TEARS
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.COPPER_BULBS).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.COPPER_BULBS).add(
                 Items.COPPER_BULB,
                 Items.EXPOSED_COPPER_BULB,
                 Items.WEATHERED_COPPER_BULB,
@@ -137,7 +146,7 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.WAXED_OXIDIZED_COPPER_BULB
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.HANGING_SIGNS).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.HANGING_SIGNS).add(
                 Items.OAK_HANGING_SIGN,
                 Items.SPRUCE_HANGING_SIGN,
                 Items.BIRCH_HANGING_SIGN,
@@ -152,7 +161,7 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagProvider.ItemTagPro
                 Items.PALE_OAK_HANGING_SIGN
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoItemTags.COLORED_CANDLES).add(
+        valueLookupBuilder(EnigmaticsBingoItemTags.COLORED_CANDLES).add(
                 Items.WHITE_CANDLE,
                 Items.ORANGE_CANDLE,
                 Items.MAGENTA_CANDLE,

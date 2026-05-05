@@ -17,8 +17,8 @@ public abstract class ProjectileMixin {
     public abstract Entity getOwner();
 
     @Inject(method = "onHitEntity", at = @At("HEAD"))
-    private void onHitEntity(EntityHitResult result, CallbackInfo ci) {
-        if (!(result.getEntity() instanceof ServerPlayer hitPlayer))
+    private void onHitEntity(EntityHitResult hitResult, CallbackInfo ci) {
+        if (!(hitResult.getEntity() instanceof ServerPlayer hitPlayer))
             return;
         if (!(this.getOwner() instanceof ServerPlayer serverPlayer))
             return;

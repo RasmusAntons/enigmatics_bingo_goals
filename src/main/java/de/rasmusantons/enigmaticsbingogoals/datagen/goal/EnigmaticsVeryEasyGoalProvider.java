@@ -15,11 +15,11 @@ import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
 import io.github.gaming32.bingo.triggers.ChickenHatchTrigger;
 import io.github.gaming32.bingo.triggers.RelativeStatsTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.criterion.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -33,7 +33,7 @@ import java.util.Optional;
 import java.util.function.BiConsumer;
 
 public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProvider {
-    public EnigmaticsVeryEasyGoalProvider(BiConsumer<ResourceLocation, BingoGoal> goalAdder, HolderLookup.Provider registries) {
+    public EnigmaticsVeryEasyGoalProvider(BiConsumer<Identifier, BingoGoal> goalAdder, HolderLookup.Provider registries) {
         super(EnigmaticsBingoDifficulties.VERY_EASY, goalAdder, registries);
     }
 

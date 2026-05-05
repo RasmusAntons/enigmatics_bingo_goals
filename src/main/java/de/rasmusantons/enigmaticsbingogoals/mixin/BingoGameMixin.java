@@ -10,7 +10,7 @@ import io.github.gaming32.bingo.game.mode.BingoGameMode;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stat;
 import net.minecraft.world.scores.PlayerTeam;
@@ -45,7 +45,7 @@ public abstract class BingoGameMixin implements BingoGameExtension {
     }
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void onInit(BingoBoard board, BingoGameMode gameMode, boolean requireClient, boolean continueAfterWin, int autoForfeitTicks, PlayerTeam[] teams, CallbackInfo ci) {
+    private void onInit(BingoBoard board, BingoGameMode gameMode, boolean requireClient, boolean continueAfterWin, long scheduledEndTime, int autoForfeitTicks, PlayerTeam[] teams, CallbackInfo ci) {
         totalDamage.clear();
     }
 
@@ -55,7 +55,7 @@ public abstract class BingoGameMixin implements BingoGameExtension {
             return;
         for (ActiveGoal goal : getBoard().getGoals()) {
             for (var entry : goal.criteria().entrySet()) {
-                Optional<ResourceLocation> advancement = Optional.empty();
+                Optional<Identifier> advancement = Optional.empty();
                 if (entry.getValue().triggerInstance() instanceof AdvancementsTrigger.TriggerInstance advancementsTrigger) {
                     advancement = advancementsTrigger.advancement();
                 } else if (entry.getValue().triggerInstance() instanceof AdvancementProgressTrigger.TriggerInstance advancementProgressTrigger) {
@@ -63,9 +63,7 @@ public abstract class BingoGameMixin implements BingoGameExtension {
                 }
                 if (advancement.isEmpty())
                     continue;
-                if (player.getServer() == null)
-                    continue;
-                AdvancementHolder advancementHolder = player.getServer().getAdvancements().get(advancement.get());
+                AdvancementHolder advancementHolder = player.level().getServer().getAdvancements().get(advancement.get());
                 AdvancementProgress progress = player.getAdvancements().progress.get(advancementHolder);
                 if (progress == null)
                     continue;

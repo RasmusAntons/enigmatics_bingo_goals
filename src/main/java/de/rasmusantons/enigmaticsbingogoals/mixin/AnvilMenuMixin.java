@@ -28,17 +28,16 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
     }
 
     @Inject(method = "<init>(ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V", at = @At("TAIL"))
-    public void AnvilMenu(int containerId, Inventory playerInventory, ContainerLevelAccess access, CallbackInfo ci) {
+    public void AnvilMenu(int containerId, Inventory inventory, ContainerLevelAccess access, CallbackInfo ci) {
         this.anvilMenu = (AnvilMenu) (Object) this;
     }
 
     @Inject(method = "onTake", at = @At("HEAD"))
-    private void onTake(Player player, ItemStack stack, CallbackInfo ci) {
-
+    private void onTake(Player player, ItemStack carried, CallbackInfo ci) {
         if (anvilMenu != null) {
             EnigmaticsBingoGoalsTriggers.USE_ANVIL.get().trigger(
                     (ServerPlayer) player,
-                    stack,
+                    carried,
                     anvilMenu.getSlot(0).getItem(),
                     anvilMenu.getSlot(1).getItem()
             );

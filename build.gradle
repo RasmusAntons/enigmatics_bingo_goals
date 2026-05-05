@@ -1,7 +1,7 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
-    id 'fabric-loom' version '1.9-SNAPSHOT'
+    id 'net.fabricmc.fabric-loom' version '1.16-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -13,10 +13,6 @@ base {
 }
 
 repositories {
-    maven {
-        name = 'ParchmentMC'
-        url = 'https://maven.parchmentmc.org'
-    }
     maven {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
@@ -44,17 +40,21 @@ project.tasks.register('buildBingoMod') {
     dependsOn checkoutBingoMod
 
     doLast {
-        exec {
+        def execOps = services.get(ExecOperations)
+        def fsOps = services.get(FileSystemOperations)
+
+        execOps.exec {
             workingDir = getLayout().getBuildDirectory().dir('bingo/bingo-' + bingo_commit).get()
             if (Os.isFamily(Os.FAMILY_WINDOWS))
-                commandLine './gradlew.bat', 'fabric:build'
+                commandLine './gradlew.bat', 'build'
             else
-                commandLine './gradlew', 'fabric:build'
+                commandLine './gradlew', 'build'
         }
-        copy {
-            from getLayout().getBuildDirectory().dir('bingo/bingo-' + bingo_commit + '/fabric/build/libs').get()
+
+        fsOps.copy {
+            from getLayout().getBuildDirectory().dir('bingo/bingo-' + bingo_commit + '/build/libs').get()
             into getLayout().getProjectDirectory().dir('libs')
-            include("*fabric.jar")
+            include("*enigmatics.jar")
         }
     }
 }
@@ -64,7 +64,8 @@ project.tasks.register('setupPythonVenv') {
     def venv = getLayout().getBuildDirectory().dir('venv').get()
     def path = getLayout().getProjectDirectory().dir('docs').dir('goal_list')
     doFirst {
-        exec {
+        def execOps = services.get(ExecOperations)
+        execOps.exec {
             if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                 commandLine 'py', '-m', 'venv', venv
             } else {
@@ -72,8 +73,10 @@ project.tasks.register('setupPythonVenv') {
             }
         }
     }
+
     doLast {
-        exec {
+        def execOps = services.get(ExecOperations)
+        execOps.exec {
             if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                 commandLine venv.dir('Scripts').file('pip'), 'install', '-r', path.file('requirements.txt')
             } else {
@@ -89,7 +92,8 @@ project.tasks.register('genGoalList') {
     def venv = getLayout().getBuildDirectory().dir('venv').get()
     def path = getLayout().getProjectDirectory().dir('docs').dir('goal_list')
     doLast {
-        exec {
+        def execOps = services.get(ExecOperations)
+        execOps.exec {
             workingDir = path
             environment('bingo_commit', bingo_commit)
             if (Os.isFamily(Os.FAMILY_WINDOWS)) {
@@ -108,19 +112,15 @@ configurations.configureEach {
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings loom.layered() {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${project.parchment_version}@zip")
-    }
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    include(implementation("com.electronwill.night-config:core:3.8.1"))
-    include(implementation("com.electronwill.night-config:toml:3.8.1"))
+    include(implementation("com.electronwill.night-config:core:3.8.4"))
+    include(implementation("com.electronwill.night-config:toml:3.8.4"))
 
-    modImplementation fileTree(dir: 'libs', include: 'bingo-' + bingo_version + '.jar')
+    implementation fileTree(dir: 'libs', include: 'bingo-' + bingo_version + '.jar')
 }
 
 processResources {
@@ -147,7 +147,7 @@ fabricApi {
     }
 }
 
-def targetJavaVersion = 21
+def targetJavaVersion = 25
 tasks.withType(JavaCompile).configureEach {
     // ensure that the encoding is set to UTF-8, no matter what the system default is
     // this fixes some edge cases with special characters not displaying correctly
@@ -172,7 +172,7 @@ java {
 
 jar {
     from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}" }
+        rename { "${it}_${project.name}" }
     }
 }
 

@@ -2,13 +2,14 @@ package de.rasmusantons.enigmaticsbingogoals.datagen.tag;
 
 import com.mojang.logging.LogUtils;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoFeatureTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 
 import java.lang.reflect.Field;
@@ -17,21 +18,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-public class EnigmaticsBingoFeatureTagProvider extends FabricTagProvider<ConfiguredFeature<?, ?>> {
+public class EnigmaticsBingoFeatureTagProvider extends FabricTagsProvider<ConfiguredFeature<?, ?>> {
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public EnigmaticsBingoFeatureTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public EnigmaticsBingoFeatureTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, Registries.CONFIGURED_FEATURE, registriesFuture);
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider arg) {
-        getOrCreateTagBuilder(EnigmaticsBingoFeatureTags.HUGE_WARPED_FUNGI).add(
+    protected void addTags(HolderLookup.@NonNull Provider arg) {
+        builder(EnigmaticsBingoFeatureTags.HUGE_WARPED_FUNGI).add(
                 TreeFeatures.WARPED_FUNGUS_PLANTED,
                 TreeFeatures.WARPED_FUNGUS
         );
 
-        getOrCreateTagBuilder(EnigmaticsBingoFeatureTags.HUGE_CRIMSON_FUNGI).add(
+        builder(EnigmaticsBingoFeatureTags.HUGE_CRIMSON_FUNGI).add(
                 TreeFeatures.CRIMSON_FUNGUS_PLANTED,
                 TreeFeatures.CRIMSON_FUNGUS
         );
@@ -59,7 +60,7 @@ public class EnigmaticsBingoFeatureTagProvider extends FabricTagProvider<Configu
                 continue;
             }
             ResourceKey<ConfiguredFeature<?, ?>> featureKey = (ResourceKey<ConfiguredFeature<?,?>>) resourceKey;
-            String path = featureKey.location().getPath();
+            String path = featureKey.identifier().getPath();
             if (!path.contains("fungus") && !path.contains("mushroom")) {
                 result.add(featureKey);
             }

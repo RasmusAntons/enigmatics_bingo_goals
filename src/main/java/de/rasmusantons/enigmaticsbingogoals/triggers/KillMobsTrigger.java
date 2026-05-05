@@ -3,13 +3,14 @@ package de.rasmusantons.enigmaticsbingogoals.triggers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.ListCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.github.gaming32.bingo.ext.MinecraftServerExt;
 import io.github.gaming32.bingo.game.BingoGame;
 import io.github.gaming32.bingo.triggers.progress.SimpleProgressibleCriterionTrigger;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.ContextAwarePredicate;
-import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.advancements.criterion.ContextAwarePredicate;
+import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -53,7 +54,7 @@ public class KillMobsTrigger extends SimpleProgressibleCriterionTrigger<KillMobs
         }
 
         public boolean matches(ServerPlayer player, ProgressListener<TriggerInstance> progressListener) {
-            final BingoGame activeGame = player.server.bingo$getGame();
+            final BingoGame activeGame = ((MinecraftServerExt) player.level().getServer()).bingo$getGame();
             if (activeGame == null)
                 return false;
             final Object2IntMap<Stat<?>> baseStats = activeGame.getBaseStats(player);

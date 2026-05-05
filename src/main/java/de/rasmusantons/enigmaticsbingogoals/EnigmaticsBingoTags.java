@@ -4,7 +4,7 @@ import io.github.gaming32.bingo.data.BingoRegistries;
 import io.github.gaming32.bingo.data.BingoTag;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 
 public class EnigmaticsBingoTags {
@@ -223,6 +223,6 @@ public class EnigmaticsBingoTags {
     }
 
     private static ResourceKey<BingoTag> createKey(String name) {
-        return ResourceKey.create(BingoRegistries.TAG, ResourceLocation.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, name));
+        return ResourceKey.create(BingoRegistries.TAG, Identifier.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, name));
     }
 }

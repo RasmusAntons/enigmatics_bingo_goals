@@ -14,9 +14,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Tadpole.class)
 public class TadpoleMixin {
-    @Inject(method = "method_63651", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/animal/frog/Frog;fudgePositionAfterSizeChange(Lnet/minecraft/world/entity/EntityDimensions;)Z"))
-    public void multiply(CallbackInfo ci, @Local(argsOnly = true) ServerLevel level, @Local(argsOnly = true) Frog frog) {
-        Player player = level.getNearestPlayer(frog.getX(), frog.getY(), frog.getZ(), 528, false);
+    @Inject(method = "lambda$ageUp$0", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/animal/frog/Frog;fudgePositionAfterSizeChange(Lnet/minecraft/world/entity/EntityDimensions;)Z"))
+    public void multiply(CallbackInfo ci, @Local(argsOnly = true, name = "serverLevel") ServerLevel serverLevel, @Local(argsOnly = true, name = "frog") Frog frog) {
+        Player player = serverLevel.getNearestPlayer(frog.getX(), frog.getY(), frog.getZ(), 528, false);
         if (!(player instanceof ServerPlayer serverPlayer))
             return;
         EnigmaticsBingoGoalsTriggers.TADPOLE_MATURES.get().trigger(serverPlayer, frog);
