@@ -44,7 +44,6 @@ import net.minecraft.world.inventory.SlotRange;
 import net.minecraft.world.inventory.SlotRanges;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -68,10 +67,6 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                                             BiConsumer<Identifier, BingoGoal> goalAdder,
                                             HolderLookup.Provider registries) {
         super(difficulty, goalAdder, registries);
-    }
-
-    protected final Identifier eid(String path) {
-        return Identifier.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, id(path).getPath());
     }
 
     protected static GoalBuilder obtainSomeItemsGoal(Identifier id, HolderLookup<Item> items, Item item, int min, int max) {
