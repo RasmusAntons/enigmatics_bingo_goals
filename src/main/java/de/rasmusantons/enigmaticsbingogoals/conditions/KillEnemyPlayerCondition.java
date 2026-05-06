@@ -6,8 +6,7 @@ import net.minecraft.util.context.ContextKey;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Set;
 
@@ -16,10 +15,9 @@ public enum KillEnemyPlayerCondition implements LootItemCondition {
 
     public static final MapCodec<KillEnemyPlayerCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @NotNull
     @Override
-    public LootItemConditionType getType() {
-        return EnigmaticsBingoGoalsConditions.KILL_ENEMY_PLAYER.get();
+    public @NonNull MapCodec<KillEnemyPlayerCondition>  codec() {
+        return CODEC;
     }
 
     @Override
@@ -31,9 +29,8 @@ public enum KillEnemyPlayerCondition implements LootItemCondition {
         return killedPlayer.getTeam() != killerPlayer.getTeam();
     }
 
-    @NotNull
     @Override
-    public Set<ContextKey<?>> getReferencedContextParams() {
+    public @NonNull Set<ContextKey<?>> getReferencedContextParams() {
         return Set.of(LootContextParams.THIS_ENTITY);
     }
 }

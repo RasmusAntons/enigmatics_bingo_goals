@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin extends LivingEntityMixin {
-    @Inject(method = "damageStatsAndHearts", at = @At(value = "TAIL"))
+    @Inject(method = "damageStatsAndHearts", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;awardStat(Lnet/minecraft/resources/Identifier;I)V"))
     private void onAttackLivingEntity(Entity entity, float oldLivingEntityHealth, CallbackInfo ci, @Local(name = "actualDamage") float actualDamage) {
         //noinspection ConstantValue
         if (!(((Object) this) instanceof ServerPlayer serverPlayer))

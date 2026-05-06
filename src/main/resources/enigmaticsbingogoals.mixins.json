@@ -4,9 +4,9 @@
   "compatibilityLevel": "JAVA_21",
   "server": [
     "AbstractCauldronBlockMixin",
-    "AbstractHorseMixin",
     "AnvilMenuMixin",
     "AreaEffectCloudMixin",
+    "ArmorSlotMixin",
     "ArmorStandMixin",
     "ArrowMixin",
     "BingoGameMixin",

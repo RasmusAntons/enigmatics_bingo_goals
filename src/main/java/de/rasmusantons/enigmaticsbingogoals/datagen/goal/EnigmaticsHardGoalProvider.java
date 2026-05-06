@@ -10,18 +10,18 @@ import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
-import net.minecraft.advancements.critereon.CuredZombieVillagerTrigger;
-import net.minecraft.advancements.critereon.EntityHurtPlayerTrigger;
-import net.minecraft.advancements.critereon.LocationPredicate;
+import net.minecraft.advancements.criterion.CuredZombieVillagerTrigger;
+import net.minecraft.advancements.criterion.EntityHurtPlayerTrigger;
+import net.minecraft.advancements.criterion.LocationPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.animal.FrogVariant;
+import net.minecraft.world.entity.animal.frog.FrogVariants;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
@@ -33,7 +33,7 @@ import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
 public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider {
-    public EnigmaticsHardGoalProvider(BiConsumer<ResourceLocation, BingoGoal> goalAdder, HolderLookup.Provider registries) {
+    public EnigmaticsHardGoalProvider(BiConsumer<Identifier, BingoGoal> goalAdder, HolderLookup.Provider registries) {
         super(EnigmaticsBingoDifficulties.HARD, goalAdder, registries);
     }
 
@@ -55,7 +55,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.OVERWORLD)
         );
         addGoal(advancementProgressGoal(eid("visit_some_unique_overworld_biomes"),
-                ResourceLocation.withDefaultNamespace("adventure/adventuring_time"), 26, 35)
+                Identifier.withDefaultNamespace("adventure/adventuring_time"), 26, 35)
                 .name(Component.translatable("enigmaticsbingogoals.goal.visit_some_unique_overworld_biomes", 0),
                         subber -> subber.sub("with.0", "count")
                 )
@@ -67,10 +67,10 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         subber -> subber.sub("item.count", "count")
                 )
         );
-        addGoal(tameSomeCatsGoal(eid("tame_some_cats"), 5, 6));
+        addGoal(tameSomeCatsGoal(eid("tame_some_cats"), registries.lookupOrThrow(Registries.CAT_VARIANT), 5, 6));
         addGoal(tameSomeWolvesGoal(eid("tame_some_wolves"), 3, 4));
         addGoal(advancementProgressGoal(eid("breed_some_unique_mobs"),
-                ResourceLocation.withDefaultNamespace("husbandry/bred_all_animals"), 11, 15)
+                Identifier.withDefaultNamespace("husbandry/bred_all_animals"), 11, 15)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_some_unique_mobs", 0),
                         subber -> subber.sub("with.0", "count"))
                 .tags(EnigmaticsBingoTags.OVERWORLD)
@@ -104,7 +104,9 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         .location(
                                 LocationPredicate.Builder.inDimension(Level.OVERWORLD).build()
                         ).build())
-                .name(Component.translatable("enigmaticsbingogoals.goal.huge_fungus_in_overworld", Items.CRIMSON_FUNGUS.getName()))
+                .name(Component.translatable("enigmaticsbingogoals.goal.huge_fungus_in_overworld",
+                        Component.translatable(Items.CRIMSON_FUNGUS.getDescriptionId()))
+                )
                 .icon(IndicatorIcon.infer(
                         Items.CRIMSON_FUNGUS,
                         Blocks.GRASS_BLOCK
@@ -117,11 +119,13 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS)
         );
         addGoal(advancementProgressGoal(eid("eat_some_unique_foods"),
-                ResourceLocation.withDefaultNamespace("husbandry/balanced_diet"), 25, 32)
+                Identifier.withDefaultNamespace("husbandry/balanced_diet"), 25, 32)
                 .name(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods", 0),
                         subber -> subber.sub("with.0", "count")
                 )
-                .tooltip(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods.tooltip", Items.CAKE.getName()))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods.tooltip",
+                        Component.translatable(Items.CAKE.getDescriptionId()))
+                )
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.UNIQUE_FOOD)
                 .icon(
                         CycleIcon.infer(Arrays.stream(VanillaHusbandryAdvancements.EDIBLE_ITEMS)),
@@ -136,7 +140,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(advancementGoal(eid("get_advancement_is_it_a_plane"),
                 Component.translatable("advancements.adventure.spyglass_at_dragon.title"),
-                ResourceLocation.withDefaultNamespace("adventure/spyglass_at_dragon"))
+                Identifier.withDefaultNamespace("adventure/spyglass_at_dragon"))
                 .tags(EnigmaticsBingoTags.END, EnigmaticsBingoTags.AMETHYST, EnigmaticsBingoTags.END_ENTRY)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
@@ -145,7 +149,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(advancementGoal(eid("get_postmortal"),
                 Component.translatable("advancements.adventure.totem_of_undying.title"),
-                ResourceLocation.withDefaultNamespace("adventure/totem_of_undying"))
+                Identifier.withDefaultNamespace("adventure/totem_of_undying"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.RAID)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.TOTEM_OF_UNDYING), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
@@ -157,7 +161,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(advancementGoal(eid("get_advancement_careful_restoration"),
                 Component.translatable("advancements.adventure.craft_decorated_pot_using_only_sherds.title"),
-                ResourceLocation.withDefaultNamespace("adventure/craft_decorated_pot_using_only_sherds"))
+                Identifier.withDefaultNamespace("adventure/craft_decorated_pot_using_only_sherds"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH,
                         EnigmaticsBingoTags.TRIAL_CHAMBER)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.DECORATED_POT), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
@@ -176,7 +180,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(advancementGoal(eid("get_advancement_the_end"),
                 Component.translatable("advancements.end.root.title"),
-                ResourceLocation.withDefaultNamespace("end/root"))
+                Identifier.withDefaultNamespace("end/root"))
                 .tags(EnigmaticsBingoTags.END, EnigmaticsBingoTags.END_ENTRY)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.END_STONE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
@@ -185,13 +189,13 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(advancementGoal(eid("get_advancement_the_city_at_the_end_of_the_game"),
                 Component.translatable("advancements.end.find_end_city.title"),
-                ResourceLocation.withDefaultNamespace("end/find_end_city"))
+                Identifier.withDefaultNamespace("end/find_end_city"))
                 .tags(EnigmaticsBingoTags.END, EnigmaticsBingoTags.END_PROGRESS)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.PURPUR_PILLAR), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(eid("get_advancement_great_view_from_up_here"),
                 Component.translatable("advancements.end.levitate.title"),
-                ResourceLocation.withDefaultNamespace("end/levitate"))
+                Identifier.withDefaultNamespace("end/levitate"))
                 .tags(EnigmaticsBingoTags.END, EnigmaticsBingoTags.END_PROGRESS)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SHULKER_SHELL), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
@@ -212,7 +216,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.NEVER, BingoTags.LOCKOUT_INFLICTABLE, EnigmaticsBingoTags.NEVER_TAKE_DAMAGE)
                 .catalyst(EnigmaticsBingoSynergies.TAKE_DAMAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_damage"))
-                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.HARM), ItemIcon.ofItem(Items.BARRIER)))
+                .icon(new IndicatorIcon(EffectIcon.of(MobEffects.INSTANT_DAMAGE), ItemIcon.ofItem(Items.BARRIER)))
         );
         addGoal(neverLevelsGoal(eid("never_levels"), 1, 1));
         addGoal(reachLevelsGoal(eid("reach_levels"), 26, 35));
@@ -223,13 +227,13 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(advancementGoal(eid("get_advancement_eye_spy"),
                 Component.translatable("advancements.story.follow_ender_eye.title"),
-                ResourceLocation.withDefaultNamespace("story/follow_ender_eye"))
+                Identifier.withDefaultNamespace("story/follow_ender_eye"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.END_ENTRY, EnigmaticsBingoTags.STRONGHOLD)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ENDER_EYE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(eid("get_advancement_this_boat_has_legs"),
                 Component.translatable("advancements.nether.ride_strider.title"),
-                ResourceLocation.withDefaultNamespace("nether/ride_strider"))
+                Identifier.withDefaultNamespace("nether/ride_strider"))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.STRIDER)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WARPED_FUNGUS_ON_A_STICK), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
@@ -246,13 +250,13 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(obtainItemGoal(eid("obtain_wither_skeleton_skull"), items, Items.WITHER_SKELETON_SKULL)
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS)
         );
-        addGoal(breedFrogVariantGoal(eid("breed_white_frog"), FrogVariant.WARM)
+        addGoal(breedFrogVariantGoal(eid("breed_white_frog"), FrogVariants.WARM)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_white_frog", EntityType.FROG.getDescription()))
         );
-        addGoal(breedFrogVariantGoal(eid("breed_orange_frog"), FrogVariant.TEMPERATE)
+        addGoal(breedFrogVariantGoal(eid("breed_orange_frog"), FrogVariants.TEMPERATE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_orange_frog", EntityType.FROG.getDescription()))
         );
-        addGoal(breedFrogVariantGoal(eid("breed_green_frog"), FrogVariant.COLD)
+        addGoal(breedFrogVariantGoal(eid("breed_green_frog"), FrogVariants.COLD)
                 .name(Component.translatable("enigmaticsbingogoals.goal.breed_green_frog", EntityType.FROG.getDescription()))
         );
         addGoal(obtainSomeItemsFromTagGoal(eid("obtain_some_saplings"), EnigmaticsBingoItemTags.SAPLINGS, 6, 7)

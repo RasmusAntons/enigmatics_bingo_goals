@@ -97,7 +97,7 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                 .catalyst(EnigmaticsBingoSynergies.BABY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.hatch_baby_chicken",
                         EntityType.CHICKEN.getDescription(),
-                        Items.EGG.getName()
+                        Component.translatable(Items.EGG.getDescriptionId())
                 ))
                 .icon(IndicatorIcon.infer(EntityType.CHICKEN, Items.EGG))
         );

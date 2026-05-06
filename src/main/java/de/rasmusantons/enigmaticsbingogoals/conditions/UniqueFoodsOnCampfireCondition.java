@@ -1,7 +1,7 @@
 package de.rasmusantons.enigmaticsbingogoals.conditions;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.context.ContextKey;
 import net.minecraft.world.item.ItemStack;
@@ -11,9 +11,8 @@ import net.minecraft.world.level.block.entity.CampfireBlockEntity;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Set;
 
@@ -22,10 +21,9 @@ public record UniqueFoodsOnCampfireCondition(MinMaxBounds.Ints foods) implements
             .fieldOf("foods")
             .xmap(UniqueFoodsOnCampfireCondition::new, UniqueFoodsOnCampfireCondition::foods);
 
-    @NotNull
     @Override
-    public LootItemConditionType getType() {
-        return EnigmaticsBingoGoalsConditions.UNIQUE_FOODS_ON_CAMPFIRE.get();
+    public @NonNull MapCodec<UniqueFoodsOnCampfireCondition> codec() {
+        return CODEC;
     }
 
     @Override
@@ -43,9 +41,8 @@ public record UniqueFoodsOnCampfireCondition(MinMaxBounds.Ints foods) implements
         return foods.matches(uniqueItems);
     }
 
-    @NotNull
     @Override
-    public Set<ContextKey<?>> getReferencedContextParams() {
+    public @NonNull Set<ContextKey<?>> getReferencedContextParams() {
         return Set.of(LootContextParams.ORIGIN);
     }
 }

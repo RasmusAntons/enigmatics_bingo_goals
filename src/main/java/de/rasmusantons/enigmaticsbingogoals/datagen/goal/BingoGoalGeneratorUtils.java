@@ -41,18 +41,14 @@ import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.block.entity.BannerPatterns;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class BingoGoalGeneratorUtils {
     public static ItemStackTemplate getCustomPLayerHead(PlayerHeadTextures textures) {
-        ItemStackTemplate stack = new ItemStackTemplate(Items.PLAYER_HEAD);
-        PropertyMap properties = new PropertyMap(ImmutableMultimap.of());
-        properties.put("textures", new Property("textures", textures.getTextures()));
+        PropertyMap properties = new PropertyMap(ImmutableMultimap.of("textures", new Property("textures", textures.getTextures())));
         ResolvableProfile profile = ResolvableProfile.createResolved(new GameProfile(
                 Mth.createInsecureUUID(RandomSource.create()), textures.name(), properties
         ));
-        stack.apply(DataComponentPatch.builder().set(DataComponents.PROFILE, profile).build());
-        return stack;
+        return new ItemStackTemplate(Items.PLAYER_HEAD, DataComponentPatch.builder().set(DataComponents.PROFILE, profile).build());
     }
 
     public static GoalIcon getEntityIcon(EntityType<?> entityType, int count) {
@@ -157,20 +153,42 @@ public class BingoGoalGeneratorUtils {
         }
     }
 
-    public static Table<EquipmentSlot, Identifier, Item> getPlayerArmors(HolderLookup.Provider registries) {
-        final var armors = ImmutableTable.<EquipmentSlot, Identifier, Item>builder();
+    public static Table<EquipmentSlot, String, Item> getPlayerArmors(HolderLookup.Provider registries) {
+        final var armors = ImmutableTable.<EquipmentSlot, String, Item>builder();
         armors.orderRowsBy(Ordering.natural());
         armors.orderColumnsBy(Ordering.natural());
-        Stream.of(ItemTags.HEAD_ARMOR, ItemTags.CHEST_ARMOR, ItemTags.LEG_ARMOR, ItemTags.FOOT_ARMOR)
-                .map(tag -> BingoDataGenUtil.loadVanillaTag(tag, registries))
-                .flatMap(HolderSet::stream)
-                .distinct()
-                .map(Holder::value)
-                .forEach(item -> {
-                    final var equippable = item.components().get(DataComponents.EQUIPPABLE);
-                    if (equippable == null || equippable.assetId().isEmpty()) return;
-                    armors.put(equippable.slot(), equippable.assetId().get().identifier(), item);
-                });
+        for (Holder<Item> helmet : BingoDataGenUtil.loadVanillaTag(ItemTags.HEAD_ARMOR, registries)) {
+            String name = helmet.getRegisteredName();
+            if (name.endsWith("_helmet")) {
+                armors.put(EquipmentSlot.HEAD, name.substring(0, name.length() - "_helmet".length()), helmet.value());
+            } else {
+                throw new IllegalStateException("Unexpected helmet name: " + name);
+            }
+        }
+        for (Holder<Item> chestplate : BingoDataGenUtil.loadVanillaTag(ItemTags.CHEST_ARMOR, registries)) {
+            String name = chestplate.getRegisteredName();
+            if (name.endsWith("_chestplate")) {
+                armors.put(EquipmentSlot.CHEST, name.substring(0, name.length() - "_chestplate".length()), chestplate.value());
+            } else {
+                throw new IllegalStateException("Unexpected chestplate name: " + name);
+            }
+        }
+        for (Holder<Item> leggings : BingoDataGenUtil.loadVanillaTag(ItemTags.LEG_ARMOR, registries)) {
+            String name = leggings.getRegisteredName();
+            if (name.endsWith("_leggings")) {
+                armors.put(EquipmentSlot.LEGS, name.substring(0, name.length() - "_leggings".length()), leggings.value());
+            } else {
+                throw new IllegalStateException("Unexpected leggings name: " + name);
+            }
+        }
+        for (Holder<Item> boots : BingoDataGenUtil.loadVanillaTag(ItemTags.FOOT_ARMOR, registries)) {
+            String name = boots.getRegisteredName();
+            if (name.endsWith("_boots")) {
+                armors.put(EquipmentSlot.FEET, name.substring(0, name.length() - "_boots".length()), boots.value());
+            } else {
+                throw new IllegalStateException("Unexpected boots name: " + name);
+            }
+        }
         return armors.build();
     }
 
