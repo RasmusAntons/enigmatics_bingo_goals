@@ -13,12 +13,12 @@ SOURCE_ROOT = os.path.abspath(os.path.join(
     _OWN_DIR, '..', '..', 'src', 'main', 'java', 'de', 'rasmusantons', 'enigmaticsbingogoals', 'datagen', 'goal'
 ))
 ORIGINAL_GOALS_ROOT = os.path.abspath(os.path.join(
-    _OWN_DIR, '..', '..', 'build', 'bingo', f'bingo-{os.getenv("bingo_commit")}', 'common', 'src', 'main', 'generated',
-    'data', 'enigmaticsbingogoals', 'bingo', 'goals'
+    _OWN_DIR, '..', '..', 'build', 'bingo', f'bingo-{os.getenv("bingo_commit")}', 'src', 'main', 'generated',
+    'data', 'bingo', 'bingo', 'goal'
 ))
 ORIGINAL_SOURCE_ROOT = os.path.abspath(os.path.join(
-    _OWN_DIR, '..', '..', 'build', 'bingo', f'bingo-{os.getenv("bingo_commit")}', 'fabric', 'src', 'main', 'java', 'io',
-    'github', 'gaming32', 'bingo', 'fabric', 'datagen', 'goal'
+    _OWN_DIR, '..', '..', 'build', 'bingo', f'bingo-{os.getenv("bingo_commit")}', 'src', 'datagen', 'java', 'io',
+    'github', 'gaming32', 'bingo', 'datagen', 'goal'
 ))
 DIFFICULTIES = ['very_easy', 'easy', 'medium', 'hard', 'very_hard']
 DIMENSION_TAGS = ['enigmaticsbingogoals:overworld', 'enigmaticsbingogoals:nether', 'enigmaticsbingogoals:end']
