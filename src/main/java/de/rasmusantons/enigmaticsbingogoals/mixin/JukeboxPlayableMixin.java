@@ -19,9 +19,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(JukeboxPlayable.class)
 public class JukeboxPlayableMixin {
     @Inject(method = "tryInsertIntoJukebox", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/entity/JukeboxBlockEntity;setTheItem(Lnet/minecraft/world/item/ItemStack;)V"))
-    private static void onTryInsertIntoJukebox(Level level, BlockPos blockPos, ItemStack itemStack, Player player, CallbackInfoReturnable<InteractionResult> cir, @Local JukeboxBlockEntity jukeboxBlockEntity) {
+    private static void onTryInsertIntoJukebox(Level level, BlockPos pos, ItemStack toInsert, Player player, CallbackInfoReturnable<InteractionResult> cir, @Local(name = "jukebox") JukeboxBlockEntity jukebox) {
         if (player instanceof ServerPlayer serverPlayer) {
-            ((JukeboxSongPlayerExtension) jukeboxBlockEntity.getSongPlayer()).enigmaticsbingogoals$setLastPlayed(serverPlayer);
+            ((JukeboxSongPlayerExtension) jukebox.getSongPlayer()).enigmaticsbingogoals$setLastPlayed(serverPlayer);
         }
     }
 }

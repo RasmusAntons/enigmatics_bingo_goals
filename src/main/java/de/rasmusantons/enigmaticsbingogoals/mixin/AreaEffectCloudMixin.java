@@ -15,10 +15,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(AreaEffectCloud.class)
 public class AreaEffectCloudMixin {
     @Inject(method = "serverTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;addEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z"))
-    private void onTick(CallbackInfo ci, @Local LivingEntity hitEntity, @Local MobEffectInstance effect) {
+    private void onTick(CallbackInfo ci, @Local(name = "entity") LivingEntity entity, @Local(name = "effect") MobEffectInstance effect) {
         if (!(((TraceableEntity) this).getOwner() instanceof ServerPlayer serverPlayer))
             return;
-        if (!(hitEntity instanceof ServerPlayer hitPlayer))
+        if (!(entity instanceof ServerPlayer hitPlayer))
             return;
         if (hitPlayer.getTeam() == serverPlayer.getTeam())
             return;

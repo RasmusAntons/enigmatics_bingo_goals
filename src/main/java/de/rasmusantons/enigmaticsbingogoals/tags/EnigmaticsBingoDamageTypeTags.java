@@ -2,7 +2,7 @@ package de.rasmusantons.enigmaticsbingogoals.tags;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoGoals;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
 
@@ -18,6 +18,6 @@ public class EnigmaticsBingoDamageTypeTags {
     }
 
     private static TagKey<DamageType> create(String name) {
-        return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, name));
+        return TagKey.create(Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, name));
     }
 }

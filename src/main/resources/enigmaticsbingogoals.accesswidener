@@ -1,5 +1,7 @@
-accessWidener v2 named
+accessWidener v2 official
 accessible field net/minecraft/data/advancements/packs/VanillaHusbandryAdvancements EDIBLE_ITEMS [Lnet/minecraft/world/item/Item;
 accessible method net/minecraft/advancements/AdvancementProgress countCompletedRequirements ()I
 accessible field net/minecraft/server/PlayerAdvancements progress Ljava/util/Map;
 accessible field net/minecraft/data/advancements/packs/VanillaAdventureAdvancements MOBS_TO_KILL Ljava/util/List;
+accessible field net/minecraft/world/entity/player/Inventory items Lnet/minecraft/core/NonNullList;
+accessible class net/minecraft/world/inventory/ArmorSlot

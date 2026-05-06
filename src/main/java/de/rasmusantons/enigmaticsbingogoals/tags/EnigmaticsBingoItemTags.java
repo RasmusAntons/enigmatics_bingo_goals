@@ -2,7 +2,7 @@ package de.rasmusantons.enigmaticsbingogoals.tags;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoGoals;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
@@ -27,6 +27,6 @@ public final class EnigmaticsBingoItemTags {
     }
 
     private static TagKey<Item> create(String name) {
-        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, name));
+        return TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(EnigmaticsBingoGoals.MOD_ID, name));
     }
 }

@@ -10,8 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,10 +20,9 @@ public enum FullUniqueInventoryCondition implements LootItemCondition {
 
     public static final MapCodec<FullUniqueInventoryCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @NotNull
     @Override
-    public LootItemConditionType getType() {
-        return EnigmaticsBingoGoalsConditions.FULL_UNIQUE_INVENTORY.get();
+    public @NonNull MapCodec<FullUniqueInventoryCondition> codec() {
+        return CODEC;
     }
 
     @Override
@@ -45,9 +43,8 @@ public enum FullUniqueInventoryCondition implements LootItemCondition {
         return true;
     }
 
-    @NotNull
     @Override
-    public Set<ContextKey<?>> getReferencedContextParams() {
+    public @NonNull Set<ContextKey<?>> getReferencedContextParams() {
         return Set.of(LootContextParams.THIS_ENTITY);
     }
 }

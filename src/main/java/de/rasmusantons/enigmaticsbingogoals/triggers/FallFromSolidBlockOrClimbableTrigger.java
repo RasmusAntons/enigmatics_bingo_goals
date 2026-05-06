@@ -3,7 +3,7 @@ package de.rasmusantons.enigmaticsbingogoals.triggers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.criterion.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.phys.Vec3;
@@ -42,7 +42,7 @@ public class FallFromSolidBlockOrClimbableTrigger extends SimpleCriterionTrigger
         public boolean matches(ServerPlayer player, BlockPos block, Vec3 origin) {
 
             Vec3 currentPos = player.position();
-            boolean blockMatch = this.block.isEmpty() || this.block.get().matches(player.serverLevel(), block);
+            boolean blockMatch = this.block.isEmpty() || this.block.get().matches(player.level(), block);
             boolean distanceMatch = this.distance.isEmpty() || this.distance.get().matches(
                     origin.x, origin.y, origin.z, currentPos.x, currentPos.y, currentPos.z);
 

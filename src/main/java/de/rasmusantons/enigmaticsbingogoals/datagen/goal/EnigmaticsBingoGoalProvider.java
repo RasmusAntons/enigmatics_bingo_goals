@@ -4,13 +4,14 @@ import com.google.gson.JsonElement;
 import com.mojang.serialization.DynamicOps;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.goal.GoalBuilder;
-import io.github.gaming32.bingo.fabric.datagen.goal.*;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import io.github.gaming32.bingo.datagen.goal.*;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricCodecDataProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -25,7 +26,7 @@ public class EnigmaticsBingoGoalProvider extends FabricCodecDataProvider<BingoGo
             EnigmaticsVeryHardGoalProvider::new
     );
 
-    public EnigmaticsBingoGoalProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+    public EnigmaticsBingoGoalProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, PackOutput.Target.DATA_PACK, "bingo/goal", BingoGoal.CODEC);
     }
 
@@ -36,7 +37,7 @@ public class EnigmaticsBingoGoalProvider extends FabricCodecDataProvider<BingoGo
     }
 
     @Override
-    protected void configure(BiConsumer<ResourceLocation, BingoGoal> adder, HolderLookup.Provider registries) {
+    protected void configure(@NonNull BiConsumer<Identifier, BingoGoal> adder, HolderLookup.Provider registries) {
         final DynamicOps<JsonElement> oldOps = GoalBuilder.JSON_OPS.get();
         try {
             GoalBuilder.JSON_OPS.set(registries.createSerializationContext(oldOps));
@@ -50,6 +51,6 @@ public class EnigmaticsBingoGoalProvider extends FabricCodecDataProvider<BingoGo
 
     @FunctionalInterface
     private interface GoalProviderProvider {
-        DifficultyGoalProvider create(BiConsumer<ResourceLocation, BingoGoal> adder, HolderLookup.Provider registries);
+        DifficultyGoalProvider create(BiConsumer<Identifier, BingoGoal> adder, HolderLookup.Provider registries);
     }
 }

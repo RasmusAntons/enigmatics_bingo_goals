@@ -39,10 +39,10 @@ public abstract class JukeboxSongPlayerMixin implements JukeboxSongPlayerExtensi
     }
 
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/LevelAccessor;gameEvent(Lnet/minecraft/core/Holder;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)V"))
-    private void onGameEvent(LevelAccessor levelAccessor, BlockState blockState, CallbackInfo ci) {
+    private void onGameEvent(LevelAccessor level, BlockState blockState, CallbackInfo ci) {
         if (lastPlayed == null)
             return;
-        if (!(levelAccessor instanceof ServerLevel serverLevel))
+        if (!(level instanceof ServerLevel serverLevel))
             return;
         for (Player player : serverLevel.players()) {
             if (!(player instanceof ServerPlayer serverPlayer))

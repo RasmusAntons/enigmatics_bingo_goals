@@ -1,14 +1,13 @@
 package de.rasmusantons.enigmaticsbingogoals.conditions;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.context.ContextKey;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Set;
 
@@ -17,10 +16,9 @@ public record NumberOfEffectsCondition(MinMaxBounds.Ints effects) implements Loo
             .fieldOf("effects")
             .xmap(NumberOfEffectsCondition::new, NumberOfEffectsCondition::effects);
 
-    @NotNull
     @Override
-    public LootItemConditionType getType() {
-        return EnigmaticsBingoGoalsConditions.NUMBER_OF_EFFECTS.get();
+    public @NonNull MapCodec<NumberOfEffectsCondition> codec() {
+        return CODEC;
     }
 
     @Override
@@ -30,9 +28,8 @@ public record NumberOfEffectsCondition(MinMaxBounds.Ints effects) implements Loo
         return effects.matches(serverPlayer.getActiveEffects().size());
     }
 
-    @NotNull
     @Override
-    public Set<ContextKey<?>> getReferencedContextParams() {
+    public @NonNull Set<ContextKey<?>> getReferencedContextParams() {
         return Set.of(LootContextParams.THIS_ENTITY);
     }
 }

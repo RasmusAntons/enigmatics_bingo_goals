@@ -21,12 +21,12 @@ public abstract class LoomMenuMixin  {
     private LoomMenu loomMenu;
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void LoomMenu(LoomMenu loomMenu, Container container, int i, int j, int k, ContainerLevelAccess containerLevelAccess, CallbackInfo ci) {
+    private void LoomMenu(LoomMenu loomMenu, Container container, int slot, int x, int y, ContainerLevelAccess containerLevelAccess, CallbackInfo ci) {
         this.loomMenu = loomMenu;
     }
 
     @Inject(method = "onTake", at = @At("HEAD"))
-    private void onTake(Player player, ItemStack stack, CallbackInfo ci) {
+    private void onTake(Player player, ItemStack carried, CallbackInfo ci) {
 
         if (loomMenu != null) {
             EnigmaticsBingoGoalsTriggers.USE_LOOM.get().trigger(

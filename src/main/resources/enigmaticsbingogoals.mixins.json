@@ -3,13 +3,19 @@
   "package": "de.rasmusantons.enigmaticsbingogoals.mixin",
   "compatibilityLevel": "JAVA_21",
   "server": [
-    "AbstractHorseMixin",
+    "AbstractCauldronBlockMixin",
+    "AnvilMenuMixin",
     "AreaEffectCloudMixin",
+    "ArmorSlotMixin",
+    "ArmorStandMixin",
     "ArrowMixin",
     "BingoGameMixin",
+    "CartographyTableMenuMixin",
     "FoodDataMixin",
     "JukeboxPlayableMixin",
     "JukeboxSongPlayerMixin",
+    "LivingEntityMixin",
+    "LoomMenuMixin",
     "PlayerAdvancementsMixin",
     "PlayerMixin",
     "ProjectileMixin",
@@ -18,12 +24,7 @@
     "ServerStatsCounterMixin",
     "SpectralArrowMixin",
     "TadpoleMixin",
-    "ThrownPotionMixin",
-    "LoomMenuMixin",
-    "CartographyTableMenuMixin",
-    "AnvilMenuMixin",
-    "AbstractCauldronBlockMixin",
-    "ArmorStandMixin"
+    "ThrownSplashPotionMixin"
   ],
   "injectors": {
     "defaultRequire": 1

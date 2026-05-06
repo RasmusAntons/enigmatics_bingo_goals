@@ -21,12 +21,12 @@ public abstract class CartographyTableMenuMixin  {
     private CartographyTableMenu cartographyTableMenu;
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void CartographyTableMenu(CartographyTableMenu cartographyTableMenu, Container container, int i, int j, int k, ContainerLevelAccess containerLevelAccess, CallbackInfo ci) {
+    private void CartographyTableMenu(CartographyTableMenu cartographyTableMenu, Container container, int slot, int x, int y, ContainerLevelAccess containerLevelAccess, CallbackInfo ci) {
         this.cartographyTableMenu = cartographyTableMenu;
     }
 
     @Inject(method = "onTake", at = @At("HEAD"))
-    private void onTake(Player player, ItemStack stack, CallbackInfo ci) {
+    private void onTake(Player player, ItemStack carried, CallbackInfo ci) {
 
         if (cartographyTableMenu != null) {
 
@@ -35,7 +35,7 @@ public abstract class CartographyTableMenuMixin  {
 
             EnigmaticsBingoGoalsTriggers.USE_CARTOGRAPHY_TABLE.get().trigger(
                     (ServerPlayer) player,
-                    stack,
+                    carried,
                     mapStack,
                     modStack
             );

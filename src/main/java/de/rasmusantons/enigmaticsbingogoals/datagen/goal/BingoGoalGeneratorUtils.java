@@ -1,17 +1,20 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableTable;
 import com.google.common.collect.Ordering;
 import com.google.common.collect.Table;
+import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.serialization.Lifecycle;
 import de.rasmusantons.enigmaticsbingogoals.datagen.tag.EnigmaticsBingoEntityTypeTagProvider;
 import io.github.gaming32.bingo.data.icons.*;
-import io.github.gaming32.bingo.fabric.datagen.BingoDataGenFabric;
+import io.github.gaming32.bingo.datagen.BingoDataGenUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.*;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -19,33 +22,33 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.Unit;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.animal.CatVariant;
-import net.minecraft.world.entity.animal.FrogVariant;
-import net.minecraft.world.entity.animal.WolfVariant;
+import net.minecraft.world.entity.animal.feline.CatVariant;
+import net.minecraft.world.entity.animal.frog.FrogVariant;
+import net.minecraft.world.entity.animal.wolf.WolfVariant;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ResolvableProfile;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.block.entity.BannerPatterns;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class BingoGoalGeneratorUtils {
-    public static ItemStack getCustomPLayerHead(PlayerHeadTextures textures) {
-        ItemStack stack = new ItemStack(Items.PLAYER_HEAD);
-        PropertyMap properties = new PropertyMap();
-        properties.put("textures", new Property("textures", textures.getTextures()));
-        ResolvableProfile profile = new ResolvableProfile(Optional.empty(), Optional.empty(), properties);
-        stack.set(DataComponents.PROFILE, profile);
-        return stack;
+    public static ItemStackTemplate getCustomPLayerHead(PlayerHeadTextures textures) {
+        PropertyMap properties = new PropertyMap(ImmutableMultimap.of("textures", new Property("textures", textures.getTextures())));
+        ResolvableProfile profile = ResolvableProfile.createResolved(new GameProfile(
+                Mth.createInsecureUUID(RandomSource.create()), textures.name(), properties
+        ));
+        return new ItemStackTemplate(Items.PLAYER_HEAD, DataComponentPatch.builder().set(DataComponents.PROFILE, profile).build());
     }
 
     public static GoalIcon getEntityIcon(EntityType<?> entityType, int count) {
@@ -67,20 +70,20 @@ public class BingoGoalGeneratorUtils {
 
     public static EntityIcon getCatVariantIcon(ResourceKey<CatVariant> variant) {
         CompoundTag data = new CompoundTag();
-        data.putString("variant", variant.location().toString());
-        return new EntityIcon(EntityType.CAT, data, new ItemStack(Items.CAT_SPAWN_EGG));
+        data.putString("variant", variant.identifier().toString());
+        return new EntityIcon(EntityType.CAT, data, new ItemStackTemplate(Items.CAT_SPAWN_EGG));
     }
 
     public static EntityIcon getWolfVariantIcon(ResourceKey<WolfVariant> variant) {
         CompoundTag data = new CompoundTag();
-        data.putString("variant", variant.location().toString());
-        return new EntityIcon(EntityType.WOLF, data, new ItemStack(Items.WOLF_SPAWN_EGG));
+        data.putString("variant", variant.identifier().toString());
+        return new EntityIcon(EntityType.WOLF, data, new ItemStackTemplate(Items.WOLF_SPAWN_EGG));
     }
 
     public static EntityIcon getFrogVariantIcon(ResourceKey<FrogVariant> variant) {
         CompoundTag data = new CompoundTag();
-        data.putString("variant", variant.location().toString());
-        return new EntityIcon(EntityType.FROG, data, new ItemStack(Items.FROG_SPAWN_EGG));
+        data.putString("variant", variant.identifier().toString());
+        return new EntityIcon(EntityType.FROG, data, new ItemStackTemplate(Items.FROG_SPAWN_EGG));
     }
 
     public static CycleIcon getAllEffectsIcon() {
@@ -109,6 +112,7 @@ public class BingoGoalGeneratorUtils {
         var patternRegistry = registries.lookupOrThrow(Registries.BANNER_PATTERN);
 
         ItemStack itemStack = new ItemStack(Items.WHITE_BANNER);
+        //noinspection deprecation
         BannerPatternLayers bannerPatternLayers = new BannerPatternLayers.Builder()
                 .addIfRegistered(patternRegistry, BannerPatterns.RHOMBUS_MIDDLE, DyeColor.CYAN)
                 .addIfRegistered(patternRegistry, BannerPatterns.STRIPE_BOTTOM, DyeColor.LIGHT_GRAY)
@@ -120,7 +124,7 @@ public class BingoGoalGeneratorUtils {
                 .addIfRegistered(patternRegistry, BannerPatterns.BORDER, DyeColor.BLACK)
                 .build();
         itemStack.set(DataComponents.BANNER_PATTERNS, bannerPatternLayers);
-        itemStack.set(DataComponents.HIDE_ADDITIONAL_TOOLTIP, Unit.INSTANCE);
+        itemStack.set(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT.withHidden(DataComponents.BANNER_PATTERNS, true));
         itemStack.set(DataComponents.ITEM_NAME, Component.translatable("block.minecraft.ominous_banner").withStyle(ChatFormatting.GOLD));
         return itemStack;
     }
@@ -149,20 +153,42 @@ public class BingoGoalGeneratorUtils {
         }
     }
 
-    public static Table<EquipmentSlot, ResourceLocation, Item> getPlayerArmors(HolderLookup.Provider registries) {
-        final var armors = ImmutableTable.<EquipmentSlot, ResourceLocation, Item>builder();
+    public static Table<EquipmentSlot, String, Item> getPlayerArmors(HolderLookup.Provider registries) {
+        final var armors = ImmutableTable.<EquipmentSlot, String, Item>builder();
         armors.orderRowsBy(Ordering.natural());
         armors.orderColumnsBy(Ordering.natural());
-        Stream.of(ItemTags.HEAD_ARMOR, ItemTags.CHEST_ARMOR, ItemTags.LEG_ARMOR, ItemTags.FOOT_ARMOR)
-                .map(tag -> BingoDataGenFabric.loadVanillaTag(tag, registries))
-                .flatMap(HolderSet::stream)
-                .distinct()
-                .map(Holder::value)
-                .forEach(item -> {
-                    final var equippable = item.components().get(DataComponents.EQUIPPABLE);
-                    if (equippable == null || equippable.assetId().isEmpty()) return;
-                    armors.put(equippable.slot(), equippable.assetId().get().location(), item);
-                });
+        for (Holder<Item> helmet : BingoDataGenUtil.loadVanillaTag(ItemTags.HEAD_ARMOR, registries)) {
+            String name = helmet.getRegisteredName();
+            if (name.endsWith("_helmet")) {
+                armors.put(EquipmentSlot.HEAD, name.substring(0, name.length() - "_helmet".length()), helmet.value());
+            } else {
+                throw new IllegalStateException("Unexpected helmet name: " + name);
+            }
+        }
+        for (Holder<Item> chestplate : BingoDataGenUtil.loadVanillaTag(ItemTags.CHEST_ARMOR, registries)) {
+            String name = chestplate.getRegisteredName();
+            if (name.endsWith("_chestplate")) {
+                armors.put(EquipmentSlot.CHEST, name.substring(0, name.length() - "_chestplate".length()), chestplate.value());
+            } else {
+                throw new IllegalStateException("Unexpected chestplate name: " + name);
+            }
+        }
+        for (Holder<Item> leggings : BingoDataGenUtil.loadVanillaTag(ItemTags.LEG_ARMOR, registries)) {
+            String name = leggings.getRegisteredName();
+            if (name.endsWith("_leggings")) {
+                armors.put(EquipmentSlot.LEGS, name.substring(0, name.length() - "_leggings".length()), leggings.value());
+            } else {
+                throw new IllegalStateException("Unexpected leggings name: " + name);
+            }
+        }
+        for (Holder<Item> boots : BingoDataGenUtil.loadVanillaTag(ItemTags.FOOT_ARMOR, registries)) {
+            String name = boots.getRegisteredName();
+            if (name.endsWith("_boots")) {
+                armors.put(EquipmentSlot.FEET, name.substring(0, name.length() - "_boots".length()), boots.value());
+            } else {
+                throw new IllegalStateException("Unexpected boots name: " + name);
+            }
+        }
         return armors.build();
     }
 

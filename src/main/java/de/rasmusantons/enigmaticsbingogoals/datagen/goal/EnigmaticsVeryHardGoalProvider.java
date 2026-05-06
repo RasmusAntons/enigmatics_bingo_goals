@@ -7,14 +7,14 @@ import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.CycleIcon;
 import io.github.gaming32.bingo.data.icons.IndicatorIcon;
-import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.EntityTypePredicate;
-import net.minecraft.advancements.critereon.SummonedEntityTrigger;
+import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.EntityTypePredicate;
+import net.minecraft.advancements.criterion.SummonedEntityTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BannerPatterns;
@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.function.BiConsumer;
 
 public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProvider {
-    public EnigmaticsVeryHardGoalProvider(BiConsumer<ResourceLocation, BingoGoal> goalAdder, HolderLookup.Provider registries) {
+    public EnigmaticsVeryHardGoalProvider(BiConsumer<Identifier, BingoGoal> goalAdder, HolderLookup.Provider registries) {
         super(EnigmaticsBingoDifficulties.VERY_HARD, goalAdder, registries);
     }
 
@@ -34,11 +34,13 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
 
         addGoal(advancementsGoal(eid("get_advancements"), 36, 40));
         addGoal(advancementProgressGoal(eid("eat_some_unique_foods"),
-                ResourceLocation.withDefaultNamespace("husbandry/balanced_diet"), 33, 38)
+                Identifier.withDefaultNamespace("husbandry/balanced_diet"), 33, 38)
                 .name(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods", 0),
                         subber -> subber.sub("with.0", "count")
                 )
-                .tooltip(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods.tooltip", Items.CAKE.getName()))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.eat_some_unique_foods.tooltip",
+                        Component.translatable(Items.CAKE.getDescriptionId()))
+                )
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.UNIQUE_FOOD)
                 .icon(
                         CycleIcon.infer(Arrays.stream(VanillaHusbandryAdvancements.EDIBLE_ITEMS)),
@@ -52,7 +54,7 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
-        addGoal(tameSomeCatsGoal(eid("tame_some_cats"), 9, 11));
+        addGoal(tameSomeCatsGoal(eid("tame_some_cats"), registries.lookupOrThrow(Registries.CAT_VARIANT), 9, 11));
         addGoal(tameSomeWolvesGoal(eid("tame_some_wolves"), 6, 9));
         addGoal(BingoGoal.builder(eid("summon_the_wither"))
                 .criterion("summon", SummonedEntityTrigger.TriggerInstance.summonedEntity(

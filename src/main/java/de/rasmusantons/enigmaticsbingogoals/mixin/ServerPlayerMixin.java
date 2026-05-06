@@ -46,13 +46,10 @@ public abstract class ServerPlayerMixin extends PlayerMixin {
 
     @Inject(method = "onChangedBlock", at = @At("HEAD"))
     protected void onChangedBlock(ServerLevel level, BlockPos pos, CallbackInfo ci) {
-
         if (level.getBlockState(pos).getBlock() != Blocks.AIR) {
-
             if (blockPos != null) {
                 boolean isSolid = !level.getBlockState(blockPos).getCollisionShape(level, blockPos).isEmpty();
                 boolean isClimbable = level.getBlockState(blockPos).is(BlockTags.CLIMBABLE);
-
                 if (isSolid || isClimbable) {
                     lastBlockPos = blockPos;
                 }
@@ -63,7 +60,6 @@ public abstract class ServerPlayerMixin extends PlayerMixin {
 
     @Inject(method = "resetFallDistance", at = @At("HEAD"))
     private void resetFallDistance(CallbackInfo ci) {
-
         if (startingToFallPosition != null && lastBlockPos != null) {
             EnigmaticsBingoGoalsTriggers.FALL_FROM_BLOCK.get().trigger((ServerPlayer) (Object) this, this.lastBlockPos, startingToFallPosition);
         }
