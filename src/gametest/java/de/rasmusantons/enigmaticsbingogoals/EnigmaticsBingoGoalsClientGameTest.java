@@ -57,12 +57,6 @@ public class EnigmaticsBingoGoalsClientGameTest implements FabricClientGameTest 
                     server -> getServerPlayer(server).getFoodData().getFoodLevel() == 0,
                     10 * SharedConstants.TICKS_PER_SECOND
             );
-            waitFor(
-                    context,
-                    singleplayerContext.getServer(),
-                    server -> false,
-                    10 * SharedConstants.TICKS_PER_SECOND
-            );
         });
     }
 
