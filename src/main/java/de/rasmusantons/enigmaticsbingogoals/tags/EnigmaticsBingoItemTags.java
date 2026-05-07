@@ -10,6 +10,7 @@ public final class EnigmaticsBingoItemTags {
     public static final TagKey<Item> WOODEN_TOOLS = create("wooden_tools");
     public static final TagKey<Item> STONE_TOOLS = create("stone_tools");
     public static final TagKey<Item> IRON_TOOLS = create("iron_tools");
+    public static final TagKey<Item> COPPER_TOOLS = create("copper_tools");
     public static final TagKey<Item> GOLDEN_TOOLS = create("golden_tools");
     public static final TagKey<Item> DIAMOND_TOOLS = create("diamond_tools");
     public static final TagKey<Item> HORSE_ARMORS = create("horse_armors");

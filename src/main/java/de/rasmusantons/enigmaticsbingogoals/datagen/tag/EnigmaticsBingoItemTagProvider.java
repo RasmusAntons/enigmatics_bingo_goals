@@ -44,6 +44,15 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagsProvider.ItemTagsP
                 Items.IRON_SPEAR
         );
 
+        valueLookupBuilder(EnigmaticsBingoItemTags.COPPER_TOOLS).add(
+                Items.COPPER_AXE,
+                Items.COPPER_SHOVEL,
+                Items.COPPER_PICKAXE,
+                Items.COPPER_HOE,
+                Items.COPPER_SWORD,
+                Items.COPPER_SPEAR
+        );
+
         valueLookupBuilder(EnigmaticsBingoItemTags.GOLDEN_TOOLS).add(
                 Items.GOLDEN_AXE,
                 Items.GOLDEN_SHOVEL,

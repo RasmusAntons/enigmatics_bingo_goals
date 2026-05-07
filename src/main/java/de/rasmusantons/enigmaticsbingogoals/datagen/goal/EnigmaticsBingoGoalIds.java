@@ -106,6 +106,7 @@ public final class EnigmaticsBingoGoalIds {
         public static final Identifier OBTAIN_MOSSY_COBBLESTONE_WALL = id("obtain_mossy_cobblestone_wall");
         public static final Identifier OBTAIN_POLISHED_TUFF_WALL = id("obtain_polished_tuff_wall");
         public static final Identifier OBTAIN_ALL_IRON_TOOLS = id("obtain_all_iron_tools");
+        public static final Identifier OBTAIN_ALL_COPPER_TOOLS = id("obtain_all_copper_tools");
         public static final Identifier OBTAIN_STACK_OF_RED_CONCRETE = id("obtain_stack_of_red_concrete");
         public static final Identifier OBTAIN_STACK_OF_YELLOW_CONCRETE = id("obtain_stack_of_yellow_concrete");
         public static final Identifier OBTAIN_STACK_OF_ORANGE_CONCRETE = id("obtain_stack_of_orange_concrete");
@@ -324,6 +325,7 @@ public final class EnigmaticsBingoGoalIds {
         public static final Identifier OBTAIN_SOME_MUSIC_DISCS = id("obtain_some_music_discs");
         public static final Identifier OBTAIN_GOAT_HORN = id("obtain_goat_horn");
         public static final Identifier DIE_TO_VINES = id("die_to_vines");
+        public static final Identifier GET_ADVANCEMENT_STAY_HYDRATED = id("get_advancement_stay_hydrated");
     }
 
     public static final class Hard {
@@ -381,6 +383,7 @@ public final class EnigmaticsBingoGoalIds {
         public static final Identifier BREED_GREEN_FROG = id("breed_green_frog");
         public static final Identifier OBTAIN_SOME_SAPLINGS = id("obtain_some_saplings");
         public static final Identifier USE_GLOBE_PATTERN = id("use_globe_pattern");
+        public static final Identifier RIDE_HAPPY_GHAST = id("ride_happy_ghast");
     }
 
     public static final class VeryHard {

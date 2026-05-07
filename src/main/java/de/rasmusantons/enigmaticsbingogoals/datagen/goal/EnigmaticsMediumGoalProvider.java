@@ -919,5 +919,11 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 ))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.DIE_TO)
         );
+        addGoal(advancementGoal(GET_ADVANCEMENT_STAY_HYDRATED,
+                Component.translatable("advancements.husbandry.place_dried_ghast_in_water.title"),
+                Identifier.withDefaultNamespace("husbandry/place_dried_ghast_in_water"))
+                .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.HAPPY_GHAST)
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.DRIED_GHAST), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+        );
     }
 }

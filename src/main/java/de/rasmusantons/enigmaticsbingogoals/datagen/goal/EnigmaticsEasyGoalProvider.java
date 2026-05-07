@@ -427,6 +427,11 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools",
                         Component.translatable(EnigmaticsBingoItemTags.IRON_TOOLS.getTranslationKey())))
         );
+        addGoal(obtainAllItemsFromTagGoal(OBTAIN_ALL_COPPER_TOOLS, EnigmaticsBingoItemTags.COPPER_TOOLS)
+                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
+                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools",
+                        Component.translatable(EnigmaticsBingoItemTags.COPPER_TOOLS.getTranslationKey())))
+        );
         addGoal(obtainItemGoal(OBTAIN_STACK_OF_RED_CONCRETE, items, Items.RED_CONCRETE, 64)
                 .tags(EnigmaticsBingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.CONCRETE)

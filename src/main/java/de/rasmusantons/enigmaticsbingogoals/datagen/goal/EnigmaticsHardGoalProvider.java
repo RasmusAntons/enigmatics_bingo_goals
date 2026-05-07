@@ -10,9 +10,14 @@ import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.criterion.ContextAwarePredicate;
 import net.minecraft.advancements.criterion.CuredZombieVillagerTrigger;
 import net.minecraft.advancements.criterion.EntityHurtPlayerTrigger;
+import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.advancements.criterion.LocationPredicate;
+import net.minecraft.advancements.criterion.SlotsPredicate;
+import net.minecraft.advancements.criterion.StartRidingTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
@@ -27,8 +32,12 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BannerPatterns;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
@@ -273,6 +282,22 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(makeBannerWithPatternItemGoal(USE_GLOBE_PATTERN, items, Items.GLOBE_BANNER_PATTERN,
                 BannerPatterns.GLOBE, "Globe Pattern")
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.VILLAGE)
+        );
+        addGoal(BingoGoal.builder(RIDE_HAPPY_GHAST)
+                .criterion("mount", CriteriaTriggers.START_RIDING_TRIGGER.createCriterion(
+                        new StartRidingTrigger.TriggerInstance(Optional.of(ContextAwarePredicate.create(
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.THIS,
+                                        EntityPredicate.Builder.entity().of(entityTypes, EntityType.PLAYER).vehicle(
+                                                EntityPredicate.Builder.entity().of(entityTypes, EntityType.HAPPY_GHAST)
+                                        )
+                                ).build()
+                        )))
+                ))
+                .icon(IndicatorIcon.infer(EntityIcon.ofSpawnEgg(EntityType.HAPPY_GHAST), ItemIcon.ofItem(Items.BLACK_HARNESS)))
+                .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.HAPPY_GHAST)
+                .name(Component.translatable("enigmaticsbingogoals.goal.ride_happy_ghast",
+                        Component.translatable(EntityType.HAPPY_GHAST.getDescriptionId())))
         );
     }
 }

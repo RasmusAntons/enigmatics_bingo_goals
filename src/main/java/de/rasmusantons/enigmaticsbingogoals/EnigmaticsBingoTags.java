@@ -74,6 +74,7 @@ public class EnigmaticsBingoTags {
     public static final ResourceKey<BingoTag> OVERWORLD_EXPLORE = createKey("overworld_explore");
     public static final ResourceKey<BingoTag> NETHER_EXPLORE = createKey("nether_explore");
     public static final ResourceKey<BingoTag> GHAST = createKey("ghast");
+    public static final ResourceKey<BingoTag> HAPPY_GHAST = createKey("happy_ghast");
     public static final ResourceKey<BingoTag> STRIDER = createKey("strider");
     public static final ResourceKey<BingoTag> EYE_OF_ENDER = createKey("eye_of_ender");
     public static final ResourceKey<BingoTag> BLAZE_POWDER = createKey("blaze_powder");
@@ -188,6 +189,7 @@ public class EnigmaticsBingoTags {
         context.register(OVERWORLD_EXPLORE, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 1, 1, 1, 1, 1).build());
         context.register(NETHER_EXPLORE, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 2, 2, 2, 2, 2).build());
         context.register(GHAST, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 1, 1, 1, 1, 1).build());
+        context.register(HAPPY_GHAST, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 1, 1, 1, 1, 1).build());
         context.register(STRIDER, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 1, 1, 1, 1, 1).build());
         context.register(EYE_OF_ENDER, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 1, 1, 1, 1, 1).build());
         context.register(BLAZE_POWDER, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 2, 2, 2, 2, 2).build());
