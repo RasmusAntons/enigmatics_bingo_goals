@@ -483,7 +483,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(
                         IndicatorIcon.infer(
                                 CycleIcon.infer(catVariants.listElementIds().map(BingoGoalGeneratorUtils::getCatVariantIcon)),
-                                CycleIcon.infer(ItemTags.CAT_FOOD)
+                                new ItemTagCycleIcon(ItemTags.CAT_FOOD)
                         ),
                         subber -> subber.sub("base.icons.*.item.count", "count")
                 );
