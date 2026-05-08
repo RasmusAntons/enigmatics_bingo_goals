@@ -15,7 +15,6 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.ChatFormatting;
-import net.minecraft.SharedConstants;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.MinecraftServer;
@@ -50,13 +49,15 @@ public class EnigmaticsBingoGoalsClientGameTest implements FabricClientGameTest 
     @TestGoal
     private static void testEmptyHungerGoal(ClientGameTestContext context, TestSingleplayerContext singleplayerContext) {
         testGoal(context, singleplayerContext, EnigmaticsBingoGoalIds.VeryEasy.EMPTY_HUNGER, () -> {
-            singleplayerContext.getServer().runCommand("effect give @a minecraft:hunger infinite 127");
-            waitFor(
-                    context,
-                    singleplayerContext.getServer(),
-                    server -> getServerPlayer(server).getFoodData().getFoodLevel() == 0,
-                    10 * SharedConstants.TICKS_PER_SECOND
-            );
+            singleplayerContext.getServer().runOnServer(server -> {
+                getServerPlayer(server).getFoodData().setFoodLevel(0);
+                getServerPlayer(server).getFoodData().setSaturation(0);
+            });
+            context.waitTick();
+            singleplayerContext.getServer().runOnServer(server -> {
+                getServerPlayer(server).getFoodData().setFoodLevel(20);
+                getServerPlayer(server).getFoodData().setSaturation(20);
+            });
         });
     }
 

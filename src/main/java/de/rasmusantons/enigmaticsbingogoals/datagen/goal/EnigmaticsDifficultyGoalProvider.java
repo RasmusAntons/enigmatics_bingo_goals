@@ -32,6 +32,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
@@ -462,10 +463,9 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
     protected static GoalBuilder tameAnimalGoal(Identifier id, HolderGetter<EntityType<?>> entityTypes, EntityType<?> entityType) {
         return BingoGoal.builder(id)
                 .criterion("tame", TameAnimalTrigger.TriggerInstance.tamedAnimal(
-                        EntityPredicate.Builder.entity().of( entityTypes, entityType)))
+                        EntityPredicate.Builder.entity().of(entityTypes, entityType)))
                 .tags(EnigmaticsBingoTags.TAME_ANIMAL)
-                .name(Component.translatable("enigmaticsbingogoals.goal.tame_animal", entityType.getDescription()))
-                .icon(IndicatorIcon.infer(entityType, ItemIcon.ofItem(net.minecraft.world.item.Items.BONE)));
+                .name(Component.translatable("enigmaticsbingogoals.goal.tame_animal", entityType.getDescription()));
     }
 
     protected static GoalBuilder tameSomeCatsGoal(Identifier id, HolderLookup.RegistryLookup<CatVariant> catVariants, int minProgress, int maxProgress) {
@@ -483,7 +483,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .icon(
                         IndicatorIcon.infer(
                                 CycleIcon.infer(catVariants.listElementIds().map(BingoGoalGeneratorUtils::getCatVariantIcon)),
-                                ItemIcon.ofItem(Items.COD)
+                                CycleIcon.infer(ItemTags.CAT_FOOD)
                         ),
                         subber -> subber.sub("base.icons.*.item.count", "count")
                 );

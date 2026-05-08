@@ -240,6 +240,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(tameAnimalGoal(TAME_OCELOT, entityTypes, EntityType.OCELOT)
                 .name(Component.translatable("enigmaticsbingogoals.goal.tame_ocelot", EntityType.OCELOT.getDescription()))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE)
+                .icon(IndicatorIcon.infer(EntityType.OCELOT, new ItemTagCycleIcon(ItemTags.OCELOT_FOOD)))
         );
         addGoal(breedAnimalGoal(BREED_PIG, entityTypes, EntityType.PIG)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.VILLAGE)
@@ -701,6 +702,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         addGoal(reachLevelsGoal(REACH_LEVELS, 16, 25));
         addGoal(tameAnimalGoal(TAME_PARROT, entityTypes, EntityType.PARROT)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE)
+                .icon(IndicatorIcon.infer(EntityType.PARROT, new ItemTagCycleIcon(ItemTags.PARROT_FOOD)))
         );
         addGoal(tameSomeCatsGoal(TAME_SOME_CATS, registries.lookupOrThrow(Registries.CAT_VARIANT), 2, 4));
         addGoal(tameSomeWolvesGoal(TAME_SOME_WOLVES, 2, 2));
