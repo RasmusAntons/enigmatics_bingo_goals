@@ -80,6 +80,7 @@
   "enigmaticsbingogoals.goal.make_copy_of_copy": "Make a %s",
   "enigmaticsbingogoals.goal.name_a_sheep_jeb": "Create a rainbow %s",
   "enigmaticsbingogoals.goal.name_a_sheep_jeb.tooltip": "Name the %s %s",
+  "enigmaticsbingogoals.goal.never_crouch": "Never crouch",
   "enigmaticsbingogoals.goal.never_damage": "Never take damage",
   "enigmaticsbingogoals.goal.never_die": "Never die",
   "enigmaticsbingogoals.goal.never_fall_damage": "Never take fall damage",

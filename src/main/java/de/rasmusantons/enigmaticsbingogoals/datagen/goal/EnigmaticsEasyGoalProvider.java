@@ -876,7 +876,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(BingoGoal.builder(NEVER_CROUCH)
                 .criterion("crouch", BingoTriggers.crouch(DistancePredicate.absolute(MinMaxBounds.Doubles.ANY)))
-                .name(Component.literal("do not crouch"))
+                .name(Component.translatable("enigmaticsbingogoals.goal.never_crouch"))
                 .antisynergy(EnigmaticsBingoSynergies.CROUCH)
                 .tags(EnigmaticsBingoTags.NEVER)
                 .icon(IndicatorIcon.infer(Items.LEATHER_BOOTS, Items.BARRIER))
