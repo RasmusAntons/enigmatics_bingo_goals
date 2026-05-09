@@ -1,5 +1,6 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
+import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoAdvancements;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoDifficulties;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.PlayerAliveCondition;
@@ -14,6 +15,7 @@ import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
+import io.github.gaming32.bingo.data.tags.bingo.BingoEntityTypeTags;
 import io.github.gaming32.bingo.data.tags.bingo.BingoFeatureTags;
 import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -369,6 +371,15 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         CycleIcon.infer(Arrays.stream(VanillaHusbandryAdvancements.EDIBLE_ITEMS)),
                         subber -> subber.sub("icons.*.item.count", "count")
                 )
+        );
+        addGoal(advancementProgressGoal(FEED_GOLDEN_DANDELION_TO_DIFFERENT_MOBS,
+                EnigmaticsBingoAdvancements.FEED_GOLDEN_DANDELION_TO_DIFFERENT_MOBS, 3, 5)
+                .name(Component.translatable("enigmaticsbingogoals.goal.feed_golden_dandelion_to_different_mobs",
+                                Component.translatable(Items.GOLDEN_DANDELION.getDescriptionId()), 0
+                        ),
+                        subber -> subber.sub("with.1", "count"))
+                .tags(EnigmaticsBingoTags.OVERWORLD)
+                .icon(IndicatorIcon.infer(new EntityTypeTagCycleIcon(BingoEntityTypeTags.CAN_BE_AGE_LOCKED), ItemIcon.ofItem(Items.GOLDEN_DANDELION)))
         );
         addGoal(
                 BingoGoal.builder(SIGN_BOOK_AND_QUILL)

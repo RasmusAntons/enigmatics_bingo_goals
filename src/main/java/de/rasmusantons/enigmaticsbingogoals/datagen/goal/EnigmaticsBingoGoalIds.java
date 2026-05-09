@@ -177,6 +177,7 @@ public final class EnigmaticsBingoGoalIds {
         public static final Identifier USE_LOOM = id("use_loom");
         public static final Identifier SURVIVE_EXPLOSION = id("survive_explosion");
         public static final Identifier NAME_A_SHEEP_JEB = id("name_a_sheep_jeb");
+        public static final Identifier FEED_GOLDEN_DANDELION_TO_DIFFERENT_MOBS = id("feed_golden_dandelion_to_different_mobs");
     }
 
     public static final class Medium {

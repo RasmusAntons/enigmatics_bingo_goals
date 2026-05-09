@@ -20,6 +20,7 @@ public class EnigmaticsBingoGoalsDataGenerator implements DataGeneratorEntrypoin
         pack.addProvider(EnigmaticsBingoFeatureTagProvider::new);
         pack.addProvider(EnigmaticsBingoDamageTypeTagProvider::new);
         pack.addProvider(EnigmaticsBingoEntityTypeTagProvider::new);
+        pack.addProvider(EnigmaticsBingoAdvancementProvider::new);
         pack.addProvider(EnigmaticsBingoGoalProvider::new);
         pack.addProvider(EnigmaticsBingoDynamicRegistryProvider::new);
     }
