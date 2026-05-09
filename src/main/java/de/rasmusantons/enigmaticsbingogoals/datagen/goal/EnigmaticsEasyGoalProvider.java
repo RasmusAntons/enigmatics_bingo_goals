@@ -372,15 +372,6 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         subber -> subber.sub("icons.*.item.count", "count")
                 )
         );
-        addGoal(advancementProgressGoal(FEED_GOLDEN_DANDELION_TO_DIFFERENT_MOBS,
-                EnigmaticsBingoAdvancements.FEED_GOLDEN_DANDELION_TO_DIFFERENT_MOBS, 3, 5)
-                .name(Component.translatable("enigmaticsbingogoals.goal.feed_golden_dandelion_to_different_mobs",
-                                Component.translatable(Items.GOLDEN_DANDELION.getDescriptionId()), 0
-                        ),
-                        subber -> subber.sub("with.1", "count"))
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .icon(IndicatorIcon.infer(new EntityTypeTagCycleIcon(BingoEntityTypeTags.CAN_BE_AGE_LOCKED), ItemIcon.ofItem(Items.GOLDEN_DANDELION)))
-        );
         addGoal(
                 BingoGoal.builder(SIGN_BOOK_AND_QUILL)
                         .criterion("sign", WriteBookTrigger.TriggerInstance.signer())
@@ -872,6 +863,15 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .name(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb", EntityType.SHEEP.getDescription()))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb.tooltip", EntityType.SHEEP.getDescription(), "jeb_"))
                 .icon(IndicatorIcon.infer(EntityType.SHEEP, Items.NAME_TAG))
+        );
+        addGoal(advancementProgressGoal(FEED_GOLDEN_DANDELION_TO_DIFFERENT_MOBS,
+                EnigmaticsBingoAdvancements.FEED_GOLDEN_DANDELION_TO_DIFFERENT_MOBS, 3, 5)
+                .name(Component.translatable("enigmaticsbingogoals.goal.feed_golden_dandelion_to_different_mobs",
+                                Component.translatable(Items.GOLDEN_DANDELION.getDescriptionId()), 0
+                        ),
+                        subber -> subber.sub("with.1", "count"))
+                .tags(EnigmaticsBingoTags.OVERWORLD)
+                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getAgeLockableEntitiesIcon(registries), ItemIcon.ofItem(Items.GOLDEN_DANDELION)))
         );
     }
 }

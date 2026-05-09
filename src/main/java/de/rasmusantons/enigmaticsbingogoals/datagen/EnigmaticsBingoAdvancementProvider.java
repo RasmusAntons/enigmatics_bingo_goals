@@ -1,15 +1,12 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen;
 
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoAdvancements;
-import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoGoals;
-import io.github.gaming32.bingo.data.tags.bingo.BingoEntityTypeTags;
 import io.github.gaming32.bingo.datagen.BingoDataGenUtil;
 import io.github.gaming32.bingo.datagen.tag.BingoEntityTypeTagProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
-import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.criterion.EntityFlagsPredicate;
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.advancements.criterion.EntityTypePredicate;
@@ -17,7 +14,6 @@ import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.PlayerInteractTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Items;

@@ -12,6 +12,7 @@ import com.mojang.serialization.Lifecycle;
 import de.rasmusantons.enigmaticsbingogoals.datagen.tag.EnigmaticsBingoEntityTypeTagProvider;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.datagen.BingoDataGenUtil;
+import io.github.gaming32.bingo.datagen.tag.BingoEntityTypeTagProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.*;
 import net.minecraft.core.component.DataComponentPatch;
@@ -22,12 +23,13 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.animal.feline.CatVariant;
@@ -59,6 +61,20 @@ public class BingoGoalGeneratorUtils {
         if (entityType == EntityType.GHAST)
             return new ItemIcon(getCustomPLayerHead(PlayerHeadTextures.GHAST));
         return EntityIcon.ofSpawnEgg(entityType, new CompoundTag(), count);
+    }
+
+    public static GoalIcon getAgeLockableEntitiesIcon(HolderLookup.Provider registries) {
+        var entityTypes = registries.lookupOrThrow(Registries.ENTITY_TYPE);
+        return CycleIcon.infer(entityTypes.listElements().filter(type -> {
+            Class<? extends Entity> entityClass = BingoDataGenUtil.getEntityTypeClass(type.value());
+            return entityClass != null
+                    && BingoEntityTypeTagProvider.canBeAgeLocked(entityClass) &&
+                    !(BingoDataGenUtil.loadVanillaTag(EntityTypeTags.CANNOT_BE_AGE_LOCKED, registries).contains(type));
+        }).map(type -> {
+            CompoundTag data =  new CompoundTag();
+            data.putInt("Age", -24000);
+            return EntityIcon.ofSpawnEgg(type.value(), data, 1);
+        }));
     }
 
     public static GoalIcon getEntityIcon(TagKey<EntityType<?>> entityTypeTag, int count) {
