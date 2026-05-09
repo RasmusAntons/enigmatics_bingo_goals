@@ -38,4 +38,5 @@ public class EnigmaticsBingoSynergies {
     public static final String LOOM = "loom";
     public static final String MAP = "map";
     public static final String EXPLOSION = "explosion";
+    public static final String CROUCH = "crouch";
 }

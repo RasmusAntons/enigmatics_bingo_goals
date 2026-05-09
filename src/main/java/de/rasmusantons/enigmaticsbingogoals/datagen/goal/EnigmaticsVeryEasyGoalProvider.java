@@ -54,6 +54,7 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                 .criterion("crouch", RelativeStatsTrigger.builder()
                         .stat(Stats.CROUCH_ONE_CM, MinMaxBounds.Ints.atLeast(25000)).build())
                 .progress(new CriterionProgressTracker("crouch", 0.01f))
+                .antisynergy(EnigmaticsBingoSynergies.CROUCH)
                 .name(Component.translatable("bingo.goal.crouch_distance", 250))
                 .tags(EnigmaticsBingoTags.STAT, EnigmaticsBingoTags.COVER_DISTANCE)
                 .icon(Items.LEATHER_BOOTS)

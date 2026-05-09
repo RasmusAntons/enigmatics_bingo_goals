@@ -17,6 +17,7 @@ import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
 import io.github.gaming32.bingo.data.tags.bingo.BingoEntityTypeTags;
 import io.github.gaming32.bingo.data.tags.bingo.BingoFeatureTags;
+import io.github.gaming32.bingo.triggers.BingoTriggers;
 import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.criterion.*;
@@ -872,6 +873,13 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         subber -> subber.sub("with.1", "count"))
                 .tags(EnigmaticsBingoTags.OVERWORLD)
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getAgeLockableEntitiesIcon(registries), ItemIcon.ofItem(Items.GOLDEN_DANDELION)))
+        );
+        addGoal(BingoGoal.builder(NEVER_CROUCH)
+                .criterion("crouch", BingoTriggers.crouch(DistancePredicate.absolute(MinMaxBounds.Doubles.ANY)))
+                .name(Component.literal("do not crouch"))
+                .antisynergy(EnigmaticsBingoSynergies.CROUCH)
+                .tags(EnigmaticsBingoTags.NEVER)
+                .icon(IndicatorIcon.infer(Items.LEATHER_BOOTS, Items.BARRIER))
         );
     }
 }
