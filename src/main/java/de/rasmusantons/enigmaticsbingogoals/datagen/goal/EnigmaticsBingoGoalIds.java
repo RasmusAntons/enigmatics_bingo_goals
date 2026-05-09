@@ -17,7 +17,7 @@ public final class EnigmaticsBingoGoalIds {
         }
 
         public static final Identifier BREED_CHICKEN = id("breed_chicken");
-        public static final Identifier CROUCH_500_METERS = id("crouch_500_meters");
+        public static final Identifier CROUCH_250_METERS = id("crouch_500_meters");
         public static final Identifier EMPTY_HUNGER = id("empty_hunger");
         public static final Identifier FILL_A_COMPOSTER = id("fill_a_composter");
         public static final Identifier FULL_UNIQUE_INVENTORY = id("full_unique_inventory");
@@ -176,6 +176,7 @@ public final class EnigmaticsBingoGoalIds {
         public static final Identifier OBTAIN_BELL = id("obtain_bell");
         public static final Identifier USE_LOOM = id("use_loom");
         public static final Identifier SURVIVE_EXPLOSION = id("survive_explosion");
+        public static final Identifier NAME_A_SHEEP_JEB = id("name_a_sheep_jeb");
     }
 
     public static final class Medium {
@@ -251,7 +252,6 @@ public final class EnigmaticsBingoGoalIds {
         public static final Identifier OBTAIN_SOME_TRIM_TEMPLATES = id("obtain_some_trim_templates");
         public static final Identifier OBTAIN_COBWEB = id("obtain_cobweb");
         public static final Identifier BREAK_MOB_SPAWNER = id("break_mob_spawner");
-        public static final Identifier NAME_A_SHEEP_JEB = id("name_a_sheep_jeb");
         public static final Identifier OBTAIN_CYAN_GLAZED_TERRACOTTA = id("obtain_cyan_glazed_terracotta");
         public static final Identifier OBTAIN_SOME_DIFFERENT_COLORS_OF_TERRACOTTA = id("obtain_some_different_colors_of_terracotta");
         public static final Identifier OBTAIN_SLIME_BLOCK = id("obtain_slime_block");

@@ -19,6 +19,8 @@ import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentExactPredicate;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.component.predicates.DataComponentPredicates;
 import net.minecraft.core.component.predicates.WrittenBookPredicate;
 import net.minecraft.core.registries.Registries;
@@ -846,6 +848,19 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .reactant(EnigmaticsBingoSynergies.EXPLOSION)
                 .name(Component.translatable("enigmaticsbingogoals.goal.survive_explosion"))
                 .icon(IndicatorIcon.infer(BlockIcon.ofBlock(Blocks.TNT), EffectIcon.of(MobEffects.REGENERATION)))
+        );
+        addGoal(BingoGoal.builder(NAME_A_SHEEP_JEB)
+                .criterion("use", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(
+                        ItemPredicate.Builder.item().of(items, Items.NAME_TAG).withComponents(DataComponentMatchers.Builder
+                                .components()
+                                .exact(DataComponentExactPredicate.expect(DataComponents.CUSTOM_NAME, Component.literal("jeb_")))
+                                .build()),
+                        Optional.of(EntityPredicate.wrap(EntityPredicate.Builder.entity().of(entityTypes, EntityType.SHEEP)))
+                ))
+                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.WOODLAND_MANSION)
+                .name(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb", EntityType.SHEEP.getDescription()))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb.tooltip", EntityType.SHEEP.getDescription(), "jeb_"))
+                .icon(IndicatorIcon.infer(EntityType.SHEEP, Items.NAME_TAG))
         );
     }
 }

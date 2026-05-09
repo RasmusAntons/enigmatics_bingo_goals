@@ -490,19 +490,6 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.FORTRESS,
                         EnigmaticsBingoTags.STRONGHOLD, EnigmaticsBingoTags.WOODLAND_MANSION)
         );
-        addGoal(BingoGoal.builder(NAME_A_SHEEP_JEB)
-                .criterion("use", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(
-                        ItemPredicate.Builder.item().of(items, Items.NAME_TAG).withComponents(DataComponentMatchers.Builder
-                                .components()
-                                .exact(DataComponentExactPredicate.expect(DataComponents.CUSTOM_NAME, Component.literal("jeb_")))
-                                .build()),
-                        Optional.of(EntityPredicate.wrap(EntityPredicate.Builder.entity().of(entityTypes, EntityType.SHEEP)))
-                ))
-                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.WOODLAND_MANSION)
-                .name(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb", EntityType.SHEEP.getDescription()))
-                .tooltip(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb.tooltip", EntityType.SHEEP.getDescription(), "jeb_"))
-                .icon(IndicatorIcon.infer(EntityType.SHEEP, Items.NAME_TAG))
-        );
         addGoal(obtainItemGoal(OBTAIN_CYAN_GLAZED_TERRACOTTA, items, Items.CYAN_GLAZED_TERRACOTTA)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS)
                 .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)

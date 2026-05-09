@@ -50,11 +50,11 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                 .antisynergy(EnigmaticsBingoSynergies.CHICKEN)
                 .catalyst(EnigmaticsBingoSynergies.BABY)
         );
-        addGoal(BingoGoal.builder(CROUCH_500_METERS)
+        addGoal(BingoGoal.builder(CROUCH_250_METERS)
                 .criterion("crouch", RelativeStatsTrigger.builder()
-                        .stat(Stats.CROUCH_ONE_CM, MinMaxBounds.Ints.atLeast(50000)).build())
+                        .stat(Stats.CROUCH_ONE_CM, MinMaxBounds.Ints.atLeast(25000)).build())
                 .progress(new CriterionProgressTracker("crouch", 0.01f))
-                .name(Component.translatable("bingo.goal.crouch_distance", 500))
+                .name(Component.translatable("bingo.goal.crouch_distance", 250))
                 .tags(EnigmaticsBingoTags.STAT, EnigmaticsBingoTags.COVER_DISTANCE)
                 .icon(Items.LEATHER_BOOTS)
         );
