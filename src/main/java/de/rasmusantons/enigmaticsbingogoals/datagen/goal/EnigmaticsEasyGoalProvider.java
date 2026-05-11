@@ -872,7 +872,10 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         ),
                         subber -> subber.sub("with.1", "count"))
                 .tags(EnigmaticsBingoTags.OVERWORLD)
-                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getAgeLockableEntitiesIcon(registries), ItemIcon.ofItem(Items.GOLDEN_DANDELION)))
+                .icon(
+                        IndicatorIcon.infer(BingoGoalGeneratorUtils.getAgeLockableEntitiesIcon(registries), ItemIcon.ofItem(Items.GOLDEN_DANDELION)),
+                        subber -> subber.sub("base.icons.*.item.count", "count")
+                )
         );
         addGoal(BingoGoal.builder(NEVER_CROUCH)
                 .criterion("crouch", BingoTriggers.crouch(DistancePredicate.absolute(MinMaxBounds.Doubles.ANY)))
