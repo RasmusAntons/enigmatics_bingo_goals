@@ -206,7 +206,6 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
         addGoal(reachLevelsGoal(REACH_LEVELS, 1, 9));
         addGoal(BingoGoal.builder(TOUCH_LAVA)
                 .criterion("touch", EnterBlockTrigger.TriggerInstance.entersBlock(Blocks.LAVA))
-
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.touch_lava",
                         Component.translatable(Blocks.LAVA.getDescriptionId())))

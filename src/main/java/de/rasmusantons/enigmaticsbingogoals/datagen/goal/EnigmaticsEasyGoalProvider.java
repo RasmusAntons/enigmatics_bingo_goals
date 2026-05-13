@@ -609,7 +609,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Component.translatable("advancements.story.enter_the_nether.title"),
                 Identifier.withDefaultNamespace("story/enter_the_nether"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.NETHER_ENTRY)
-                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.PORTAL), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
+                .icon(IndicatorIcon.infer(ItemIcon.ofItem(Items.FLINT_AND_STEEL), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(BingoGoal.builder(GROW_TREE_IN_NETHER)
                 .criterion("grow", GrowFeatureTrigger.builder()
