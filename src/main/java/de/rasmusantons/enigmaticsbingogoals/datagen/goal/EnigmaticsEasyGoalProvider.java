@@ -77,7 +77,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.NEVER, BingoTags.LOCKOUT_INFLICTABLE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_touch_water",
                         Component.translatable(Blocks.WATER.getDescriptionId())))
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WATER_BUCKET), ItemIcon.ofItem(Items.BARRIER)))
+                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.WATER), ItemIcon.ofItem(Items.BARRIER)))
         );
         addGoal(BingoGoal.builder(NEVER_FALL_DAMAGE)
                 .criterion("damage", EntityHurtPlayerTrigger.TriggerInstance.entityHurtPlayer(
@@ -609,7 +609,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Component.translatable("advancements.story.enter_the_nether.title"),
                 Identifier.withDefaultNamespace("story/enter_the_nether"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.NETHER_ENTRY)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.FLINT_AND_STEEL), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.PORTAL), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
         );
         addGoal(BingoGoal.builder(GROW_TREE_IN_NETHER)
                 .criterion("grow", GrowFeatureTrigger.builder()
