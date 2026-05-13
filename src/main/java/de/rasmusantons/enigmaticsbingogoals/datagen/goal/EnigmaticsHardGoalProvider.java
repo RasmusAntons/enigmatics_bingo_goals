@@ -153,7 +153,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Component.translatable("advancements.adventure.spyglass_at_dragon.title"),
                 Identifier.withDefaultNamespace("adventure/spyglass_at_dragon"))
                 .tags(EnigmaticsBingoTags.END, EnigmaticsBingoTags.AMETHYST, EnigmaticsBingoTags.END_ENTRY)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(effectGoal(GET_HERO_OF_THE_VILLAGE, MobEffects.HERO_OF_THE_VILLAGE)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.RAID)
@@ -162,7 +162,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Component.translatable("advancements.adventure.totem_of_undying.title"),
                 Identifier.withDefaultNamespace("adventure/totem_of_undying"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.OUTPOST, EnigmaticsBingoTags.RAID)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.TOTEM_OF_UNDYING), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.TOTEM_OF_UNDYING), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(obtainAllItemsFromTagGoal(OBTAIN_ALL_HORSE_ARMORS, EnigmaticsBingoItemTags.HORSE_ARMORS)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.END, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH,
@@ -175,7 +175,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Identifier.withDefaultNamespace("adventure/craft_decorated_pot_using_only_sherds"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.RARE_COLLECTIBLE_BATCH,
                         EnigmaticsBingoTags.TRIAL_CHAMBER)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.DECORATED_POT), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.DECORATED_POT), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(potionGoal(OBTAIN_POTION_OF_LEAPING, items,
                 Potions.LEAPING, Potions.LONG_LEAPING, Potions.STRONG_LEAPING)
@@ -193,7 +193,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Component.translatable("advancements.end.root.title"),
                 Identifier.withDefaultNamespace("end/root"))
                 .tags(EnigmaticsBingoTags.END, EnigmaticsBingoTags.END_ENTRY)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.END_STONE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.END_STONE), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(obtainItemGoal(OBTAIN_DRAGON_EGG, items, Items.DRAGON_EGG)
                 .tags(EnigmaticsBingoTags.END, EnigmaticsBingoTags.END_ENTRY)
@@ -202,13 +202,13 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Component.translatable("advancements.end.find_end_city.title"),
                 Identifier.withDefaultNamespace("end/find_end_city"))
                 .tags(EnigmaticsBingoTags.END, EnigmaticsBingoTags.END_PROGRESS)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.PURPUR_PILLAR), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.PURPUR_PILLAR), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(GET_ADVANCEMENT_GREAT_VIEW_FROM_UP_HERE,
                 Component.translatable("advancements.end.levitate.title"),
                 Identifier.withDefaultNamespace("end/levitate"))
                 .tags(EnigmaticsBingoTags.END, EnigmaticsBingoTags.END_PROGRESS)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SHULKER_SHELL), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SHULKER_SHELL), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(eatItemGoal(EAT_CHORUS_FRUIT, items, Items.CHORUS_FRUIT)
                 .tags(EnigmaticsBingoTags.END, EnigmaticsBingoTags.END_PROGRESS)
@@ -240,13 +240,13 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Component.translatable("advancements.story.follow_ender_eye.title"),
                 Identifier.withDefaultNamespace("story/follow_ender_eye"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.END_ENTRY, EnigmaticsBingoTags.STRONGHOLD)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ENDER_EYE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ENDER_EYE), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(GET_ADVANCEMENT_THIS_BOAT_HAS_LEGS,
                 Component.translatable("advancements.nether.ride_strider.title"),
                 Identifier.withDefaultNamespace("nether/ride_strider"))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.STRIDER)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WARPED_FUNGUS_ON_A_STICK), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WARPED_FUNGUS_ON_A_STICK), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(obtainItemGoal(OBTAIN_CRIMSON_NYLIUM, items, Items.CRIMSON_NYLIUM)
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,

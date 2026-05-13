@@ -321,7 +321,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Component.translatable("advancements.adventure.trade.title"),
                 Identifier.withDefaultNamespace("adventure/trade"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO, EnigmaticsBingoTags.VILLAGE)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.EMERALD), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.EMERALD), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(eatItemGoal(EAT_RABBIT_STEW, items, Items.RABBIT_STEW)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.VILLAGE, EnigmaticsBingoTags.STEW)
@@ -609,7 +609,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Component.translatable("advancements.story.enter_the_nether.title"),
                 Identifier.withDefaultNamespace("story/enter_the_nether"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION, EnigmaticsBingoTags.NETHER_ENTRY)
-                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.PORTAL), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.PORTAL), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(BingoGoal.builder(GROW_TREE_IN_NETHER)
                 .criterion("grow", GrowFeatureTrigger.builder()
@@ -631,7 +631,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Component.translatable("advancements.nether.distract_piglin.title"),
                 Identifier.withDefaultNamespace("nether/distract_piglin"))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.BARTERING)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.GOLD_INGOT), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.GOLD_INGOT), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(dieToMobEntityGoal(DIE_TO_DOLPHIN, entityTypes, EntityType.DOLPHIN)
                 .tags(EnigmaticsBingoTags.OVERWORLD)
@@ -656,7 +656,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 Component.translatable("advancements.nether.return_to_sender.title"),
                 Identifier.withDefaultNamespace("nether/return_to_sender"))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.GHAST)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.FIRE_CHARGE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.FIRE_CHARGE), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(killEntityGoal(KILL_ZOMBIE_VILLAGER, entityTypes, EntityType.ZOMBIE_VILLAGER)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_zombie_villager", EntityType.ZOMBIE_VILLAGER.getDescription()))

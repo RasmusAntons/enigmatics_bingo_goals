@@ -345,7 +345,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.ANCIENT_CITY, EnigmaticsBingoTags.WOODLAND_MANSION,
                         EnigmaticsBingoTags.TRAIL_RUINS, EnigmaticsBingoTags.TRIAL_CHAMBER)
                 .antisynergy(EnigmaticsBingoSynergies.MUSIC_DISC)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.JUKEBOX), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(BingoGoal.builder(EQUIP_WOLF_ARMOR)
                 .criterion("equip", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(
@@ -397,13 +397,13 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 Component.translatable("advancements.adventure.sniper_duel.title"),
                 Identifier.withDefaultNamespace("adventure/sniper_duel"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.BOW)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ARROW), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ARROW), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(GET_ADVANCEMENT_BULLSEYE,
                 Component.translatable("advancements.adventure.bullseye.title"),
                 Identifier.withDefaultNamespace("adventure/bullseye"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.BOW)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.TARGET), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.TARGET), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(BingoGoal.builder(RIDE_PIG_FOR_300_METERS)
                 .criterion("ride", RelativeStatsTrigger.builder()
@@ -469,7 +469,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .name(Component.translatable("enigmaticsbingogoals.goal.get_any_spyglass_advancement"))
                 .tags(EnigmaticsBingoTags.AMETHYST, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.NETHER_ENTRY,
                         EnigmaticsBingoTags.NETHER_ENTRY)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(obtainItemGoal(OBTAIN_SPONGE, items, Items.SPONGE)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.OCEAN_MONUMENT)
@@ -516,7 +516,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 Component.translatable("advancements.story.enchant_item.title"),
                 Identifier.withDefaultNamespace("story/enchant_item"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.WOODLAND_MANSION)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ENCHANTED_BOOK), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.ENCHANTED_BOOK), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(obtainItemGoal(OBTAIN_STACK_OF_CYAN_WOOL, items, Items.CYAN_WOOL, 64)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO)
@@ -565,26 +565,26 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 Component.translatable("advancements.nether.find_fortress.title"),
                 Identifier.withDefaultNamespace("nether/find_fortress"))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.NETHER_EXPLORE)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.NETHER_BRICKS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.NETHER_BRICKS), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(GET_ADVANCEMENT_THOSE_WERE_THE_DAYS,
                 Component.translatable("advancements.nether.find_bastion.title"),
                 Identifier.withDefaultNamespace("nether/find_bastion"))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.NETHER_EXPLORE, EnigmaticsBingoTags.BASTION)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.POLISHED_BLACKSTONE_BRICKS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.POLISHED_BLACKSTONE_BRICKS), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(GET_ADVANCEMENT_NOT_QUITE_NINE_LIVES,
                 Component.translatable("advancements.nether.charge_respawn_anchor.title"),
                 Identifier.withDefaultNamespace("nether/charge_respawn_anchor"))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.RESPAWN_ANCHOR), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.RESPAWN_ANCHOR), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(GET_ADVANCEMENT_HOT_TOURIST_DESTINATIONS,
                 Component.translatable("advancements.nether.explore_nether.title"),
                 Identifier.withDefaultNamespace("nether/explore_nether"))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.BIOMES, EnigmaticsBingoTags.NETHER_EXPLORE,
                         EnigmaticsBingoTags.NETHER_LATE)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.NETHERITE_BOOTS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.NETHERITE_BOOTS), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(obtainItemGoal(OBTAIN_END_CRYSTAL, items, Items.END_CRYSTAL)
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.EYE_OF_ENDER, EnigmaticsBingoTags.BLAZE_POWDER, EnigmaticsBingoTags.FORTRESS)
@@ -777,19 +777,19 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 Component.translatable("advancements.nether.fast_travel.title"),
                 Identifier.withDefaultNamespace("nether/fast_travel"))
                 .tags(EnigmaticsBingoTags.NETHER)
-                .icon(new IndicatorIcon(BlockIcon.ofBlock(Blocks.NETHER_PORTAL), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(BlockIcon.ofBlock(Blocks.NETHER_PORTAL), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(GET_ADVANCEMENT_IS_IT_A_BIRD,
                 Component.translatable("advancements.adventure.spyglass_at_parrot.title"),
                 Identifier.withDefaultNamespace("adventure/spyglass_at_parrot"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.AMETHYST, EnigmaticsBingoTags.JUNGLE)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(GET_ADVANCEMENT_IS_IT_A_BALLOON,
                 Component.translatable("advancements.adventure.spyglass_at_ghast.title"),
                 Identifier.withDefaultNamespace("adventure/spyglass_at_ghast"))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.AMETHYST, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.GHAST)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.SPYGLASS), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(BingoGoal.builder(HUGE_WARPED_FUNGUS_IN_OVERWORLD)
                 .criterion("grow", GrowFeatureTrigger.builder()
@@ -835,25 +835,25 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 Component.translatable("advancements.adventure.minecraft_trials_edition.title"),
                 Identifier.withDefaultNamespace("adventure/minecraft_trials_edition"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TRIAL_CHAMBER)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CHISELED_TUFF), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CHISELED_TUFF), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(GET_ADVANCEMENT_CRAFTERS_CRAFTING_CRAFTERS,
                 Component.translatable("advancements.adventure.crafters_crafting_crafters.title"),
                 Identifier.withDefaultNamespace("adventure/crafters_crafting_crafters"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.REDSTONE, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.WOODLAND_MANSION)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CRAFTER), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CRAFTER), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(GET_ADVANCEMENT_WHO_NEEDS_ROCKETS,
                 Component.translatable("advancements.adventure.who_needs_rockets.title"),
                 Identifier.withDefaultNamespace("adventure/who_needs_rockets"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TRIAL_CHAMBER, EnigmaticsBingoTags.BREEZE)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WIND_CHARGE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WIND_CHARGE), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(advancementGoal(GET_ADVANCEMENT_BLOWBACK,
                 Component.translatable("advancements.adventure.blowback.title"),
                 Identifier.withDefaultNamespace("adventure/blowback"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TRIAL_CHAMBER, EnigmaticsBingoTags.BREEZE)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WIND_CHARGE), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WIND_CHARGE), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
         addGoal(obtainItemGoal(OBTAIN_LINGERING_POTION, items, Items.LINGERING_POTION)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.END, EnigmaticsBingoTags.POTIONS, EnigmaticsBingoTags.TRIAL_CHAMBER,
@@ -912,7 +912,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 Component.translatable("advancements.husbandry.place_dried_ghast_in_water.title"),
                 Identifier.withDefaultNamespace("husbandry/place_dried_ghast_in_water"))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.HAPPY_GHAST)
-                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.DRIED_GHAST), BlockIcon.ofBlock(Blocks.GOLD_BLOCK)))
+                .icon(new IndicatorIcon(ItemIcon.ofItem(Items.DRIED_GHAST), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
     }
 }
