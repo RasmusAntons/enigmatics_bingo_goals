@@ -79,8 +79,10 @@ def load_goals(original):
             for tag in list(goal['tags']):
                 if tag.startswith('enigmaticsbingogoals:seedfind_biome_'):
                     goal['seedfind_biomes'].append(tag[len('enigmaticsbingogoals:seedfind_biome_'):])
+                    goal['tags'].remove(tag)
                 elif tag.startswith('enigmaticsbingogoals:seedfind_biometag_'):
                     goal['seedfind_biometags'].append(tag[len('enigmaticsbingogoals:seedfind_biometag_'):])
+                    goal['tags'].remove(tag)
             yield goal
         yield from load_todos(difficulty, original)
 
