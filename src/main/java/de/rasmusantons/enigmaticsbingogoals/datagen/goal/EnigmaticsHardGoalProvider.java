@@ -123,7 +123,8 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         Blocks.GRASS_BLOCK
                 ))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
-                        EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE)
+                        EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE,
+                        EnigmaticsBingoTags.SEEDFIND_BIOME_CRIMSON_FOREST)
         );
         addGoal(makeBannerWithPatternItemGoal(USE_SKULL_PATTERN, items, Items.SKULL_BANNER_PATTERN,
                 BannerPatterns.SKULL, "Skull Charge Pattern")
@@ -250,7 +251,8 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(obtainItemGoal(OBTAIN_CRIMSON_NYLIUM, items, Items.CRIMSON_NYLIUM)
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
-                        EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.NETHER_LATE)
+                        EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.NETHER_LATE,
+                        EnigmaticsBingoTags.SEEDFIND_BIOME_CRIMSON_FOREST)
         );
         addGoal(obtainItemGoal(OBTAIN_LODESTONE, items, Items.LODESTONE)
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.NETHERITE)

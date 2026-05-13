@@ -211,7 +211,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(obtainItemGoal(OBTAIN_STICKY_PISTON, items, Items.STICKY_PISTON)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
-                        EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.ANCIENT_CITY, EnigmaticsBingoTags.SWAMP)
+                        EnigmaticsBingoTags.SLIME, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.ANCIENT_CITY, EnigmaticsBingoTags.SWAMP,
+                        EnigmaticsBingoTags.SEEDFIND_BIOME_SWAMP)
         );
         addGoal(obtainItemGoal(OBTAIN_REDSTONE_LAMP, items, Items.REDSTONE_LAMP)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
@@ -222,7 +223,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.ANCIENT_CITY)
         );
         addGoal(breakBlockGoal(BREAK_EMERALD_ORE, blocks, Blocks.EMERALD_ORE, Blocks.DEEPSLATE_EMERALD_ORE)
-                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN)
+                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.MOUNTAIN,
+                        EnigmaticsBingoTags.SEEDFIND_BIOMETAG_IS_MOUNTAIN)
         );
         addGoal(killEntityGoal(KILL_SILVERFISH, entityTypes, EntityType.SILVERFISH)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_silverfish", EntityType.SILVERFISH.getDescription()))
@@ -239,7 +241,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(tameAnimalGoal(TAME_OCELOT, entityTypes, EntityType.OCELOT)
                 .name(Component.translatable("enigmaticsbingogoals.goal.tame_ocelot", EntityType.OCELOT.getDescription()))
-                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE)
+                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE,
+                        EnigmaticsBingoTags.SEEDFIND_BIOMETAG_IS_JUNGLE)
                 .icon(IndicatorIcon.infer(EntityType.OCELOT, new ItemTagCycleIcon(ItemTags.OCELOT_FOOD)))
         );
         addGoal(breedAnimalGoal(BREED_PIG, entityTypes, EntityType.PIG)
@@ -312,7 +315,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(obtainItemGoal(OBTAIN_WARPED_NYLIUM, items, Items.WARPED_NYLIUM)
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
-                        EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.NETHER_ENTRY)
+                        EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.NETHER_ENTRY,
+                        EnigmaticsBingoTags.SEEDFIND_BIOME_WARPED_FOREST)
         );
         addGoal(obtainSomeItemsFromTagGoal(OBTAIN_CHAINMAIL_ARMOR, EnigmaticsBingoItemTags.CHAINMAIL_ARMOR, 1, 1)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.VILLAGE, EnigmaticsBingoTags.RAID,
@@ -544,7 +548,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .name(Component.translatable("enigmaticsbingogoals.goal.use_item_on_block",
                         Component.translatable(Items.GLOW_INK_SAC.getDescriptionId()), Component.translatable(Items.CRIMSON_SIGN.getDescriptionId())))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST, EnigmaticsBingoTags.SIGN,
-                        EnigmaticsBingoTags.GLOW_INK)
+                        EnigmaticsBingoTags.GLOW_INK, EnigmaticsBingoTags.SEEDFIND_BIOME_CRIMSON_FOREST)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.CRIMSON_SIGN), ItemIcon.ofItem(Items.GLOW_INK_SAC)))
         );
         addGoal(BingoGoal.builder(USE_GLOW_INK_ON_WARPED_SIGN)
@@ -558,7 +562,7 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .name(Component.translatable("enigmaticsbingogoals.goal.use_item_on_block",
                         Component.translatable(Items.GLOW_INK_SAC.getDescriptionId()), Component.translatable(Items.WARPED_SIGN.getDescriptionId())))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.SIGN,
-                        EnigmaticsBingoTags.GLOW_INK)
+                        EnigmaticsBingoTags.GLOW_INK, EnigmaticsBingoTags.SEEDFIND_BIOME_WARPED_FOREST)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WARPED_SIGN), ItemIcon.ofItem(Items.GLOW_INK_SAC)))
         );
         addGoal(advancementGoal(GET_ADVANCEMENT_A_TERRIBLE_FORTRESS,
@@ -646,7 +650,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(EnigmaticsBingoTags.OVERWORLD)
         );
         addGoal(breedAnimalGoal(BREED_HOGLIN, entityTypes, EntityType.HOGLIN)
-                .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST)
+                .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST,
+                        EnigmaticsBingoTags.SEEDFIND_BIOME_CRIMSON_FOREST)
         );
         addGoal(dieToMobEntityGoal(DIE_TO_LLAMA, entityTypes, EntityType.LLAMA)
                 .tags(EnigmaticsBingoTags.OVERWORLD)
@@ -659,7 +664,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         EntityType.STRAY.getDescription()))
         );
         addGoal(eatItemGoal(EAT_COOKIE, items, Items.COOKIE)
-                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE)
+                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE,
+                        EnigmaticsBingoTags.SEEDFIND_BIOMETAG_IS_JUNGLE)
         );
         addGoal(effectGoal(GET_WEAKNESS, MobEffects.WEAKNESS)
                 .tags(EnigmaticsBingoTags.IGLOO)
@@ -688,7 +694,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(reachLevelsGoal(REACH_LEVELS, 16, 25));
         addGoal(tameAnimalGoal(TAME_PARROT, entityTypes, EntityType.PARROT)
-                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE)
+                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.JUNGLE,
+                        EnigmaticsBingoTags.SEEDFIND_BIOMETAG_IS_JUNGLE)
                 .icon(IndicatorIcon.infer(EntityType.PARROT, new ItemTagCycleIcon(ItemTags.PARROT_FOOD)))
         );
         addGoal(tameSomeCatsGoal(TAME_SOME_CATS, registries.lookupOrThrow(Registries.CAT_VARIANT), 2, 4));
@@ -805,7 +812,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         Blocks.GRASS_BLOCK
                 ))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.VILLAGE, EnigmaticsBingoTags.SILK_TOUCH,
-                        EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE)
+                        EnigmaticsBingoTags.WARPED_FOREST, EnigmaticsBingoTags.NETHER_LATE, EnigmaticsBingoTags.GROW_TREE,
+                        EnigmaticsBingoTags.SEEDFIND_BIOME_WARPED_FOREST)
         );
         addGoal(killEntityGoal(KILL_ENDERMITE, entityTypes, EntityType.ENDERMITE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_endermite", EntityType.ENDERMITE.getDescription()))
@@ -814,7 +822,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
         );
         addGoal(killEntityGoal(KILL_ZOGLIN, entityTypes, EntityType.ZOGLIN)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_zoglin", EntityType.ZOGLIN.getDescription()))
-                .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST)
+                .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.CRIMSON_FOREST,
+                        EnigmaticsBingoTags.SEEDFIND_BIOME_CRIMSON_FOREST)
         );
         addGoal(obtainAllItemsFromTagGoal(OBTAIN_ALL_DIAMOND_TOOLS, EnigmaticsBingoItemTags.DIAMOND_TOOLS)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET)
@@ -906,7 +915,8 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                         Items.VINE,
                         BingoGoalGeneratorUtils.getCustomPLayerHead((BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD))
                 ))
-                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.DIE_TO)
+                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE, EnigmaticsBingoTags.DIE_TO,
+                        EnigmaticsBingoTags.SEEDFIND_BIOMETAG_IS_JUNGLE)
         );
         addGoal(advancementGoal(GET_ADVANCEMENT_STAY_HYDRATED,
                 Component.translatable("advancements.husbandry.place_dried_ghast_in_water.title"),

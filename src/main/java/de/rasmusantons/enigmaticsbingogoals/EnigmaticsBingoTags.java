@@ -107,6 +107,12 @@ public class EnigmaticsBingoTags {
     public static final ResourceKey<BingoTag> GLOW_INK = createKey("glow_ink");
     public static final ResourceKey<BingoTag> GOAT = createKey("goat");
     public static final ResourceKey<BingoTag> MOSS = createKey("moss");
+    public static final ResourceKey<BingoTag> SEEDFIND_BIOME_SWAMP = createKey("seedfind_biome_swamp");
+    public static final ResourceKey<BingoTag> SEEDFIND_BIOME_CRIMSON_FOREST = createKey("seedfind_biome_crimson_forest");
+    public static final ResourceKey<BingoTag> SEEDFIND_BIOME_WARPED_FOREST = createKey("seedfind_biome_warped_forest");
+    public static final ResourceKey<BingoTag> SEEDFIND_BIOMETAG_IS_OCEAN = createKey("seedfind_biometag_is_ocean");
+    public static final ResourceKey<BingoTag> SEEDFIND_BIOMETAG_IS_JUNGLE = createKey("seedfind_biometag_is_jungle");
+    public static final ResourceKey<BingoTag> SEEDFIND_BIOMETAG_IS_MOUNTAIN = createKey("seedfind_biometag_is_mountain");
 
     public static void bootstrap(BootstrapContext<BingoTag> context) {
         context.register(ACTION, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 20, 20, 20, 20, 20).build());
@@ -222,6 +228,16 @@ public class EnigmaticsBingoTags {
         context.register(GLOW_INK, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 1, 1, 1, 1, 1).build());
         context.register(GOAT, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 1, 1, 1, 1, 1).build());
         context.register(MOSS, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 1, 1, 1, 1, 1).build());
+        context.register(SEEDFIND_BIOME_SWAMP, seedfindTag());
+        context.register(SEEDFIND_BIOME_CRIMSON_FOREST, seedfindTag());
+        context.register(SEEDFIND_BIOME_WARPED_FOREST, seedfindTag());
+        context.register(SEEDFIND_BIOMETAG_IS_OCEAN, seedfindTag());
+        context.register(SEEDFIND_BIOMETAG_IS_JUNGLE, seedfindTag());
+        context.register(SEEDFIND_BIOMETAG_IS_MOUNTAIN, seedfindTag());
+    }
+
+    private static BingoTag seedfindTag() {
+        return BingoTag.builder().difficultyMax(25, 25, 25, 25, 25, 25, 25, 25, 25, 25).build();
     }
 
     private static ResourceKey<BingoTag> createKey(String name) {

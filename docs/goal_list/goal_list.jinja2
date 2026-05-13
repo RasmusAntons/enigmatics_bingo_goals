@@ -16,6 +16,8 @@
     --color-antisynergy: #ff7d9c;
     --color-catalyst: #757ffd;
     --color-reactant: #9f66e4;
+	--color-biome: #95da84;
+	--color-biometag: #507a42;
 }
 
 .very_easy { --background-color: var(--color-very-easy); }
@@ -32,6 +34,8 @@
 .antisynergy { color: var(--color-antisynergy); }
 .catalyst { color: var(--color-catalyst); }
 .reactant { color: var(--color-reactant); }
+.biome { color: var(--color-biome); }
+.biometag { color: var(--color-biometag); }
 
 .antisynergy:before {
 	content: "-\00a0";
@@ -47,6 +51,11 @@
 	content: "<\00a0";
 	white-space: nowrap;
     color: var(--color-reactant);
+}
+.biometag:before {
+	content: "#";
+	white-space: nowrap;
+	color: var(--color-biometag);
 }
 
 *, *::before, *::after {
@@ -182,7 +191,7 @@ td:first-of-type::before {
 <body>
 <main>
     <table>
-    	<tr><th>Goal</th><th>Tags</th><th>Synergies</th></tr>
+    	<tr><th>Goal</th><th>Tags</th><th>Synergies</th><th>Seedfind</th></tr>
     	{% for goal in goals %}
     	<tr>
     		<td>
@@ -207,6 +216,14 @@ td:first-of-type::before {
 		    {% for reactant in goal.reactants %}
 		        <span class="tag reactant">{{ reactant }}</span>
 		    {% endfor %}
+	        </td>
+	        <td>
+		        {% for seedfind_biome in goal.seedfind_biomes %}
+			        <span class="tag biome">{{ seedfind_biome }}</span>
+		        {% endfor %}
+		        {% for seedfind_biometag in goal.seedfind_biometags %}
+			        <span class="tag biometag">{{ seedfind_biometag }}</span>
+		        {% endfor %}
 	        </td>
     	</tr>
     	{% endfor %}

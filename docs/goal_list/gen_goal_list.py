@@ -40,7 +40,9 @@ def load_todos(difficulty, original):
                 '_diff_title': difficulty.replace('_', ' ').title(),
                 '_name': m.group(1),
                 'tags': ['todo'],
-                'antisynergies': []
+                'antisynergies': [],
+                'seedfind_biomes': [],
+                'seedfind_biometags': []
             }
 
 
@@ -72,6 +74,13 @@ def load_goals(original):
             goal['antisynergies'] = sorted(_ensure_list(goal.get('antisynergy', [])))
             if (infrequency := goal.get('infrequency')) is not None:
                 goal['infrequency'] = infrequency
+            goal['seedfind_biomes'] = []
+            goal['seedfind_biometags'] = []
+            for tag in list(goal['tags']):
+                if tag.startswith('enigmaticsbingogoals:seedfind_biome_'):
+                    goal['seedfind_biomes'].append(tag[len('enigmaticsbingogoals:seedfind_biome_'):])
+                elif tag.startswith('enigmaticsbingogoals:seedfind_biometag_'):
+                    goal['seedfind_biometags'].append(tag[len('enigmaticsbingogoals:seedfind_biometag_'):])
             yield goal
         yield from load_todos(difficulty, original)
 
