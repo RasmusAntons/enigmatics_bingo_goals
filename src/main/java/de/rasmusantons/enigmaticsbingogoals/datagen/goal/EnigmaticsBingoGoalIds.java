@@ -36,6 +36,8 @@ public final class EnigmaticsBingoGoalIds {
         public static final Identifier STAND_ON_BEDROCK = id("stand_on_bedrock");
         public static final Identifier DIE_TO_SUFFOCATION = id("die_to_suffocation");
         public static final Identifier KILL_BABY_MOB = id("kill_baby_mob");
+        public static final Identifier REACH_LEVELS = id("reach_levels");
+        public static final Identifier TOUCH_LAVA = id("touch_lava");
     }
 
     public static final class Easy {

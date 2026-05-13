@@ -7,7 +7,9 @@ import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoDamageTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.EmptyHungerTrigger;
+import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
+import io.github.gaming32.bingo.data.icons.BlockIcon;
 import io.github.gaming32.bingo.data.icons.EffectIcon;
 import io.github.gaming32.bingo.data.icons.IndicatorIcon;
 import io.github.gaming32.bingo.data.icons.ItemIcon;
@@ -200,6 +202,15 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                 .reactant(EnigmaticsBingoSynergies.BABY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_baby_mob"))
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.BABY), Items.NETHERITE_SWORD))
+        );
+        addGoal(reachLevelsGoal(REACH_LEVELS, 1, 9));
+        addGoal(BingoGoal.builder(TOUCH_LAVA)
+                .criterion("touch", EnterBlockTrigger.TriggerInstance.entersBlock(Blocks.LAVA))
+
+                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY)
+                .name(Component.translatable("enigmaticsbingogoals.goal.touch_lava",
+                        Component.translatable(Blocks.LAVA.getDescriptionId())))
+                .icon(new ItemIcon(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.LAVA)))
         );
     }
 }
