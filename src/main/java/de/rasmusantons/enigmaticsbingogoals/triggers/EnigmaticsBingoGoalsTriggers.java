@@ -32,6 +32,7 @@ public class EnigmaticsBingoGoalsTriggers {
     public static final RegistryValue<CleanArmorInCauldronTrigger> CLEAN_ARMOR_IN_CAULDRON = register("clean_armor_in_cauldron", CleanArmorInCauldronTrigger::new);
     public static final RegistryValue<ArmorStandSwapTrigger> SWAP_ARMOR_STAND_ITEM = register("swap_item", ArmorStandSwapTrigger::new);
     public static final RegistryValue<TouchFluidTrigger> TOUCH_FLUID = register("touch_fluid", TouchFluidTrigger::new);
+    public static final RegistryValue<PoseChangeTrigger> POSE_CHANGE = register("pose_change", PoseChangeTrigger::new);
 
 
     public static void load() {

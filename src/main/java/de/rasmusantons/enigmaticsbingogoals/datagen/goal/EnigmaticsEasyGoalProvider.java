@@ -44,6 +44,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ChiseledBookShelfBlock;
 import net.minecraft.world.level.block.entity.BannerPatterns;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
 import java.util.Arrays;
 import java.util.List;
@@ -880,7 +881,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 )
         );
         addGoal(BingoGoal.builder(NEVER_CROUCH)
-                .criterion("crouch", BingoTriggers.crouch(DistancePredicate.absolute(MinMaxBounds.Doubles.ANY)))
+                .criterion("crouch", PoseChangeTrigger.TriggerInstance.crouch())
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_crouch"))
                 .antisynergy(EnigmaticsBingoSynergies.CROUCH)
                 .tags(EnigmaticsBingoTags.NEVER)
