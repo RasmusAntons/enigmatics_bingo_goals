@@ -16,9 +16,7 @@ import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
 import io.github.gaming32.bingo.data.tags.bingo.BingoFeatureTags;
-import io.github.gaming32.bingo.triggers.BingoTriggers;
 import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
-import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.core.HolderLookup;
@@ -44,7 +42,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ChiseledBookShelfBlock;
 import net.minecraft.world.level.block.entity.BannerPatterns;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
 import java.util.Arrays;
 import java.util.List;
@@ -75,8 +72,6 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(BingoGoal.builder(NEVER_TOUCH_WATER)
                 .criterion("touch_water", TouchFluidTrigger.TriggerInstance.water())
-                .criterion("touch_flowing_water", TouchFluidTrigger.TriggerInstance.flowingWater())
-                .requirements(AdvancementRequirements.Strategy.OR)
                 .tags(EnigmaticsBingoTags.NEVER, BingoTags.LOCKOUT_INFLICTABLE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_touch_water",
                         Component.translatable(Blocks.WATER.getDescriptionId())))

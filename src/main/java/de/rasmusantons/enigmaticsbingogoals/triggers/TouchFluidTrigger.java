@@ -8,6 +8,7 @@ import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.advancements.criterion.FluidPredicate;
 import net.minecraft.advancements.criterion.SimpleCriterionTrigger;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderSet;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.material.Fluids;
@@ -35,37 +36,27 @@ public class TouchFluidTrigger extends SimpleCriterionTrigger<TouchFluidTrigger.
         );
 
         public static Criterion<TouchFluidTrigger.TriggerInstance> water() {
+            //noinspection deprecation
             return EnigmaticsBingoGoalsTriggers.TOUCH_FLUID.get().createCriterion(
                     new TouchFluidTrigger.TriggerInstance(
                             Optional.empty(),
-                            Optional.of(FluidPredicate.Builder.fluid().of(Fluids.WATER).build())
-                    )
-            );
-        }
-
-        public static Criterion<TouchFluidTrigger.TriggerInstance> flowingWater() {
-            return EnigmaticsBingoGoalsTriggers.TOUCH_FLUID.get().createCriterion(
-                    new TouchFluidTrigger.TriggerInstance(
-                            Optional.empty(),
-                            Optional.of(FluidPredicate.Builder.fluid().of(Fluids.FLOWING_WATER).build())
+                            Optional.of(FluidPredicate.Builder.fluid().of(HolderSet.direct(
+                                    Fluids.WATER.builtInRegistryHolder(),
+                                    Fluids.FLOWING_WATER.builtInRegistryHolder()
+                            )).build())
                     )
             );
         }
 
         public static Criterion<TouchFluidTrigger.TriggerInstance> lava() {
+            //noinspection deprecation
             return EnigmaticsBingoGoalsTriggers.TOUCH_FLUID.get().createCriterion(
                     new TouchFluidTrigger.TriggerInstance(
                             Optional.empty(),
-                            Optional.of(FluidPredicate.Builder.fluid().of(Fluids.LAVA).build())
-                    )
-            );
-        }
-
-        public static Criterion<TouchFluidTrigger.TriggerInstance> flowingLava() {
-            return EnigmaticsBingoGoalsTriggers.TOUCH_FLUID.get().createCriterion(
-                    new TouchFluidTrigger.TriggerInstance(
-                            Optional.empty(),
-                            Optional.of(FluidPredicate.Builder.fluid().of(Fluids.FLOWING_LAVA).build())
+                            Optional.of(FluidPredicate.Builder.fluid().of(HolderSet.direct(
+                                    Fluids.LAVA.builtInRegistryHolder(),
+                                    Fluids.FLOWING_LAVA.builtInRegistryHolder()
+                            )).build())
                     )
             );
         }
