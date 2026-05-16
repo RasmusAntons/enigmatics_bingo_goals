@@ -15,10 +15,10 @@ import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
-import io.github.gaming32.bingo.data.tags.bingo.BingoEntityTypeTags;
 import io.github.gaming32.bingo.data.tags.bingo.BingoFeatureTags;
 import io.github.gaming32.bingo.triggers.BingoTriggers;
 import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
+import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.core.HolderLookup;
@@ -73,7 +73,9 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.WHEAT_SEEDS), ItemIcon.ofItem(Items.BARRIER)))
         );
         addGoal(BingoGoal.builder(NEVER_TOUCH_WATER)
-                .criterion("touch", EnterBlockTrigger.TriggerInstance.entersBlock(Blocks.WATER))
+                .criterion("touch_water", TouchFluidTrigger.TriggerInstance.water())
+                .criterion("touch_flowing_water", TouchFluidTrigger.TriggerInstance.flowingWater())
+                .requirements(AdvancementRequirements.Strategy.OR)
                 .tags(EnigmaticsBingoTags.NEVER, BingoTags.LOCKOUT_INFLICTABLE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.never_touch_water",
                         Component.translatable(Blocks.WATER.getDescriptionId())))

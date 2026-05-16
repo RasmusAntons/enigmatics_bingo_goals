@@ -7,15 +7,15 @@ import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoDamageTypeTags;
 import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import de.rasmusantons.enigmaticsbingogoals.triggers.EmptyHungerTrigger;
-import io.github.gaming32.bingo.data.BingoTags;
+import de.rasmusantons.enigmaticsbingogoals.triggers.TouchFluidTrigger;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
-import io.github.gaming32.bingo.data.icons.BlockIcon;
 import io.github.gaming32.bingo.data.icons.EffectIcon;
 import io.github.gaming32.bingo.data.icons.IndicatorIcon;
 import io.github.gaming32.bingo.data.icons.ItemIcon;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
 import io.github.gaming32.bingo.triggers.ChickenHatchTrigger;
 import io.github.gaming32.bingo.triggers.RelativeStatsTrigger;
+import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.core.HolderLookup;
@@ -205,7 +205,9 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
         );
         addGoal(reachLevelsGoal(REACH_LEVELS, 1, 9));
         addGoal(BingoGoal.builder(TOUCH_LAVA)
-                .criterion("touch", EnterBlockTrigger.TriggerInstance.entersBlock(Blocks.LAVA))
+                .criterion("touch_lava", TouchFluidTrigger.TriggerInstance.lava())
+                .criterion("touch_flowing_lava", TouchFluidTrigger.TriggerInstance.flowingLava())
+                .requirements(AdvancementRequirements.Strategy.OR)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.touch_lava",
                         Component.translatable(Blocks.LAVA.getDescriptionId())))
