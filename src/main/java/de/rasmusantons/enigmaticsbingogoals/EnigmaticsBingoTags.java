@@ -99,6 +99,7 @@ public class EnigmaticsBingoTags {
     public static final ResourceKey<BingoTag> WOODLAND_MANSION = createKey("woodland_mansion");
     public static final ResourceKey<BingoTag> TRAIL_RUINS = createKey("trail_ruins");
     public static final ResourceKey<BingoTag> TRIAL_CHAMBER = createKey("trial_chamber");
+    public static final ResourceKey<BingoTag> SULFUR_CAVES = createKey("sulfur_caves");
     public static final ResourceKey<BingoTag> BREEZE = createKey("breeze");
     public static final ResourceKey<BingoTag> SILVERFISH = createKey("silverfish");
     public static final ResourceKey<BingoTag> SWAMP = createKey("swamp");
@@ -110,6 +111,7 @@ public class EnigmaticsBingoTags {
     public static final ResourceKey<BingoTag> SEEDFIND_BIOME_SWAMP = createKey("seedfind_biome_swamp");
     public static final ResourceKey<BingoTag> SEEDFIND_BIOME_CRIMSON_FOREST = createKey("seedfind_biome_crimson_forest");
     public static final ResourceKey<BingoTag> SEEDFIND_BIOME_WARPED_FOREST = createKey("seedfind_biome_warped_forest");
+    public static final ResourceKey<BingoTag> SEEDFIND_BIOME_SULFUR_CAVES = createKey("seedfind_biome_sulfur_caves");
     public static final ResourceKey<BingoTag> SEEDFIND_BIOMETAG_IS_OCEAN = createKey("seedfind_biometag_is_ocean");
     public static final ResourceKey<BingoTag> SEEDFIND_BIOMETAG_IS_JUNGLE = createKey("seedfind_biometag_is_jungle");
     public static final ResourceKey<BingoTag> SEEDFIND_BIOMETAG_IS_MOUNTAIN = createKey("seedfind_biometag_is_mountain");
@@ -220,6 +222,7 @@ public class EnigmaticsBingoTags {
         context.register(WOODLAND_MANSION, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 9, 9, 9, 9, 9).build());
         context.register(TRAIL_RUINS, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 3, 3, 3, 3, 3).build());
         context.register(TRIAL_CHAMBER, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 3, 3, 3, 3, 3).build());
+        context.register(SULFUR_CAVES, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 2, 2, 2, 2, 2).build());
         context.register(BREEZE, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 1, 1, 1, 1, 1).build());
         context.register(SILVERFISH, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 1, 1, 1, 1, 1).build());
         context.register(SWAMP, BingoTag.builder().difficultyMax(0, 0, 0, 0, 0, 1, 1, 1, 1, 1).build());
@@ -231,6 +234,7 @@ public class EnigmaticsBingoTags {
         context.register(SEEDFIND_BIOME_SWAMP, seedfindTag());
         context.register(SEEDFIND_BIOME_CRIMSON_FOREST, seedfindTag());
         context.register(SEEDFIND_BIOME_WARPED_FOREST, seedfindTag());
+        context.register(SEEDFIND_BIOME_SULFUR_CAVES, seedfindTag());
         context.register(SEEDFIND_BIOMETAG_IS_OCEAN, seedfindTag());
         context.register(SEEDFIND_BIOMETAG_IS_JUNGLE, seedfindTag());
         context.register(SEEDFIND_BIOMETAG_IS_MOUNTAIN, seedfindTag());

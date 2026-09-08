@@ -19,11 +19,13 @@ import io.github.gaming32.bingo.triggers.*;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.predicates.BlockPredicate;
 import net.minecraft.advancements.predicates.ContextAwarePredicate;
+import net.minecraft.advancements.predicates.DamageSourcePredicate;
 import net.minecraft.advancements.predicates.DataComponentMatchers;
 import net.minecraft.advancements.predicates.EnchantmentPredicate;
 import net.minecraft.advancements.predicates.ItemPredicate;
 import net.minecraft.advancements.predicates.LocationPredicate;
 import net.minecraft.advancements.predicates.MinMaxBounds;
+import net.minecraft.advancements.predicates.TagPredicate;
 import net.minecraft.advancements.predicates.entity.EntityPredicate;
 import net.minecraft.advancements.predicates.entity.EntityTypePredicate;
 import net.minecraft.advancements.triggers.CriteriaTriggers;
@@ -45,6 +47,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.item.ItemStackTemplate;
@@ -674,6 +677,33 @@ public class EnigmaticsMediumGoalProvider extends EnigmaticsDifficultyGoalProvid
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO, EnigmaticsBingoTags.TRIAL_CHAMBER)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_stray",
                         EntityTypes.STRAY.getDescription()))
+        );
+        addGoal(BingoGoal.builder(DIE_TO_SULFUR_CUBE)
+                .criterion("die_to_explosion", BingoTriggers.DEATH.get().createCriterion(
+                        DeathTrigger.TriggerInstance.death(
+                                DamageSourcePredicate.Builder.damageType()
+                                        .source(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityTypes, EntityTypes.SULFUR_CUBE)))
+                                        .build()
+                        )
+                ))
+                .criterion("die_to_magma", BingoTriggers.DEATH.get().createCriterion(
+                        DeathTrigger.TriggerInstance.death(
+                                DamageSourcePredicate.Builder.damageType().tag(TagPredicate.is(EnigmaticsBingoDamageTypeTags.SULFUR_CUBE_HOT)).build()
+                        )
+                ))
+                .requirements(AdvancementRequirements.Strategy.OR)
+                .reactant(EnigmaticsBingoSynergies.TAKE_DAMAGE)
+                .reactant(EnigmaticsBingoSynergies.DIE)
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.directly_killed_sulfur_cube.tooltip",
+                        EntityTypes.SULFUR_CUBE.getDescription()))
+                .icon(IndicatorIcon.infer(
+                        EntityTypes.SULFUR_CUBE,
+                        BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.DEAD)
+                ))
+                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO, EnigmaticsBingoTags.SULFUR_CAVES,
+                        EnigmaticsBingoTags.SEEDFIND_BIOME_SULFUR_CAVES)
+                .name(Component.translatable("enigmaticsbingogoals.goal.die_to_sulfur_cube",
+                        EntityTypes.SULFUR_CUBE.getDescription()))
         );
         addGoal(eatItemGoal(EAT_COOKIE, items, Items.COOKIE)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.JUNGLE,

@@ -37,8 +37,13 @@ public class EnigmaticsBingoDamageTypeTagProvider extends FabricTagsProvider<Dam
         builder(EnigmaticsBingoDamageTypeTags.INTENTIONAL_GAME_DESIGN).add(
                 DamageTypes.BAD_RESPAWN_POINT
         );
+
         builder(EnigmaticsBingoDamageTypeTags.SUFFOCATION).add(
                 DamageTypes.IN_WALL
+        );
+
+        builder(EnigmaticsBingoDamageTypeTags.SULFUR_CUBE_HOT).add(
+                DamageTypes.SULFUR_CUBE_HOT
         );
     }
 }

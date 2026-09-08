@@ -291,6 +291,7 @@ public final class EnigmaticsBingoGoalIds {
         public static final Identifier BREED_HOGLIN = id("breed_hoglin");
         public static final Identifier DIE_TO_LLAMA = id("die_to_llama");
         public static final Identifier DIE_TO_STRAY = id("die_to_stray");
+        public static final Identifier DIE_TO_SULFUR_CUBE = id("die_to_sulfur_cube");
         public static final Identifier EAT_COOKIE = id("eat_cookie");
         public static final Identifier GET_WEAKNESS = id("get_weakness");
         public static final Identifier OBTAIN_COLORED_CANDLE = id("obtain_colored_candle");
