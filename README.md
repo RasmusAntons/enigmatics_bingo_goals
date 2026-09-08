@@ -4,13 +4,13 @@ Alternative goals for [Bingo](https://modrinth.com/mod/bingo-mod), specifically 
 
 The goals are intended to be played with a [player tracker](https://modrinth.com/mod/playertracker/) and require a [patch to allow never-type goals in lockout mode](https://github.com/Gaming32/bingo/pull/13).
 
-You can download the mod from [GitHub Releases](https://github.com/RasmusAntons/enigmatics_bingo_goals/releases/latest), or build it using the instructions below.
+You can download the mod from [Releases](https://git.3po.ch/owl/enigmatics_bingo_goals/releases/latest), or build it using the instructions below.
 
 ## Building the project
 
 To build the project, run the following Gradle tasks:
 
-* `buildBingoMod` (builds [Bingo with patches](https://github.com/RasmusAntons/bingo/tree/enigmatics-1.21))
+* `buildBingoMod` (builds [Bingo with patches](https://git.3po.ch/owl/bingo))
 * `runDatagen` (generates JSON definitions for custom Bingo goals)
 * `build`
 
