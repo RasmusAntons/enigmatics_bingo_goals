@@ -7,15 +7,15 @@ import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoEntityTypeTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.CycleIcon;
 import io.github.gaming32.bingo.data.icons.IndicatorIcon;
-import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.advancements.criterion.EntityTypePredicate;
-import net.minecraft.advancements.criterion.SummonedEntityTrigger;
+import net.minecraft.advancements.predicates.entity.EntityPredicate;
+import net.minecraft.advancements.predicates.entity.EntityTypePredicate;
+import net.minecraft.advancements.triggers.SummonedEntityTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BannerPatterns;
 
@@ -50,7 +50,7 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
                 )
         );
         addGoal(numberOfEffectsGoal(GET_SOME_EFFECTS, 20, 30));
-        addGoal(killEntitiesFromTagGoal(KILL_SOME_UNIQUE_HOSTILE_MOBS, EnigmaticsBingoEntityTypeTags.HOSTILE, 20, 24, true)
+        addGoal(killEntitiesFromTagGoal(KILL_SOME_UNIQUE_HOSTILE_MOBS, entityTypes, EnigmaticsBingoEntityTypeTags.HOSTILE, 20, 24, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
@@ -60,14 +60,14 @@ public class EnigmaticsVeryHardGoalProvider extends EnigmaticsDifficultyGoalProv
         addGoal(tameSomeWolvesGoal(TAME_SOME_WOLVES, 6, 9));
         addGoal(BingoGoal.builder(SUMMON_THE_WITHER)
                 .criterion("summon", SummonedEntityTrigger.TriggerInstance.summonedEntity(
-                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityTypes, EntityType.WITHER)))
+                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityTypes, EntityTypes.WITHER)))
                 )
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS, EnigmaticsBingoTags.NETHER_LATE)
-                .name(Component.translatable("enigmaticsbingogoals.goal.summon_the_wither", EntityType.WITHER.getDescription()))
+                .name(Component.translatable("enigmaticsbingogoals.goal.summon_the_wither", EntityTypes.WITHER.getDescription()))
                 .antisynergy(EnigmaticsBingoSynergies.WITHER)
-                .icon(IndicatorIcon.infer(EntityType.WITHER, Items.WITHER_SKELETON_SKULL))
+                .icon(IndicatorIcon.infer(EntityTypes.WITHER, Items.WITHER_SKELETON_SKULL))
         );
-        addGoal(killEntitiesFromTagGoal(KILL_SOME_UNIQUE_MOBS, EnigmaticsBingoEntityTypeTags.MOBS, 40, 45, true)
+        addGoal(killEntitiesFromTagGoal(KILL_SOME_UNIQUE_MOBS, entityTypes, EnigmaticsBingoEntityTypeTags.MOBS, 40, 45, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)

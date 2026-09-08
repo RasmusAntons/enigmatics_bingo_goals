@@ -1,6 +1,5 @@
 package de.rasmusantons.enigmaticsbingogoals.datagen.goal;
 
-import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoGoals;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoTags;
 import de.rasmusantons.enigmaticsbingogoals.conditions.NumberOfEffectsCondition;
 import de.rasmusantons.enigmaticsbingogoals.datagen.EnigmaticsBingoSynergies;
@@ -17,8 +16,17 @@ import io.github.gaming32.bingo.data.subs.BingoSub;
 import io.github.gaming32.bingo.datagen.goal.DifficultyGoalProvider;
 import io.github.gaming32.bingo.triggers.*;
 import net.minecraft.advancements.AdvancementRequirements;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.advancements.criterion.*;
+import net.minecraft.advancements.predicates.entity.EntityPredicate;
+import net.minecraft.advancements.predicates.entity.EntityTypePredicate;
+import net.minecraft.advancements.triggers.BredAnimalsTrigger;
+import net.minecraft.advancements.triggers.ConsumeItemTrigger;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
+import net.minecraft.advancements.predicates.*;
+import net.minecraft.advancements.triggers.EffectsChangedTrigger;
+import net.minecraft.advancements.triggers.InventoryChangeTrigger;
+import net.minecraft.advancements.triggers.KilledTrigger;
+import net.minecraft.advancements.triggers.StartRidingTrigger;
+import net.minecraft.advancements.triggers.TameAnimalTrigger;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
@@ -38,6 +46,7 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.animal.feline.CatVariant;
 import net.minecraft.world.entity.animal.frog.FrogVariant;
 import net.minecraft.world.entity.animal.wolf.WolfVariants;
@@ -127,8 +136,8 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 );
     }
 
-    protected static GoalBuilder killEntitiesFromTagGoal(Identifier id, TagKey<EntityType<?>> typeTag, int min, int max, boolean unique) {
-        GoalIcon goalIcon = BingoGoalGeneratorUtils.getEntityIcon(typeTag, 2);
+    protected static GoalBuilder killEntitiesFromTagGoal(Identifier id, HolderLookup.RegistryLookup<EntityType<?>> entityTypes, TagKey<EntityType<?>> typeTag, int min, int max, boolean unique) {
+        GoalIcon goalIcon = BingoGoalGeneratorUtils.getEntityIcon(typeTag, entityTypes, 2);
         boolean nativeIcon = goalIcon instanceof EntityTypeTagCycleIcon;
 
         return BingoGoal.builder(id)
@@ -408,7 +417,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                                         Optional.of(ContextAwarePredicate.create(
                                                 LootItemEntityPropertyCondition.hasProperties(
                                                         LootContext.EntityTarget.THIS,
-                                                        EntityPredicate.Builder.entity().of(entityTypes, EntityType.PLAYER)
+                                                        EntityPredicate.Builder.entity().of(entityTypes, EntityTypes.PLAYER)
                                                                 .slots(new SlotsPredicate(armorItems))
                                                 ).build()
                                         )),
@@ -427,8 +436,8 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
         var playerPredicate = Optional.of(ContextAwarePredicate.create(
                 LootItemEntityPropertyCondition.hasProperties(
                         LootContext.EntityTarget.THIS,
-                        EntityPredicate.Builder.entity().of(entityTypes, EntityType.PLAYER).vehicle(
-                                EntityPredicate.Builder.entity().of(entityTypes, EntityType.HORSE).slots(
+                        EntityPredicate.Builder.entity().of(entityTypes, EntityTypes.PLAYER).vehicle(
+                                EntityPredicate.Builder.entity().of(entityTypes, EntityTypes.HORSE).slots(
                                         new SlotsPredicate(
                                                 Map.of(
                                                         Objects.requireNonNull(SlotRanges.nameToIds("saddle")),
@@ -475,7 +484,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 maxProgress
         )
                 .name(Component.translatable("enigmaticsbingogoals.goal.tame_some_cats", 0,
-                                EntityType.CAT.getDescription()),
+                                EntityTypes.CAT.getDescription()),
                         subber -> subber.sub("with.0", "count")
                 )
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.WITCH_HUT, EnigmaticsBingoTags.VILLAGE)
@@ -498,7 +507,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 maxProgress
         )
                 .name(Component.translatable("enigmaticsbingogoals.goal.tame_some_wolves", 0,
-                                EntityType.WOLF.getDescription()),
+                                EntityTypes.WOLF.getDescription()),
                         subber -> subber.sub("with.0", "count")
                 )
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL)
@@ -521,7 +530,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                         EnigmaticsBingoTags.SEEDFIND_BIOME_SWAMP)
                 .antisynergy(EnigmaticsBingoSynergies.FROG)
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getFrogVariantIcon(variant), Items.SLIME_BALL))
-                .tooltip(Component.translatable("enigmaticsbingogoals.goal.breed_frog.tooltip", EntityType.TADPOLE.getDescription()));
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.breed_frog.tooltip", EntityTypes.TADPOLE.getDescription()));
     }
 
     protected GoalBuilder makeBannerWithPatternItemGoal(Identifier id, HolderGetter<Item> items, ItemLike patternItem, ResourceKey<BannerPattern> pattern, String patternName) {
@@ -542,7 +551,7 @@ public abstract class EnigmaticsDifficultyGoalProvider extends DifficultyGoalPro
                 .name(Component.translatable("enigmaticsbingogoals.goal.use_loom_pattern", patternName))
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.use_loom_pattern.tooltip"))
                 .icon(IndicatorIcon.infer(
-                        makeBannerWithPattern(Items.WHITE_BANNER, bannerPatterns.getOrThrow(pattern), DyeColor.BLACK),
+                        makeBannerWithPattern(Items.BANNER.white(), bannerPatterns.getOrThrow(pattern), DyeColor.BLACK),
                         BlockIcon.ofBlock(Blocks.LOOM)
                 ));
     }

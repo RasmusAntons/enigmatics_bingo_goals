@@ -31,6 +31,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.animal.feline.CatVariant;
 import net.minecraft.world.entity.animal.frog.FrogVariant;
@@ -54,11 +55,11 @@ public class BingoGoalGeneratorUtils {
     }
 
     public static GoalIcon getEntityIcon(EntityType<?> entityType, int count) {
-        if (entityType == EntityType.ENDER_DRAGON)
+        if (entityType == EntityTypes.ENDER_DRAGON)
             return ItemIcon.ofItem(Items.DRAGON_HEAD);
-        if (entityType == EntityType.ELDER_GUARDIAN)
+        if (entityType == EntityTypes.ELDER_GUARDIAN)
             return new ItemIcon(getCustomPLayerHead(PlayerHeadTextures.ELDER_GUARDIAN));
-        if (entityType == EntityType.GHAST)
+        if (entityType == EntityTypes.GHAST)
             return new ItemIcon(getCustomPLayerHead(PlayerHeadTextures.GHAST));
         return EntityIcon.ofSpawnEgg(entityType, new CompoundTag(), count);
     }
@@ -77,8 +78,8 @@ public class BingoGoalGeneratorUtils {
         }));
     }
 
-    public static GoalIcon getEntityIcon(TagKey<EntityType<?>> entityTypeTag, int count) {
-        var resolvedTag = EnigmaticsBingoEntityTypeTagProvider.getEntityTagDuringDatagen(entityTypeTag);
+    public static GoalIcon getEntityIcon(TagKey<EntityType<?>> entityTypeTag, HolderLookup.RegistryLookup<EntityType<?>> entityTypes, int count) {
+        var resolvedTag = EnigmaticsBingoEntityTypeTagProvider.getEntityTagDuringDatagen(entityTypeTag, entityTypes);
         if (resolvedTag == null)
             return new EntityTypeTagCycleIcon(entityTypeTag, count);
         return CycleIcon.infer(Arrays.stream(resolvedTag).map(e -> getEntityIcon(e, count)));
@@ -87,19 +88,19 @@ public class BingoGoalGeneratorUtils {
     public static EntityIcon getCatVariantIcon(ResourceKey<CatVariant> variant) {
         CompoundTag data = new CompoundTag();
         data.putString("variant", variant.identifier().toString());
-        return new EntityIcon(EntityType.CAT, data, new ItemStackTemplate(Items.CAT_SPAWN_EGG));
+        return new EntityIcon(EntityTypes.CAT, data, new ItemStackTemplate(Items.CAT_SPAWN_EGG));
     }
 
     public static EntityIcon getWolfVariantIcon(ResourceKey<WolfVariant> variant) {
         CompoundTag data = new CompoundTag();
         data.putString("variant", variant.identifier().toString());
-        return new EntityIcon(EntityType.WOLF, data, new ItemStackTemplate(Items.WOLF_SPAWN_EGG));
+        return new EntityIcon(EntityTypes.WOLF, data, new ItemStackTemplate(Items.WOLF_SPAWN_EGG));
     }
 
     public static EntityIcon getFrogVariantIcon(ResourceKey<FrogVariant> variant) {
         CompoundTag data = new CompoundTag();
         data.putString("variant", variant.identifier().toString());
-        return new EntityIcon(EntityType.FROG, data, new ItemStackTemplate(Items.FROG_SPAWN_EGG));
+        return new EntityIcon(EntityTypes.FROG, data, new ItemStackTemplate(Items.FROG_SPAWN_EGG));
     }
 
     public static CycleIcon getAllEffectsIcon() {
@@ -127,7 +128,7 @@ public class BingoGoalGeneratorUtils {
     public static ItemStack getOminousBanner(HolderLookup.Provider registries) {
         var patternRegistry = registries.lookupOrThrow(Registries.BANNER_PATTERN);
 
-        ItemStack itemStack = new ItemStack(Items.WHITE_BANNER);
+        ItemStack itemStack = new ItemStack(Items.BANNER.white());
         //noinspection deprecation
         BannerPatternLayers bannerPatternLayers = new BannerPatternLayers.Builder()
                 .addIfRegistered(patternRegistry, BannerPatterns.RHOMBUS_MIDDLE, DyeColor.CYAN)

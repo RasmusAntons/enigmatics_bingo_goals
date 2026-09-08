@@ -1,12 +1,12 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
-    id 'net.fabricmc.fabric-loom' version '1.16-SNAPSHOT'
+    id 'net.fabricmc.fabric-loom' version '1.17-SNAPSHOT'
     id 'maven-publish'
 }
 
-version = project.mod_version
-group = project.maven_group
+version = project.version
+group = project.group
 
 base {
     archivesName = project.archives_base_name
@@ -22,7 +22,7 @@ repositories {
 project.tasks.register('checkoutBingoMod') {
     group = 'help'
     def dir = getLayout().getBuildDirectory().dir('bingo').get()
-    def url = 'https://github.com/' + bingo_repo + '/archive/' + bingo_commit + '.zip'
+    def url = 'https://git.3po.ch/' + bingo_repo + '/archive/' + bingo_commit + '.zip'
 
     doLast {
         if (!file(dir).exists()) {
@@ -30,7 +30,16 @@ project.tasks.register('checkoutBingoMod') {
         }
         def f = dir.file('bingo-' + bingo_commit + '.zip').asFile
         new URI(url).toURL().withInputStream { i -> f.withOutputStream { it << i } }
-        copy { from zipTree(f) into dir }
+        copy {
+            from zipTree(f)
+            into dir
+            eachFile { details ->
+                def segments = details.relativePath.segments.clone()
+                segments[0] = "bingo-${bingo_commit}"
+                details.relativePath = new RelativePath(!details.isDirectory(), segments)
+            }
+            includeEmptyDirs = true
+        }
         f.delete()
     }
 }
@@ -117,8 +126,8 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    include(implementation("com.electronwill.night-config:core:3.8.4"))
-    include(implementation("com.electronwill.night-config:toml:3.8.4"))
+    include(implementation("com.electronwill.night-config:core:3.9.0"))
+    include(implementation("com.electronwill.night-config:toml:3.9.0"))
 
     implementation fileTree(dir: 'libs', include: 'bingo-' + bingo_version + '.jar')
 }
@@ -127,7 +136,7 @@ processResources {
     inputs.property "version", project.version
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
-    filteringCharset "UTF-8"
+    filteringCharset = "UTF-8"
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version,

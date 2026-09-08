@@ -145,9 +145,9 @@ public class EnigmaticsBingoGoalsClientGameTest implements FabricClientGameTest 
 
         if (testFailed) {
             failedTests.add(testName);
-            context.runOnClient(client -> client.gui.getChat().addClientSystemMessage(Component.literal("Test failed: " + testName).withStyle(ChatFormatting.RED)));
+            context.runOnClient(client -> client.gui.hud.getChat().addClientSystemMessage(Component.literal("Test failed: " + testName).withStyle(ChatFormatting.RED)));
         } else {
-            context.runOnClient(client -> client.gui.getChat().addClientSystemMessage(Component.literal("Test passed: " + testName).withStyle(ChatFormatting.GREEN)));
+            context.runOnClient(client -> client.gui.hud.getChat().addClientSystemMessage(Component.literal("Test passed: " + testName).withStyle(ChatFormatting.GREEN)));
         }
     }
 

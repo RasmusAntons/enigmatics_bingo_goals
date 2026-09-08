@@ -3,7 +3,7 @@ package de.rasmusantons.enigmaticsbingogoals.triggers;
 import de.rasmusantons.enigmaticsbingogoals.EnigmaticsBingoGoals;
 import io.github.gaming32.bingo.platform.registry.DeferredRegister;
 import io.github.gaming32.bingo.platform.registry.RegistryValue;
-import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.advancements.triggers.CriterionTrigger;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 

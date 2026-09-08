@@ -4,6 +4,9 @@ import de.rasmusantons.enigmaticsbingogoals.tags.EnigmaticsBingoItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.references.BlockItemId;
+import net.minecraft.references.BlockItemIds;
+import net.minecraft.references.ItemIds;
 import net.minecraft.world.item.Items;
 import org.jspecify.annotations.NonNull;
 
@@ -17,176 +20,154 @@ public class EnigmaticsBingoItemTagProvider extends FabricTagsProvider.ItemTagsP
 
     @Override
     protected void addTags(HolderLookup.@NonNull Provider registries) {
-        valueLookupBuilder(EnigmaticsBingoItemTags.WOODEN_TOOLS).add(
-                Items.WOODEN_AXE,
-                Items.WOODEN_SHOVEL,
-                Items.WOODEN_PICKAXE,
-                Items.WOODEN_HOE,
-                Items.WOODEN_SWORD,
-                Items.WOODEN_SPEAR
+        builder(EnigmaticsBingoItemTags.WOODEN_TOOLS).add(
+                ItemIds.WOODEN_AXE,
+                ItemIds.WOODEN_SHOVEL,
+                ItemIds.WOODEN_PICKAXE,
+                ItemIds.WOODEN_HOE,
+                ItemIds.WOODEN_SWORD,
+                ItemIds.WOODEN_SPEAR
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.STONE_TOOLS).add(
-                Items.STONE_AXE,
-                Items.STONE_SHOVEL,
-                Items.STONE_PICKAXE,
-                Items.STONE_HOE,
-                Items.STONE_SWORD,
-                Items.STONE_SPEAR
+        builder(EnigmaticsBingoItemTags.STONE_TOOLS).add(
+                ItemIds.STONE_AXE,
+                ItemIds.STONE_SHOVEL,
+                ItemIds.STONE_PICKAXE,
+                ItemIds.STONE_HOE,
+                ItemIds.STONE_SWORD,
+                ItemIds.STONE_SPEAR
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.IRON_TOOLS).add(
-                Items.IRON_AXE,
-                Items.IRON_SHOVEL,
-                Items.IRON_PICKAXE,
-                Items.IRON_HOE,
-                Items.IRON_SWORD,
-                Items.IRON_SPEAR
+        builder(EnigmaticsBingoItemTags.IRON_TOOLS).add(
+                ItemIds.IRON_AXE,
+                ItemIds.IRON_SHOVEL,
+                ItemIds.IRON_PICKAXE,
+                ItemIds.IRON_HOE,
+                ItemIds.IRON_SWORD,
+                ItemIds.IRON_SPEAR
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.COPPER_TOOLS).add(
-                Items.COPPER_AXE,
-                Items.COPPER_SHOVEL,
-                Items.COPPER_PICKAXE,
-                Items.COPPER_HOE,
-                Items.COPPER_SWORD,
-                Items.COPPER_SPEAR
+        builder(EnigmaticsBingoItemTags.COPPER_TOOLS).add(
+                ItemIds.COPPER_AXE,
+                ItemIds.COPPER_SHOVEL,
+                ItemIds.COPPER_PICKAXE,
+                ItemIds.COPPER_HOE,
+                ItemIds.COPPER_SWORD,
+                ItemIds.COPPER_SPEAR
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.GOLDEN_TOOLS).add(
-                Items.GOLDEN_AXE,
-                Items.GOLDEN_SHOVEL,
-                Items.GOLDEN_PICKAXE,
-                Items.GOLDEN_HOE,
-                Items.GOLDEN_SWORD,
-                Items.GOLDEN_SPEAR
+        builder(EnigmaticsBingoItemTags.GOLDEN_TOOLS).add(
+                ItemIds.GOLDEN_AXE,
+                ItemIds.GOLDEN_SHOVEL,
+                ItemIds.GOLDEN_PICKAXE,
+                ItemIds.GOLDEN_HOE,
+                ItemIds.GOLDEN_SWORD,
+                ItemIds.GOLDEN_SPEAR
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.DIAMOND_TOOLS).add(
-                Items.DIAMOND_AXE,
-                Items.DIAMOND_SHOVEL,
-                Items.DIAMOND_PICKAXE,
-                Items.DIAMOND_HOE,
-                Items.DIAMOND_SWORD,
-                Items.DIAMOND_SPEAR
+        builder(EnigmaticsBingoItemTags.DIAMOND_TOOLS).add(
+                ItemIds.DIAMOND_AXE,
+                ItemIds.DIAMOND_SHOVEL,
+                ItemIds.DIAMOND_PICKAXE,
+                ItemIds.DIAMOND_HOE,
+                ItemIds.DIAMOND_SWORD,
+                ItemIds.DIAMOND_SPEAR
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.HORSE_ARMORS).add(
-                Items.LEATHER_HORSE_ARMOR,
-                Items.IRON_HORSE_ARMOR,
-                Items.GOLDEN_HORSE_ARMOR,
-                Items.DIAMOND_HORSE_ARMOR,
-                Items.COPPER_HORSE_ARMOR
+        builder(EnigmaticsBingoItemTags.HORSE_ARMORS).add(
+                ItemIds.LEATHER_HORSE_ARMOR,
+                ItemIds.IRON_HORSE_ARMOR,
+                ItemIds.GOLDEN_HORSE_ARMOR,
+                ItemIds.DIAMOND_HORSE_ARMOR,
+                ItemIds.COPPER_HORSE_ARMOR
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.RAW_ORE_BLOCKS).add(
-                Items.RAW_COPPER_BLOCK,
-                Items.RAW_GOLD_BLOCK,
-                Items.RAW_IRON_BLOCK
+        builder(EnigmaticsBingoItemTags.RAW_ORE_BLOCKS).add(
+                BlockItemIds.RAW_COPPER_BLOCK,
+                BlockItemIds.RAW_GOLD_BLOCK,
+                BlockItemIds.RAW_IRON_BLOCK
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.CHAINMAIL_ARMOR).add(
-                Items.CHAINMAIL_HELMET,
-                Items.CHAINMAIL_CHESTPLATE,
-                Items.CHAINMAIL_LEGGINGS,
-                Items.CHAINMAIL_BOOTS
+        builder(EnigmaticsBingoItemTags.CHAINMAIL_ARMOR).add(
+                ItemIds.CHAINMAIL_HELMET,
+                ItemIds.CHAINMAIL_CHESTPLATE,
+                ItemIds.CHAINMAIL_LEGGINGS,
+                ItemIds.CHAINMAIL_BOOTS
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.SEEDS).add(
-                Items.WHEAT_SEEDS,
-                Items.MELON_SEEDS,
-                Items.PUMPKIN_SEEDS,
-                Items.BEETROOT_SEEDS,
-                Items.TORCHFLOWER_SEEDS,
-                Items.PITCHER_POD
+        builder(EnigmaticsBingoItemTags.SEEDS).add(
+                BlockItemIds.WHEAT_CROP,
+                BlockItemIds.MELON_CROP,
+                BlockItemIds.PUMPKIN_CROP,
+                BlockItemIds.BEETROOT_CROP,
+                BlockItemIds.TORCHFLOWER_CROP,
+                BlockItemIds.PITCHER_CROP
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.SAPLINGS).add(
-                Items.OAK_SAPLING,
-                Items.SPRUCE_SAPLING,
-                Items.BIRCH_SAPLING,
-                Items.JUNGLE_SAPLING,
-                Items.ACACIA_SAPLING,
-                Items.DARK_OAK_SAPLING,
-                Items.CHERRY_SAPLING,
-                Items.PALE_OAK_SAPLING
+        builder(EnigmaticsBingoItemTags.SAPLINGS).add(
+                BlockItemIds.OAK_SAPLING,
+                BlockItemIds.SPRUCE_SAPLING,
+                BlockItemIds.BIRCH_SAPLING,
+                BlockItemIds.JUNGLE_SAPLING,
+                BlockItemIds.ACACIA_SAPLING,
+                BlockItemIds.DARK_OAK_SAPLING,
+                BlockItemIds.CHERRY_SAPLING,
+                BlockItemIds.PALE_OAK_SAPLING
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.BOOKS).add(
-                Items.BOOK,
-                Items.WRITABLE_BOOK,
-                Items.WRITTEN_BOOK,
-                Items.ENCHANTED_BOOK,
-                Items.KNOWLEDGE_BOOK
+        builder(EnigmaticsBingoItemTags.BOOKS).add(
+                ItemIds.BOOK,
+                ItemIds.WRITABLE_BOOK,
+                ItemIds.WRITTEN_BOOK,
+                ItemIds.ENCHANTED_BOOK,
+                ItemIds.KNOWLEDGE_BOOK
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.MUSIC_DISCS).add(
-                Items.MUSIC_DISC_13,
-                Items.MUSIC_DISC_CAT,
-                Items.MUSIC_DISC_BLOCKS,
-                Items.MUSIC_DISC_CHIRP,
-                Items.MUSIC_DISC_FAR,
-                Items.MUSIC_DISC_MALL,
-                Items.MUSIC_DISC_MELLOHI,
-                Items.MUSIC_DISC_STAL,
-                Items.MUSIC_DISC_STRAD,
-                Items.MUSIC_DISC_WARD,
-                Items.MUSIC_DISC_11,
-                Items.MUSIC_DISC_WAIT,
-                Items.MUSIC_DISC_PIGSTEP,
-                Items.MUSIC_DISC_OTHERSIDE,
-                Items.MUSIC_DISC_5,
-                Items.MUSIC_DISC_RELIC,
-                Items.MUSIC_DISC_PRECIPICE,
-                Items.MUSIC_DISC_CREATOR,
-                Items.MUSIC_DISC_CREATOR_MUSIC_BOX,
-                Items.MUSIC_DISC_LAVA_CHICKEN,
-                Items.MUSIC_DISC_TEARS
+        builder(EnigmaticsBingoItemTags.MUSIC_DISCS).add(
+                ItemIds.MUSIC_DISC_13,
+                ItemIds.MUSIC_DISC_CAT,
+                ItemIds.MUSIC_DISC_BLOCKS,
+                ItemIds.MUSIC_DISC_CHIRP,
+                ItemIds.MUSIC_DISC_FAR,
+                ItemIds.MUSIC_DISC_MALL,
+                ItemIds.MUSIC_DISC_MELLOHI,
+                ItemIds.MUSIC_DISC_STAL,
+                ItemIds.MUSIC_DISC_STRAD,
+                ItemIds.MUSIC_DISC_WARD,
+                ItemIds.MUSIC_DISC_11,
+                ItemIds.MUSIC_DISC_WAIT,
+                ItemIds.MUSIC_DISC_PIGSTEP,
+                ItemIds.MUSIC_DISC_OTHERSIDE,
+                ItemIds.MUSIC_DISC_5,
+                ItemIds.MUSIC_DISC_RELIC,
+                ItemIds.MUSIC_DISC_PRECIPICE,
+                ItemIds.MUSIC_DISC_CREATOR,
+                ItemIds.MUSIC_DISC_CREATOR_MUSIC_BOX,
+                ItemIds.MUSIC_DISC_LAVA_CHICKEN,
+                ItemIds.MUSIC_DISC_TEARS
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.COPPER_BULBS).add(
-                Items.COPPER_BULB,
-                Items.EXPOSED_COPPER_BULB,
-                Items.WEATHERED_COPPER_BULB,
-                Items.OXIDIZED_COPPER_BULB,
-                Items.WAXED_COPPER_BULB,
-                Items.WAXED_EXPOSED_COPPER_BULB,
-                Items.WAXED_WEATHERED_COPPER_BULB,
-                Items.WAXED_OXIDIZED_COPPER_BULB
+        builder(EnigmaticsBingoItemTags.COPPER_BULBS).add(
+                BlockItemIds.COPPER_BULB.asList().toArray(new BlockItemId[0])
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.HANGING_SIGNS).add(
-                Items.OAK_HANGING_SIGN,
-                Items.SPRUCE_HANGING_SIGN,
-                Items.BIRCH_HANGING_SIGN,
-                Items.JUNGLE_HANGING_SIGN,
-                Items.ACACIA_HANGING_SIGN,
-                Items.DARK_OAK_HANGING_SIGN,
-                Items.MANGROVE_HANGING_SIGN,
-                Items.CHERRY_HANGING_SIGN,
-                Items.BAMBOO_HANGING_SIGN,
-                Items.CRIMSON_HANGING_SIGN,
-                Items.WARPED_HANGING_SIGN,
-                Items.PALE_OAK_HANGING_SIGN
+        builder(EnigmaticsBingoItemTags.HANGING_SIGNS).add(
+                BlockItemIds.OAK_HANGING_SIGN,
+                BlockItemIds.SPRUCE_HANGING_SIGN,
+                BlockItemIds.BIRCH_HANGING_SIGN,
+                BlockItemIds.JUNGLE_HANGING_SIGN,
+                BlockItemIds.ACACIA_HANGING_SIGN,
+                BlockItemIds.DARK_OAK_HANGING_SIGN,
+                BlockItemIds.MANGROVE_HANGING_SIGN,
+                BlockItemIds.CHERRY_HANGING_SIGN,
+                BlockItemIds.BAMBOO_HANGING_SIGN,
+                BlockItemIds.CRIMSON_HANGING_SIGN,
+                BlockItemIds.WARPED_HANGING_SIGN,
+                BlockItemIds.PALE_OAK_HANGING_SIGN
         );
 
-        valueLookupBuilder(EnigmaticsBingoItemTags.COLORED_CANDLES).add(
-                Items.WHITE_CANDLE,
-                Items.ORANGE_CANDLE,
-                Items.MAGENTA_CANDLE,
-                Items.LIGHT_BLUE_CANDLE,
-                Items.YELLOW_CANDLE,
-                Items.LIME_CANDLE,
-                Items.PINK_CANDLE,
-                Items.GRAY_CANDLE,
-                Items.LIGHT_GRAY_CANDLE,
-                Items.CYAN_CANDLE,
-                Items.PURPLE_CANDLE,
-                Items.BLUE_CANDLE,
-                Items.BROWN_CANDLE,
-                Items.GREEN_CANDLE,
-                Items.RED_CANDLE,
-                Items.BLACK_CANDLE
+        builder(EnigmaticsBingoItemTags.COLORED_CANDLES).add(
+                BlockItemIds.DYED_CANDLE.asList().toArray(new BlockItemId[0])
         );
     }
 }

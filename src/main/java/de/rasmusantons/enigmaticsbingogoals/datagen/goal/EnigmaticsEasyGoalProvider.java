@@ -17,8 +17,20 @@ import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
 import io.github.gaming32.bingo.data.tags.bingo.BingoFeatureTags;
 import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.advancements.criterion.*;
+import net.minecraft.advancements.predicates.BlockPredicate;
+import net.minecraft.advancements.predicates.ContextAwarePredicate;
+import net.minecraft.advancements.predicates.DamagePredicate;
+import net.minecraft.advancements.predicates.DamageSourcePredicate;
+import net.minecraft.advancements.predicates.DataComponentMatchers;
+import net.minecraft.advancements.predicates.ItemPredicate;
+import net.minecraft.advancements.predicates.LocationPredicate;
+import net.minecraft.advancements.predicates.MinMaxBounds;
+import net.minecraft.advancements.predicates.StatePropertiesPredicate;
+import net.minecraft.advancements.predicates.TagPredicate;
+import net.minecraft.advancements.predicates.entity.EntityPredicate;
+import net.minecraft.advancements.predicates.entity.EntityTypePredicate;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
+import net.minecraft.advancements.triggers.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentExactPredicate;
 import net.minecraft.core.component.DataComponents;
@@ -29,11 +41,13 @@ import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.BlockItemTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
@@ -45,6 +59,7 @@ import net.minecraft.world.level.storage.loot.LootContext;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 
@@ -150,7 +165,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .icon(IndicatorIcon.infer(getAllEffectsIcon(), Items.MILK_BUCKET))
         );
         addGoal(reachLevelsGoal(REACH_LEVELS, 10, 15));
-        addGoal(obtainSomeItemsFromTagGoal(OBTAIN_SOME_SMALL_FLOWERS, ItemTags.SMALL_FLOWERS, 5, 9)
+        addGoal(obtainSomeItemsFromTagGoal(OBTAIN_SOME_SMALL_FLOWERS, BlockItemTags.SMALL_FLOWERS.item(), 5, 9)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY, EnigmaticsBingoTags.PLANT_BATCH)
                 .name(
                         Component.translatable("enigmaticsbingogoals.goal.obtain_some_different_small_flowers", 0),
@@ -163,12 +178,12 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .name(Component.translatable("enigmaticsbingogoals.goal.deal_some_hearts_of_damage", 500))
                 .tags(EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .tooltip(Component.translatable("enigmaticsbingogoals.goal.deal_some_hearts_of_damage.tooltip"))
-                .icon(IndicatorIcon.infer(EntityIcon.ofSpawnEgg(EntityType.COW, 500), ItemIcon.ofItem(Items.NETHERITE_SWORD)))
+                .icon(IndicatorIcon.infer(EntityIcon.ofSpawnEgg(EntityTypes.COW, 500), ItemIcon.ofItem(Items.NETHERITE_SWORD)))
         );
-        addGoal(dieToMobEntityGoal(DIE_TO_BEE, entityTypes, EntityType.BEE)
+        addGoal(dieToMobEntityGoal(DIE_TO_BEE, entityTypes, EntityTypes.BEE)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.BEEHIVE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_bee",
-                        EntityType.BEE.getDescription()))
+                        EntityTypes.BEE.getDescription()))
         );
         addGoal(dieToDamageTypeGoal(DIE_TO_FIREWORKS, EnigmaticsBingoDamageTypeTags.FIREWORKS)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO)
@@ -199,85 +214,85 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.REDSTONE,
                         EnigmaticsBingoTags.WOODLAND_MANSION)
         );
-        addGoal(tameAnimalGoal(TAME_CAT, entityTypes, EntityType.CAT)
+        addGoal(tameAnimalGoal(TAME_CAT, entityTypes, EntityTypes.CAT)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL, EnigmaticsBingoTags.WITCH_HUT, EnigmaticsBingoTags.VILLAGE)
                 .antisynergy(EnigmaticsBingoSynergies.CAT)
-                .icon(IndicatorIcon.infer(EntityType.CAT, new ItemTagCycleIcon(ItemTags.CAT_FOOD)))
+                .icon(IndicatorIcon.infer(EntityTypes.CAT, new ItemTagCycleIcon(ItemTags.CAT_FOOD)))
         );
-        addGoal(tameAnimalGoal(TAME_WOLF, entityTypes, EntityType.WOLF)
+        addGoal(tameAnimalGoal(TAME_WOLF, entityTypes, EntityTypes.WOLF)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TAME_ANIMAL)
                 .antisynergy(EnigmaticsBingoSynergies.WOLF)
-                .icon(IndicatorIcon.infer(EntityType.WOLF, ItemIcon.ofItem(Items.BONE)))
+                .icon(IndicatorIcon.infer(EntityTypes.WOLF, ItemIcon.ofItem(Items.BONE)))
         );
-        addGoal(breedAnimalGoal(BREED_RABBIT, entityTypes, EntityType.RABBIT)
+        addGoal(breedAnimalGoal(BREED_RABBIT, entityTypes, EntityTypes.RABBIT)
                 .tags(EnigmaticsBingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.RABBIT)
                 .catalyst(EnigmaticsBingoSynergies.BABY)
         );
-        addGoal(killEntityGoal(KILL_GHAST, entityTypes, EntityType.GHAST)
-                .name(Component.translatable("enigmaticsbingogoals.goal.kill_ghast", EntityType.GHAST.getDescription()))
+        addGoal(killEntityGoal(KILL_GHAST, entityTypes, EntityTypes.GHAST)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_ghast", EntityTypes.GHAST.getDescription()))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.GHAST)
                 .icon(IndicatorIcon.infer(BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.GHAST), Items.NETHERITE_SWORD))
         );
-        addGoal(killEntityGoal(KILL_SNOW_GOLEM, entityTypes, EntityType.SNOW_GOLEM)
-                .name(Component.translatable("enigmaticsbingogoals.goal.kill_snow_golem", EntityType.SNOW_GOLEM.getDescription()))
+        addGoal(killEntityGoal(KILL_SNOW_GOLEM, entityTypes, EntityTypes.SNOW_GOLEM)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_snow_golem", EntityTypes.SNOW_GOLEM.getDescription()))
                 .tags(EnigmaticsBingoTags.OVERWORLD)
         );
-        addGoal(killEntitiesFromTagGoal(KILL_50_MOBS, EnigmaticsBingoEntityTypeTags.MOBS, 50, 50, false)
+        addGoal(killEntitiesFromTagGoal(KILL_50_MOBS, entityTypes, EnigmaticsBingoEntityTypeTags.MOBS, 50, 50, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.UNDEAD_MOB_BATCH, EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH, EnigmaticsBingoSynergies.AQUATIC_MOB_BATCH)
         );
-        addGoal(killEntitiesFromTagGoal(KILL_100_MOBS, EnigmaticsBingoEntityTypeTags.MOBS, 100, 100, false)
+        addGoal(killEntitiesFromTagGoal(KILL_100_MOBS, entityTypes, EnigmaticsBingoEntityTypeTags.MOBS, 100, 100, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.UNDEAD_MOB_BATCH, EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH, EnigmaticsBingoSynergies.AQUATIC_MOB_BATCH)
         );
-        addGoal(killEntitiesFromTagGoal(KILL_15_ARTHROPODS, EntityTypeTags.ARTHROPOD, 15, 15, false)
+        addGoal(killEntitiesFromTagGoal(KILL_15_ARTHROPODS, entityTypes, EntityTypeTags.ARTHROPOD, 15, 15, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
                                 Component.translatable(EntityTypeTags.ARTHROPOD.getTranslationKey())),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH)
         );
-        addGoal(killEntitiesFromTagGoal(KILL_30_ARTHROPODS, EntityTypeTags.ARTHROPOD, 30, 30, false)
+        addGoal(killEntitiesFromTagGoal(KILL_30_ARTHROPODS, entityTypes, EntityTypeTags.ARTHROPOD, 30, 30, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
                                 Component.translatable(EntityTypeTags.ARTHROPOD.getTranslationKey())),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.ARTHROPOD_MOB_BATCH)
         );
-        addGoal(killEntitiesFromTagGoal(KILL_20_AQUATIC_MOBS, EntityTypeTags.AQUATIC, 20, 20, false)
+        addGoal(killEntitiesFromTagGoal(KILL_20_AQUATIC_MOBS, entityTypes, EntityTypeTags.AQUATIC, 20, 20, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
                                 Component.translatable(EntityTypeTags.AQUATIC.getTranslationKey())),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.AQUATIC_MOB_BATCH)
         );
-        addGoal(killEntitiesFromTagGoal(KILL_40_AQUATIC_MOBS, EntityTypeTags.AQUATIC, 40, 40, false)
+        addGoal(killEntitiesFromTagGoal(KILL_40_AQUATIC_MOBS, entityTypes, EntityTypeTags.AQUATIC, 40, 40, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
                                 Component.translatable(EntityTypeTags.AQUATIC.getTranslationKey())),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.AQUATIC_MOB_BATCH)
         );
-        addGoal(killEntitiesFromTagGoal(KILL_30_UNDEAD_MOBS, EntityTypeTags.UNDEAD, 30, 30, false)
+        addGoal(killEntitiesFromTagGoal(KILL_30_UNDEAD_MOBS, entityTypes, EntityTypeTags.UNDEAD, 30, 30, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
                                 Component.translatable(EntityTypeTags.UNDEAD.getTranslationKey())),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.UNDEAD_MOB_BATCH)
         );
-        addGoal(killEntitiesFromTagGoal(KILL_50_UNDEAD_MOBS, EntityTypeTags.UNDEAD, 50, 50, false)
+        addGoal(killEntitiesFromTagGoal(KILL_50_UNDEAD_MOBS, entityTypes, EntityTypeTags.UNDEAD, 50, 50, false)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_of_tag", 0,
                                 Component.translatable(EntityTypeTags.UNDEAD.getTranslationKey())),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.UNDEAD_MOB_BATCH)
         );
-        addGoal(killEntitiesFromTagGoal(KILL_SOME_UNIQUE_MOBS, EnigmaticsBingoEntityTypeTags.MOBS, 10, 15, true)
+        addGoal(killEntitiesFromTagGoal(KILL_SOME_UNIQUE_MOBS, entityTypes, EnigmaticsBingoEntityTypeTags.MOBS, 10, 15, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
@@ -330,7 +345,7 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                                 Component.translatable(Items.ARMOR_STAND.getDescriptionId())))
                         .tags(EnigmaticsBingoTags.ITEM, EnigmaticsBingoTags.OVERWORLD)
                         .icon(IndicatorIcon.infer(
-                                EntityIcon.of(EntityType.ARMOR_STAND, new ItemStackTemplate(Items.ARMOR_STAND)),
+                                EntityIcon.of(EntityTypes.ARMOR_STAND, new ItemStackTemplate(Items.ARMOR_STAND)),
                                 BingoGoalGeneratorUtils.createAllDifferentMaterialsIcon(registries)
                         ))
         );
@@ -437,169 +452,59 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools",
                         Component.translatable(EnigmaticsBingoItemTags.COPPER_TOOLS.getTranslationKey())))
         );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_RED_CONCRETE, items, Items.RED_CONCRETE, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.CONCRETE)
-                .infrequency(10)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.RED_CONCRETE.getDescriptionId())))
+        Map<Identifier, Item> easyConcreteColors = Map.ofEntries(
+                Map.entry(OBTAIN_STACK_OF_RED_CONCRETE, Items.CONCRETE.red()),
+                Map.entry(OBTAIN_STACK_OF_YELLOW_CONCRETE, Items.CONCRETE.yellow()),
+                Map.entry(OBTAIN_STACK_OF_ORANGE_CONCRETE, Items.CONCRETE.orange()),
+                Map.entry(OBTAIN_STACK_OF_BLACK_CONCRETE, Items.CONCRETE.black()),
+                Map.entry(OBTAIN_STACK_OF_WHITE_CONCRETE, Items.CONCRETE.white()),
+                Map.entry(OBTAIN_STACK_OF_GRAY_CONCRETE, Items.CONCRETE.gray()),
+                Map.entry(OBTAIN_STACK_OF_LIGHT_GRAY_CONCRETE, Items.CONCRETE.lightGray()),
+                Map.entry(OBTAIN_STACK_OF_PINK_CONCRETE, Items.CONCRETE.pink()),
+                Map.entry(OBTAIN_STACK_OF_MAGENTA_CONCRETE, Items.CONCRETE.magenta()),
+                Map.entry(OBTAIN_STACK_OF_BLUE_CONCRETE, Items.CONCRETE.blue()),
+                Map.entry(OBTAIN_STACK_OF_PURPLE_CONCRETE, Items.CONCRETE.purple())
         );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_YELLOW_CONCRETE, items, Items.YELLOW_CONCRETE, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.CONCRETE)
-                .infrequency(10)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.YELLOW_CONCRETE.getDescriptionId())))
+        for (Map.Entry<Identifier, Item> concreteColor : easyConcreteColors.entrySet()) {
+            addGoal(obtainItemGoal(concreteColor.getKey(), items, concreteColor.getValue(), 64)
+                    .tags(EnigmaticsBingoTags.OVERWORLD)
+                    .antisynergy(EnigmaticsBingoSynergies.CONCRETE)
+                    .infrequency(10)
+                    .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                            Component.translatable(concreteColor.getValue().getDescriptionId())))
+            );
+        }
+        Map<Identifier, Item> easyWoolColors = Map.ofEntries(
+                Map.entry(OBTAIN_STACK_OF_RED_WOOL, Items.WOOL.red()),
+                Map.entry(OBTAIN_STACK_OF_YELLOW_WOOL, Items.WOOL.yellow()),
+                Map.entry(OBTAIN_STACK_OF_ORANGE_WOOL, Items.WOOL.orange()),
+                Map.entry(OBTAIN_STACK_OF_BLACK_WOOL, Items.WOOL.black()),
+                Map.entry(OBTAIN_STACK_OF_WHITE_WOOL, Items.WOOL.white()),
+                Map.entry(OBTAIN_STACK_OF_GRAY_WOOL, Items.WOOL.gray()),
+                Map.entry(OBTAIN_STACK_OF_LIGHT_GRAY_WOOL, Items.WOOL.lightGray()),
+                Map.entry(OBTAIN_STACK_OF_PINK_WOOL, Items.WOOL.pink()),
+                Map.entry(OBTAIN_STACK_OF_MAGENTA_WOOL, Items.WOOL.magenta()),
+                Map.entry(OBTAIN_STACK_OF_BLUE_WOOL, Items.WOOL.blue()),
+                Map.entry(OBTAIN_STACK_OF_PURPLE_WOOL, Items.WOOL.purple())
         );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_ORANGE_CONCRETE, items, Items.ORANGE_CONCRETE, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.CONCRETE)
-                .infrequency(10)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.ORANGE_CONCRETE.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_BLACK_CONCRETE, items, Items.BLACK_CONCRETE, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.CONCRETE)
-                .infrequency(10)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.BLACK_CONCRETE.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_WHITE_CONCRETE, items, Items.WHITE_CONCRETE, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.CONCRETE)
-                .infrequency(10)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.WHITE_CONCRETE.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_GRAY_CONCRETE, items, Items.GRAY_CONCRETE, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.CONCRETE)
-                .infrequency(10)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.GRAY_CONCRETE.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_LIGHT_GRAY_CONCRETE, items, Items.LIGHT_GRAY_CONCRETE, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.CONCRETE)
-                .infrequency(10)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.LIGHT_GRAY_CONCRETE.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_PINK_CONCRETE, items, Items.PINK_CONCRETE, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.CONCRETE)
-                .infrequency(10)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.PINK_CONCRETE.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_MAGENTA_CONCRETE, items, Items.MAGENTA_CONCRETE, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.CONCRETE)
-                .infrequency(10)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.MAGENTA_CONCRETE.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_BLUE_CONCRETE, items, Items.BLUE_CONCRETE, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.CONCRETE)
-                .infrequency(10)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.BLUE_CONCRETE.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_PURPLE_CONCRETE, items, Items.PURPLE_CONCRETE, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.CONCRETE)
-                .infrequency(10)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.PURPLE_CONCRETE.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_RED_WOOL, items, Items.RED_WOOL, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.WOOL)
-                .infrequency(12)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.RED_WOOL.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_YELLOW_WOOL, items, Items.YELLOW_WOOL, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.WOOL)
-                .infrequency(12)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.YELLOW_WOOL.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_ORANGE_WOOL, items, Items.ORANGE_WOOL, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.WOOL)
-                .infrequency(12)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.ORANGE_WOOL.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_BLACK_WOOL, items, Items.BLACK_WOOL, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.WOOL)
-                .infrequency(12)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.BLACK_WOOL.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_WHITE_WOOL, items, Items.WHITE_WOOL, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.WOOL)
-                .infrequency(12)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.WHITE_WOOL.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_GRAY_WOOL, items, Items.GRAY_WOOL, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.ANCIENT_CITY)
-                .antisynergy(EnigmaticsBingoSynergies.WOOL)
-                .infrequency(12)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.GRAY_WOOL.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_LIGHT_GRAY_WOOL, items, Items.LIGHT_GRAY_WOOL, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.WOOL)
-                .infrequency(12)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.LIGHT_GRAY_WOOL.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_PINK_WOOL, items, Items.PINK_WOOL, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.WOOL)
-                .infrequency(12)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.PINK_WOOL.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_MAGENTA_WOOL, items, Items.MAGENTA_WOOL, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.WOOL)
-                .infrequency(12)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.MAGENTA_WOOL.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_BLUE_WOOL, items, Items.BLUE_WOOL, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.WOOL)
-                .infrequency(12)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.BLUE_WOOL.getDescriptionId())))
-        );
-        addGoal(obtainItemGoal(OBTAIN_STACK_OF_PURPLE_WOOL, items, Items.PURPLE_WOOL, 64)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.WOOL)
-                .infrequency(12)
-                .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
-                        Component.translatable(Items.PURPLE_WOOL.getDescriptionId())))
-        );
+        for (Map.Entry<Identifier, Item> woolColor : easyWoolColors.entrySet()) {
+            addGoal(obtainItemGoal(woolColor.getKey(), items, woolColor.getValue(), 64)
+                    .tags(EnigmaticsBingoTags.OVERWORLD)
+                    .antisynergy(EnigmaticsBingoSynergies.WOOL)
+                    .infrequency(12)
+                    .name(Component.translatable("enigmaticsbingogoals.goal.obtain_stack_of",
+                            Component.translatable(woolColor.getValue().getDescriptionId())))
+            );
+        }
         addGoal(BingoGoal.builder(ANGER_ZOMBIFIED_PIGLIN)
                 .criterion("anger", PlayerHurtEntityTrigger.TriggerInstance.playerHurtEntity(
-                        Optional.of(EntityPredicate.Builder.entity().of(entityTypes, EntityType.ZOMBIFIED_PIGLIN).build())
+                        Optional.of(EntityPredicate.Builder.entity().of(entityTypes, EntityTypes.ZOMBIFIED_PIGLIN).build())
                 ))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.anger_zombified_piglin",
-                        EntityType.ZOMBIFIED_PIGLIN.getDescription()))
+                        EntityTypes.ZOMBIFIED_PIGLIN.getDescription()))
                 .icon(IndicatorIcon.infer(
-                        EntityType.ZOMBIFIED_PIGLIN,
+                        EntityTypes.ZOMBIFIED_PIGLIN,
                         BingoGoalGeneratorUtils.getCustomPLayerHead(BingoGoalGeneratorUtils.PlayerHeadTextures.ANGRY_BIRD))
                 )
         );
@@ -631,15 +536,15 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY, EnigmaticsBingoTags.BARTERING)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.GOLD_INGOT), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
-        addGoal(dieToMobEntityGoal(DIE_TO_DOLPHIN, entityTypes, EntityType.DOLPHIN)
+        addGoal(dieToMobEntityGoal(DIE_TO_DOLPHIN, entityTypes, EntityTypes.DOLPHIN)
                 .tags(EnigmaticsBingoTags.OVERWORLD)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_dolphin",
-                        EntityType.DOLPHIN.getDescription()))
+                        EntityTypes.DOLPHIN.getDescription()))
         );
-        addGoal(dieToMobEntityGoal(DIE_TO_IRON_GOLEM, entityTypes, EntityType.IRON_GOLEM)
+        addGoal(dieToMobEntityGoal(DIE_TO_IRON_GOLEM, entityTypes, EntityTypes.IRON_GOLEM)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.VILLAGE)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_iron_golem",
-                        EntityType.IRON_GOLEM.getDescription()))
+                        EntityTypes.IRON_GOLEM.getDescription()))
         );
         addGoal(dieToDamageTypeGoal(DIE_TO_STALACTITE, EnigmaticsBingoDamageTypeTags.STALACTITE)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.DIE_TO, EnigmaticsBingoTags.CAVING)
@@ -656,8 +561,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.GHAST)
                 .icon(new IndicatorIcon(ItemIcon.ofItem(Items.FIRE_CHARGE), ItemIcon.ofItem(Blocks.GOLD_BLOCK)))
         );
-        addGoal(killEntityGoal(KILL_ZOMBIE_VILLAGER, entityTypes, EntityType.ZOMBIE_VILLAGER)
-                .name(Component.translatable("enigmaticsbingogoals.goal.kill_zombie_villager", EntityType.ZOMBIE_VILLAGER.getDescription()))
+        addGoal(killEntityGoal(KILL_ZOMBIE_VILLAGER, entityTypes, EntityTypes.ZOMBIE_VILLAGER)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_zombie_villager", EntityTypes.ZOMBIE_VILLAGER.getDescription()))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO)
         );
         addGoal(neverDamageGoal(NEVER_50_DAMAGE, 50));
@@ -700,13 +605,13 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                         subber -> subber.sub("with.0", "count")
                 )
         );
-        addGoal(dieToEntityGoal(DIE_TO_TNT_MINECART, entityTypes, EntityType.TNT_MINECART, ItemIcon.ofItem(Items.TNT_MINECART))
+        addGoal(dieToEntityGoal(DIE_TO_TNT_MINECART, entityTypes, EntityTypes.TNT_MINECART, ItemIcon.ofItem(Items.TNT_MINECART))
                 .tags(EnigmaticsBingoTags.OVERWORLD)
                 .catalyst(EnigmaticsBingoSynergies.EXPLOSION)
                 .name(Component.translatable("enigmaticsbingogoals.goal.die_to_tnt_minecart",
-                        EntityType.TNT_MINECART.getDescription()))
+                        EntityTypes.TNT_MINECART.getDescription()))
         );
-        addGoal(killEntitiesFromTagGoal(KILL_SOME_UNIQUE_HOSTILE_MOBS, EnigmaticsBingoEntityTypeTags.HOSTILE, 7, 10, true)
+        addGoal(killEntitiesFromTagGoal(KILL_SOME_UNIQUE_HOSTILE_MOBS, entityTypes, EnigmaticsBingoEntityTypeTags.HOSTILE, 7, 10, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
@@ -714,24 +619,24 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         );
         addGoal(BingoGoal.builder(KILL_BAT_WITH_ARROW)
                 .criterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(
-                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityTypes, EntityType.BAT)),
+                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityTypes, EntityTypes.BAT)),
                         DamageSourcePredicate.Builder.damageType()
                                 .direct(EntityPredicate.Builder.entity().of(entityTypes, EntityTypeTags.ARROWS))
                 ))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
-                .icon(IndicatorIcon.infer(EntityType.BAT, Items.ARROW))
-                .name(Component.translatable("enigmaticsbingogoals.goal.kill_bat_with_arrow", EntityType.BAT.getDescription(), EntityType.ARROW.getDescription()))
+                .icon(IndicatorIcon.infer(EntityTypes.BAT, Items.ARROW))
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_bat_with_arrow", EntityTypes.BAT.getDescription(), EntityTypes.ARROW.getDescription()))
         );
         addGoal(BingoGoal.builder(KILL_RABBIT_WITH_ARROW)
                 .criterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(
-                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityTypes, EntityType.RABBIT)),
+                        EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityTypes, EntityTypes.RABBIT)),
                         DamageSourcePredicate.Builder.damageType()
                                 .direct(EntityPredicate.Builder.entity().of(entityTypes, EntityTypeTags.ARROWS))
                 ))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.RABBIT)
-                .icon(IndicatorIcon.infer(EntityType.RABBIT, Items.ARROW))
-                .name(Component.translatable("enigmaticsbingogoals.goal.kill_rabbit_with_arrow", EntityType.RABBIT.getDescription(), EntityType.ARROW.getDescription()))
+                .icon(IndicatorIcon.infer(EntityTypes.RABBIT, Items.ARROW))
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_rabbit_with_arrow", EntityTypes.RABBIT.getDescription(), EntityTypes.ARROW.getDescription()))
         );
         addGoal(obtainSomeItemsFromTagGoal(OBTAIN_HANGING_SIGN, EnigmaticsBingoItemTags.HANGING_SIGNS, 1, 1)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.SIGN)
@@ -743,7 +648,8 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(obtainItemGoal(OBTAIN_TARGET, items, Items.TARGET)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.VILLAGE)
         );
-        addGoal(obtainItemGoal(OBTAIN_CHISELED_COPPER, items, Items.CHISELED_COPPER)
+        // todo: should this allow any weathering/waxed state?
+        addGoal(obtainItemGoal(OBTAIN_CHISELED_COPPER, items, Items.CHISELED_COPPER.weathering().unaffected())
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.CAVING, EnigmaticsBingoTags.TRIAL_CHAMBER)
         );
         addGoal(obtainItemGoal(OBTAIN_CHISELED_DEEPSLATE, items, Items.CHISELED_DEEPSLATE)
@@ -755,61 +661,26 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
         addGoal(obtainItemGoal(OBTAIN_CHISELED_POLISHED_BLACKSTONE, items, Items.CHISELED_POLISHED_BLACKSTONE)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.NETHER_ENTRY)
         );
-        addGoal(obtainItemGoal(OBTAIN_BLACK_STAINED_GLASS_PANE, items, Items.BLACK_STAINED_GLASS_PANE)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
-                .infrequency(10)
+        Map<Identifier, Item> easyStainedGlassPaneColors = Map.ofEntries(
+                Map.entry(OBTAIN_RED_STAINED_GLASS_PANE, Items.STAINED_GLASS_PANE.red()),
+                Map.entry(OBTAIN_YELLOW_STAINED_GLASS_PANE, Items.STAINED_GLASS_PANE.yellow()),
+                Map.entry(OBTAIN_ORANGE_STAINED_GLASS_PANE, Items.STAINED_GLASS_PANE.orange()),
+                Map.entry(OBTAIN_BLACK_STAINED_GLASS_PANE, Items.STAINED_GLASS_PANE.black()),
+                Map.entry(OBTAIN_WHITE_STAINED_GLASS_PANE, Items.STAINED_GLASS_PANE.white()),
+                Map.entry(OBTAIN_GRAY_STAINED_GLASS_PANE, Items.STAINED_GLASS_PANE.gray()),
+                Map.entry(OBTAIN_LIGHT_GRAY_STAINED_GLASS_PANE, Items.STAINED_GLASS_PANE.lightGray()),
+                Map.entry(OBTAIN_PINK_STAINED_GLASS_PANE, Items.STAINED_GLASS_PANE.pink()),
+                Map.entry(OBTAIN_MAGENTA_STAINED_GLASS_PANE, Items.STAINED_GLASS_PANE.magenta()),
+                Map.entry(OBTAIN_BLUE_STAINED_GLASS_PANE, Items.STAINED_GLASS_PANE.blue()),
+                Map.entry(OBTAIN_PURPLE_STAINED_GLASS_PANE, Items.STAINED_GLASS_PANE.purple())
         );
-        addGoal(obtainItemGoal(OBTAIN_BLUE_STAINED_GLASS_PANE, items, Items.BLUE_STAINED_GLASS_PANE)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
-                .infrequency(10)
-        );
-        addGoal(obtainItemGoal(OBTAIN_GRAY_STAINED_GLASS_PANE, items, Items.GRAY_STAINED_GLASS_PANE)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
-                .infrequency(10)
-        );
-        addGoal(obtainItemGoal(OBTAIN_LIGHT_GRAY_STAINED_GLASS_PANE, items, Items.LIGHT_GRAY_STAINED_GLASS_PANE)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
-                .infrequency(10)
-        );
-        addGoal(obtainItemGoal(OBTAIN_MAGENTA_STAINED_GLASS_PANE, items, Items.MAGENTA_STAINED_GLASS_PANE)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
-                .infrequency(10)
-        );
-        addGoal(obtainItemGoal(OBTAIN_ORANGE_STAINED_GLASS_PANE, items, Items.ORANGE_STAINED_GLASS_PANE)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
-                .infrequency(10)
-        );
-        addGoal(obtainItemGoal(OBTAIN_PINK_STAINED_GLASS_PANE, items, Items.PINK_STAINED_GLASS_PANE)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
-                .infrequency(10)
-        );
-        addGoal(obtainItemGoal(OBTAIN_PURPLE_STAINED_GLASS_PANE, items, Items.PURPLE_STAINED_GLASS_PANE)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
-                .infrequency(10)
-        );
-        addGoal(obtainItemGoal(OBTAIN_RED_STAINED_GLASS_PANE, items, Items.RED_STAINED_GLASS_PANE)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
-                .infrequency(10)
-        );
-        addGoal(obtainItemGoal(OBTAIN_WHITE_STAINED_GLASS_PANE, items, Items.WHITE_STAINED_GLASS_PANE)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
-                .infrequency(10)
-        );
-        addGoal(obtainItemGoal(OBTAIN_YELLOW_STAINED_GLASS_PANE, items, Items.YELLOW_STAINED_GLASS_PANE)
-                .tags(EnigmaticsBingoTags.OVERWORLD)
-                .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
-                .infrequency(10)
-        );
+        for (Map.Entry<Identifier, Item> stainerGlassColor:  easyStainedGlassPaneColors.entrySet()) {
+            addGoal(obtainItemGoal(stainerGlassColor.getKey(), items, stainerGlassColor.getValue())
+                    .tags(EnigmaticsBingoTags.OVERWORLD)
+                    .antisynergy(EnigmaticsBingoSynergies.STAINED_GLASS_PANE)
+                    .infrequency(10)
+            );
+        }
         addGoal(BingoGoal.builder(UNIQUE_FOODS_ON_CAMPFIRE)
                 .criterion("use", CriteriaTriggers.ITEM_USED_ON_BLOCK.createCriterion(
                         new ItemUsedOnLocationTrigger.TriggerInstance(
@@ -856,12 +727,12 @@ public class EnigmaticsEasyGoalProvider extends EnigmaticsDifficultyGoalProvider
                                 .components()
                                 .exact(DataComponentExactPredicate.expect(DataComponents.CUSTOM_NAME, Component.literal("jeb_")))
                                 .build()),
-                        Optional.of(EntityPredicate.wrap(EntityPredicate.Builder.entity().of(entityTypes, EntityType.SHEEP)))
+                        Optional.of(EntityPredicate.wrap(EntityPredicate.Builder.entity().of(entityTypes, EntityTypes.SHEEP)))
                 ))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.MINESHAFT, EnigmaticsBingoTags.WOODLAND_MANSION)
-                .name(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb", EntityType.SHEEP.getDescription()))
-                .tooltip(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb.tooltip", EntityType.SHEEP.getDescription(), "jeb_"))
-                .icon(IndicatorIcon.infer(EntityType.SHEEP, Items.NAME_TAG))
+                .name(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb", EntityTypes.SHEEP.getDescription()))
+                .tooltip(Component.translatable("enigmaticsbingogoals.goal.name_a_sheep_jeb.tooltip", EntityTypes.SHEEP.getDescription(), "jeb_"))
+                .icon(IndicatorIcon.infer(EntityTypes.SHEEP, Items.NAME_TAG))
         );
         addGoal(advancementProgressGoal(FEED_GOLDEN_DANDELION_TO_DIFFERENT_MOBS,
                 EnigmaticsBingoAdvancements.FEED_GOLDEN_DANDELION_TO_DIFFERENT_MOBS, 3, 5)

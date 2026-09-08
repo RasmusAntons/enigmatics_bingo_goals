@@ -15,15 +15,24 @@ import io.github.gaming32.bingo.data.icons.ItemIcon;
 import io.github.gaming32.bingo.data.progresstrackers.CriterionProgressTracker;
 import io.github.gaming32.bingo.triggers.ChickenHatchTrigger;
 import io.github.gaming32.bingo.triggers.RelativeStatsTrigger;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.advancements.criterion.*;
+import net.minecraft.advancements.predicates.BlockPredicate;
+import net.minecraft.advancements.predicates.ContextAwarePredicate;
+import net.minecraft.advancements.predicates.LocationPredicate;
+import net.minecraft.advancements.predicates.MinMaxBounds;
+import net.minecraft.advancements.predicates.entity.EntityFlagsPredicate;
+import net.minecraft.advancements.predicates.entity.EntityPredicate;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
+import net.minecraft.advancements.triggers.DefaultBlockInteractionTrigger;
+import net.minecraft.advancements.triggers.InventoryChangeTrigger;
+import net.minecraft.advancements.triggers.KilledTrigger;
+import net.minecraft.advancements.triggers.PlayerTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -46,7 +55,7 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
         final var items = registries.lookupOrThrow(Registries.ITEM);
         final var blocks = registries.lookupOrThrow(Registries.BLOCK);
 
-        addGoal(breedAnimalGoal(BREED_CHICKEN, entityTypes, EntityType.CHICKEN)
+        addGoal(breedAnimalGoal(BREED_CHICKEN, entityTypes, EntityTypes.CHICKEN)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.OVERWORLD_ENTRY)
                 .antisynergy(EnigmaticsBingoSynergies.CHICKEN)
                 .catalyst(EnigmaticsBingoSynergies.BABY)
@@ -100,10 +109,10 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                 .antisynergy(EnigmaticsBingoSynergies.CHICKEN)
                 .catalyst(EnigmaticsBingoSynergies.BABY)
                 .name(Component.translatable("enigmaticsbingogoals.goal.hatch_baby_chicken",
-                        EntityType.CHICKEN.getDescription(),
+                        EntityTypes.CHICKEN.getDescription(),
                         Component.translatable(Items.EGG.getDescriptionId())
                 ))
-                .icon(IndicatorIcon.infer(EntityType.CHICKEN, Items.EGG))
+                .icon(IndicatorIcon.infer(EntityTypes.CHICKEN, Items.EGG))
         );
         addGoal(obtainAllItemsFromTagGoal(OBTAIN_ALL_WOODEN_TOOLS, EnigmaticsBingoItemTags.WOODEN_TOOLS)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.FULL_TOOL_SET, EnigmaticsBingoTags.OVERWORLD_ENTRY)
@@ -115,22 +124,22 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                 .name(Component.translatable("enigmaticsbingogoals.goal.obtain_full_set_of_material_tools",
                         Component.translatable(EnigmaticsBingoItemTags.STONE_TOOLS.getTranslationKey())))
         );
-        addGoal(obtainItemGoal(OBTAIN_BLACK_GLAZED_TERRACOTTA, items, Items.BLACK_GLAZED_TERRACOTTA)
+        addGoal(obtainItemGoal(OBTAIN_BLACK_GLAZED_TERRACOTTA, items, Items.GLAZED_TERRACOTTA.black())
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS)
                 .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
                 .infrequency(7)
         );
-        addGoal(obtainItemGoal(OBTAIN_BLUE_GLAZED_TERRACOTTA, items, Items.BLUE_GLAZED_TERRACOTTA)
+        addGoal(obtainItemGoal(OBTAIN_BLUE_GLAZED_TERRACOTTA, items, Items.GLAZED_TERRACOTTA.blue())
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS)
                 .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
                 .infrequency(7)
         );
-        addGoal(obtainItemGoal(OBTAIN_GRAY_GLAZED_TERRACOTTA, items, Items.GRAY_GLAZED_TERRACOTTA)
+        addGoal(obtainItemGoal(OBTAIN_GRAY_GLAZED_TERRACOTTA, items, Items.GLAZED_TERRACOTTA.gray())
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS)
                 .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
                 .infrequency(7)
         );
-        addGoal(obtainItemGoal(OBTAIN_ORANGE_GLAZED_TERRACOTTA, items, Items.ORANGE_GLAZED_TERRACOTTA)
+        addGoal(obtainItemGoal(OBTAIN_ORANGE_GLAZED_TERRACOTTA, items, Items.GLAZED_TERRACOTTA.orange())
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS)
                 .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
                 .infrequency(7)
@@ -139,7 +148,7 @@ public class EnigmaticsVeryEasyGoalProvider extends EnigmaticsDifficultyGoalProv
                 .tags(EnigmaticsBingoTags.OVERWORLD)
                 .antisynergy(EnigmaticsBingoSynergies.BOOK)
         );
-        addGoal(obtainItemGoal(OBTAIN_WHITE_GLAZED_TERRACOTTA, items, Items.WHITE_GLAZED_TERRACOTTA)
+        addGoal(obtainItemGoal(OBTAIN_WHITE_GLAZED_TERRACOTTA, items, Items.GLAZED_TERRACOTTA.white())
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.TRAIL_RUINS)
                 .antisynergy(EnigmaticsBingoSynergies.TERRACOTTA)
                 .infrequency(7)

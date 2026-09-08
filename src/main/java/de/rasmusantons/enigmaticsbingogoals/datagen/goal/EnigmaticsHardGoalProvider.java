@@ -10,14 +10,13 @@ import io.github.gaming32.bingo.data.BingoTags;
 import io.github.gaming32.bingo.data.goal.BingoGoal;
 import io.github.gaming32.bingo.data.icons.*;
 import io.github.gaming32.bingo.triggers.GrowFeatureTrigger;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.advancements.criterion.ContextAwarePredicate;
-import net.minecraft.advancements.criterion.CuredZombieVillagerTrigger;
-import net.minecraft.advancements.criterion.EntityHurtPlayerTrigger;
-import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.advancements.criterion.LocationPredicate;
-import net.minecraft.advancements.criterion.SlotsPredicate;
-import net.minecraft.advancements.criterion.StartRidingTrigger;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
+import net.minecraft.advancements.predicates.ContextAwarePredicate;
+import net.minecraft.advancements.triggers.CuredZombieVillagerTrigger;
+import net.minecraft.advancements.triggers.EntityHurtPlayerTrigger;
+import net.minecraft.advancements.predicates.entity.EntityPredicate;
+import net.minecraft.advancements.predicates.LocationPredicate;
+import net.minecraft.advancements.triggers.StartRidingTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.packs.VanillaHusbandryAdvancements;
@@ -25,7 +24,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.animal.frog.FrogVariants;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
@@ -36,7 +35,6 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
 import java.util.Arrays;
-import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.stream.Stream;
@@ -59,10 +57,10 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .criterion("transform", CuredZombieVillagerTrigger.TriggerInstance.curedZombieVillager())
                 .name(Component.translatable("enigmaticsbingogoals.goal.cure_zombie_villager"))
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.IGLOO)
-                .icon(IndicatorIcon.infer(EntityType.ZOMBIE_VILLAGER, ItemIcon.ofItem(Items.GOLDEN_APPLE)))
+                .icon(IndicatorIcon.infer(EntityTypes.ZOMBIE_VILLAGER, ItemIcon.ofItem(Items.GOLDEN_APPLE)))
         );
         addGoal(numberOfEffectsGoal(GET_SOME_EFFECTS, 13, 19));
-        addGoal(breedAnimalGoal(BREED_MULE, entityTypes, EntityType.MULE)
+        addGoal(breedAnimalGoal(BREED_MULE, entityTypes, EntityTypes.MULE)
                 .tags(EnigmaticsBingoTags.OVERWORLD)
         );
         addGoal(advancementProgressGoal(VISIT_SOME_UNIQUE_OVERWORLD_BIOMES,
@@ -93,14 +91,14 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         ), EffectIcon.of(MobEffects.HEALTH_BOOST)),
                         subber -> subber.sub("base.icons.*.item.count", "count"))
         );
-        addGoal(killEntitiesFromTagGoal(KILL_SOME_UNIQUE_HOSTILE_MOBS, EnigmaticsBingoEntityTypeTags.HOSTILE, 15, 19, true)
+        addGoal(killEntitiesFromTagGoal(KILL_SOME_UNIQUE_HOSTILE_MOBS, entityTypes, EnigmaticsBingoEntityTypeTags.HOSTILE, 15, 19, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_hostile_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
                 .antisynergy(EnigmaticsBingoSynergies.UNIQUE_HOSTILE_MOBS)
         );
-        addGoal(killEntityGoal(KILL_ENDER_DRAGON, entityTypes, EntityType.ENDER_DRAGON)
-                .name(Component.translatable("enigmaticsbingogoals.goal.kill_ender_dragon", EntityType.ENDER_DRAGON.getDescription()))
+        addGoal(killEntityGoal(KILL_ENDER_DRAGON, entityTypes, EntityTypes.ENDER_DRAGON)
+                .name(Component.translatable("enigmaticsbingogoals.goal.kill_ender_dragon", EntityTypes.ENDER_DRAGON.getDescription()))
                 .tags(EnigmaticsBingoTags.END, EnigmaticsBingoTags.END_ENTRY)
                 .icon(IndicatorIcon.infer(Items.DRAGON_HEAD, Items.NETHERITE_SWORD))
         );
@@ -144,7 +142,7 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         subber -> subber.sub("icons.*.item.count", "count")
                 )
         );
-        addGoal(killEntitiesFromTagGoal(KILL_SOME_UNIQUE_MOBS, EnigmaticsBingoEntityTypeTags.MOBS, 26, 35, true)
+        addGoal(killEntitiesFromTagGoal(KILL_SOME_UNIQUE_MOBS, entityTypes, EnigmaticsBingoEntityTypeTags.MOBS, 26, 35, true)
                 .name(Component.translatable("enigmaticsbingogoals.goal.kill_some_unique_mobs", 0),
                         subber -> subber.sub("with.0", "amount"))
                 .tags(EnigmaticsBingoTags.KILL_MOB)
@@ -264,13 +262,13 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.WITHER_SKULL, EnigmaticsBingoTags.FORTRESS)
         );
         addGoal(breedFrogVariantGoal(BREED_WHITE_FROG, FrogVariants.WARM)
-                .name(Component.translatable("enigmaticsbingogoals.goal.breed_white_frog", EntityType.FROG.getDescription()))
+                .name(Component.translatable("enigmaticsbingogoals.goal.breed_white_frog", EntityTypes.FROG.getDescription()))
         );
         addGoal(breedFrogVariantGoal(BREED_ORANGE_FROG, FrogVariants.TEMPERATE)
-                .name(Component.translatable("enigmaticsbingogoals.goal.breed_orange_frog", EntityType.FROG.getDescription()))
+                .name(Component.translatable("enigmaticsbingogoals.goal.breed_orange_frog", EntityTypes.FROG.getDescription()))
         );
         addGoal(breedFrogVariantGoal(BREED_GREEN_FROG, FrogVariants.COLD)
-                .name(Component.translatable("enigmaticsbingogoals.goal.breed_green_frog", EntityType.FROG.getDescription()))
+                .name(Component.translatable("enigmaticsbingogoals.goal.breed_green_frog", EntityTypes.FROG.getDescription()))
         );
         addGoal(obtainSomeItemsFromTagGoal(OBTAIN_SOME_SAPLINGS, EnigmaticsBingoItemTags.SAPLINGS, 6, 7)
                 .tags(EnigmaticsBingoTags.OVERWORLD, EnigmaticsBingoTags.PLANT_BATCH)
@@ -290,16 +288,16 @@ public class EnigmaticsHardGoalProvider extends EnigmaticsDifficultyGoalProvider
                         new StartRidingTrigger.TriggerInstance(Optional.of(ContextAwarePredicate.create(
                                 LootItemEntityPropertyCondition.hasProperties(
                                         LootContext.EntityTarget.THIS,
-                                        EntityPredicate.Builder.entity().of(entityTypes, EntityType.PLAYER).vehicle(
-                                                EntityPredicate.Builder.entity().of(entityTypes, EntityType.HAPPY_GHAST)
+                                        EntityPredicate.Builder.entity().of(entityTypes, EntityTypes.PLAYER).vehicle(
+                                                EntityPredicate.Builder.entity().of(entityTypes, EntityTypes.HAPPY_GHAST)
                                         )
                                 ).build()
                         )))
                 ))
-                .icon(IndicatorIcon.infer(EntityIcon.ofSpawnEgg(EntityType.HAPPY_GHAST), ItemIcon.ofItem(Items.BLACK_HARNESS)))
+                .icon(IndicatorIcon.infer(EntityIcon.ofSpawnEgg(EntityTypes.HAPPY_GHAST), ItemIcon.ofItem(Items.HARNESS.black())))
                 .tags(EnigmaticsBingoTags.NETHER, EnigmaticsBingoTags.HAPPY_GHAST)
                 .name(Component.translatable("enigmaticsbingogoals.goal.ride_happy_ghast",
-                        Component.translatable(EntityType.HAPPY_GHAST.getDescriptionId())))
+                        Component.translatable(EntityTypes.HAPPY_GHAST.getDescriptionId())))
         );
     }
 }

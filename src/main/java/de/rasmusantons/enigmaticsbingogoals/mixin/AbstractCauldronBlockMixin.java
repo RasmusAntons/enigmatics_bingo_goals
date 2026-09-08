@@ -8,7 +8,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -30,7 +30,7 @@ public abstract class AbstractCauldronBlockMixin {
 
         if ((itemStack.is(ItemTags.CAULDRON_CAN_REMOVE_DYE)) && itemStack.has(DataComponents.DYED_COLOR)) {
             var equippableComponent = itemStack.get(DataComponents.EQUIPPABLE);
-            if (equippableComponent != null && equippableComponent.canBeEquippedBy(Holder.direct(EntityType.PLAYER))) {
+            if (equippableComponent != null && equippableComponent.canBeEquippedBy(Holder.direct(EntityTypes.PLAYER))) {
                 if ((AbstractCauldronBlock) (Object) this instanceof LayeredCauldronBlock layeredCauldronBlock
                         && layeredCauldronBlock.getStateDefinition().getOwner() == Blocks.WATER_CAULDRON) {
                     EnigmaticsBingoGoalsTriggers.CLEAN_ARMOR_IN_CAULDRON.get().trigger((ServerPlayer) player, itemStack);
