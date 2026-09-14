@@ -28,12 +28,12 @@ public abstract class AbstractCauldronBlockMixin {
     protected void useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player,
                              InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
 
-        if ((itemStack.is(ItemTags.CAULDRON_CAN_REMOVE_DYE)) && itemStack.has(DataComponents.DYED_COLOR)) {
+        if (player instanceof ServerPlayer serverPlayer && (itemStack.is(ItemTags.CAULDRON_CAN_REMOVE_DYE)) && itemStack.has(DataComponents.DYED_COLOR)) {
             var equippableComponent = itemStack.get(DataComponents.EQUIPPABLE);
             if (equippableComponent != null && equippableComponent.canBeEquippedBy(Holder.direct(EntityTypes.PLAYER))) {
                 if ((AbstractCauldronBlock) (Object) this instanceof LayeredCauldronBlock layeredCauldronBlock
                         && layeredCauldronBlock.getStateDefinition().getOwner() == Blocks.WATER_CAULDRON) {
-                    EnigmaticsBingoGoalsTriggers.CLEAN_ARMOR_IN_CAULDRON.get().trigger((ServerPlayer) player, itemStack);
+                    EnigmaticsBingoGoalsTriggers.CLEAN_ARMOR_IN_CAULDRON.get().trigger(serverPlayer, itemStack);
                 }
             }
         }
